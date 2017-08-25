@@ -1,23 +1,29 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Image } from 'react-native';
+
+import images from './app/Resources/Images'
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <Image source={images.firstbackground} style={styles.bgrContainer}>
+        <Image source={images.token} />
+        {this.state.putCoint && <Image source={images.k1} />}
+        <TouchableOpacity onPress={this._onPigPress}>
+          <Image source={images.pig} />
+        </TouchableOpacity>
+      </Image>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  bgrContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    paddingTop: 20,
+    width: null,
+    height: null    
+  }
 });
