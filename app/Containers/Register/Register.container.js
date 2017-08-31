@@ -11,9 +11,16 @@ export default class RegisterContainer extends Component {
   render() {
     return (
       <View>
-        <Text>
-          TODO Register page
+        <Text style={styles.text}>
+          Description: rjfbsh jfbsdjfb dsjkfbskd sdkfnsdjkf dfsdf sdsfsfsd
+          dfsdfs dsfsfsd sdfsfs esfsdf dsfdsfsdf sdfsdf dsfd sfsdf dfsdf sdsfsfsd
+          dfsd dfsdf sdsfsfsd dfsdfs dsfsfs ddsfd dfsdf sdsfsf sddsf ddfds dfsd fsds fsfsd
+          dfsdf dsfsd dfsdf efef dfvfggfg gfgs sdfgdsf gsgs dfsvds dfvdsgdsf fgsg fdggfds
+          dsfasf dsfasdfa dfret ret rtwert ewt retwet wtw wrt wtwtw rtwetw ertwetw rtwtter
+
         </Text>
+
+        
       </View>
     );
   }
