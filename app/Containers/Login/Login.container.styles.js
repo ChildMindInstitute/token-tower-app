@@ -24,11 +24,5 @@ export default {
     color: 'grey',
     marginTop: 20,
     marginLeft: 250
-  },
-  submitBtn: {
-    textAlign: 'center',
-    padding: 20,
-    backgroundColor: 'green',
-    fontSize: 20
   }
 };

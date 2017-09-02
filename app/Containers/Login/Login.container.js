@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import axios from 'axios';
+import { reduxForm, Field } from 'redux-form';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import SubmitBtn from '../../Components/FormButton/FormButton.component';
 
 import styles from './Login.container.styles';
 
-export default class LoginContainer extends Component {
-  componentDidMount() {
-
-  }
-
+class LoginContainer extends Component {
   _renderUserInput = () => (
     <View style={styles.inputContainer}>
       <Text style={styles.label}>User</Text>
@@ -43,10 +41,14 @@ export default class LoginContainer extends Component {
           {this._renderPasswordInput()}
           <Text style={styles.forgot}>Forgot?</Text>
         </View>
-        <TouchableOpacity onPress={this._onSubmit}>
-          <Text style={styles.submitBtn}>Submit</Text>
-        </TouchableOpacity>
+        <SubmitBtn onPress={this._onSubmit} />
       </View>
     );
   }
 }
+
+// export default reduxForm({
+//   form: 'form'
+// })(LoginContainer);
+
+export default LoginContainer;

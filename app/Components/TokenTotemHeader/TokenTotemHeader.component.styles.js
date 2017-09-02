@@ -10,10 +10,8 @@ export default {
     height: 50
   },
   text: {
-    color: 'black',
     fontWeight: 'bold',
-    fontSize: 43,
-    padding: 10
+    fontSize: 43
   },
   image: {
     height: 190,

@@ -15,5 +15,8 @@ export default {
   token: require('../Assets/Images/token.png'),
   camera: require('../Assets/Images/camera.png'),
   present: require('../Assets/Images/present.png'),
+  facebook: require('../Assets/Images/facebook.png'),
+  google: require('../Assets/Images/google.png'),
+  treasure: require('../Assets/Images/treasure.png')
   /* eslint-enable global-require */
 };

@@ -9,6 +9,7 @@ const isHorizontal = direction => direction === 'horizontal';
 
 const TokenTotemHeader = (props) => {
   const { direction } = props;
+
   const containerStyle = isHorizontal(direction) ?
     styles.containerHorizontal : styles.containerVertical;
 
