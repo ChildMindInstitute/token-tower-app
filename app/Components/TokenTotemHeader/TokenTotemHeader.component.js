@@ -14,11 +14,9 @@ const TokenTotemHeader = (props) => {
     styles.containerHorizontal : styles.containerVertical;
 
   const _renderImage = () => {
-    const style = isHorizontal(direction) ? {
-      flex: 1,
-      width: null,
-      height: null
-    } : styles.image;
+    const style = isHorizontal(direction) ?
+      { flex: 1, width: null, height: null } : styles.image;
+
     const image = (
       <Image
         resizeMode={'contain'}

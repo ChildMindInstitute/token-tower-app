@@ -25,12 +25,19 @@ export default {
   },
   img: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    top: 20
   },
   present: {
-    flex: 1
+    flex: 0.5,
+    position: 'relative',
+    zIndex: 0,
+    left: -50
   },
   treasure: {
-    flex: 1
+    flex: 1,
+    zIndex: 1,
+    position: 'relative',
+    left: 10
   }
 };

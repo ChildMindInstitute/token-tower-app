@@ -4,8 +4,8 @@ import { TouchableOpacity, Text } from 'react-native';
 import styles from './FormButton.component.styles';
 
 const FormButton = props => (
-  <TouchableOpacity onPress={props.onPress} style={props.btnStyle}>
-    <Text style={props.textStyle || styles.submitBtn}>{props.text || 'SUBMIT'}</Text>
+  <TouchableOpacity onPress={props.onPress} style={[styles.container, props.btnStyle]}>
+    <Text style={[styles.submitBtn, props.textStyle]}>{props.text || 'SUBMIT'}</Text>
   </TouchableOpacity>
 );
 

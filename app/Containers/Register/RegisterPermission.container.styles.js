@@ -1,11 +1,22 @@
 export default {
-  content: { paddingTop: 30 },
+  container: { flex: 1 },
+  contentBlock: {
+    flex: 1,
+    paddingHorizontal: 30
+  },
+  content: {
+    paddingTop: 30
+  },
   descriptionContainer: {
     paddingBottom: 20,
     borderBottomWidth: 1
   },
-  description: { fontSize: 18 },
-  permissionContainer: { paddingTop: 20 },
+  description: {
+    fontSize: 18
+  },
+  permissionContainer: {
+    paddingTop: 20
+  },
   consent: {
     fontWeight: 'bold',
     fontSize: 24

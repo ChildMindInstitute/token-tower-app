@@ -32,6 +32,8 @@ export default class MainContainer extends Component {
 
   render() {
     const animateStyle = {
+      width: 150,
+      height: 150,
       opacity: this.state.fadeAnim,
       transform: [{
         translateY: this.state.fadeAnim.interpolate({

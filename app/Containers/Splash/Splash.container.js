@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 
@@ -10,7 +10,11 @@ export default class SplashContainer extends Component {
   componentDidMount() {
 
   }
+  _onTouch = () => {
+    const {navigate} = this.props.navigation;
+    navigate('Main');
 
+  }
   _renderTreasure = () => (
     <Image
       resizeMode={'contain'}
@@ -28,22 +32,24 @@ export default class SplashContainer extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Header direction={'horizontal'} />
-        <View style={{flex: 1}}>
-          <View style={styles.wrap}>
-            <View style={styles.textBubble}>
-              <Text style={styles.text}> You have 85 tokens!!!
+      <TouchableWithoutFeedback onPress={this._onTouch}>
+        <View style={{ flex: 1 }}>
+          <Header direction={'horizontal'} />
+          <View style={{ flex: 1 }}>
+            <View style={styles.wrap}>
+              <View style={styles.textBubble}>
+                <Text style={styles.text}> You have 85 tokens!!!
               Only 15 more for your next PRIZE!!!
-              </Text>
+                </Text>
+              </View>
+            </View>
+            <View style={styles.img}>
+              {this._renderTreasure()}
+              {this._renderPresent()}
             </View>
           </View>
-          <View style={styles.img}>
-            {this._renderTreasure()}
-            {this._renderPresent()}
-          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

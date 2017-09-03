@@ -21,8 +21,18 @@ export default class HomeContainer extends Component {
     return (
       <View style={styles.container}>
         <Header />
-        <Button onPress={this._onLoginPress} text={'Login'} btnStyle={styles.btn} textStyle={styles.btnText} />
-        <Button onPress={this._onRegisterPress} text={'Register'} btnStyle={styles.btn} textStyle={styles.btnText} />
+        <Button
+          onPress={this._onLoginPress}
+          text={'Login'}
+          btnStyle={styles.btn}
+          textStyle={styles.btnText}
+        />
+        <Button
+          onPress={this._onRegisterPress}
+          text={'Register'}
+          btnStyle={styles.btn}
+          textStyle={styles.btnText}
+        />
       </View>
     );
   }

@@ -1,8 +1,10 @@
 export default {
-  submitBtn: {
-    textAlign: 'center',
+  container: {
     borderWidth: 1,
-    borderColor: 'grey',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  submitBtn: {
     padding: 20,
     fontSize: 20
   }

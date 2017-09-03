@@ -1,7 +1,6 @@
 export default {
   bgrContainer: {
     flex: 1,
-    paddingTop: 40,
     width: null,
     height: null
   },

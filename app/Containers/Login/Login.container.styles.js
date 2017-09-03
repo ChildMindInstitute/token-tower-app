@@ -1,11 +1,18 @@
 
 export default {
-  inputContainer: {
+  container: {
+    flex: 1
+  },
+  contentBlock: {
+    flex: 1,
+    paddingHorizontal: 30
+  },
+  inputBlock: { flex: 1 },
+  inputContainerBlock: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 30,
-    marginTop: 15
+    paddingVertical: 10
   },
   label: {
     width: 100,
@@ -13,16 +20,17 @@ export default {
     textAlign: 'right',
     marginRight: 20
   },
+  inputContainer: {
+    flex: 1,
+    flexDirection: 'row'
+  },
   input: {
     flex: 1,
     height: 40,
-    borderColor: 'grey',
-    borderWidth: 1,
-    backgroundColor: '#ededed'
+    borderWidth: 1
   },
   forgot: {
     color: 'grey',
-    marginTop: 20,
-    marginLeft: 250
+    textAlign: 'right'
   }
 };

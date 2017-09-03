@@ -9,9 +9,7 @@ export default {
   input: {
     flex: 1,
     height: 40,
-    borderColor: 'grey',
     borderWidth: 1,
-    backgroundColor: '#ededed'
   },
   viewInput: {
     flexDirection: 'row',
@@ -27,9 +25,7 @@ export default {
   btn: {
     margin: 50,
     height: 80,
-    borderColor: 'grey',
     borderWidth: 1,
-    backgroundColor: '#ededed',
     justifyContent: 'center'
   },
   btnText: {
