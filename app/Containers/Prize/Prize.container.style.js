@@ -1,0 +1,23 @@
+export default {
+  container: {
+    flex: 1
+  },
+  containerBlock: {
+    flexDirection: 'row',
+    marginVertical: 10
+  },
+  inputBlock: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  input: {
+    flex: 0.9,
+    borderWidth: 1,
+    height: 40
+  },
+  text: {
+    fontSize: 20,
+    marginHorizontal: 10
+  }
+};

@@ -6,12 +6,12 @@ class FormInput extends Component {
     const { onChange } = this.props.input;
     onChange(value);
   }
-
+  
   render() {
     const {
       input: { value },
       inputStyle, containerStyle,
-      secureTextEntry
+      secureTextEntry, keyboardType
     } = this.props;
 
     return (
@@ -23,6 +23,7 @@ class FormInput extends Component {
           secureTextEntry={secureTextEntry}
           autoCapitalize={'none'}
           underlineColorAndroid="transparent"
+          keyboardType={keyboardType}
         />
       </View>
     );

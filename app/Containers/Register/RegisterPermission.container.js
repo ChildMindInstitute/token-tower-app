@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Switch, TouchableOpacity } from 'react-native';
+import { View, Text, Switch } from 'react-native';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import SubmitBtn from '../../Components/FormButton/FormButton.component';

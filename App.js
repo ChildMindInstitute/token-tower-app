@@ -15,6 +15,7 @@ import RegisterFormContainer from './app/Containers/Register/RegisterForm.contai
 import RegisterWelcomeContainer from './app/Containers/Register/RegisterWelcome.container';
 import SplashContainer from './app/Containers/Splash/Splash.container';
 import SettingContainer from './app/Containers/Setting/Setting.container';
+import PrizeContainer from './app/Containers/Prize/Prize.container';
 
 const middleware = [
   promiseMiddleware(),
@@ -41,6 +42,13 @@ const Test = ({ navigation: { navigate } }) => (
   </View>
 );
 
+const defautNavigationOptions = {
+  navigationOptions: {
+    headerStyle: { backgroundColor: '#FDC847' },
+    headerTintColor: '#ffffff'
+  }
+};
+
 const RootNavigator = StackNavigator({
   Test: { screen: Test },
   Home: { screen: HomeContainer },
@@ -50,8 +58,10 @@ const RootNavigator = StackNavigator({
   RegisterWelcome: { screen: RegisterWelcomeContainer },
   Main: { screen: MainContainer },
   Splash: { screen: SplashContainer },
-  Setting: { screen: SettingContainer }
-});
+  Setting: { screen: SettingContainer },
+  Prize: { screen: PrizeContainer }
+}, defautNavigationOptions);
+
 
 const App = () => (
   <Provider store={store}>

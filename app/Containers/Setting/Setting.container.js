@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Switch } from 'react-native';
+import { View, Text, Switch } from 'react-native';
+import { reduxForm, Field } from 'redux-form';
 
+import SubmitBtn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import Input from '../../Components/FormInput/FormInput.component';
 
 import styles from './Setting.container.styles';
 
@@ -11,23 +14,39 @@ class SettingContainer extends Component {
   _renderTokens = () => (
     <View style={styles.viewInput}>
       <Text style={styles.text}>
-      How many tokens do you want to start with?
+    How many tokens do you want to start with?
       </Text>
-      <TextInput style={styles.input} />
+      <Field
+        name={'username'}
+        component={Input}
+        inputStyle={styles.input}
+        containerStyle={{ flex: 1, flexDirection: 'row' }}
+      />
     </View>
+
   )
   _renderReplenish = () => (
     <View style={styles.viewInput}>
       <Text style={styles.text}>
       How often do you want to replenish the tokens?
       </Text>
-      <TextInput style={styles.input} />
+      <Field
+        name={'replenish'}
+        component={Input}
+        inputStyle={styles.input}
+        containerStyle={{ flex: 1, flexDirection: 'row' }}
+      />
     </View>
   )
   _renderPair = () => (
     <View style={styles.viewInput}>
       <Text style={styles.text}>Pair app (child's) name</Text>
-      <TextInput style={styles.input} />
+      <Field
+        name={'pairApp'}
+        component={Input}
+        inputStyle={styles.input}
+        containerStyle={{ flex: 1, flexDirection: 'row' }}
+      />
     </View>
   )
   _onClick = () => {
@@ -37,22 +56,26 @@ class SettingContainer extends Component {
 
   render() {
     return (
-      <View>
-        <Header direction={'horizontal'} />
-        <Text style={styles.title}>Setup</Text>
-        {this._renderTokens()}
-        {this._renderReplenish()}
-        {this._renderPair()}
-        <View style={styles.viewInput}>
-          <Text style={styles.text}>Sound effects to accompany animations?</Text>
-          <Switch value={this.state.p1} onValueChange={(value) => { this.setState({ p1: value }); }} />
-        </View>
-        <TouchableOpacity onPress={this._onClick} style={styles.btn}>
-          <Text style={styles.btnText}>Take the tour!</Text>
-        </TouchableOpacity>
+      <View style={styles.container}>
+        <View style={styles.contentBlock}>
+          <Header direction={'horizontal'} />
+          <View style={styles.content}>
+            <Text style={styles.title}>Setup</Text>
+            {this._renderTokens()}
+            {this._renderReplenish()}
+            {this._renderPair()}
+            <View style={styles.viewInput}>
+              <Text style={styles.text}>Sound effects to accompany animations?</Text>
+              <Switch value={this.state.p1} onValueChange={(value) => { this.setState({ p1: value }); }} />
+            </View>
+          </View>
 
+        </View>
+        <SubmitBtn onPress={this._onClick} text={'Take the tour!'} />
       </View>
     );
   }
 }
-export default SettingContainer;
+export default reduxForm({
+  form: 'form'
+})(SettingContainer);

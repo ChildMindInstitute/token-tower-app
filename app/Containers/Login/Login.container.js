@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, KeyboardAvoidingView } from 'react-native';
 import axios from 'axios';
 import { reduxForm, Field } from 'redux-form';
 
@@ -52,14 +52,12 @@ class LoginContainer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.contentBlock}>
+        <KeyboardAvoidingView style={styles.contentBlock} behavior={'position'}>
           <Header />
-          <View style={styles.inputBlock}>
-            {this._renderUserInput()}
-            {this._renderPasswordInput()}
-            <Text style={styles.forgot}>Forgot?</Text>
-          </View>
-        </View>
+          {this._renderUserInput()}
+          {this._renderPasswordInput()}
+          <Text style={styles.forgot}>Forgot?</Text>
+        </KeyboardAvoidingView>
         <SubmitBtn onPress={this._onSubmit} />
       </View>
     );

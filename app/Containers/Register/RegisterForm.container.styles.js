@@ -1,10 +1,12 @@
 export default {
-  container: { flex: 1 },
+  container: {
+    flex: 1
+  },
   contentBlock: {
     flex: 1,
     paddingHorizontal: 30
   },
-  inputContainer: {
+  inputContainerBlock: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -43,5 +45,9 @@ export default {
   para: {
     paddingTop: 20,
     fontSize: 20
+  },
+  inputContainer: {
+    flex: 1,
+    flexDirection: 'row'
   }
 };

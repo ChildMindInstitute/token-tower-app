@@ -1,35 +1,54 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
+import { reduxForm, Field } from 'redux-form';
 
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import images from '../../Resources/Images';
+import Input from '../../Components/FormInput/FormInput.component';
 
 import styles from './RegisterForm.container.styles';
 
-export default class RegisterFormContainer extends Component {
+class RegisterFormContainer extends Component {
   _onNext = () => {
     const { navigate } = this.props.navigation;
     navigate('RegisterWelcome');
   }
 
   _renderUserInput = () => (
-    <View style={styles.inputContainer}>
+    <View style={styles.inputContainerBlock}>
       <Text style={styles.label}>User</Text>
-      <TextInput style={styles.input} />
+      <Field
+        name={'username'}
+        component={Input}
+        inputStyle={styles.input}
+        containerStyle={styles.inputContainer}
+      />
     </View>
   )
 
   _renderPasswordInput = () => (
-    <View style={styles.inputContainer}>
+    <View style={styles.inputContainerBlock}>
       <Text style={styles.label}>Password</Text>
-      <TextInput secureTextEntry style={styles.input} />
+      <Field
+        name={'password'}
+        component={Input}
+        inputStyle={styles.input}
+        containerStyle={styles.inputContainer}
+        secureTextEntry
+      />
     </View>
   )
   _renderEmailInput = () => (
-    <View style={styles.inputContainer}>
+    <View style={styles.inputContainerBlock}>
       <Text style={styles.label}>Email</Text>
-      <TextInput keyboardType={'email-address'} style={styles.input} />
+      <Field
+        keyboardType={'email-address'}
+        name={'email'}
+        component={Input}
+        inputStyle={styles.input}
+        containerStyle={styles.inputContainer}
+      />
     </View>
   )
   _renderGGLogo = () => (
@@ -74,3 +93,6 @@ export default class RegisterFormContainer extends Component {
     );
   }
 }
+export default reduxForm({
+  form: 'form'
+})(RegisterFormContainer);

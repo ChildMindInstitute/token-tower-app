@@ -1,36 +1,30 @@
 export default {
+  container: {
+    flex: 1
+  },
+  contentBlock: {
+    flex: 1,
+    paddingHorizontal: 30
+  },
+  content: {
+    paddingTop: 20
+  },
   title: {
     fontSize: 23,
-    fontWeight: 'bold',
-    margin: 40,
-    marginBottom: 0,
-    marginLeft: 30
+    fontWeight: 'bold'
   },
   input: {
     flex: 1,
-    height: 40,
     borderWidth: 1,
+    height: 40
   },
   viewInput: {
     flexDirection: 'row',
-    paddingHorizontal: 30,
-    marginTop: 15
+    paddingTop: 15
   },
   text: {
     width: 200,
     fontSize: 20,
-    textAlign: 'left',
-    marginRight: 20
-  },
-  btn: {
-    margin: 50,
-    height: 80,
-    borderWidth: 1,
-    justifyContent: 'center'
-  },
-  btnText: {
-    textAlign: 'center',
-    fontSize: 30
+    textAlign: 'left'
   }
-
 };
