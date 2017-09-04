@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Switch } from 'react-native';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 
 import styles from './Setting.container.styles';
 
 class SettingContainer extends Component {
+  state = { p1: true }
+
   _renderTokens = () => (
     <View style={styles.viewInput}>
       <Text style={styles.text}>
@@ -41,9 +43,14 @@ class SettingContainer extends Component {
         {this._renderTokens()}
         {this._renderReplenish()}
         {this._renderPair()}
+        <View style={styles.viewInput}>
+          <Text style={styles.text}>Sound effects to accompany animations?</Text>
+          <Switch value={this.state.p1} onValueChange={(value) => { this.setState({ p1: value }); }} />
+        </View>
         <TouchableOpacity onPress={this._onClick} style={styles.btn}>
           <Text style={styles.btnText}>Take the tour!</Text>
         </TouchableOpacity>
+
       </View>
     );
   }

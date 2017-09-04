@@ -29,7 +29,10 @@ export default class MainContainer extends Component {
   _onPigPress = () => {
     if (!this.state.putCoint) this.setState({ putCoint: true });
   }
-
+  _onPrize = () => {
+    const {navigate} = this.props.navigation;
+    navigate('Prize');
+  }
   render() {
     const animateStyle = {
       width: 150,
@@ -59,7 +62,7 @@ export default class MainContainer extends Component {
           <TouchableOpacity style={styles.bottomImageContainer} >
             <Image source={images.k3} resizeMode={'contain'} style={styles.images} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.bottomImageContainer} >
+          <TouchableOpacity style={styles.bottomImageContainer} onPress={this._onPrize} >
             <Image source={images.present} resizeMode={'contain'} style={styles.images} />
           </TouchableOpacity>
         </View>
