@@ -12,7 +12,7 @@ export default {
     borderBottomWidth: 1
   },
   description: {
-    fontSize: 18
+    fontSize: 17
   },
   permissionContainer: {
     paddingTop: 20
@@ -28,6 +28,6 @@ export default {
   },
   permissionText: {
     flex: 1,
-    fontSize: 20
+    fontSize: 17
   }
 };

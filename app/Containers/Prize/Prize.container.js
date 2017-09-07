@@ -58,5 +58,5 @@ class PrizeContainer extends Component {
   }
 }
 export default reduxForm({
-  form: 'form'
+  form: 'prizeForm'
 })(PrizeContainer);

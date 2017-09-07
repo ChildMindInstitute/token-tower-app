@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { reduxForm, Field } from 'redux-form';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import Input from '../../Components/FormInput/FormInput.component';
@@ -34,7 +35,10 @@ class LoginContainer extends Component {
       />
     </View>
   );
-
+  _onForgot = () => {
+    const { navigate } = this.props.navigation;
+    navigate('ForgotPassword');
+  }
   _onSubmitSuccess = () => {
     const { navigate } = this.props.navigation;
     navigate('Splash');
@@ -52,12 +56,12 @@ class LoginContainer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <KeyboardAvoidingView style={styles.contentBlock} behavior={'position'}>
+        <KeyboardAwareScrollView style={styles.contentBlock}>
           <Header />
           {this._renderUserInput()}
           {this._renderPasswordInput()}
-          <Text style={styles.forgot}>Forgot?</Text>
-        </KeyboardAvoidingView>
+          <TouchableOpacity onPress={this._onForgot}><Text style={styles.forgot}>Forgot?</Text></TouchableOpacity>
+        </KeyboardAwareScrollView>
         <SubmitBtn onPress={this._onSubmit} />
       </View>
     );
@@ -65,5 +69,5 @@ class LoginContainer extends Component {
 }
 
 export default reduxForm({
-  form: 'form'
+  form: 'loginForm'
 })(LoginContainer);

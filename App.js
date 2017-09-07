@@ -16,6 +16,7 @@ import RegisterWelcomeContainer from './app/Containers/Register/RegisterWelcome.
 import SplashContainer from './app/Containers/Splash/Splash.container';
 import SettingContainer from './app/Containers/Setting/Setting.container';
 import PrizeContainer from './app/Containers/Prize/Prize.container';
+import ForgotPassword from './app/Containers/ForgotPassword/ForgotPassword.container';
 
 const middleware = [
   promiseMiddleware(),
@@ -44,7 +45,7 @@ const Test = ({ navigation: { navigate } }) => (
 
 const defautNavigationOptions = {
   navigationOptions: {
-    headerStyle: { backgroundColor: '#FDC847' },
+    headerStyle: { backgroundColor: '#f7c34a' },
     headerTintColor: '#ffffff'
   }
 };
@@ -59,7 +60,8 @@ const RootNavigator = StackNavigator({
   Main: { screen: MainContainer },
   Splash: { screen: SplashContainer },
   Setting: { screen: SettingContainer },
-  Prize: { screen: PrizeContainer }
+  Prize: { screen: PrizeContainer },
+  ForgotPassword: { screen: ForgotPassword }
 }, defautNavigationOptions);
 
 

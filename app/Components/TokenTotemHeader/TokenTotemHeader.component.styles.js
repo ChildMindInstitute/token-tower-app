@@ -11,7 +11,7 @@ export default {
   },
   text: {
     fontWeight: 'bold',
-    fontSize: 43
+    fontSize: 40
   },
   image: {
     height: 190,

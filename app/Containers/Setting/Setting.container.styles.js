@@ -7,7 +7,7 @@ export default {
     paddingHorizontal: 30
   },
   content: {
-    paddingTop: 20
+    paddingTop: '8%'
   },
   title: {
     fontSize: 23,
@@ -16,15 +16,31 @@ export default {
   input: {
     flex: 1,
     borderWidth: 1,
-    height: 40
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   viewInput: {
     flexDirection: 'row',
-    paddingTop: 15
+    paddingTop: '5%'
   },
   text: {
-    width: 200,
-    fontSize: 20,
+    width: '62%',
+    fontSize: 18,
     textAlign: 'left'
+  },
+  dropdownStyle: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent'
+  },
+  dropdownTextStyle: {
+    fontSize: 13,
+    textAlign: 'center'
+  },
+  textStyle: {
+    fontSize: 13,
+    color: 'grey',
+    padding: 10
   }
+
 };

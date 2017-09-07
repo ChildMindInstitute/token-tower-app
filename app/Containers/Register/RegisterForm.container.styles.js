@@ -10,12 +10,12 @@ export default {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 10
+    paddingVertical: '3%'
   },
   label: {
     textAlign: 'left',
     width: 100,
-    fontSize: 20,
+    fontSize: 18,
     marginRight: 20
   },
   input: {
@@ -30,7 +30,7 @@ export default {
   },
   logoText: {
     marginRight: 20,
-    fontSize: 20
+    fontSize: 18
   },
   socialLogos: {
     flexDirection: 'row',
@@ -43,8 +43,8 @@ export default {
     height: 60
   },
   para: {
-    paddingTop: 20,
-    fontSize: 20
+    paddingTop: '4%',
+    fontSize: 16
   },
   inputContainer: {
     flex: 1,

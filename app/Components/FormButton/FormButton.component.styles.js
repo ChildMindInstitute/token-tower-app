@@ -1,8 +1,8 @@
 export default {
   container: {
-    borderWidth: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#f7c34a'
   },
   submitBtn: {
     padding: 20,

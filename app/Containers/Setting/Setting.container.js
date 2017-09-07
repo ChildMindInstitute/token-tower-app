@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Switch } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
+import ModalDropdown from 'react-native-modal-dropdown';
 
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
@@ -14,10 +15,10 @@ class SettingContainer extends Component {
   _renderTokens = () => (
     <View style={styles.viewInput}>
       <Text style={styles.text}>
-    How many tokens do you want to start with?
+        How many tokens do you want to start with?
       </Text>
       <Field
-        name={'username'}
+        name={'tokens'}
         component={Input}
         inputStyle={styles.input}
         containerStyle={{ flex: 1, flexDirection: 'row' }}
@@ -28,13 +29,14 @@ class SettingContainer extends Component {
   _renderReplenish = () => (
     <View style={styles.viewInput}>
       <Text style={styles.text}>
-      How often do you want to replenish the tokens?
+        How often do you want to replenish the tokens?
       </Text>
-      <Field
-        name={'replenish'}
-        component={Input}
-        inputStyle={styles.input}
-        containerStyle={{ flex: 1, flexDirection: 'row' }}
+      <ModalDropdown
+        dropdownStyle={styles.dropdownStyle}
+        style={styles.input}
+        options={['daily', 'weekly', 'monthly']}
+        dropdownTextStyle={styles.dropdownTextStyle}
+        textStyle={styles.textStyle}
       />
     </View>
   )
@@ -69,7 +71,6 @@ class SettingContainer extends Component {
               <Switch value={this.state.p1} onValueChange={(value) => { this.setState({ p1: value }); }} />
             </View>
           </View>
-
         </View>
         <SubmitBtn onPress={this._onClick} text={'Take the tour!'} />
       </View>
@@ -77,5 +78,5 @@ class SettingContainer extends Component {
   }
 }
 export default reduxForm({
-  form: 'form'
+  form: 'settingsForm'
 })(SettingContainer);

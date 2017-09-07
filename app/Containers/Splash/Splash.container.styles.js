@@ -1,7 +1,6 @@
 export default {
   textBubble: {
     flexDirection: 'row',
-    borderColor: 'black',
     borderWidth: 1,
     backgroundColor: '#f7c34a',
     height: 300,

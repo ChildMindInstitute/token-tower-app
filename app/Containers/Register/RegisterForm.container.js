@@ -23,6 +23,7 @@ class RegisterFormContainer extends Component {
         component={Input}
         inputStyle={styles.input}
         containerStyle={styles.inputContainer}
+        placeholder={' username '}
       />
     </View>
   )
@@ -35,6 +36,7 @@ class RegisterFormContainer extends Component {
         component={Input}
         inputStyle={styles.input}
         containerStyle={styles.inputContainer}
+        placeholder={' password '}
         secureTextEntry
       />
     </View>
@@ -48,6 +50,7 @@ class RegisterFormContainer extends Component {
         component={Input}
         inputStyle={styles.input}
         containerStyle={styles.inputContainer}
+        placeholder={' contact@example.com '}
       />
     </View>
   )
@@ -94,5 +97,5 @@ class RegisterFormContainer extends Component {
   }
 }
 export default reduxForm({
-  form: 'form'
+  form: 'registerForm'
 })(RegisterFormContainer);
