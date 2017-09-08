@@ -7,18 +7,15 @@ export default {
     flex: 1,
     paddingHorizontal: 30
   },
-  inputBlock: { flex: 1 },
   inputContainerBlock: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     paddingVertical: 10
   },
   label: {
-    width: 100,
+    flex: 1,
     fontSize: 20,
-    textAlign: 'right',
-    marginRight: 20
+    textAlign: 'center',
+    marginVertical: 10
   },
   inputContainer: {
     flex: 1,
@@ -26,7 +23,6 @@ export default {
   },
   input: {
     flex: 1,
-    height: 40,
     borderWidth: 1
   },
   forgot: {

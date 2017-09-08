@@ -11,15 +11,18 @@ export default {
     paddingHorizontal: 30
   },
   label: {
+    flex: 1,
     textAlign: 'left',
-    width: '30%',
     fontSize: 18,
-    marginRight: 20
+    marginVertical: 10
+  },
+  labelPassword: {
+    flex: 1,
+    textAlign: 'left',
+    fontSize: 18
   },
   inputContainerBlock: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     paddingVertical: '4%'
   },
   inputContainer: {
@@ -28,8 +31,7 @@ export default {
   },
   input: {
     flex: 1,
-    borderWidth: 1,
-    height: 40
+    borderWidth: 1
   },
   formView: {
     paddingVertical: '8%'

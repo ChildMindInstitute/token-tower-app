@@ -38,7 +38,7 @@ class ForgotPasswordContainer extends Component {
   )
   _renderConfirmPasswordInput = () => (
     <View style={styles.inputContainerBlock}>
-      <Text style={styles.label}>Confirm Password</Text>
+      <Text style={styles.labelPassword}>Confirm Password</Text>
       <Field
         name={'confirmPassword'}
         component={Input}

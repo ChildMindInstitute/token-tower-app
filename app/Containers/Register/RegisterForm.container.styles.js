@@ -9,19 +9,21 @@ export default {
   inputContainerBlock: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: '3%'
+    paddingVertical: 10
   },
-  label: {
-    textAlign: 'left',
-    width: 100,
-    fontSize: 18,
-    marginRight: 20
+  inputContainer: {
+    flex: 1,
+    flexDirection: 'row'
   },
   input: {
     flex: 1,
-    borderWidth: 1,
-    height: 40
+    borderWidth: 1
+  },
+  label: {
+    flex: 1,
+    textAlign: 'left',
+    fontSize: 18,
+    marginVertical: 10
   },
   image: {
     flex: 1,
@@ -45,9 +47,5 @@ export default {
   para: {
     paddingTop: '4%',
     fontSize: 16
-  },
-  inputContainer: {
-    flex: 1,
-    flexDirection: 'row'
   }
 };
