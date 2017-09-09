@@ -1,24 +1,61 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
 import { createNavigator, TabRouter, addNavigationHelpers } from 'react-navigation';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { MessageBar, MessageBarManager } from 'react-native-message-bar';
+import { connect } from 'react-redux';
 
 import Routes from '../RouteConfigs/RootNavigatorRoute.config';
-
 import styles from './CustomNavigator.component.styles';
+import propTypes from '../NavPropTypes/Navigation.propTypes';
+import Constant from '../../Utilities/Constant.utils';
 
-const WrapperSceneView = (props) => {
-  const { router, navigation: { state, dispatch }, screenProps } = props;
-  const { routes, index } = state;
+class WrapperSceneView extends Component {
+  componentDidMount() {
+    MessageBarManager.registerMessageBar(this.msgBar);
+  }
 
-  const Component = router.getComponentForRouteName(routes[index].routeName);
+  componentWillReceiveProps(nextProps) {
+    this._showMsgBar(
+      nextProps.topNotification,
+      this.props.topNotification
+    );
+  }
 
-  return (
-    <View style={styles.container}>
-      <Component navigation={addNavigationHelpers({ dispatch, state: routes[index] })} />
-      <Spinner visible={false} textContent="Loading" textStyle={styles.spinerText} />
-    </View>
-  );
-};
+  _showMsgBar = (nextMsgBar, oldMsgBar) => {
+    console.log('nextMsgBar', nextMsgBar, 'oldMsgBar', oldMsgBar)
+    if (nextMsgBar && nextMsgBar.message && oldMsgBar !== nextMsgBar) {
+      MessageBarManager.showAlert({ ...nextMsgBar });
+    }
+  }
 
-export default createNavigator(TabRouter(Routes))(WrapperSceneView);
+  _getMsgBarInstance = (ref) => { this.msgBar = ref; };
+
+  render() {
+    const { router, navigation: { state, dispatch }, screenProps } = this.props;
+    const { routes, index } = state;
+
+    const ChildComponent = router.getComponentForRouteName(routes[index].routeName);
+    const childNavProps = addNavigationHelpers({ dispatch, state: routes[index] });
+
+    return (
+      <View style={styles.container}>
+        <ChildComponent navigation={childNavProps} screenProps={screenProps} />
+        <Spinner
+          visible={false}
+          textContent={Constant.COMMON.SPINNER_MSG}
+          textStyle={styles.spinerText}
+        />
+        <MessageBar ref={this._getMsgBarInstance} />
+      </View >
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  topNotification: state.topNotification
+});
+
+WrapperSceneView.propTypes = propTypes;
+
+export default createNavigator(TabRouter(Routes))(connect(mapStateToProps)(WrapperSceneView));

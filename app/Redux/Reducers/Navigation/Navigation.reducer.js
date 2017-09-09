@@ -8,17 +8,14 @@ const initialNavigationState = Navigator.router.getStateForAction(
   NavigationActions.reset({
     index: 0,
     actions: [
-      NavigationActions.navigate({
-        routeName: initialRouteName
-      })
+      NavigationActions.navigate({ routeName: initialRouteName })
     ]
   }));
 
 // ------------------------------------
 // Action
 // ------------------------------------
-export const { navigationClear, navigationStore } = createActions({
-}, 'NAVIGATION/CLEAR', 'NAVIGATION/STORE');
+export const { navigationClear, navigationStore } = createActions({}, 'NAVIGATION/CLEAR', 'NAVIGATION/STORE');
 
 // ------------------------------------
 // Reducer

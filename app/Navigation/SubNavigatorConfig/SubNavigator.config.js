@@ -1,20 +1,13 @@
 import { StackNavigator } from 'react-navigation';
 
 import Screens from '../ScreenConfigs/Screen.config';
-
 import routesName from '../RouteConfigs/Route.config';
 import { navigationOptions } from '../CommonConfigs/Navigation.config';
 
 const {
-  Authentication: {
-    Test, Home, Login, MainUserSelection, ForgotPassword
-  },
-  Registration: {
-    RegisterPermission, RegisterForm, RegisterWelcome, Setting
-  },
-  TokenTotem: {
-    Splash, Main, Prize
-  }
+  Authentication: { Test, Home, Login, MainUserSelection, ForgotPassword },
+  Registration: { RegisterPermission, RegisterForm, RegisterWelcome, Setting },
+  TokenTotem: { Splash, Main, Prize }
 } = routesName;
 
 const AuthenticationNavigator = StackNavigator({

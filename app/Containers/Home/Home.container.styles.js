@@ -1,5 +1,7 @@
 export default {
-  container: { alignItems: 'center' },
+  container: {
+    alignItems: 'center'
+  },
   btn: {
     marginVertical: 15,
     width: 200

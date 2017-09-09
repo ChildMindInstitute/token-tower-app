@@ -3,26 +3,17 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { reduxForm, Field } from 'redux-form';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import _ from 'lodash';
-import { MessageBar, MessageBarManager } from 'react-native-message-bar';
+import { connect } from 'react-redux';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import Input from '../../Components/FormInput/FormInput.component';
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
 
 import styles from './Login.container.styles';
-
-const required = value => (_.isEmpty(value) ? 'Required' : undefined);
+import { topNotificationShowErr } from '../../Redux/Reducers/TopNotification/TopNotification.reducer';
+import { required } from '../../Utilities/Validation.utils';
 
 class LoginContainer extends Component {
-  componentDidMount() {
-    MessageBarManager.registerMessageBar(this.alert);
-  }
-
-  componentWillUnmount() {
-    MessageBarManager.unregisterMessageBar();
-  }
-
   _renderUserInput = () => (
     <View style={styles.inputContainerBlock}>
       <Text style={styles.label}>User</Text>
@@ -61,13 +52,7 @@ class LoginContainer extends Component {
   _onSubmitFail = ({ username, password }) => {
     if (username === 'childmind' && password === 'childmind') {
       this._onSubmitSuccess();
-      return;
     }
-    MessageBarManager.showAlert({
-      title: 'Login fail',
-      message: 'Invalid username and password',
-      alertType: 'error'
-    });
   }
 
   _onSubmit = () => {
@@ -95,19 +80,23 @@ class LoginContainer extends Component {
           </TouchableOpacity>
         </KeyboardAwareScrollView>
         <SubmitBtn onPress={this._onSubmit} />
-        <MessageBar ref={(ref) => { this.alert = ref; }} />
       </View>
     );
   }
 }
 
-export default reduxForm({
+const mapStateToProps = () => ({});
+const mapDispatchToProps = {
+  topNotificationShowErr
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'loginForm',
-  onSubmitFail: () => {
-    MessageBarManager.showAlert({
+  onSubmitFail: (value, dispatch) => {
+    dispatch(topNotificationShowErr({
       title: 'Login fail',
       message: 'Invalid username and password',
       alertType: 'error'
-    });
+    }));
   }
-})(LoginContainer);
+})(LoginContainer));

@@ -35,15 +35,9 @@ const TestScreen = { screen: TestPage, path: Test };
 const HomeScreen = { screen: HomeContainer, path: Home };
 const LoginScreen = { screen: LoginContainer, path: Login };
 const ForgotPasswordScreen = { screen: ForgotPasswordContainer, path: ForgotPassword };
-const MainUserSelectionScreen = {
-  screen: MainUserSelectionContainer,
-  path: MainUserSelection
-};
+const MainUserSelectionScreen = { screen: MainUserSelectionContainer, path: MainUserSelection };
 
-const RegisterPermissionScreen = {
-  screen: RegisterPermissionContainer,
-  path: RegisterPermission
-};
+const RegisterPermissionScreen = { screen: RegisterPermissionContainer, path: RegisterPermission };
 const RegisterFormScreen = { screen: RegisterFormContainer, path: RegisterForm };
 const RegisterWelcomeScreen = { screen: RegisterWelcomeContainer, path: RegisterWelcome };
 const SettingScreen = { screen: SettingContainer, path: Setting };

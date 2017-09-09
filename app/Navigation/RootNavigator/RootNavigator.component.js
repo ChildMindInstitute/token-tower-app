@@ -5,6 +5,8 @@ import { BackHandler } from 'react-native';
 
 import CustomNav from '../CustomNavigator/CustomNavigator.component';
 
+import propTypes from '../NavPropTypes/Navigation.propTypes';
+
 class RootNavigator extends Component {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this._onBackPress);
@@ -23,12 +25,15 @@ class RootNavigator extends Component {
 
   render() {
     const { dispatch, navigationState } = this.props;
+    const navProps = addNavigationHelpers({ dispatch, state: navigationState });
 
     return (
-      <CustomNav navigation={addNavigationHelpers({ dispatch, state: navigationState })} />
+      <CustomNav navigation={navProps} />
     );
   }
 }
+
+RootNavigator.propTypes = propTypes;
 
 const mapStateToProps = state => ({
   navigationState: state.navigation && state.navigation.navigationState
