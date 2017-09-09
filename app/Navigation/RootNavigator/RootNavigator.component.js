@@ -1,22 +1,37 @@
-import React from 'react';
-import { View } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-import Spinner from 'react-native-loading-spinner-overlay';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addNavigationHelpers, NavigationActions } from 'react-navigation';
+import { BackHandler } from 'react-native';
 
-import Screens from '../ScreenConfigs/Screens';
+import CustomNav from '../CustomNavigator/CustomNavigator.component';
 
-import styles from './RootNavigator.component.styles';
+class RootNavigator extends Component {
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this._onBackPress);
+  }
 
-const StackNavigatorComponent = StackNavigator(Screens, {
-  navigationOptions: { ...styles }
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this._onBackPress);
+  }
+
+  _onBackPress = () => {
+    const { dispatch, navigationState } = this.props;
+    if (navigationState.index === 0) return false;
+    dispatch(NavigationActions.back());
+    return true;
+  };
+
+  render() {
+    const { dispatch, navigationState } = this.props;
+
+    return (
+      <CustomNav navigation={addNavigationHelpers({ dispatch, state: navigationState })} />
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  navigationState: state.navigation && state.navigation.navigationState
 });
 
-// TODO: add loading mask
-const RootNavigator = () => (
-  <View style={{ flex: 1 }}>
-    <StackNavigatorComponent />
-    <Spinner visible={false} textContent="Loading" textStyle={{ color: '#FFF' }} />
-  </View>
-);
-
-export default RootNavigator;
+export default connect(mapStateToProps)(RootNavigator);

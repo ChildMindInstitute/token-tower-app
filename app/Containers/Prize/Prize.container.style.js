@@ -19,5 +19,14 @@ export default {
   text: {
     fontSize: 20,
     marginHorizontal: 10
+  },
+  img: {
+    flex: 0.4,
+    width: null,
+    height: null
+  },
+  inputContainer:{
+    flex: 1,
+    flexDirection: 'row' 
   }
 };

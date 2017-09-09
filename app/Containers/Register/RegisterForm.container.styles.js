@@ -45,7 +45,6 @@ export default {
     height: 60
   },
   para: {
-    paddingTop: '4%',
     fontSize: 16
   }
 };

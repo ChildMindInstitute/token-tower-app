@@ -23,7 +23,7 @@ export default {
   },
   inputContainerBlock: {
     flexDirection: 'row',
-    paddingVertical: '4%'
+    paddingVertical: 10
   },
   inputContainer: {
     flex: 1,
@@ -34,6 +34,6 @@ export default {
     borderWidth: 1
   },
   formView: {
-    paddingVertical: '8%'
+    paddingVertical: 15
   }
 };

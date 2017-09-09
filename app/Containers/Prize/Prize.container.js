@@ -17,14 +17,14 @@ class PrizeContainer extends Component {
         name={'tokens'}
         component={Input}
         inputStyle={styles.input}
-        containerStyle={{ flex: 1, flexDirection: 'row' }}
+        containerStyle={styles.img}
       />
       <Text style={styles.text}>tokens until: </Text>
       <Field
         name={'prize'}
         component={Input}
         inputStyle={styles.input}
-        containerStyle={{ flex: 1, flexDirection: 'row' }}
+        containerStyle={styles.inputContainer}
       />
     </View>
   );
@@ -33,7 +33,7 @@ class PrizeContainer extends Component {
     <Image
       resizeMode={'contain'}
       source={images.present}
-      style={{ flex: 0.4, width: null, height: null }}
+      style={styles.img}
     />
   )
 

@@ -7,7 +7,7 @@ export default {
     paddingHorizontal: 30
   },
   content: {
-    paddingTop: '8%'
+    paddingTop: 20
   },
   title: {
     fontSize: 23,
@@ -22,10 +22,10 @@ export default {
   },
   viewInput: {
     flexDirection: 'row',
-    paddingTop: '5%'
+    paddingTop: 10
   },
   text: {
-    width: '62%',
+    width: 150,
     fontSize: 18,
     textAlign: 'left'
   },

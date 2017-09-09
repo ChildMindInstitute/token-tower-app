@@ -86,8 +86,10 @@ class LoginContainer extends Component {
       <View style={styles.container}>
         <KeyboardAwareScrollView style={styles.contentBlock}>
           <Header />
-          {this._renderUserInput()}
-          {this._renderPasswordInput()}
+          <View style={styles.viewInput}>
+            {this._renderUserInput()}
+            {this._renderPasswordInput()}
+          </View>
           <TouchableOpacity onPress={this._onForgot}>
             <Text style={styles.forgot}>Forgot?</Text>
           </TouchableOpacity>
@@ -100,5 +102,12 @@ class LoginContainer extends Component {
 }
 
 export default reduxForm({
-  form: 'loginForm'
+  form: 'loginForm',
+  onSubmitFail: () => {
+    MessageBarManager.showAlert({
+      title: 'Login fail',
+      message: 'Invalid username and password',
+      alertType: 'error'
+    });
+  }
 })(LoginContainer);

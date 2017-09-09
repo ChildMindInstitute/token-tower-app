@@ -9,7 +9,7 @@ export default {
   },
   inputContainerBlock: {
     flexDirection: 'row',
-    paddingVertical: 10
+    paddingBottom: 16
   },
   label: {
     flex: 1,
@@ -28,5 +28,8 @@ export default {
   forgot: {
     color: 'grey',
     textAlign: 'right'
+  },
+  viewInput: {
+    paddingTop: 10
   }
 };
