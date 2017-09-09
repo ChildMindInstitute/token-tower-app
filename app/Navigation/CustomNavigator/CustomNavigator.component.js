@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { createNavigator, TabRouter, addNavigationHelpers } from 'react-navigation';
+import { createNavigator, TabRouter, addNavigationHelpers, Header } from 'react-navigation';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { MessageBar, MessageBarManager } from 'react-native-message-bar';
 import { connect } from 'react-redux';
@@ -22,10 +22,17 @@ class WrapperSceneView extends Component {
     );
   }
 
-  _showMsgBar = (nextMsgBar, oldMsgBar) => {
-    console.log('nextMsgBar', nextMsgBar, 'oldMsgBar', oldMsgBar)
-    if (nextMsgBar && nextMsgBar.message && oldMsgBar !== nextMsgBar) {
-      MessageBarManager.showAlert({ ...nextMsgBar });
+  componentWillUnmount() {
+    MessageBarManager.unregisterMessageBar();
+  }
+
+  _showMsgBar = (nextMsg, msg) => {
+    if (nextMsg && nextMsg.message && msg !== nextMsg) {
+      MessageBarManager.showAlert({
+        ...nextMsg,
+        viewTopOffset: Header.HEIGHT,
+        animationType: 'SlideFromLeft'
+      });
     }
   }
 
@@ -47,7 +54,7 @@ class WrapperSceneView extends Component {
           textStyle={styles.spinerText}
         />
         <MessageBar ref={this._getMsgBarInstance} />
-      </View >
+      </View>
     );
   }
 }

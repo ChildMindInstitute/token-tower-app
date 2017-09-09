@@ -7,9 +7,7 @@ import { initialRouteName } from '../../../Navigation/CommonConfigs/Navigation.c
 const initialNavigationState = Navigator.router.getStateForAction(
   NavigationActions.reset({
     index: 0,
-    actions: [
-      NavigationActions.navigate({ routeName: initialRouteName })
-    ]
+    actions: [NavigationActions.navigate({ routeName: initialRouteName })]
   }));
 
 // ------------------------------------

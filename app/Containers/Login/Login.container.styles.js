@@ -9,7 +9,7 @@ export default {
   },
   inputContainerBlock: {
     flexDirection: 'row',
-    paddingBottom: 16
+    paddingBottom: 20
   },
   label: {
     flex: 1,

@@ -2,7 +2,8 @@ export default {
   Root: {
     Authentication: 'Authentication',
     Registration: 'Registration',
-    TokenTotem: 'TokenTotem'
+    TokenTotem: 'TokenTotem',
+    TokenTotemTutorial: 'TokenTotemTutorial'
   },
   Authentication: {
     Test: 'Test',
@@ -16,6 +17,9 @@ export default {
     RegisterForm: 'RegisterForm',
     RegisterWelcome: 'RegisterWelcome',
     Setting: 'Setting'
+  },
+  TokenTotemTutorial: {
+    Tutorial: 'Tutorial'
   },
   TokenTotem: {
     Splash: 'Splash',

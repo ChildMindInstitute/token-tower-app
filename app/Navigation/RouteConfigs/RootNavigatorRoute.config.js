@@ -2,11 +2,15 @@ import SubNavigators from '../SubNavigatorConfig/SubNavigator.config';
 
 import routesName from './Route.config';
 
-const { Root: { Authentication, Registration, TokenTotem } } = routesName;
-const { AuthenticationNavigator, RegistrationNavigator, MainNavigator } = SubNavigators;
+const { Root: { Authentication, Registration, TokenTotem, TokenTotemTutorial } } = routesName;
+const {
+  AuthenticationNavigator, RegistrationNavigator,
+  TokenTotemNavigator, TokenTotemTutorialNavigator
+} = SubNavigators;
 
 export default {
   [Authentication]: { screen: AuthenticationNavigator, path: Authentication },
   [Registration]: { screen: RegistrationNavigator, path: Registration },
-  [TokenTotem]: { screen: MainNavigator, path: TokenTotem }
+  [TokenTotem]: { screen: TokenTotemNavigator, path: TokenTotem },
+  [TokenTotemTutorial]: { screen: TokenTotemTutorialNavigator, path: TokenTotemTutorial }
 };

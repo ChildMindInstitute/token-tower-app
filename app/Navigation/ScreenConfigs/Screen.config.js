@@ -12,12 +12,14 @@ import SettingContainer from '../../../app/Containers/Setting/Setting.container'
 import PrizeContainer from '../../../app/Containers/Prize/Prize.container';
 import ForgotPasswordContainer from '../../../app/Containers/ForgotPassword/ForgotPassword.container';
 import MainUserSelectionContainer from '../../../app/Containers/MainUserSelection/MainUserSelection.container';
+import TutorialContainer from '../../../app/Containers/Tutorial/Tutorial.container';
 
 import routesName from '../RouteConfigs/Route.config';
 
-const { Authentication: { Test, Home, Login, ForgotPassword, MainUserSelection }
-  , Registration: { RegisterPermission, RegisterForm, RegisterWelcome, Setting },
-  TokenTotem: { Splash, Main, Prize } } = routesName;
+const { Authentication: { Test, Home, Login, ForgotPassword, MainUserSelection },
+  Registration: { RegisterPermission, RegisterForm, RegisterWelcome, Setting },
+  TokenTotem: { Splash, Main, Prize },
+  TokenTotemTutorial: { Tutorial } } = routesName;
 
 const TestPage = ({ navigation: { navigate } }) => (
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -28,6 +30,7 @@ const TestPage = ({ navigation: { navigate } }) => (
     <TouchableOpacity onPress={() => { navigate('TokenTotem'); }}><Text>Splash</Text></TouchableOpacity>
     <TouchableOpacity onPress={() => { navigate('Setting'); }}><Text>Setting</Text></TouchableOpacity>
     <TouchableOpacity onPress={() => { navigate('MainUserSelection'); }}><Text>MainUserSelection</Text></TouchableOpacity>
+    <TouchableOpacity onPress={() => { navigate('TokenTotemTutorial'); }}><Text>Tutorial</Text></TouchableOpacity>
   </View>
 );
 
@@ -46,6 +49,7 @@ const MainScreen = { screen: MainContainer, path: Main };
 const SplashScreen = { screen: SplashContainer, path: Splash };
 const PrizeScreen = { screen: PrizeContainer, path: Prize };
 
+const TutorialScreen = { screen: TutorialContainer, path: Tutorial };
 
 export default {
   TestScreen,
@@ -59,5 +63,6 @@ export default {
   SettingScreen,
   PrizeScreen,
   ForgotPasswordScreen,
-  MainUserSelectionScreen
+  MainUserSelectionScreen,
+  TutorialScreen
 };

@@ -36,7 +36,7 @@ class RootNavigator extends Component {
 RootNavigator.propTypes = propTypes;
 
 const mapStateToProps = state => ({
-  navigationState: state.navigation && state.navigation.navigationState
+  navigationState: state.navigation.navigationState
 });
 
 export default connect(mapStateToProps)(RootNavigator);

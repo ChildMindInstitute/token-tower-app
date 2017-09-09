@@ -10,6 +10,7 @@ import Input from '../../Components/FormInput/FormInput.component';
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
 
 import styles from './Login.container.styles';
+import config from './Login.container.config';
 import { topNotificationShowErr } from '../../Redux/Reducers/TopNotification/TopNotification.reducer';
 import { required } from '../../Utilities/Validation.utils';
 
@@ -40,10 +41,12 @@ class LoginContainer extends Component {
       />
     </View>
   );
+
   _onForgot = () => {
     const { navigate } = this.props.navigation;
     navigate('ForgotPassword');
   }
+
   _onSubmitSuccess = () => {
     const { navigate } = this.props.navigation;
     navigate('Splash');
@@ -86,17 +89,8 @@ class LoginContainer extends Component {
 }
 
 const mapStateToProps = () => ({});
-const mapDispatchToProps = {
-  topNotificationShowErr
-};
+const mapDispatchToProps = { topNotificationShowErr };
 
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
-  form: 'loginForm',
-  onSubmitFail: (value, dispatch) => {
-    dispatch(topNotificationShowErr({
-      title: 'Login fail',
-      message: 'Invalid username and password',
-      alertType: 'error'
-    }));
-  }
-})(LoginContainer));
+LoginContainer.propTypes = config.propTypes;
+
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(LoginContainer));

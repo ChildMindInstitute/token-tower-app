@@ -1,8 +1,9 @@
 
 import _ from 'lodash';
 
-export const required = v => (_.isEmpty(v) ? 'Required' : undefined);
+import Constant from './Constant.utils';
 
-export default {
+export const required = value => (_.isEmpty(value) ? Constant.ERR_MSG.REQUIRED : undefined);
 
-};
+export const maxLength = (value, length) =>
+  (value.length > length ? Constant.ERR_MSG.MAX_LENGTH : undefined);
