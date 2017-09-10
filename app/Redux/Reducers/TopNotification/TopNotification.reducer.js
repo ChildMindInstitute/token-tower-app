@@ -3,11 +3,11 @@ import { createActions, handleActions } from 'redux-actions';
 // ------------------------------------
 // Action
 // ------------------------------------
-export const { topNotificationShowErr } = createActions({}, 'TOP_NOTIFICATION_SHOW_ERR');
+export const { topNotificationAdd } = createActions({}, 'TOP_NOTIFICATION_ADD');
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
 export default handleActions({
-  TOP_NOTIFICATION_SHOW_ERR: (state, action) => ({ ...state, ...action.payload })
+  TOP_NOTIFICATION_ADD: (state, action) => ({ ...state, ...action.payload })
 }, {});

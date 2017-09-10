@@ -8,6 +8,7 @@ import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component
 import Input from '../../Components/FormInput/FormInput.component';
 
 import styles from './ForgotPassword.container.styles';
+import { required } from '../../Utilities/Validation.utils';
 
 class ForgotPasswordContainer extends Component {
   _renderEmailInput = () => (
@@ -20,6 +21,7 @@ class ForgotPasswordContainer extends Component {
         inputStyle={styles.input}
         containerStyle={styles.inputContainer}
         placeholder={' contact@example.com '}
+        validate={required}        
       />
     </View>
   )
@@ -31,7 +33,8 @@ class ForgotPasswordContainer extends Component {
         component={Input}
         inputStyle={styles.input}
         containerStyle={styles.inputContainer}
-        placeholder={' password '}
+        placeholder={' password '}        
+        validate={required}
         secureTextEntry
       />
     </View>
@@ -45,10 +48,21 @@ class ForgotPasswordContainer extends Component {
         inputStyle={styles.input}
         containerStyle={styles.inputContainer}
         placeholder={' confirm password '}
+        validate={required}        
         secureTextEntry
       />
     </View>
   )
+  _onSubmitSuccess = () => {
+    const { navigate } = this.props.navigation;
+    navigate('');
+  }
+
+  _onSubmitFail = () => { }
+
+  _onSubmit = () => {
+    this.props.handleSubmit(this._onSubmitSuccess)();
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -61,7 +75,7 @@ class ForgotPasswordContainer extends Component {
             {this._renderConfirmPasswordInput()}
           </View>
         </View>
-        <SubmitBtn onPress={this._onNext} text={'SUBMIT'} />
+        <SubmitBtn onPress={this._onSubmit} text={'SUBMIT'} />
       </View>
     );
   }

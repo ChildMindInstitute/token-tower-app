@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import axios from 'axios';
 import { reduxForm, Field } from 'redux-form';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -7,11 +7,10 @@ import { connect } from 'react-redux';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import Input from '../../Components/FormInput/FormInput.component';
-import SubmitBtn from '../../Components/FormButton/FormButton.component';
+import Btn from '../../Components/FormButton/FormButton.component';
 
 import styles from './Login.container.styles';
-import config from './Login.container.config';
-import { topNotificationShowErr } from '../../Redux/Reducers/TopNotification/TopNotification.reducer';
+import config, { showLoginFailNotify } from './Login.container.config';
 import { required } from '../../Utilities/Validation.utils';
 
 class LoginContainer extends Component {
@@ -19,10 +18,8 @@ class LoginContainer extends Component {
     <View style={styles.inputContainerBlock}>
       <Text style={styles.label}>User</Text>
       <Field
-        name={'username'}
-        component={Input}
-        inputStyle={styles.input}
-        containerStyle={styles.inputContainer}
+        name={'username'} component={Input}
+        inputStyle={styles.input} containerStyle={styles.inputContainer}
         validate={required}
       />
     </View>
@@ -32,12 +29,9 @@ class LoginContainer extends Component {
     <View style={styles.inputContainerBlock}>
       <Text style={styles.label}>Password</Text>
       <Field
-        name={'password'}
-        component={Input}
-        inputStyle={styles.input}
-        containerStyle={styles.inputContainer}
-        secureTextEntry
-        validate={required}
+        name={'password'} component={Input}
+        inputStyle={styles.input} containerStyle={styles.inputContainer}
+        secureTextEntry validate={required}
       />
     </View>
   );
@@ -53,9 +47,8 @@ class LoginContainer extends Component {
   }
 
   _onSubmitFail = ({ username, password }) => {
-    if (username === 'childmind' && password === 'childmind') {
-      this._onSubmitSuccess();
-    }
+    if (username === 'childmind' && password === 'childmind') this._onSubmitSuccess();
+    else showLoginFailNotify(this.props.dispatch);
   }
 
   _onSubmit = () => {
@@ -78,18 +71,20 @@ class LoginContainer extends Component {
             {this._renderUserInput()}
             {this._renderPasswordInput()}
           </View>
-          <TouchableOpacity onPress={this._onForgot}>
-            <Text style={styles.forgot}>Forgot?</Text>
-          </TouchableOpacity>
+          <Btn
+            onPress={this._onForgot}
+            text={'Forgot?'} kind={'plain'}
+            textStyle={styles.forgot}
+          />
         </KeyboardAwareScrollView>
-        <SubmitBtn onPress={this._onSubmit} />
+        <Btn onPress={this._onSubmit} />
       </View>
     );
   }
 }
 
 const mapStateToProps = () => ({});
-const mapDispatchToProps = { topNotificationShowErr };
+const mapDispatchToProps = {};
 
 LoginContainer.propTypes = config.propTypes;
 

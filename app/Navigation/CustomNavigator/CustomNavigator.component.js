@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { createNavigator, TabRouter, addNavigationHelpers, Header } from 'react-navigation';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { MessageBar, MessageBarManager } from 'react-native-message-bar';
+import { MessageBar } from 'react-native-message-bar';
 import { connect } from 'react-redux';
 
 import Routes from '../RouteConfigs/RootNavigatorRoute.config';
 import styles from './CustomNavigator.component.styles';
 import propTypes from '../NavPropTypes/Navigation.propTypes';
 import Constant from '../../Utilities/Constant.utils';
+import { registerMsgBar, unregisterMsgBar, showMsgBar } from '../../Utilities/TopNotification.utils';
 
 class WrapperSceneView extends Component {
   componentDidMount() {
-    MessageBarManager.registerMessageBar(this.msgBar);
+    registerMsgBar(this.msgBar);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -23,16 +24,12 @@ class WrapperSceneView extends Component {
   }
 
   componentWillUnmount() {
-    MessageBarManager.unregisterMessageBar();
+    unregisterMsgBar();
   }
 
   _showMsgBar = (nextMsg, msg) => {
     if (nextMsg && nextMsg.message && msg !== nextMsg) {
-      MessageBarManager.showAlert({
-        ...nextMsg,
-        viewTopOffset: Header.HEIGHT,
-        animationType: 'SlideFromLeft'
-      });
+      showMsgBar({ ...nextMsg, viewTopOffset: Header.HEIGHT, animationType: 'SlideFromLeft' });
     }
   }
 
@@ -49,9 +46,8 @@ class WrapperSceneView extends Component {
       <View style={styles.container}>
         <ChildComponent navigation={childNavProps} screenProps={screenProps} />
         <Spinner
-          visible={false}
+          visible={false} textStyle={styles.spinerText}
           textContent={Constant.COMMON.SPINNER_MSG}
-          textStyle={styles.spinerText}
         />
         <MessageBar ref={this._getMsgBarInstance} />
       </View>

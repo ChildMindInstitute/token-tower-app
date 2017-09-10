@@ -16,5 +16,10 @@ export default {
   image: {
     height: 190,
     width: 190
+  },
+  imageHorizontal: {
+    flex: 1,
+    width: null,
+    height: null
   }
 };

@@ -8,22 +8,16 @@ import images from '../../Resources/Images';
 import Input from '../../Components/FormInput/FormInput.component';
 
 import styles from './RegisterForm.container.styles';
+import { required } from '../../Utilities/Validation.utils';
 
 class RegisterFormContainer extends Component {
-  _onNext = () => {
-    const { navigate } = this.props.navigation;
-    navigate('RegisterWelcome');
-  }
-
   _renderUserInput = () => (
     <View style={styles.inputContainerBlock}>
       <Text style={styles.label}>User</Text>
       <Field
-        name={'username'}
-        component={Input}
-        inputStyle={styles.input}
-        containerStyle={styles.inputContainer}
-        placeholder={' username '}
+        name={'username'} component={Input}
+        inputStyle={styles.input} containerStyle={styles.inputContainer}
+        placeholder={' username '} validate={required}
       />
     </View>
   )
@@ -32,43 +26,45 @@ class RegisterFormContainer extends Component {
     <View style={styles.inputContainerBlock}>
       <Text style={styles.label}>Password</Text>
       <Field
-        name={'password'}
-        component={Input}
-        inputStyle={styles.input}
-        containerStyle={styles.inputContainer}
-        placeholder={' password '}
-        secureTextEntry
+        name={'password'} component={Input}
+        inputStyle={styles.input} containerStyle={styles.inputContainer}
+        placeholder={' password '} secureTextEntry
+        validate={required}
       />
     </View>
   )
+
   _renderEmailInput = () => (
     <View style={styles.inputContainerBlock}>
       <Text style={styles.label}>Email</Text>
       <Field
-        keyboardType={'email-address'}
-        name={'email'}
-        component={Input}
-        inputStyle={styles.input}
+        keyboardType={'email-address'} name={'email'}
+        component={Input} inputStyle={styles.input}
         containerStyle={styles.inputContainer}
         placeholder={' contact@example.com '}
+        validate={required}
       />
     </View>
   )
+
   _renderGGLogo = () => (
-    <Image
-      resizeMode={'contain'}
-      source={images.google}
-      style={styles.image}
-    />
+    <Image resizeMode={'contain'} source={images.google} style={styles.image} />
   )
 
   _renderFBLogo = () => (
-    <Image
-      resizeMode={'contain'}
-      source={images.facebook}
-      style={styles.image}
-    />
+    <Image resizeMode={'contain'} source={images.facebook} style={styles.image} />
   );
+
+  _onSubmitSuccess = () => {
+    const { navigate } = this.props.navigation;
+    navigate('RegisterWelcome');
+  }
+
+  _onSubmitFail = () => { }
+
+  _onSubmit = () => {
+    this.props.handleSubmit(this._onSubmitSuccess)();
+  }
 
   render() {
     return (
@@ -91,7 +87,7 @@ class RegisterFormContainer extends Component {
             efir ir. iasrnti irsent Child Mind Institut d recontact?
           </Text>
         </View>
-        <SubmitBtn onPress={this._onNext} text={'NEXT'} />
+        <SubmitBtn onPress={this._onSubmit} text={'NEXT'} />
       </View>
     );
   }

@@ -1,11 +1,13 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import { View, Text, Image } from 'react-native';
 
 import images from '../../Resources/Images';
+import Constant from '../../Utilities/Constant.utils';
 
 import styles from './TokenTotemHeader.component.styles';
 
-const isHorizontal = direction => direction === 'horizontal';
+const isHorizontal = direction => direction === Constant.DIRECTION.HORIZONTAL;
 
 const TokenTotemHeader = (props) => {
   const { direction } = props;
@@ -14,23 +16,10 @@ const TokenTotemHeader = (props) => {
     styles.containerHorizontal : styles.containerVertical;
 
   const _renderImage = () => {
-    const style = isHorizontal(direction) ?
-      { flex: 1, width: null, height: null } : styles.image;
+    const style = isHorizontal(direction) ? styles.imageHorizontal : styles.image;
+    const image = <Image resizeMode={'contain'} source={images.k1} style={style} />;
 
-    const image = (
-      <Image
-        resizeMode={'contain'}
-        source={images.k1}
-        style={style}
-      />
-    );
-
-    return (
-      isHorizontal(direction) ?
-        (<View style={{ flex: 1 }}>
-          {image}
-        </View>) : image
-    );
+    return isHorizontal(direction) ? <View style={{ flex: 1 }}>{image}</View> : image;
   };
 
   return (
@@ -40,6 +29,14 @@ const TokenTotemHeader = (props) => {
       <Text style={styles.text}>Totem</Text>
     </View>
   );
+};
+
+TokenTotemHeader.defaultProps = {
+  direction: Constant.DIRECTION.VERTICAL
+};
+
+TokenTotemHeader.propTypes = {
+  direction: propTypes.string
 };
 
 export default TokenTotemHeader;

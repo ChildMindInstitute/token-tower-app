@@ -6,14 +6,16 @@ const propTypes = {
   ...navPropTypes
 };
 
+export const showLoginFailNotify = (dispatch) => {
+  showTopErrNotification({
+    title: Constant.ERR_MSG.LOGIN.FAIL.TITLE,
+    message: Constant.ERR_MSG.LOGIN.FAIL.MESSAGE
+  }, dispatch);
+};
+
 const form = {
   form: 'loginForm',
-  onSubmitFail: (value, dispatch) => {
-    showTopErrNotification({
-      title: Constant.ERR_MSG.LOGIN.FAIL.TITLE,
-      message: Constant.ERR_MSG.LOGIN.FAIL.MESSAGE
-    }, dispatch);
-  }
+  onSubmitFail: (value, dispatch) => { showLoginFailNotify(dispatch); }
 };
 
 export default {

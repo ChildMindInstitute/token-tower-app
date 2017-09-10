@@ -25,8 +25,7 @@ export default {
     width: null,
     height: null
   },
-  inputContainer:{
-    flex: 1,
-    flexDirection: 'row' 
+  inputContainer: {
+    flex: 1
   }
 };

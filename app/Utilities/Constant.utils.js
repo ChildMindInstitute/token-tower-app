@@ -15,5 +15,16 @@ export default {
         MESSAGE: 'Invalid username and password'
       }
     }
+  },
+  BTN: {
+    DEFAULT: 'SUBMIT',
+    KIND: {
+      DEFAULT: 'default',
+      PLAIN: 'plain'
+    }
+  },
+  DIRECTION: {
+    HORIZONTAL: 'horizontal',
+    VERTICAL: 'vertical'
   }
 };
