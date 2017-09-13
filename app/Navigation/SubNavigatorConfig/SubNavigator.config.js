@@ -5,14 +5,13 @@ import routesName from '../RouteConfigs/Route.config';
 import { navigationOptions } from '../CommonConfigs/Navigation.config';
 
 const {
-  Authentication: { Test, Home, Login, MainUserSelection, ForgotPassword },
+  Authentication: { Home, Login, MainUserSelection, ForgotPassword },
   Registration: { RegisterPermission, RegisterForm, RegisterWelcome, Setting },
   TokenTotem: { Splash, Main, Prize },
   TokenTotemTutorial: { Tutorial }
 } = routesName;
 
 const AuthenticationNavigator = StackNavigator({
-  [Test]: Screens.TestScreen,
   [Home]: Screens.HomeScreen,
   [Login]: Screens.LoginScreen,
   [MainUserSelection]: Screens.MainUserSelectionScreen,

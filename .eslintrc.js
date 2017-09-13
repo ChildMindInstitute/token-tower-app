@@ -8,6 +8,7 @@ module.exports = {
     "jest",
   ],
   "rules": {
+    "max-len": ["error", { "code": 110, "ignoreComments": true }],
     "no-underscore-dangle": 0,
     "react/require-default-props": 0,
     "react/jsx-filename-extension": 0,

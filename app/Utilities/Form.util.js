@@ -1,5 +1,5 @@
 import { topNotificationAdd } from '../Redux/Reducers/TopNotification/TopNotification.reducer';
-import Constant from '../Utilities/Constant.utils';
+import Constant from './Constant.utils';
 
 export const showTopErrNotification = (notify, dispatch) => {
   if (!notify) return;

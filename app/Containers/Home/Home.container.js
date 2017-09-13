@@ -5,7 +5,7 @@ import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component
 import Button from '../../Components/FormButton/FormButton.component';
 
 import styles from './Home.container.styles';
-import propTypes from '../../Navigation/NavPropTypes/Navigation.propTypes';
+import navPropTypes from '../../Navigation/NavPropTypes/Navigation.propTypes';
 
 export default class HomeContainer extends Component {
   _onLoginPress = () => {
@@ -39,4 +39,4 @@ export default class HomeContainer extends Component {
   }
 }
 
-HomeContainer.propTypes = propTypes;
+HomeContainer.propTypes = navPropTypes;

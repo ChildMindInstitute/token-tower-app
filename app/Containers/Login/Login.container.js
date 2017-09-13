@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import axios from 'axios';
 import { reduxForm, Field } from 'redux-form';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
@@ -10,6 +9,7 @@ import Input from '../../Components/FormInput/FormInput.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 
 import styles from './Login.container.styles';
+import { authenticationEmailPassword } from '../../Redux/Reducers/Authentication/Authentication.reducer';
 import config, { showLoginFailNotify } from './Login.container.config';
 import { required } from '../../Utilities/Validation.utils';
 
@@ -51,15 +51,16 @@ class LoginContainer extends Component {
     else showLoginFailNotify(this.props.dispatch);
   }
 
+  _handleSubmit = (values) => {
+    const { authentication } = this.props;
+    authentication(values)
+      .then(this._onSubmitSuccess)
+      .catch(() => this._onSubmitFail(values));
+  };
+
   _onSubmit = () => {
-    this.props.handleSubmit((values) => {
-      axios.post('http://localhost:3000/api/users/authenticate',
-        {
-          username: 'nam',
-          password: 'nam'
-        }).then(this._onSubmitSuccess)
-        .catch(() => this._onSubmitFail(values));
-    })();
+    const { handleSubmit } = this.props;
+    handleSubmit(this._handleSubmit)();
   }
 
   render() {
@@ -84,7 +85,9 @@ class LoginContainer extends Component {
 }
 
 const mapStateToProps = () => ({});
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  authentication: authenticationEmailPassword
+};
 
 LoginContainer.propTypes = config.propTypes;
 

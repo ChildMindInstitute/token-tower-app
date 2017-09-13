@@ -9,4 +9,4 @@ export const navigationOptions = {
   }
 };
 
-export const initialRouteName = routesName.Authentication.Test;
+export const initialRouteName = routesName.Authentication.Home;

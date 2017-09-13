@@ -7,10 +7,12 @@ const propTypes = {
 };
 
 export const showLoginFailNotify = (dispatch) => {
-  showTopErrNotification({
+  const message = {
     title: Constant.ERR_MSG.LOGIN.FAIL.TITLE,
     message: Constant.ERR_MSG.LOGIN.FAIL.MESSAGE
-  }, dispatch);
+  };
+
+  showTopErrNotification(message, dispatch);
 };
 
 const form = {

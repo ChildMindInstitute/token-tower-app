@@ -1,64 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View } from 'react-native';
-import { createNavigator, TabRouter, addNavigationHelpers, Header } from 'react-navigation';
-import Spinner from 'react-native-loading-spinner-overlay';
-import { MessageBar } from 'react-native-message-bar';
-import { connect } from 'react-redux';
+import { createNavigator, TabRouter, addNavigationHelpers } from 'react-navigation';
+
+import TopNotification from '../../Containers/TopNotification/TopNotification.container';
+import LoadingMask from '../../Containers/LoadingMask/LoadingMask.container';
+import Drawer from '../../Containers/SideMenu/SideMenu.container';
 
 import Routes from '../RouteConfigs/RootNavigatorRoute.config';
+import navPropTypes from '../NavPropTypes/Navigation.propTypes';
 import styles from './CustomNavigator.component.styles';
-import propTypes from '../NavPropTypes/Navigation.propTypes';
-import Constant from '../../Utilities/Constant.utils';
-import { registerMsgBar, unregisterMsgBar, showMsgBar } from '../../Utilities/TopNotification.utils';
 
-class WrapperSceneView extends Component {
-  componentDidMount() {
-    registerMsgBar(this.msgBar);
-  }
+const WrapperSceneView = (props) => {
+  const { router, navigation: { state, dispatch }, screenProps } = props;
+  const { routes, index } = state;
 
-  componentWillReceiveProps(nextProps) {
-    this._showMsgBar(
-      nextProps.topNotification,
-      this.props.topNotification
-    );
-  }
+  const ChildComponent = router.getComponentForRouteName(routes[index].routeName);
+  const childProps = {
+    screenProps, navigation: addNavigationHelpers({ dispatch, state: routes[index] })
+  };
 
-  componentWillUnmount() {
-    unregisterMsgBar();
-  }
+  return (
+    <View style={styles.container}>
+      <Drawer {...props}>
+        <ChildComponent {...childProps} />
+        <TopNotification />
+        <LoadingMask />
+      </Drawer>
+    </View>
+  );
+};
 
-  _showMsgBar = (nextMsg, msg) => {
-    if (nextMsg && nextMsg.message && msg !== nextMsg) {
-      showMsgBar({ ...nextMsg, viewTopOffset: Header.HEIGHT, animationType: 'SlideFromLeft' });
-    }
-  }
+WrapperSceneView.propTypes = navPropTypes;
 
-  _getMsgBarInstance = (ref) => { this.msgBar = ref; };
-
-  render() {
-    const { router, navigation: { state, dispatch }, screenProps } = this.props;
-    const { routes, index } = state;
-
-    const ChildComponent = router.getComponentForRouteName(routes[index].routeName);
-    const childNavProps = addNavigationHelpers({ dispatch, state: routes[index] });
-
-    return (
-      <View style={styles.container}>
-        <ChildComponent navigation={childNavProps} screenProps={screenProps} />
-        <Spinner
-          visible={false} textStyle={styles.spinerText}
-          textContent={Constant.COMMON.SPINNER_MSG}
-        />
-        <MessageBar ref={this._getMsgBarInstance} />
-      </View>
-    );
-  }
-}
-
-const mapStateToProps = state => ({
-  topNotification: state.topNotification
-});
-
-WrapperSceneView.propTypes = propTypes;
-
-export default createNavigator(TabRouter(Routes))(connect(mapStateToProps)(WrapperSceneView));
+export default createNavigator(TabRouter(Routes))(WrapperSceneView);

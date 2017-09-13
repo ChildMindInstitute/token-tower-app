@@ -26,5 +26,9 @@ export default {
   DIRECTION: {
     HORIZONTAL: 'horizontal',
     VERTICAL: 'vertical'
+  },
+  PLATFORM: {
+    IOS: 'ios',
+    ANDROID: 'android'
   }
 };

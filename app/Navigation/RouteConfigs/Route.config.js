@@ -6,7 +6,6 @@ export default {
     TokenTotemTutorial: 'TokenTotemTutorial'
   },
   Authentication: {
-    Test: 'Test',
     Home: 'Home',
     Login: 'Login',
     MainUserSelection: 'MainUserSelection',

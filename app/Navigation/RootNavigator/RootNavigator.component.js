@@ -5,7 +5,7 @@ import { BackHandler } from 'react-native';
 
 import CustomNav from '../CustomNavigator/CustomNavigator.component';
 
-import propTypes from '../NavPropTypes/Navigation.propTypes';
+import navPropTypes from '../NavPropTypes/Navigation.propTypes';
 
 class RootNavigator extends Component {
   componentDidMount() {
@@ -17,8 +17,8 @@ class RootNavigator extends Component {
   }
 
   _onBackPress = () => {
-    const { dispatch, navigationState } = this.props;
-    if (navigationState.index === 0) return false;
+    const { dispatch, navigationState: { index } } = this.props;
+    if (index === 0) return false;
     dispatch(NavigationActions.back());
     return true;
   };
@@ -33,7 +33,7 @@ class RootNavigator extends Component {
   }
 }
 
-RootNavigator.propTypes = propTypes;
+RootNavigator.propTypes = navPropTypes;
 
 const mapStateToProps = state => ({
   navigationState: state.navigation.navigationState
