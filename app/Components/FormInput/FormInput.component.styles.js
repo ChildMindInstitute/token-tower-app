@@ -1,4 +1,7 @@
 export default {
+  innerContainer: {
+    flex: 1
+  },
   errorInput: {
     borderColor: 'red',
     position: 'relative'
@@ -6,6 +9,6 @@ export default {
   errorText: {
     color: 'red',
     position: 'absolute',
-    bottom: -17
+    bottom: -20
   }
 };

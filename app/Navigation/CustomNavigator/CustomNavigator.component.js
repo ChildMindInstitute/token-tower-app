@@ -7,12 +7,11 @@ import LoadingMask from '../../Containers/LoadingMask/LoadingMask.container';
 import Drawer from '../../Containers/SideMenu/SideMenu.container';
 
 import Routes from '../RouteConfigs/RootNavigatorRoute.config';
-import navPropTypes from '../NavPropTypes/Navigation.propTypes';
+import navPropTypes from '../../PropTypes/Navigation.propTypes';
 import styles from './CustomNavigator.component.styles';
 
 const WrapperSceneView = (props) => {
-  const { router, navigation: { state, dispatch }, screenProps } = props;
-  const { routes, index } = state;
+  const { router, navigation: { state: { routes, index }, dispatch }, screenProps } = props;
 
   const ChildComponent = router.getComponentForRouteName(routes[index].routeName);
   const childProps = {

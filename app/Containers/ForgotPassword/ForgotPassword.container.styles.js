@@ -16,11 +16,6 @@ export default {
     fontSize: 18,
     marginVertical: 10
   },
-  labelPassword: {
-    flex: 1,
-    textAlign: 'left',
-    fontSize: 18
-  },
   inputContainerBlock: {
     flexDirection: 'row',
     paddingVertical: 10

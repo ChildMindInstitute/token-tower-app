@@ -1,5 +1,4 @@
 import SubNavigators from '../SubNavigatorConfig/SubNavigator.config';
-
 import routesName from './Route.config';
 
 const { Root: { Authentication, Registration, TokenTotem, TokenTotemTutorial } } = routesName;

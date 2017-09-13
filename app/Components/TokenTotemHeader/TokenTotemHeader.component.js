@@ -19,11 +19,11 @@ const TokenTotemHeader = (props) => {
     const style = isHorizontal(direction) ? styles.imageHorizontal : styles.image;
     const image = <Image resizeMode={'contain'} source={images.k1} style={style} />;
 
-    return isHorizontal(direction) ? <View style={{ flex: 1 }}>{image}</View> : image;
+    return isHorizontal(direction) ? <View style={styles.imgContainer}>{image}</View> : image;
   };
 
   return (
-    <View style={[containerStyle]}>
+    <View style={containerStyle}>
       <Text style={styles.text}>Token</Text>
       {_renderImage()}
       <Text style={styles.text}>Totem</Text>

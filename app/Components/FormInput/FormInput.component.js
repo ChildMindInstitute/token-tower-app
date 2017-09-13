@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { View, TextInput, Text } from 'react-native';
+import propTypes from 'prop-types';
 
 import styles from './FormInput.component.styles';
+import formPropType from '../../PropTypes/Form.propTypes';
 
 class FormInput extends Component {
   _onChangeText = (value) => {
@@ -20,16 +22,14 @@ class FormInput extends Component {
 
     return (
       <View style={containerStyle}>
-        <View style={{ flex: 1 }}>
+        <View style={styles.innerContainer}>
           <TextInput
             placeholder={placeholder}
             style={[inputStyle, touched && error && styles.errorInput]}
-            value={value}
+            value={value} keyboardType={keyboardType}
             onChangeText={this._onChangeText}
             secureTextEntry={secureTextEntry}
-            autoCapitalize={'none'}
-            underlineColorAndroid="transparent"
-            keyboardType={keyboardType}
+            autoCapitalize={'none'} underlineColorAndroid="transparent"
           />
           {touched && error && <Text style={styles.errorText}>{error}</Text>}
         </View>
@@ -37,5 +37,14 @@ class FormInput extends Component {
     );
   }
 }
+
+FormInput.propTypes = {
+  ...formPropType,
+  inputStyle: propTypes.object,
+  containerStyle: propTypes.object,
+  placeholder: propTypes.string,
+  secureTextEntry: propTypes.bool,
+  keyboardType: propTypes.string
+};
 
 export default FormInput;

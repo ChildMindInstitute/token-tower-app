@@ -11,28 +11,34 @@ const {
   TokenTotemTutorial: { Tutorial }
 } = routesName;
 
+const { HomeScreen, LoginScreen, MainUserSelectionScreen, ForgotPasswordScreen,
+  RegisterPermissionScreen, RegisterFormScreen, RegisterWelcomeScreen, SettingScreen,
+  SplashScreen, MainScreen, PrizeScreen,
+  TutorialScreen
+} = Screens;
+
 const AuthenticationNavigator = StackNavigator({
-  [Home]: Screens.HomeScreen,
-  [Login]: Screens.LoginScreen,
-  [MainUserSelection]: Screens.MainUserSelectionScreen,
-  [ForgotPassword]: Screens.ForgotPasswordScreen
+  [Home]: HomeScreen,
+  [Login]: LoginScreen,
+  [MainUserSelection]: MainUserSelectionScreen,
+  [ForgotPassword]: ForgotPasswordScreen
 }, navigationOptions);
 
 const RegistrationNavigator = StackNavigator({
-  [RegisterPermission]: Screens.RegisterPermissionScreen,
-  [RegisterForm]: Screens.RegisterFormScreen,
-  [RegisterWelcome]: Screens.RegisterWelcomeScreen,
-  [Setting]: Screens.SettingScreen
+  [RegisterPermission]: RegisterPermissionScreen,
+  [RegisterForm]: RegisterFormScreen,
+  [RegisterWelcome]: RegisterWelcomeScreen,
+  [Setting]: SettingScreen
 }, navigationOptions);
 
 const TokenTotemNavigator = StackNavigator({
-  [Splash]: Screens.SplashScreen,
-  [Main]: Screens.MainScreen,
-  [Prize]: Screens.PrizeScreen
+  [Splash]: SplashScreen,
+  [Main]: MainScreen,
+  [Prize]: PrizeScreen
 }, navigationOptions);
 
 const TokenTotemTutorialNavigator = StackNavigator({
-  [Tutorial]: Screens.TutorialScreen
+  [Tutorial]: TutorialScreen
 }, navigationOptions);
 
 export default {

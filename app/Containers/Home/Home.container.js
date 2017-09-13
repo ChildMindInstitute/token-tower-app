@@ -5,17 +5,18 @@ import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component
 import Button from '../../Components/FormButton/FormButton.component';
 
 import styles from './Home.container.styles';
-import navPropTypes from '../../Navigation/NavPropTypes/Navigation.propTypes';
+import navPropTypes from '../../PropTypes/Navigation.propTypes';
+import routeName from '../../Navigation/RouteConfigs/Route.config';
 
 export default class HomeContainer extends Component {
   _onLoginPress = () => {
     const { navigate } = this.props.navigation;
-    navigate('Login');
+    navigate(routeName.Authentication.Login);
   }
 
   _onRegisterPress = () => {
     const { navigate } = this.props.navigation;
-    navigate('Registration');
+    navigate(routeName.Root.Registration);
   }
 
   render() {

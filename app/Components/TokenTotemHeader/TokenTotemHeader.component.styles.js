@@ -9,6 +9,9 @@ export default {
     alignItems: 'center',
     height: 50
   },
+  imgContainer: {
+    flex: 1
+  },
   text: {
     fontWeight: 'bold',
     fontSize: 40

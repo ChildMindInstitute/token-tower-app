@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, NavigationActions } from 'react-navigation';
 import { BackHandler } from 'react-native';
 
 import CustomNav from '../CustomNavigator/CustomNavigator.component';
 
-import navPropTypes from '../NavPropTypes/Navigation.propTypes';
+import navPropTypes from '../../PropTypes/Navigation.propTypes';
 
 class RootNavigator extends Component {
   componentDidMount() {
@@ -33,7 +34,10 @@ class RootNavigator extends Component {
   }
 }
 
-RootNavigator.propTypes = navPropTypes;
+RootNavigator.propTypes = {
+  ...navPropTypes,
+  navigationState: propTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
   navigationState: state.navigation.navigationState

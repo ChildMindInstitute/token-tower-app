@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import { View, Text, Switch } from 'react-native';
+import { View, Text } from 'react-native';
+import { reduxForm, Field } from 'redux-form';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
-import SubmitBtn from '../../Components/FormButton/FormButton.component';
+import Btn from '../../Components/FormButton/FormButton.component';
+import FormSwitch from '../../Components/FormSwitch/FormSwitch.component';
 
 import styles from './RegisterPermission.container.styles';
+import config from './RegisterPermission.container.config';
+import routeName from '../../Navigation/RouteConfigs/Route.config';
+import Constant from '../../Utilities/Constant.utils';
 
-export default class RegisterPermissionContainer extends Component {
-  state = { p1: true, p2: false, p3: true }
-
+class RegisterPermissionContainer extends Component {
   _onNext = () => {
     const { navigate } = this.props.navigation;
-    navigate('RegisterForm');
+    navigate(routeName.Registration.RegisterForm);
   }
 
   _renderDescription = () => (
@@ -29,15 +32,15 @@ export default class RegisterPermissionContainer extends Component {
       <Text style={styles.consent}>Consent</Text>
       <View style={styles.permissionBlock}>
         <Text style={styles.permissionText}>Pilot study irsetn iensrt insrininirnsitnriesnite</Text>
-        <Switch value={this.state.p1} onValueChange={(value) => { this.setState({ p1: value }) }} />
+        <Field name={'permission1'} component={FormSwitch} />
       </View>
       <View style={styles.permissionBlock}>
         <Text style={styles.permissionText}>Pilot study irsetn iensrt insrininirnsitnriesnite</Text>
-        <Switch value={this.state.p2} onValueChange={(value) => { this.setState({ p2: value }) }} />
+        <Field name={'permission2'} component={FormSwitch} />
       </View>
       <View style={styles.permissionBlock}>
         <Text style={styles.permissionText}>Pilot study irsetn iensrt insrininirnsitnriesnite</Text>
-        <Switch value={this.state.p3} onValueChange={(value) => { this.setState({ p3: value }) }} />
+        <Field name={'permission3'} component={FormSwitch} />
       </View>
     </View>
   )
@@ -46,14 +49,18 @@ export default class RegisterPermissionContainer extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.contentBlock}>
-          <Header direction={'horizontal'} />
+          <Header direction={Constant.DIRECTION.HORIZONTAL} />
           <View style={styles.content}>
             {this._renderDescription()}
             {this._renderPermission()}
           </View>
         </View>
-        <SubmitBtn onPress={this._onNext} text={'NEXT'} />
+        <Btn onPress={this._onNext} text={'NEXT'} />
       </View>
     );
   }
 }
+
+RegisterPermissionContainer.propTypes = config.propTypes;
+
+export default reduxForm(config.form)(RegisterPermissionContainer);

@@ -1,6 +1,10 @@
 import { handleActions } from 'redux-actions';
+
 import config from './LoadingMask.config';
 
+// ------------------------------------
+// Reducer
+// ------------------------------------
 const initialState = {
   loadingCounter: 0,
   isLoading: false
@@ -10,9 +14,7 @@ const startActionHandler = (state) => {
   const loadingCounter = state.loadingCounter + 1;
   const isLoading = true;
 
-  return {
-    ...state, loadingCounter, isLoading
-  };
+  return { ...state, loadingCounter, isLoading };
 };
 
 const finishActionHandler = (state) => {
@@ -22,9 +24,7 @@ const finishActionHandler = (state) => {
 
   const isLoading = loadingCounter !== 0;
 
-  return {
-    ...state, loadingCounter, isLoading
-  };
+  return { ...state, loadingCounter, isLoading };
 };
 
 export default handleActions(

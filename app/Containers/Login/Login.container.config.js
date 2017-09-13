@@ -1,9 +1,11 @@
 import { showTopErrNotification } from '../../Utilities/Form.util';
-import navPropTypes from '../../Navigation/NavPropTypes/Navigation.propTypes';
+import navPropTypes from '../../PropTypes/Navigation.propTypes';
+import formPropTypes from '../../PropTypes/Form.propTypes';
 import Constant from '../../Utilities/Constant.utils';
 
 const propTypes = {
-  ...navPropTypes
+  ...navPropTypes,
+  ...formPropTypes
 };
 
 export const showLoginFailNotify = (dispatch) => {
@@ -16,8 +18,7 @@ export const showLoginFailNotify = (dispatch) => {
 };
 
 const form = {
-  form: 'loginForm',
-  onSubmitFail: (value, dispatch) => { showLoginFailNotify(dispatch); }
+  form: 'loginForm'
 };
 
 export default {

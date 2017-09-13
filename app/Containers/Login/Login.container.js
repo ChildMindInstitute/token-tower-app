@@ -12,6 +12,7 @@ import styles from './Login.container.styles';
 import { authenticationEmailPassword } from '../../Redux/Reducers/Authentication/Authentication.reducer';
 import config, { showLoginFailNotify } from './Login.container.config';
 import { required } from '../../Utilities/Validation.utils';
+import routeName from '../../Navigation/RouteConfigs/Route.config';
 
 class LoginContainer extends Component {
   _renderUserInput = () => (
@@ -38,12 +39,12 @@ class LoginContainer extends Component {
 
   _onForgot = () => {
     const { navigate } = this.props.navigation;
-    navigate('ForgotPassword');
+    navigate(routeName.Authentication.ForgotPassword);
   }
 
   _onSubmitSuccess = () => {
     const { navigate } = this.props.navigation;
-    navigate('Splash');
+    navigate(routeName.Root.TokenTotem);
   }
 
   _onSubmitFail = ({ username, password }) => {

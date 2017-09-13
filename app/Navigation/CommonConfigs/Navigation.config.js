@@ -4,8 +4,7 @@ import routesName from '../RouteConfigs/Route.config';
 
 export const navigationOptions = {
   navigationOptions: {
-    ...styles,
-    headerMode: 'float'
+    ...styles
   }
 };
 

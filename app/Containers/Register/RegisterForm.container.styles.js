@@ -11,6 +11,9 @@ export default {
     justifyContent: 'center',
     paddingVertical: 10
   },
+  inputBlock: {
+    paddingBottom: 10
+  },
   inputContainer: {
     flex: 1,
     flexDirection: 'row'

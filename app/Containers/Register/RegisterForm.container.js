@@ -9,6 +9,9 @@ import Input from '../../Components/FormInput/FormInput.component';
 
 import styles from './RegisterForm.container.styles';
 import { required } from '../../Utilities/Validation.utils';
+import config from './RegisterForm.container.config';
+import Constant from '../../Utilities/Constant.utils';
+import routeName from '../../Navigation/RouteConfigs/Route.config';
 
 class RegisterFormContainer extends Component {
   _renderUserInput = () => (
@@ -47,17 +50,9 @@ class RegisterFormContainer extends Component {
     </View>
   )
 
-  _renderGGLogo = () => (
-    <Image resizeMode={'contain'} source={images.google} style={styles.image} />
-  )
-
-  _renderFBLogo = () => (
-    <Image resizeMode={'contain'} source={images.facebook} style={styles.image} />
-  );
-
   _onSubmitSuccess = () => {
     const { navigate } = this.props.navigation;
-    navigate('RegisterWelcome');
+    navigate(routeName.Registration.RegisterWelcome);
   }
 
   _onSubmitFail = () => { }
@@ -70,15 +65,17 @@ class RegisterFormContainer extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.contentBlock}>
-          <Header direction={'horizontal'} />
-          {this._renderUserInput()}
-          {this._renderPasswordInput()}
-          {this._renderEmailInput()}
+          <Header direction={Constant.DIRECTION.HORIZONTAL} />
+          <View style={styles.inputBlock}>
+            {this._renderUserInput()}
+            {this._renderPasswordInput()}
+            {this._renderEmailInput()}
+          </View>
           <View style={styles.socialLogos}>
             <Text style={styles.logoText}>Or login with: </Text>
             <View style={styles.logos}>
-              {this._renderFBLogo()}
-              {this._renderGGLogo()}
+              <Image resizeMode={'contain'} source={images.google} style={styles.image} />
+              <Image resizeMode={'contain'} source={images.facebook} style={styles.image} />
             </View>
           </View>
           <Text style={styles.para}>
@@ -92,6 +89,7 @@ class RegisterFormContainer extends Component {
     );
   }
 }
-export default reduxForm({
-  form: 'registerForm'
-})(RegisterFormContainer);
+
+RegisterFormContainer.propTypes = config.propTypes;
+
+export default reduxForm(config.form)(RegisterFormContainer);

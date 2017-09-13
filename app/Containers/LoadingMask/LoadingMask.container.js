@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import styles from './LoadingMask.container.styles';
 import Constant from '../../Utilities/Constant.utils';
 
-const LoadingMask = ({ loading }) => (
+const LoadingMaskContainer = ({ loading }) => (
   <Spinner
     visible={loading}
     textStyle={styles.spinerText}
@@ -14,7 +14,7 @@ const LoadingMask = ({ loading }) => (
   />
 );
 
-LoadingMask.propTypes = {
+LoadingMaskContainer.propTypes = {
   loading: propTypes.bool
 };
 
@@ -22,4 +22,4 @@ const mapStateToProps = state => ({
   loading: state.loadingMask.loading
 });
 
-export default connect(mapStateToProps)(LoadingMask);
+export default connect(mapStateToProps)(LoadingMaskContainer);
