@@ -3,12 +3,24 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, NavigationActions } from 'react-navigation';
 import { BackHandler } from 'react-native';
+import { Font } from 'expo';
 
 import CustomNav from '../CustomNavigator/CustomNavigator.component';
 
 import navPropTypes from '../../PropTypes/Navigation.propTypes';
+import { Resource } from '../../Resources/Fonts';
 
 class RootNavigator extends Component {
+  constructor() {
+    super();
+    this.state = { fontLoaded: false };
+  }
+
+  async componentWillMount() {
+    await Font.loadAsync(Resource);
+    this.setState({ fontLoaded: true });
+  }
+
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this._onBackPress);
   }
@@ -29,7 +41,7 @@ class RootNavigator extends Component {
     const navProps = addNavigationHelpers({ dispatch, state: navigationState });
 
     return (
-      <CustomNav navigation={navProps} />
+      this.state.fontLoaded && <CustomNav navigation={navProps} />
     );
   }
 }

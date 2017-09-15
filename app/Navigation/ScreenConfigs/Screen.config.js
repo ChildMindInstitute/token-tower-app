@@ -10,12 +10,14 @@ import PrizeContainer from '../../Containers/Prize/Prize.container';
 import ForgotPasswordContainer from '../../Containers/ForgotPassword/ForgotPassword.container';
 import MainUserSelectionContainer from '../../Containers/MainUserSelection/MainUserSelection.container';
 import TutorialContainer from '../../Containers/Tutorial/Tutorial.container';
+import TakePhotoContainer from '../../Containers/TakePhoto/TakePhoto.container';
+import ReviewPhotoContainer from '../../Containers/ReviewPhoto/ReviewPhoto.container';
 
 import routesName from '../RouteConfigs/Route.config';
 
 const { Authentication: { Home, Login, ForgotPassword, MainUserSelection },
   Registration: { RegisterPermission, RegisterForm, RegisterWelcome, Setting },
-  TokenTotem: { Splash, Main, Prize },
+  TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto },
   TokenTotemTutorial: { Tutorial } } = routesName;
 
 const HomeScreen = { screen: HomeContainer, path: Home };
@@ -33,6 +35,8 @@ const SplashScreen = { screen: SplashContainer, path: Splash };
 const PrizeScreen = { screen: PrizeContainer, path: Prize };
 
 const TutorialScreen = { screen: TutorialContainer, path: Tutorial };
+const TakePhotoScreen = { screen: TakePhotoContainer, path: TakePhoto };
+const ReviewPhotoScreen = { screen: ReviewPhotoContainer, path: ReviewPhoto };
 
 export default {
   HomeScreen,
@@ -46,5 +50,7 @@ export default {
   PrizeScreen,
   ForgotPasswordScreen,
   MainUserSelectionScreen,
-  TutorialScreen
+  TutorialScreen,
+  TakePhotoScreen,
+  ReviewPhotoScreen
 };

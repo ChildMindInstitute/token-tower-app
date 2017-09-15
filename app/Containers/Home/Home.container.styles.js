@@ -1,3 +1,5 @@
+import { Fonts } from '../../Resources/Fonts';
+
 export default {
   container: {
     alignItems: 'center'
@@ -7,6 +9,7 @@ export default {
     width: 200
   },
   btnText: {
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: Fonts.medium
   }
 };

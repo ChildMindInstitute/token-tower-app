@@ -3,6 +3,7 @@ import { View } from 'react-native';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import Button from '../../Components/FormButton/FormButton.component';
+import FontIcon from '../../Components/FontIcon/FontIcon.component';
 
 import styles from './Home.container.styles';
 import navPropTypes from '../../PropTypes/Navigation.propTypes';
@@ -35,6 +36,8 @@ export default class HomeContainer extends Component {
           btnStyle={styles.btn}
           textStyle={styles.btnText}
         />
+        <FontIcon name={'eye_icon'} />
+        <FontIcon name={'eye_off_icon'} />
       </View>
     );
   }

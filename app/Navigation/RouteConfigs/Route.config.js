@@ -23,6 +23,8 @@ export default {
   TokenTotem: {
     Splash: 'Splash',
     Main: 'Main',
-    Prize: 'Prize'
+    Prize: 'Prize',
+    TakePhoto: 'TakePhoto',
+    ReviewPhoto: 'ReviewPhoto'
   }
 };

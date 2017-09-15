@@ -7,14 +7,14 @@ import { navigationOptions } from '../CommonConfigs/Navigation.config';
 const {
   Authentication: { Home, Login, MainUserSelection, ForgotPassword },
   Registration: { RegisterPermission, RegisterForm, RegisterWelcome, Setting },
-  TokenTotem: { Splash, Main, Prize },
+  TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto },
   TokenTotemTutorial: { Tutorial }
 } = routesName;
 
 const { HomeScreen, LoginScreen, MainUserSelectionScreen, ForgotPasswordScreen,
   RegisterPermissionScreen, RegisterFormScreen, RegisterWelcomeScreen, SettingScreen,
   SplashScreen, MainScreen, PrizeScreen,
-  TutorialScreen
+  TutorialScreen, TakePhotoScreen, ReviewPhotoScreen
 } = Screens;
 
 const AuthenticationNavigator = StackNavigator({
@@ -34,7 +34,9 @@ const RegistrationNavigator = StackNavigator({
 const TokenTotemNavigator = StackNavigator({
   [Splash]: SplashScreen,
   [Main]: MainScreen,
-  [Prize]: PrizeScreen
+  [Prize]: PrizeScreen,
+  [TakePhoto]: TakePhotoScreen,
+  [ReviewPhoto]: ReviewPhotoScreen
 }, navigationOptions);
 
 const TokenTotemTutorialNavigator = StackNavigator({

@@ -34,7 +34,10 @@ export default class MainContainer extends Component {
     const { navigate } = this.props.navigation;
     navigate('Prize');
   }
-
+  _onCamera = () => {
+    const { navigate } = this.props.navigation;
+    navigate('TakePhoto');
+  }
   render() {
     const animateStyle = {
       width: 150,
@@ -58,7 +61,7 @@ export default class MainContainer extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.bottomContainer}>
-          <TouchableOpacity style={styles.bottomImageContainer} >
+          <TouchableOpacity style={styles.bottomImageContainer} onPress={this._onCamera}>
             <Image source={images.camera} resizeMode={'contain'} style={styles.images} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.bottomImageContainer} >
