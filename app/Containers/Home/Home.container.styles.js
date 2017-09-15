@@ -1,15 +1,27 @@
-import { Fonts } from '../../Resources/Fonts';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-export default {
-  container: {
-    alignItems: 'center'
+import { Fonts } from '../../Resources/Fonts';
+import { largeSize, mediumSize, smallSize } from '../../Utilities/MediaQuery.utils';
+
+export default EStyleSheet.create({
+  _container: {
+    alignItems: 'center',
+    [smallSize]: {
+      backgroundColor: 'red'
+    },
+    [mediumSize]: {
+      backgroundColor: null
+    },
+    [largeSize]: {
+      backgroundColor: 'green'
+    }
   },
-  btn: {
+  _btn: {
     marginVertical: 15,
     width: 200
   },
-  btnText: {
+  _btnText: {
     fontSize: 20,
     fontFamily: Fonts.medium
   }
-};
+});

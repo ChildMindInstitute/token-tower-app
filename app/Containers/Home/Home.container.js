@@ -22,19 +22,19 @@ export default class HomeContainer extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles._container}>
         <Header />
         <Button
           onPress={this._onLoginPress}
           text={'Login'}
-          btnStyle={styles.btn}
-          textStyle={styles.btnText}
+          btnStyle={styles._btn}
+          textStyle={styles._btnText}
         />
         <Button
           onPress={this._onRegisterPress}
           text={'Register'}
-          btnStyle={styles.btn}
-          textStyle={styles.btnText}
+          btnStyle={styles._btn}
+          textStyle={styles._btnText}
         />
         <FontIcon name={'eye_icon'} />
         <FontIcon name={'eye_off_icon'} />
