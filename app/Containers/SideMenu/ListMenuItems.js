@@ -1,7 +1,7 @@
 export default [
   {
     name: 'Authentication',
-    icon: '',
+    icon: 'id-card',
     route: 'Authentication'
   },
   // {
@@ -10,7 +10,7 @@ export default [
   // },
   {
     name: 'Registration',
-    icon: '',
+    icon: 'user-plus',
     route: 'Registration'
   },
   // {
@@ -19,7 +19,7 @@ export default [
   // },
   {
     name: 'Token Totem',
-    icon: '',
+    icon: 'paper-plane',
     route: 'TokenTotem'
   },
   // {
@@ -28,7 +28,7 @@ export default [
   // },
   {
     name: 'Token Totem Tutorial',
-    icon: '',
+    icon: 'map',
     route: 'TokenTotemTutorial'
   }
 ];

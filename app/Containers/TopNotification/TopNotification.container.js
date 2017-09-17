@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { registerMsgBar, unregisterMsgBar, showMsgBar } from '../../Utilities/TopNotification.utils';
 
-class TopNotification extends Component {
+class TopNotificationContainer extends Component {
   componentDidMount() {
     registerMsgBar(this.msgBar);
   }
@@ -29,8 +29,8 @@ const mapStateToProps = state => ({
   topNotification: state.topNotification
 });
 
-TopNotification.propTypes = {
+TopNotificationContainer.propTypes = {
   topNotification: propTypes.object
 };
 
-export default connect(mapStateToProps)(TopNotification);
+export default connect(mapStateToProps)(TopNotificationContainer);

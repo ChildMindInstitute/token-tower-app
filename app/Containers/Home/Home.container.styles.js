@@ -6,22 +6,42 @@ import { largeSize, mediumSize, smallSize } from '../../Utilities/MediaQuery.uti
 export default EStyleSheet.create({
   _container: {
     alignItems: 'center',
-    [smallSize]: {
-      backgroundColor: 'red'
-    },
+    flex: 1,
+    [largeSize]: {
+      marginTop: 10
+    }
+  },
+  _btncontainer: {
     [mediumSize]: {
-      backgroundColor: null
+      marginTop: 5
     },
     [largeSize]: {
-      backgroundColor: 'green'
+      marginTop: 20
     }
   },
   _btn: {
     marginVertical: 15,
-    width: 200
+    [smallSize]: {
+      marginVertical: 10,
+      width: 180
+    },
+    [mediumSize]: {
+      width: 200
+    },
+    [largeSize]: {
+      width: 210
+    }
   },
   _btnText: {
-    fontSize: 20,
-    fontFamily: Fonts.medium
+    fontFamily: Fonts.medium,
+    [smallSize]: {
+      fontSize: 20
+    },
+    [mediumSize]: {
+      fontSize: 23
+    },
+    [largeSize]: {
+      fontSize: 25
+    }
   }
 });

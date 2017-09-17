@@ -1,6 +1,7 @@
 export default {
   menu: {
     borderBottomWidth: 1,
-    padding:20
+    paddingHorizontal: 10,
+    paddingVertical: 20
   }
 };

@@ -8,12 +8,24 @@ export default {
   imgContainer: {
     flex: 0.1,
     flexDirection: 'row',
-    paddingVertical: 5,
+    marginTop: 10,
+    marginHorizontal: 10,
     borderBottomWidth: 1
   },
   image: {
+    margin: 3,
     flex: 0.3,
     width: null,
     height: null
+  },
+  menuContainer: {
+    flex: 1,
+    marginHorizontal: 10
+  },
+  menu: {
+    flexDirection: 'row'
+  },
+  text: {
+    marginLeft: 10
   }
 };

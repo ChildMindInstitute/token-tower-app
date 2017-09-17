@@ -16,22 +16,22 @@ import routeName from '../../Navigation/RouteConfigs/Route.config';
 
 class LoginContainer extends Component {
   _renderUserInput = () => (
-    <View style={styles.inputContainerBlock}>
-      <Text style={styles.label}>User</Text>
+    <View style={styles._inputContainerBlock}>
+      <Text style={styles._label}>User</Text>
       <Field
         name={'username'} component={Input}
-        inputStyle={styles.input} containerStyle={styles.inputContainer}
+        inputStyle={styles._input} containerStyle={styles._inputContainer}
         validate={required}
       />
     </View>
   );
 
   _renderPasswordInput = () => (
-    <View style={styles.inputContainerBlock}>
-      <Text style={styles.label}>Password</Text>
+    <View style={styles._inputContainerBlock}>
+      <Text style={styles._label}>Password</Text>
       <Field
         name={'password'} component={Input}
-        inputStyle={styles.input} containerStyle={styles.inputContainer}
+        inputStyle={styles._input} containerStyle={styles._inputContainer}
         secureTextEntry validate={required}
       />
     </View>
@@ -66,17 +66,17 @@ class LoginContainer extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <KeyboardAwareScrollView style={styles.contentBlock}>
+      <View style={styles._container}>
+        <KeyboardAwareScrollView style={styles._contentBlock}>
           <Header />
-          <View style={styles.viewInput}>
+          <View style={styles._viewInput}>
             {this._renderUserInput()}
             {this._renderPasswordInput()}
           </View>
           <Btn
             onPress={this._onForgot}
             text={'Forgot?'} kind={'plain'}
-            textStyle={styles.forgot}
+            textStyle={styles._forgot}
           />
         </KeyboardAwareScrollView>
         <Btn onPress={this._onSubmit} />

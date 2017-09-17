@@ -1,38 +1,88 @@
-export default {
-  images: {
+import EStyleSheet from 'react-native-extended-stylesheet';
+import { Fonts } from '../../Resources/Fonts';
+
+import { largeSize, mediumSize, smallSize } from '../../Utilities/MediaQuery.utils';
+
+export default EStyleSheet.create({
+  _container: {
+    paddingHorizontal: 30,
+    paddingTop: 2
+  },
+  _images: {
     flex: 1,
     width: null,
     height: null
   },
-  imgContainer: {
-    height: 280,
-    marginVertical: 30
+  _imgContainer: {
+    marginVertical: 25,
+    [smallSize]: {
+      height: 270
+    },
+    [mediumSize]: {
+      height: 350
+    },
+    [largeSize]: {
+      height: 370,
+      marginVertical: 40
+    }
   },
-  btnContainer: {
-    flexDirection: 'row'    
+  _btnContainer: {
+    flexDirection: 'row'
   },
-  ImageContainer: {
+  _btn: {
     flex: 1,
     borderWidth: 1,
     padding: 10,
     alignItems: 'center',
-    marginHorizontal: 30
+    [smallSize]: {
+      marginHorizontal: 10
+    },
+    [mediumSize]: {
+      marginHorizontal: 20
+    },
+    [largeSize]: {
+      marginHorizontal: 25
+    }
   },
-  ImageContainer2: {
+  _btn2: {
     flex: 0.5,
     borderWidth: 1,
-    padding: 7,
+    padding: 10,
     alignItems: 'center',
-    marginHorizontal: 30
+    [smallSize]: {
+      marginHorizontal: 10
+    },
+    [mediumSize]: {
+      marginHorizontal: 20
+    },
+    [largeSize]: {
+      marginHorizontal: 25
+    }
   },
-  text: {
-    fontSize: 35,
-    fontWeight: 'bold',
-    color: 'green'
+  _text: {
+    fontFamily: Fonts.bold,
+    color: 'green',
+    [smallSize]: {
+      fontSize: 37
+    },
+    [mediumSize]: {
+      fontSize: 40
+    },
+    [largeSize]: {
+      fontSize: 43
+    }
   },
-  text2: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: 'red'
+  _text2: {
+    fontFamily: Fonts.bold,
+    color: 'red',
+    [smallSize]: {
+      fontSize: 39
+    },
+    [mediumSize]: {
+      fontSize: 41
+    },
+    [largeSize]: {
+      fontSize: 45
+    }
   }
-};
+});

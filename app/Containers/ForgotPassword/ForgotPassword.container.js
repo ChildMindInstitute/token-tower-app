@@ -14,23 +14,23 @@ import Constant from '../../Utilities/Constant.utils';
 
 class ForgotPasswordContainer extends Component {
   _renderEmailInput = () => (
-    <View style={styles.inputContainerBlock}>
-      <Text style={styles.label}>Your Email</Text>
+    <View style={styles._inputContainerBlock}>
+      <Text style={styles._label}>Your Email</Text>
       <Field
         keyboardType={'email-address'}
         name={'email'} component={Input}
-        inputStyle={styles.input} containerStyle={styles.inputContainer}
+        inputStyle={styles._input} containerStyle={styles._inputContainer}
         placeholder={' contact@example.com '} validate={required}
       />
     </View>
   )
 
   _renderPasswordInput = () => (
-    <View style={styles.inputContainerBlock}>
-      <Text style={styles.label}>Password</Text>
+    <View style={styles._inputContainerBlock}>
+      <Text style={styles._label}>Password</Text>
       <Field
         name={'password'} component={Input}
-        inputStyle={styles.input} containerStyle={styles.inputContainer}
+        inputStyle={styles._input} containerStyle={styles._inputContainer}
         placeholder={' password '}
         validate={required} secureTextEntry
       />
@@ -38,11 +38,11 @@ class ForgotPasswordContainer extends Component {
   )
 
   _renderConfirmPasswordInput = () => (
-    <View style={styles.inputContainerBlock}>
-      <Text style={styles.label}>Confirm Password</Text>
+    <View style={styles._inputContainerBlock}>
+      <Text style={styles._label}>Confirm Password</Text>
       <Field
         name={'confirmPassword'} component={Input}
-        inputStyle={styles.input} containerStyle={styles.inputContainer}
+        inputStyle={styles._input} containerStyle={styles._inputContainer}
         placeholder={' confirm password '}
         validate={required} secureTextEntry
       />
@@ -62,14 +62,16 @@ class ForgotPasswordContainer extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.contentBlock}>
+      <View style={styles._container}>
+        <View style={styles._contentBlock}>
           <Header direction={Constant.DIRECTION.HORIZONTAL} />
-          <View style={styles.formView}>
-            <Text style={styles.title}>Password Help</Text>
-            {this._renderEmailInput()}
-            {this._renderPasswordInput()}
-            {this._renderConfirmPasswordInput()}
+          <View style={styles._formView}>
+            <Text style={styles._title}>Password Help</Text>
+            <View style={styles._form}>
+              {this._renderEmailInput()}
+              {this._renderPasswordInput()}
+              {this._renderConfirmPasswordInput()}
+            </View>
           </View>
         </View>
         <SubmitBtn onPress={this._onSubmit} text={'SUBMIT'} />

@@ -18,16 +18,21 @@ const Menu = ({ navigation: { navigate }, onItemPress }) => (
         <Text> Username </Text>
       </View>
     </View>
-    {
-      listMenuItems.map(item => (
-        <MenuItem
-          item={item}
-          onItemPress={onItemPress}
-          navigate={navigate}
-          key={item.name || item.index}
-        />
-      ))
-    }
+    <View style={styles.menuContainer}>
+      {
+        listMenuItems.map(item => (
+          <MenuItem
+            containerStyle={styles.menu}
+            textStyle={styles.text}
+            item={item}
+            onItemPress={onItemPress}
+            navigate={navigate}
+            key={item.name || item.index}
+          />
+
+        ))
+      }
+    </View>
   </View>
 );
 

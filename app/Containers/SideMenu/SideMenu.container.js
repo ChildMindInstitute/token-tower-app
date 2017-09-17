@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import Drawer from 'react-native-drawer';
 import { connect } from 'react-redux';
 
-import Menu from './Menu/Menu.component';
+import Menu from './/Menu/Menu.component';
 
 import { sideMenuOpen, sideMenuClose } from '../../Redux/Reducers/SideMenu/SideMenu.reducer';
 import navPropTypes from '../../PropTypes/Navigation.propTypes';

@@ -19,31 +19,31 @@ export default class SplashContainer extends Component {
     <Image
       resizeMode={'contain'}
       source={images.treasure}
-      style={styles.treasure}
+      style={styles._treasure}
     />
   );
   _renderPresent= () => (
     <Image
       resizeMode={'contain'}
       source={images.present}
-      style={styles.present}
+      style={styles._present}
     />
   );
 
   render() {
     return (
       <TouchableWithoutFeedback onPress={this._onTouch}>
-        <View style={{ flex: 1 }}>
+        <View style={styles._container}>
           <Header direction={'horizontal'} />
-          <View style={{ flex: 1 }}>
-            <View style={styles.wrap}>
-              <View style={styles.textBubble}>
-                <Text style={styles.text}> You have 85 tokens!!!
+          <View style={styles._textContainer}>
+            <View style={styles._wrap}>
+              <View style={styles._textBubble}>
+                <Text style={styles._text}> You have 85 tokens!!!
               Only 15 more for your next PRIZE!!!
                 </Text>
               </View>
             </View>
-            <View style={styles.img}>
+            <View style={styles._img}>
               {this._renderTreasure()}
               {this._renderPresent()}
             </View>

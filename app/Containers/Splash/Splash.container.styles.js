@@ -1,42 +1,92 @@
-export default {
-  textBubble: {
+import EStyleSheet from 'react-native-extended-stylesheet';
+
+import { largeSize, mediumSize, smallSize } from '../../Utilities/MediaQuery.utils';
+
+export default EStyleSheet.create({
+  _container: {
+    flex: 1,
+    paddingTop: 2,
+    paddingHorizontal: 30,
+    [smallSize]: {
+      paddingHorizontal: 20
+    }
+  },
+  _textContainer: {
+    flex: 1
+  },
+  _textBubble: {
     flexDirection: 'row',
     borderWidth: 1,
     backgroundColor: '#f7c34a',
-    height: 300,
-    width: 300,
-    borderRadius: 250,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    [smallSize]: {
+      height: 250,
+      width: 250,
+      borderRadius: 130
+    },
+    [mediumSize]: {
+      height: 300,
+      width: 300,
+      borderRadius: 150
+    },
+    [largeSize]: {
+      height: 350,
+      width: 350,
+      borderRadius: 180
+    }
   },
-  text: {
+  _text: {
     fontSize: 30,
     textAlign: 'center',
     width: 200,
-    padding: 10
+    // padding: 10,
+    [smallSize]: {
+      width: 160,
+      fontSize: 27
+    },
+    [mediumSize]: {
+      width: 200,
+      fontSize: 34
+    },
+    [largeSize]: {
+      width: 250,
+      fontSize: 40
+    }
   },
-  wrap: {
-    flex: 1,
+  _wrap: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 20,
-    height: 100
+    [smallSize]: {
+      marginTop: 5,
+      flex: 1.13
+    },
+    [mediumSize]: {
+      marginTop: 10,
+      flex: 1.3
+    },
+    [largeSize]: {
+      marginTop: 20,
+      flex: 1.5
+    }
   },
-  img: {
+  _img: {
     flex: 1,
     flexDirection: 'row',
-    top: 20
+    [smallSize]: {
+      flex: 1
+    }
   },
-  present: {
-    flex: 0.5,
+  _present: {
+    flex: 0.6,
     position: 'relative',
     zIndex: 0,
-    left: -50
+    left: -18
   },
-  treasure: {
+  _treasure: {
     flex: 1,
     zIndex: 1,
     position: 'relative',
     left: 10
   }
-};
+});

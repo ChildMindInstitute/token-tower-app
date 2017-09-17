@@ -15,20 +15,18 @@ export default class ReviewPhotoContainer extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles._container}>
         <Header direction={Constant.DIRECTION.HORIZONTAL} />
-        <View style={styles.imgContainer}>
-          <Image source={images.k2} resizeMode={'contain'} style={styles.images} />
+        <View style={styles._imgContainer}>
+          <Image source={images.k2} resizeMode={'contain'} style={styles._images} />
         </View>
-        <View>
-          <View style={styles.btnContainer}>
-            <TouchableOpacity style={styles.ImageContainer} >
-              <Text style={styles.text}>Keep</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.ImageContainer2} >
-              <Text style={styles.text2}>X</Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles._btnContainer}>
+          <TouchableOpacity style={styles._btn} >
+            <Text style={styles._text}>Keep</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles._btn2} >
+            <Text style={styles._text2}>X</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

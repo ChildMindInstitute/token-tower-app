@@ -1,35 +1,63 @@
 
-export default {
-  container: {
+import EStyleSheet from 'react-native-extended-stylesheet';
+
+import { Fonts } from '../../Resources/Fonts';
+import { largeSize, mediumSize, smallSize } from '../../Utilities/MediaQuery.utils';
+
+export default EStyleSheet.create({
+  _container: {
     flex: 1
   },
-  contentBlock: {
+  _contentBlock: {
     flex: 1,
     paddingHorizontal: 30
   },
-  inputContainerBlock: {
+  _inputContainerBlock: {
     flexDirection: 'row',
-    paddingBottom: 20
+    paddingBottom: 20,
+    [smallSize]: {
+      paddingBottom: 19
+    }
   },
-  label: {
-    flex: 1,
+  _label: {
+    flex: 0.5,
     fontSize: 20,
     textAlign: 'center',
-    marginVertical: 10
+    marginVertical: 10,
+    [smallSize]: {
+      fontSize: 18,
+      marginVertical: 9
+    },
+    [largeSize]: {
+      marginVertical: 12,
+      fontSize: 21
+    }
   },
-  inputContainer: {
+  _inputContainer: {
     flex: 1,
     flexDirection: 'row'
   },
-  input: {
+  _input: {
     flex: 1,
     borderWidth: 1
   },
-  forgot: {
+  _forgot: {
     color: 'grey',
-    textAlign: 'right'
+    fontSize: 15,
+    textAlign: 'right',
+    [largeSize]: {
+      fontSize: 18
+    }
   },
-  viewInput: {
-    paddingTop: 10
+  _viewInput: {
+    [smallSize]: {
+      paddingTop: 6
+    },
+    [mediumSize]: {
+      paddingTop: 20
+    },
+    [largeSize]: {
+      paddingTop: 27
+    }
   }
-};
+});
