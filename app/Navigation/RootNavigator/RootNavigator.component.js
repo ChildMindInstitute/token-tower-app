@@ -9,16 +9,12 @@ import CustomNav from '../CustomNavigator/CustomNavigator.component';
 
 import navPropTypes from '../../PropTypes/Navigation.propTypes';
 import { Resource } from '../../Resources/Fonts';
+import { fontLoadFinished } from '../../Redux/Reducers/Font/Font.reducer';
 
 class RootNavigator extends Component {
-  constructor() {
-    super();
-    this.state = { fontLoaded: false };
-  }
-
   async componentWillMount() {
     await Font.loadAsync(Resource);
-    this.setState({ fontLoaded: true });
+    this.props.dispatch(fontLoadFinished());
   }
 
   componentDidMount() {
@@ -37,22 +33,24 @@ class RootNavigator extends Component {
   };
 
   render() {
-    const { dispatch, navigationState } = this.props;
+    const { dispatch, navigationState, isFontLoaded } = this.props;
     const navProps = addNavigationHelpers({ dispatch, state: navigationState });
 
     return (
-      this.state.fontLoaded && <CustomNav navigation={navProps} />
+      isFontLoaded && <CustomNav navigation={navProps} />
     );
   }
 }
 
 RootNavigator.propTypes = {
   ...navPropTypes,
-  navigationState: propTypes.object.isRequired
+  navigationState: propTypes.object.isRequired,
+  isFontLoaded: propTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  navigationState: state.navigation.navigationState
+  navigationState: state.navigation.navigationState,
+  isFontLoaded: state.font.isLoaded
 });
 
 export default connect(mapStateToProps)(RootNavigator);

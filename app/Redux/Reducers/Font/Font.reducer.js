@@ -1,17 +1,23 @@
 import { createActions, handleActions } from 'redux-actions';
 
-import api from '../../../Api/api';
-
 // ------------------------------------
 // Action
 // ------------------------------------
-export const { authenticationEmailPassword, authenticationCreateNewAccount } = createActions({
-  AUTHENTICATION_EMAIL_PASSWORD: api.authenicate,
-  AUTHENTICATION_CREATE_NEW_ACCOUNT: api.register
-});
+export const { fontLoadFinished } = createActions({
+}, 'FONT_LOAD_FINISHED');
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
+const initialState = {
+  isLoaded: false
+};
+
+const handleFontLoaded = state => ({
+  ...state,
+  isLoaded: true
+});
+
 export default handleActions({
-}, {});
+  FONT_LOAD_FINISHED: handleFontLoaded
+}, initialState);

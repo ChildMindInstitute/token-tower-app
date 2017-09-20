@@ -21,5 +21,9 @@ export default {
     flex: 1,
     width: null,
     height: null
+  },
+  iconContainer: {
+    backgroundColor: 'transparent',
+    justifyContent: 'center'
   }
 };

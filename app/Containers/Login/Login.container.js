@@ -10,9 +10,11 @@ import Btn from '../../Components/FormButton/FormButton.component';
 
 import styles from './Login.container.styles';
 import { authenticationEmailPassword } from '../../Redux/Reducers/Authentication/Authentication.reducer';
-import config, { showLoginFailNotify } from './Login.container.config';
+import config from './Login.container.config';
 import { required } from '../../Utilities/Validation.utils';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
+import { showTopErrNotification } from '../../Utilities/Form.util';
+import { ERR_MSG } from '../../Utilities/Constant.utils';
 
 class LoginContainer extends Component {
   _renderUserInput = () => (
@@ -47,16 +49,18 @@ class LoginContainer extends Component {
     navigate(routeName.Root.TokenTotem);
   }
 
-  _onSubmitFail = ({ username, password }) => {
-    if (username === 'childmind' && password === 'childmind') this._onSubmitSuccess();
-    else showLoginFailNotify(this.props.dispatch);
+  _onSubmitFail = ({ response }) => {
+    showTopErrNotification({
+      title: ERR_MSG.LOGIN_FAIL_TITLE,
+      message: response.data.message
+    }, this.props.dispatch);
   }
 
   _handleSubmit = (values) => {
     const { authentication } = this.props;
     authentication(values)
       .then(this._onSubmitSuccess)
-      .catch(() => this._onSubmitFail(values));
+      .catch(this._onSubmitFail);
   };
 
   _onSubmit = () => {

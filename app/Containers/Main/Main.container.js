@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TouchableOpacity, View, Image, Animated, Dimensions } from 'react-native';
 
 import images from '../../Resources/Images';
+import FontIcon from '../../Components/FontIcon/FontIcon.component';
 
 import styles from './Main.container.style';
 
@@ -64,8 +65,14 @@ export default class MainContainer extends Component {
           <TouchableOpacity style={styles.bottomImageContainer} onPress={this._onCamera}>
             <Image source={images.camera} resizeMode={'contain'} style={styles.images} />
           </TouchableOpacity>
+          <TouchableOpacity style={styles.iconContainer}>
+            <FontIcon name={'minus'} color={'#f7c34a'} size={50} />
+          </TouchableOpacity>
           <TouchableOpacity style={styles.bottomImageContainer} >
             <Image source={images.k3} resizeMode={'contain'} style={styles.images} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconContainer} >
+            <FontIcon name={'plus'} color={'#f7c34a'} size={50} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.bottomImageContainer} onPress={this._onPrize} >
             <Image source={images.present} resizeMode={'contain'} style={styles.images} />

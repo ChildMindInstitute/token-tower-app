@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-
-import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 import styles from './TakePhoto.container.style';
-import images from '../../Resources/Images';
 
 export default class TakePhotoContainer extends Component {
   componentDidMount() {

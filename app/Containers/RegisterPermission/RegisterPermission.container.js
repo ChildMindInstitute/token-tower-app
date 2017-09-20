@@ -9,7 +9,7 @@ import FormSwitch from '../../Components/FormSwitch/FormSwitch.component';
 import styles from './RegisterPermission.container.styles';
 import config from './RegisterPermission.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
-import Constant from '../../Utilities/Constant.utils';
+import { DIRECTION } from '../../Utilities/Constant.utils';
 
 class RegisterPermissionContainer extends Component {
   _onNext = () => {
@@ -49,7 +49,7 @@ class RegisterPermissionContainer extends Component {
     return (
       <View style={styles._container}>
         <View style={styles._contentBlock}>
-          <Header direction={Constant.DIRECTION.HORIZONTAL} />
+          <Header direction={DIRECTION.HORIZONTAL} />
           <View style={styles._content}>
             {this._renderDescription()}
             {this._renderPermission()}

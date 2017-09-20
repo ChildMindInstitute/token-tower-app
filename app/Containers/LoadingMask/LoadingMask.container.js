@@ -4,13 +4,13 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import { connect } from 'react-redux';
 
 import styles from './LoadingMask.container.styles';
-import Constant from '../../Utilities/Constant.utils';
+import { COMMON } from '../../Utilities/Constant.utils';
 
 const LoadingMaskContainer = ({ loading }) => (
   <Spinner
     visible={loading}
     textStyle={styles.spinerText}
-    textContent={Constant.COMMON.SPINNER_MSG}
+    textContent={COMMON.SPINNER_MSG}
   />
 );
 

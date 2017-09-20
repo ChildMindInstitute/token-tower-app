@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
@@ -8,19 +9,29 @@ import images from '../../Resources/Images';
 import Input from '../../Components/FormInput/FormInput.component';
 
 import styles from './RegisterForm.container.styles';
-import { required } from '../../Utilities/Validation.utils';
+import { required, minLength, maxLength, emailValidation } from '../../Utilities/Validation.utils';
 import config from './RegisterForm.container.config';
-import Constant from '../../Utilities/Constant.utils';
+import { DIRECTION, ERR_MSG } from '../../Utilities/Constant.utils';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
+import { authenticationCreateNewAccount } from '../../Redux/Reducers/Authentication/Authentication.reducer';
+import { showTopErrNotification } from '../../Utilities/Form.util';
 
 class RegisterFormContainer extends Component {
+  constructor() {
+    super();
+    this.usernameValidation = [minLength(2), maxLength(30)];
+    this.passwordValidation = [minLength(6)];
+    this.emailValidation = [required, emailValidation];
+  }
+
   _renderUserInput = () => (
     <View style={styles._inputContainerBlock}>
       <Text style={styles._label}>User</Text>
       <Field
         name={'username'} component={Input}
         inputStyle={styles._input} containerStyle={styles._inputContainer}
-        placeholder={' username '} validate={required}
+        placeholder={' username '}
+        validate={this.usernameValidation}
       />
     </View>
   )
@@ -32,7 +43,7 @@ class RegisterFormContainer extends Component {
         name={'password'} component={Input}
         inputStyle={styles._input} containerStyle={styles._inputContainer}
         placeholder={' password '} secureTextEntry
-        validate={required}
+        validate={this.passwordValidation}
       />
     </View>
   )
@@ -45,7 +56,7 @@ class RegisterFormContainer extends Component {
         component={Input} inputStyle={styles._input}
         containerStyle={styles._inputContainer}
         placeholder={' contact@example.com '}
-        validate={required}
+        validate={this.emailValidation}
       />
     </View>
   )
@@ -55,17 +66,30 @@ class RegisterFormContainer extends Component {
     navigate(routeName.Registration.RegisterWelcome);
   }
 
-  _onSubmitFail = () => { }
+  _onSubmitFail = ({ response }) => {
+    showTopErrNotification({
+      title: ERR_MSG.LOGIN_FAIL_TITLE,
+      message: response.data.message
+    }, this.props.dispatch);
+  }
+
+  _handleSubmit = (values) => {
+    const { register } = this.props;
+    register(values)
+      .then(this._onSubmitSuccess)
+      .catch(this._onSubmitFail);
+  }
 
   _onSubmit = () => {
-    this.props.handleSubmit(this._onSubmitSuccess)();
+    const { handleSubmit } = this.props;
+    handleSubmit(this._handleSubmit)();
   }
 
   render() {
     return (
       <View style={styles._container}>
         <View style={styles._contentBlock}>
-          <Header direction={Constant.DIRECTION.HORIZONTAL} />
+          <Header direction={DIRECTION.HORIZONTAL} />
           <View style={styles._inputBlock}>
             {this._renderUserInput()}
             {this._renderPasswordInput()}
@@ -92,4 +116,9 @@ class RegisterFormContainer extends Component {
 
 RegisterFormContainer.propTypes = config.propTypes;
 
-export default reduxForm(config.form)(RegisterFormContainer);
+const mapStateToProps = () => ({});
+const mapDispatchToProps = {
+  register: authenticationCreateNewAccount
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(RegisterFormContainer));

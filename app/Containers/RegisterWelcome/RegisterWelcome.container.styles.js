@@ -25,6 +25,7 @@ export default EStyleSheet.create({
     }
   },
   welcomeText: {
+    fontFamily: Fonts.regular,
     fontSize: 30,
     textAlign: 'center',
     [smallSize]: {

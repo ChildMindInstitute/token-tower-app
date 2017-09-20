@@ -1,3 +1,5 @@
+import { Fonts } from '../../Resources/Fonts';
+
 export default {
   container: {
     justifyContent: 'center',
@@ -6,6 +8,7 @@ export default {
   },
   submitBtn: {
     padding: 20,
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: Fonts.medium
   }
 };

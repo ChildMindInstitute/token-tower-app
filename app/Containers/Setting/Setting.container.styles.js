@@ -1,3 +1,5 @@
+import { Fonts } from '../../Resources/Fonts';
+
 export default {
   container: {
     flex: 1
@@ -11,7 +13,7 @@ export default {
   },
   title: {
     fontSize: 23,
-    fontWeight: 'bold'
+    fontFamily: Fonts.bold
   },
   input: {
     flex: 1,
@@ -25,6 +27,7 @@ export default {
     paddingTop: 10
   },
   text: {
+    fontFamily: Fonts.regular,
     width: 150,
     fontSize: 18,
     textAlign: 'left'
@@ -34,10 +37,12 @@ export default {
     borderColor: 'transparent'
   },
   dropdownTextStyle: {
+    fontFamily: Fonts.regular,
     fontSize: 13,
     textAlign: 'center'
   },
   textStyle: {
+    fontFamily: Fonts.regular,
     fontSize: 13,
     color: 'grey',
     padding: 10

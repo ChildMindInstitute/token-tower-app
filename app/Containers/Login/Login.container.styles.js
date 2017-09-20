@@ -21,6 +21,7 @@ export default EStyleSheet.create({
   },
   _label: {
     flex: 0.5,
+    fontFamily: Fonts.regular,
     fontSize: 20,
     textAlign: 'center',
     marginVertical: 10,
@@ -43,8 +44,9 @@ export default EStyleSheet.create({
   },
   _forgot: {
     color: 'grey',
-    fontSize: 15,
     textAlign: 'right',
+    fontFamily: Fonts.regular,
+    fontSize: 15,
     [largeSize]: {
       fontSize: 18
     }

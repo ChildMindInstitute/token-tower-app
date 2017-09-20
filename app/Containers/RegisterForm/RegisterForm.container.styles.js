@@ -37,6 +37,7 @@ export default EStyleSheet.create({
     flex: 0.6,
     textAlign: 'left',
     marginVertical: 10,
+    fontFamily: Fonts.regular,
     [smallSize]: {
       fontSize: 16
     },
@@ -55,6 +56,7 @@ export default EStyleSheet.create({
   },
   _logoText: {
     marginRight: 20,
+    fontFamily: Fonts.regular,
     [smallSize]: {
       fontSize: 16
     },
@@ -82,6 +84,7 @@ export default EStyleSheet.create({
     height: 60
   },
   _para: {
+    fontFamily: Fonts.regular,
     [smallSize]: {
       fontSize: 16
     },

@@ -1,5 +1,6 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+import { Fonts } from '../../Resources/Fonts';
 import { largeSize, mediumSize, smallSize } from '../../Utilities/MediaQuery.utils';
 
 export default EStyleSheet.create({
@@ -37,10 +38,9 @@ export default EStyleSheet.create({
     }
   },
   _text: {
-    fontSize: 30,
+    fontFamily: Fonts.regular,
     textAlign: 'center',
     width: 200,
-    // padding: 10,
     [smallSize]: {
       width: 160,
       fontSize: 27

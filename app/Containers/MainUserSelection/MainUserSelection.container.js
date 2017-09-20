@@ -23,7 +23,6 @@ _renderUser2 = () => (
       onPress={this._onLoginPress}
       text={'User 2'}
       btnStyle={styles.btn}
-      textStyle={styles.btnText}
     />
   </View>
 )

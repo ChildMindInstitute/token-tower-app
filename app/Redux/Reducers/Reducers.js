@@ -5,6 +5,7 @@ import topNotification from './TopNotification/TopNotification.reducer';
 import authentication from './Authentication/Authentication.reducer';
 import loadingMask from './LoadingMask/LoadingMask.reducer';
 import sideMenu from './SideMenu/SideMenu.reducer';
+import font from './Font/Font.reducer';
 
 export default {
   form: reducer,
@@ -12,5 +13,6 @@ export default {
   topNotification,
   authentication,
   loadingMask,
-  sideMenu
+  sideMenu,
+  font
 };

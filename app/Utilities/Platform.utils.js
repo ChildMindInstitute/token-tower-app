@@ -1,7 +1,7 @@
 import { Platform } from 'react-native';
 
-import Constant from './Constant.utils';
+import { PLATFORM } from './Constant.utils';
 
-export const isAndroid = () => Constant.PLATFORM.ANDROID === Platform.OS;
+export const isAndroid = () => PLATFORM.ANDROID === Platform.OS;
 
-export const isIos = () => Constant.PLATFORM.IOS === Platform.OS;
+export const isIos = () => PLATFORM.IOS === Platform.OS;

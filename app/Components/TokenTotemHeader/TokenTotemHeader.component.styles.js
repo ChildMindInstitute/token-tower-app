@@ -1,3 +1,5 @@
+import { Fonts } from '../../Resources/Fonts';
+
 export default {
   containerVertical: {
     justifyContent: 'space-between',
@@ -13,7 +15,7 @@ export default {
     flex: 1
   },
   text: {
-    fontWeight: 'bold',
+    fontFamily: Fonts.bold,
     fontSize: 40
   },
   image: {

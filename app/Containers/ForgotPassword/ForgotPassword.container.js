@@ -10,7 +10,7 @@ import Input from '../../Components/FormInput/FormInput.component';
 import styles from './ForgotPassword.container.styles';
 import { required } from '../../Utilities/Validation.utils';
 import config from './ForgotPassword.container.config';
-import Constant from '../../Utilities/Constant.utils';
+import { DIRECTION } from '../../Utilities/Constant.utils';
 
 class ForgotPasswordContainer extends Component {
   _renderEmailInput = () => (
@@ -20,7 +20,7 @@ class ForgotPasswordContainer extends Component {
         keyboardType={'email-address'}
         name={'email'} component={Input}
         inputStyle={styles._input} containerStyle={styles._inputContainer}
-        placeholder={' contact@example.com '} validate={required}
+        placeholder={'contact@example.com'} validate={required}
       />
     </View>
   )
@@ -31,7 +31,7 @@ class ForgotPasswordContainer extends Component {
       <Field
         name={'password'} component={Input}
         inputStyle={styles._input} containerStyle={styles._inputContainer}
-        placeholder={' password '}
+        placeholder={'password'}
         validate={required} secureTextEntry
       />
     </View>
@@ -43,7 +43,7 @@ class ForgotPasswordContainer extends Component {
       <Field
         name={'confirmPassword'} component={Input}
         inputStyle={styles._input} containerStyle={styles._inputContainer}
-        placeholder={' confirm password '}
+        placeholder={'confirm password'}
         validate={required} secureTextEntry
       />
     </View>
@@ -64,7 +64,7 @@ class ForgotPasswordContainer extends Component {
     return (
       <View style={styles._container}>
         <View style={styles._contentBlock}>
-          <Header direction={Constant.DIRECTION.HORIZONTAL} />
+          <Header direction={DIRECTION.HORIZONTAL} />
           <View style={styles._formView}>
             <Text style={styles._title}>Password Help</Text>
             <View style={styles._form}>

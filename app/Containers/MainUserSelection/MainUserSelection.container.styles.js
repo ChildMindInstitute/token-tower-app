@@ -6,8 +6,5 @@ export default {
   btn: {
     marginVertical: 15,
     width: 150
-  },
-  btnText: {
-    fontSize: 20
   }
 };

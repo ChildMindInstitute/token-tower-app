@@ -26,6 +26,7 @@ export default EStyleSheet.create({
     borderBottomWidth: 1
   },
   _description: {
+    fontFamily: Fonts.regular,
     [smallSize]: {
       fontSize: 17
     },
@@ -61,6 +62,7 @@ export default EStyleSheet.create({
   },
   _permissionText: {
     flex: 1,
+    fontFamily: Fonts.regular,
     [smallSize]: {
       fontSize: 17
     },

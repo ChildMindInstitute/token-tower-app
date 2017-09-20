@@ -1,3 +1,5 @@
+import { Fonts } from '../../Resources/Fonts';
+
 export default {
   container: {
     flex: 1
@@ -17,6 +19,7 @@ export default {
     height: 40
   },
   text: {
+    fontFamily: Fonts.regular,
     fontSize: 20,
     marginHorizontal: 10
   },

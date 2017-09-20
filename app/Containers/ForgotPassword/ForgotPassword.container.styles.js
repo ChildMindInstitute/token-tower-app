@@ -1,18 +1,22 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-import { largeSize, mediumSize, smallSize } from '../../Utilities/MediaQuery.utils';
+import { Fonts } from '../../Resources/Fonts';
+import { largeSize, smallSize } from '../../Utilities/MediaQuery.utils';
 
 export default EStyleSheet.create({
-  _title: {
-    fontSize: 23,
-    fontWeight: 'bold'
-  },
   _container: {
     flex: 1
   },
   _contentBlock: {
     flex: 1,
     paddingHorizontal: 30
+  },
+  _formView: {
+    paddingVertical: 15
+  },
+  _title: {
+    fontSize: 23,
+    fontFamily: Fonts.bold
   },
   _form: {
     marginVertical: 10,
@@ -25,6 +29,7 @@ export default EStyleSheet.create({
     textAlign: 'left',
     fontSize: 18,
     marginVertical: 10,
+    fontFamily: Fonts.regular,
     [smallSize]: {
       fontSize: 16,
       flex: 0.6
@@ -35,7 +40,8 @@ export default EStyleSheet.create({
   },
   _inputContainerBlock: {
     flexDirection: 'row',
-    marginVertical: 12
+    marginVertical: 12,
+    alignItems: 'center'
   },
   _inputContainer: {
     flex: 1,
@@ -51,9 +57,5 @@ export default EStyleSheet.create({
   _input: {
     flex: 1,
     borderWidth: 1
-  },
-  _formView: {
-    paddingVertical: 15
   }
-
 });

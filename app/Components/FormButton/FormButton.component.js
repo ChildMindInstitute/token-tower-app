@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Text } from 'react-native';
 
-import Constant from '../../Utilities/Constant.utils';
+import { BTN } from '../../Utilities/Constant.utils';
 
 import styles from './FormButton.component.styles';
 
 const FormButton = ({ btnStyle, textStyle, text, kind, onPress }) => {
   let preConainerStyle; let preTextStyle;
 
-  if (kind === Constant.BTN.KIND.DEFAULT) {
+  if (kind === BTN.KIND.DEFAULT) {
     preConainerStyle = styles.container;
     preTextStyle = styles.submitBtn;
-  } else if (kind === Constant.BTN.KIND.PLAIN) {
+  } else if (kind === BTN.KIND.PLAIN) {
     preConainerStyle = undefined;
     preTextStyle = undefined;
   }
@@ -25,8 +25,8 @@ const FormButton = ({ btnStyle, textStyle, text, kind, onPress }) => {
 };
 
 FormButton.defaultProps = {
-  text: Constant.BTN.DEFAULT,
-  kind: Constant.BTN.KIND.DEFAULT
+  text: BTN.DEFAULT,
+  kind: BTN.KIND.DEFAULT
 };
 
 FormButton.propTypes = {

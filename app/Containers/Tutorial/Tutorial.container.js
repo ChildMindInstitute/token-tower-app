@@ -1,75 +1,91 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, View, Image, Animated, Dimensions } from 'react-native';
+import { TouchableWithoutFeedback, TouchableOpacity, Image, View, Text, Animated, Dimensions } from 'react-native';
 
 import images from '../../Resources/Images';
 
 import styles from './Tutorial.container.styles';
 
 export default class TutorialContainer extends Component {
-  state = {
-    fadeAnim: new Animated.Value(0) // Initial value for opacity: 0
+  constructor() {
+    super();
+    this.state = { step: 0 };
   }
 
-  componentDidUpdate() {
-    if (this.state.putCoint) {
-      const onAnimateFinished = () => {
-        this.setState({ putCoint: false, fadeAnim: new Animated.Value(0) });
-      };
-
-      Animated.timing( // Animate over time
-        this.state.fadeAnim, // The animated value to drive
-        {
-          toValue: 1, // Animate to opacity: 1 (opaque)
-          duration: 1000 // Make it take a while
-        },
-      ).start(onAnimateFinished);
+  _onPress = () => {
+    console.log('on press: ', this.state.step);
+    if (this.state.step === 3) {
+      const { navigate } = this.props.navigation;
+      navigate('Splash');
+    } else {
+      this.setState({ step: this.state.step + 1 });
     }
   }
 
-  _onPigPress = () => {
-    if (!this.state.putCoint) this.setState({ putCoint: true });
-  }
+  _renderStep1 = () => (
+    <View style={styles._bubble}>
+      <Text style={styles._text1}>Take PHOTOS to decorate your tokens!</Text>
+    </View>
+  )
 
-  _onPrize = () => {
-    const { navigate } = this.props.navigation;
-    navigate('Prize');
+  _renderStep2 = () => (
+    <View style={styles._bubble}>
+      <Text style={styles._text2}>View your TOKENS!</Text>
+    </View>
+  )
+
+  _renderStep3 = () => (
+    <View style={styles._bubble}>
+      <Text style={styles._text2}>View your PRIZES!</Text>
+    </View>
+  )
+
+  _renderStep4 = () => (
+    <View style={styles._bubble}>
+      <Text style={styles._text3}>Remove/add tokenstokens by tapping onon the minus/plus symbol.</Text>
+    </View>
+  )
+  _renderTutorialByStep = (step) => {
+    switch (step) {
+      case 0: return this._renderStep1();
+      case 1: return this._renderStep2();
+      case 2: return this._renderStep3();
+      case 3: return this._renderStep4();
+      default:
+        return undefined;
+    }
   }
 
   render() {
-    const animateStyle = {
-      width: 150,
-      height: 150,
-      opacity: this.state.putCoint ? 1 : 0,
-      transform: [{
-        translateY: this.state.fadeAnim.interpolate({
-          inputRange: [0, 1],
-          outputRange: [0, Dimensions.get('window').height / 3]
-        })
-      }]
-    };
-
+    console.log('on render: ', this.state.step);
     return (
-      <Image source={images.firstbackground} style={styles.bgrContainer}>
-        <View style={styles.topContainer}>
-          <Image source={images.token} />
-          <Animated.Image source={images.k1} style={animateStyle} />
-          <TouchableOpacity onPress={this._onPigPress}>
-            <Image source={images.pig} />
-          </TouchableOpacity>
+      <TouchableWithoutFeedback onPress={this._onPress} >
+        <View style={styles._container}>
+          <View style={styles._tutorialContainer}>
+            {this._renderTutorialByStep(this.state.step)}
+          </View>
+          <View style={styles._backgroundContainer}>
+            <Image source={images.firstbackground} style={styles._bgrContainer}>
+              <View style={styles._topContainer}>
+                <Image source={images.token} />
+                <View>
+                  <Image source={images.pig} />
+                </View>
+              </View>
+              <View style={styles._bottomContainer}>
+                <TouchableOpacity style={styles._bottomImageContainer} onPress={this._onCamera}>
+                  <Image source={images.camera} resizeMode={'contain'} style={styles._images} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles._bottomImageContainer} >
+                  <Image source={images.k3} resizeMode={'contain'} style={styles._images} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles._bottomImageContainer} onPress={this._onPrize} >
+                  <Image source={images.present} resizeMode={'contain'} style={styles._images} />
+                </TouchableOpacity>
+              </View>
+            </Image>
+          </View>
         </View>
-        <View style={styles.bottomContainer}>
-          <TouchableOpacity style={styles.bottomImageContainer} >
-            <Image source={images.camera} resizeMode={'contain'} style={styles.images} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.bottomImageContainer} >
-            <Image source={images.k3} resizeMode={'contain'} style={styles.images} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.bottomImageContainer} onPress={this._onPrize} >
-            <Image source={images.present} resizeMode={'contain'} style={styles.images} />
-          </TouchableOpacity>
-        </View>
-      </Image>
-
+      </TouchableWithoutFeedback>
     );
   }
 }

@@ -29,6 +29,18 @@
       "css": "id-card",
       "code": 62146,
       "src": "fontawesome"
+    },
+    {
+      "uid": "44e04715aecbca7f266a17d5a7863c68",
+      "css": "plus",
+      "code": 59392,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "861ab06e455e2de3232ebef67d60d708",
+      "css": "minus",
+      "code": 59393,
+      "src": "fontawesome"
     }
   ]
 }

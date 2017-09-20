@@ -1,13 +1,13 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { View, Text, Image } from 'react-native';
+import { View, Image, Text } from 'react-native';
 
 import images from '../../Resources/Images';
-import Constant from '../../Utilities/Constant.utils';
+import { DIRECTION } from '../../Utilities/Constant.utils';
 
 import styles from './TokenTotemHeader.component.styles';
 
-const isHorizontal = direction => direction === Constant.DIRECTION.HORIZONTAL;
+const isHorizontal = direction => direction === DIRECTION.HORIZONTAL;
 
 const TokenTotemHeader = (props) => {
   const { direction } = props;
@@ -32,7 +32,7 @@ const TokenTotemHeader = (props) => {
 };
 
 TokenTotemHeader.defaultProps = {
-  direction: Constant.DIRECTION.VERTICAL
+  direction: DIRECTION.VERTICAL
 };
 
 TokenTotemHeader.propTypes = {
