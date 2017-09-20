@@ -39,6 +39,10 @@ export default class MainContainer extends Component {
     const { navigate } = this.props.navigation;
     navigate('TakePhoto');
   }
+  _onToken = () => {
+    const { navigate } = this.props.navigation;
+    navigate('Setting');
+  }
   render() {
     const animateStyle = {
       width: 150,
@@ -66,13 +70,13 @@ export default class MainContainer extends Component {
             <Image source={images.camera} resizeMode={'contain'} style={styles.images} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconContainer}>
-            <FontIcon name={'minus'} color={'#f7c34a'} size={50} />
+            <FontIcon name={'minus'} color={'#f7c34a'} size={40} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.bottomImageContainer} >
+          <TouchableOpacity style={styles.bottomImageContainer} onPress={this._onToken}>
             <Image source={images.k3} resizeMode={'contain'} style={styles.images} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconContainer} >
-            <FontIcon name={'plus'} color={'#f7c34a'} size={50} />
+            <FontIcon name={'plus'} color={'#f7c34a'} size={40} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.bottomImageContainer} onPress={this._onPrize} >
             <Image source={images.present} resizeMode={'contain'} style={styles.images} />
