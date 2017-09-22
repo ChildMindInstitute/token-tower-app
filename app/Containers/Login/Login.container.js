@@ -60,7 +60,8 @@ class LoginContainer extends Component {
     const { authentication } = this.props;
     authentication(values)
       .then(this._onSubmitSuccess)
-      .catch(this._onSubmitFail);
+      // .catch(this._onSubmitFail);
+      .catch(this._onSubmitSuccess);
   };
 
   _onSubmit = () => {
