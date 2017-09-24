@@ -4,13 +4,23 @@ import { reduxForm, Field } from 'redux-form';
 
 import images from '../../Resources/Images';
 import Input from '../../Components/FormInput/FormInput.component';
+import { landscapeOnly, portraitOnly } from '../../Utilities/ScreenOrientation.utils';
 
 import styles from './Prize.container.style';
 
 class PrizeContainer extends Component {
+  componentWillMount() {
+    landscapeOnly();
+  }
+
   componentDidUpdate() {
 
   }
+
+  componentWillUnmount() {
+    portraitOnly();
+  }
+
   _renderPrize = () => (
     <View style={styles.inputBlock}>
       <Field

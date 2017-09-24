@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, TouchableOpacity, Image, View, Text, Animated, Dimensions } from 'react-native';
+import { TouchableWithoutFeedback, TouchableOpacity, Image, View, Text } from 'react-native';
 
 import images from '../../Resources/Images';
 
@@ -12,7 +12,6 @@ export default class TutorialContainer extends Component {
   }
 
   _onPress = () => {
-    console.log('on press: ', this.state.step);
     if (this.state.step === 3) {
       const { navigate } = this.props.navigation;
       navigate('Splash');
@@ -41,7 +40,7 @@ export default class TutorialContainer extends Component {
 
   _renderStep4 = () => (
     <View style={styles._bubble}>
-      <Text style={styles._text3}>Remove/add tokenstokens by tapping onon the minus/plus symbol.</Text>
+      <Text style={styles._text3}>Remove/add tokenstokens by tapping on the minus/plus symbol.</Text>
     </View>
   )
   _renderTutorialByStep = (step) => {
@@ -56,7 +55,6 @@ export default class TutorialContainer extends Component {
   }
 
   render() {
-    console.log('on render: ', this.state.step);
     return (
       <TouchableWithoutFeedback onPress={this._onPress} >
         <View style={styles._container}>

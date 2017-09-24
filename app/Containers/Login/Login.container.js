@@ -8,11 +8,13 @@ import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component
 import Input from '../../Components/FormInput/FormInput.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 
-import styles from './Login.container.styles';
 import { authenticationEmailPassword } from '../../Redux/Reducers/Authentication/Authentication.reducer';
+
+import styles from './Login.container.styles';
+
 import config from './Login.container.config';
-import { required } from '../../Utilities/Validation.utils';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
+import { required } from '../../Utilities/Validation.utils';
 import { showTopErrNotification } from '../../Utilities/Form.util';
 import { ERR_MSG } from '../../Utilities/Constant.utils';
 

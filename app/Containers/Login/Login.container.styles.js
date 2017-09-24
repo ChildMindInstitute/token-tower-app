@@ -20,7 +20,7 @@ export default EStyleSheet.create({
     }
   },
   _label: {
-    flex: 0.5,
+    flex: 0.6,
     fontFamily: Fonts.regular,
     fontSize: 20,
     textAlign: 'center',
@@ -40,7 +40,8 @@ export default EStyleSheet.create({
   },
   _input: {
     flex: 1,
-    borderWidth: 1
+    borderWidth: 1,
+    padding: 5
   },
   _forgot: {
     color: 'grey',

@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
-
 import Input from '../../Components/FormInput/FormInput.component';
 
+import { authenticationForgotPassword } from '../../Redux/Reducers/Authentication/Authentication.reducer';
+
 import styles from './ForgotPassword.container.styles';
-import { required } from '../../Utilities/Validation.utils';
+
 import config from './ForgotPassword.container.config';
+import { showTopSuccessNotification, showTopErrNotification } from '../../Utilities/Form.util';
+import { required, minLength, emailValidation } from '../../Utilities/Validation.utils';
 import { DIRECTION } from '../../Utilities/Constant.utils';
 
 class ForgotPasswordContainer extends Component {
+  constructor() {
+    super();
+    this.passwordValidation = [minLength(6)];
+    this.emailValidation = [required, emailValidation];
+  }
+
   _renderEmailInput = () => (
     <View style={styles._inputContainerBlock}>
       <Text style={styles._label}>Your Email</Text>
@@ -20,7 +30,7 @@ class ForgotPasswordContainer extends Component {
         keyboardType={'email-address'}
         name={'email'} component={Input}
         inputStyle={styles._input} containerStyle={styles._inputContainer}
-        placeholder={'contact@example.com'} validate={required}
+        placeholder={'contact@example.com'} validate={this.emailValidation}
       />
     </View>
   )
@@ -32,7 +42,7 @@ class ForgotPasswordContainer extends Component {
         name={'password'} component={Input}
         inputStyle={styles._input} containerStyle={styles._inputContainer}
         placeholder={'password'}
-        validate={required} secureTextEntry
+        validate={this.passwordValidation} secureTextEntry
       />
     </View>
   )
@@ -44,20 +54,37 @@ class ForgotPasswordContainer extends Component {
         name={'confirmPassword'} component={Input}
         inputStyle={styles._input} containerStyle={styles._inputContainer}
         placeholder={'confirm password'}
-        validate={required} secureTextEntry
+        validate={this.passwordValidation} secureTextEntry
       />
     </View>
   )
 
-  _onSubmitSuccess = () => {
-    const { navigate } = this.props.navigation;
-    navigate('');
+  _handleSubmit = ({ email, password }) => {
+    const { forgotPassword } = this.props;
+    forgotPassword({ email, password })
+      .then(this._onSubmitSuccess)
+      .catch(this._onSubmitFail);
   }
 
-  _onSubmitFail = () => { }
+  _onSubmitSuccess = ({ value: { data: { message } } }) => {
+    const { navigation, dispatch } = this.props;
+    showTopSuccessNotification({
+      title: 'CHANGE PASSWORD',
+      message
+    }, dispatch);
+    navigation.goBack();
+  }
+
+  _onSubmitFail = ({ response: { data: { message } } }) => {
+    const { dispatch } = this.props;
+    showTopErrNotification({
+      title: 'CHANGE PASSWORD',
+      message
+    }, dispatch);
+  }
 
   _onSubmit = () => {
-    this.props.handleSubmit(this._onSubmitSuccess)();
+    this.props.handleSubmit(this._handleSubmit)();
   }
 
   render() {
@@ -74,12 +101,17 @@ class ForgotPasswordContainer extends Component {
             </View>
           </View>
         </View>
-        <SubmitBtn onPress={this._onSubmit} text={'SUBMIT'} />
+        <SubmitBtn onPress={this._onSubmit} />
       </View>
     );
   }
 }
 
+const mapStateToProps = () => ({});
+const mapDispatchToProps = {
+  forgotPassword: authenticationForgotPassword
+};
+
 ForgotPasswordContainer.propTypes = config.propTypes;
 
-export default reduxForm(config.form)(ForgotPasswordContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(ForgotPasswordContainer));

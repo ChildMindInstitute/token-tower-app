@@ -41,7 +41,8 @@ export default EStyleSheet.create({
   },
   _input: {
     flex: 1,
-    borderWidth: 1
+    borderWidth: 1,
+    padding: 5
   },
   _fieldBlock: {
     flex: 1,

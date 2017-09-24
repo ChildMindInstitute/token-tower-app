@@ -8,12 +8,14 @@ import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component
 import images from '../../Resources/Images';
 import Input from '../../Components/FormInput/FormInput.component';
 
-import styles from './RegisterForm.container.styles';
-import { required, minLength, maxLength, emailValidation } from '../../Utilities/Validation.utils';
-import config from './RegisterForm.container.config';
-import { DIRECTION, ERR_MSG } from '../../Utilities/Constant.utils';
-import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { authenticationCreateNewAccount } from '../../Redux/Reducers/Authentication/Authentication.reducer';
+
+import styles from './RegisterForm.container.styles';
+
+import config from './RegisterForm.container.config';
+import routeName from '../../Navigation/RouteConfigs/Route.config';
+import { required, minLength, maxLength, emailValidation } from '../../Utilities/Validation.utils';
+import { DIRECTION, ERR_MSG } from '../../Utilities/Constant.utils';
 import { showTopErrNotification } from '../../Utilities/Form.util';
 
 class RegisterFormContainer extends Component {
@@ -30,7 +32,7 @@ class RegisterFormContainer extends Component {
       <Field
         name={'username'} component={Input}
         inputStyle={styles._input} containerStyle={styles._inputContainer}
-        placeholder={' username '}
+        placeholder={'username'}
         validate={this.usernameValidation}
       />
     </View>
@@ -42,7 +44,7 @@ class RegisterFormContainer extends Component {
       <Field
         name={'password'} component={Input}
         inputStyle={styles._input} containerStyle={styles._inputContainer}
-        placeholder={' password '} secureTextEntry
+        placeholder={'password'} secureTextEntry
         validate={this.passwordValidation}
       />
     </View>
@@ -55,7 +57,7 @@ class RegisterFormContainer extends Component {
         keyboardType={'email-address'} name={'email'}
         component={Input} inputStyle={styles._input}
         containerStyle={styles._inputContainer}
-        placeholder={' contact@example.com '}
+        placeholder={'contact@example.com'}
         validate={this.emailValidation}
       />
     </View>
