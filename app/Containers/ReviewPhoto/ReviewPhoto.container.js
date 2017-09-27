@@ -23,8 +23,8 @@ export default class ReviewPhotoContainer extends Component {
           <TouchableOpacity style={styles._btn} >
             <Text style={styles._text}>Keep</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles._btn2} >
-            <Text style={styles._text2}>X</Text>
+          <TouchableOpacity style={styles._btn} >
+            <Text style={styles._text2}>Delete</Text>
           </TouchableOpacity>
         </View>
       </View>

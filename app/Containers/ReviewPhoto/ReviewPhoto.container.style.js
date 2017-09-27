@@ -44,45 +44,33 @@ export default EStyleSheet.create({
       marginHorizontal: 25
     }
   },
-  _btn2: {
-    flex: 0.5,
-    borderWidth: 1,
-    padding: 10,
-    alignItems: 'center',
-    [smallSize]: {
-      marginHorizontal: 10
-    },
-    [mediumSize]: {
-      marginHorizontal: 20
-    },
-    [largeSize]: {
-      marginHorizontal: 25
-    }
-  },
   _text: {
     fontFamily: Fonts.bold,
     color: 'green',
     [smallSize]: {
-      fontSize: 37
+      fontSize: 30
     },
     [mediumSize]: {
-      fontSize: 40
+      fontSize: 32,
+      paddingVertical: 5
     },
     [largeSize]: {
-      fontSize: 43
+      fontSize: 36
     }
   },
   _text2: {
     fontFamily: Fonts.bold,
     color: 'red',
     [smallSize]: {
-      fontSize: 39
+      fontSize: 30
     },
     [mediumSize]: {
-      fontSize: 41
+      fontSize: 32,
+      paddingVertical: 5
     },
     [largeSize]: {
-      fontSize: 45
+      fontSize: 36,
+      paddingVertical: 8
     }
   }
 });

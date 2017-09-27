@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 
 import images from '../../Resources/Images';
@@ -22,19 +22,19 @@ class PrizeContainer extends Component {
   }
 
   _renderPrize = () => (
-    <View style={styles.inputBlock}>
+    <View style={styles._inputBlock}>
       <Field
         name={'tokens'}
         component={Input}
-        inputStyle={styles.input}
-        containerStyle={styles.img}
+        inputStyle={styles._input}
+        containerStyle={styles._token}
       />
-      <Text style={styles.text}>tokens until: </Text>
+      <Text style={styles._text}>tokens until: </Text>
       <Field
         name={'prize'}
         component={Input}
-        inputStyle={styles.input}
-        containerStyle={styles.inputContainer}
+        inputStyle={styles._input}
+        containerStyle={styles._inputContainer}
       />
     </View>
   );
@@ -43,24 +43,21 @@ class PrizeContainer extends Component {
     <Image
       resizeMode={'contain'}
       source={images.present}
-      style={styles.img}
+      style={styles._img}
     />
   )
 
+
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.containerBlock}>
+      <View style={styles._container}>
+        <View style={styles._containerBlock}>
           {this._renderPresent()}
           {this._renderPrize()}
-        </View>
-        <View style={styles.containerBlock}>
-          {this._renderPresent()}
-          {this._renderPrize()}
-        </View>
-        <View style={styles.containerBlock}>
-          {this._renderPresent()}
-          {this._renderPrize()}
+          <TouchableOpacity onPress={this._onAdd} style={styles._btn} >
+            <Text style={styles._textBtn}>+ ADD</Text>
+            {this._renderAdd()}
+          </TouchableOpacity>
         </View>
       </View>
 

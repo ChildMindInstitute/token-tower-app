@@ -18,6 +18,11 @@ export default [
   //   type: 'separator'
   // },
   {
+    name: 'Setting',
+    icon: 'cog',
+    route: 'Setting'
+  },
+  {
     name: 'Token Totem',
     icon: 'paper-plane',
     route: 'TokenTotem'

@@ -20,7 +20,7 @@ export default EStyleSheet.create({
     }
   },
   _label: {
-    flex: 0.6,
+    flex: 0.7,
     fontFamily: Fonts.regular,
     fontSize: 20,
     textAlign: 'center',
