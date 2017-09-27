@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, TouchableOpacity, Image, View, Text } from 'react-native';
+import { TouchableWithoutFeedback, View, Text } from 'react-native';
 
-import images from '../../Resources/Images';
+import Main from '../../Components/Main/Main.component';
+
 import styles from './Tutorial.container.styles';
 
-export default class TutorialContainer extends Component {
+class TutorialContainer extends Component {
   constructor() {
     super();
     this.state = { step: 0 };
@@ -55,34 +56,16 @@ export default class TutorialContainer extends Component {
 
   render() {
     return (
-      <TouchableWithoutFeedback onPress={this._onPress} >
+      <TouchableWithoutFeedback onPress={this._onPress}>
         <View style={styles._container}>
           <View style={styles._tutorialContainer}>
             {this._renderTutorialByStep(this.state.step)}
           </View>
-          <View style={styles._backgroundContainer}>
-            <Image source={images.firstbackground} style={styles._bgrContainer}>
-              <View style={styles._topContainer}>
-                <Image source={images.token} />
-                <View>
-                  <Image source={images.pig} />
-                </View>
-              </View>
-              <View style={styles._bottomContainer}>
-                <TouchableOpacity style={styles._bottomImageContainer} onPress={this._onCamera}>
-                  <Image source={images.camera} resizeMode={'contain'} style={styles._images} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles._bottomImageContainer} >
-                  <Image source={images.k3} resizeMode={'contain'} style={styles._images} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles._bottomImageContainer} onPress={this._onPrize} >
-                  <Image source={images.present} resizeMode={'contain'} style={styles._images} />
-                </TouchableOpacity>
-              </View>
-            </Image>
-          </View>
+          <Main />
         </View>
       </TouchableWithoutFeedback>
     );
   }
 }
+
+export default TutorialContainer;

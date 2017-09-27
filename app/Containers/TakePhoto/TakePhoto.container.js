@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { Camera, Permissions } from 'expo';
+
+import images from '../../Resources/Images';
+import FontIcon from '../../Components/FontIcon/FontIcon.component';
 
 import styles from './TakePhoto.container.style';
 
 export default class CameraExample extends Component {
   state = {
     hasCameraPermission: null,
-    type: Camera.Constants.Type.back,
+    type: Camera.Constants.Type.back
   };
 
   async componentWillMount() {
@@ -27,46 +30,48 @@ export default class CameraExample extends Component {
     } else if (hasCameraPermission === false) {
       return <Text>No access to camera</Text>;
     }
+
     return (
-      <View style={{ flex: 1 }}>
-        <Camera style={{ flex: 1 }} type={this.state.type}>
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: 'transparent',
-              flexDirection: 'row',
-            }}>
-            <TouchableOpacity
-              style={{
-                flex: 0.1,
-                alignSelf: 'flex-end',
-                alignItems: 'center',
-              }}
-              onPress={() => {
-                this.setState({
-                  type: this.state.type === Camera.Constants.Type.back
-                    ? Camera.Constants.Type.front
-                    : Camera.Constants.Type.back,
-                });
-              }}>
-              <Text
-                style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
-                {' '}Flip{' '}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                flex: 0.1,
-                alignSelf: 'flex-end',
-                alignItems: 'center',
-              }}
-              onPress={this._onClick}>
-              <Text style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
-                {' '}Next{' '}
-              </Text>
-            </TouchableOpacity>
+      <View style={styles.container}>
+
+        <Camera style={styles.cameraContainer} type={this.state.type}>
+          <TouchableOpacity
+            style={styles.flip}
+            onPress={() => {
+              this.setState({
+                type: this.state.type === Camera.Constants.Type.back
+                  ? Camera.Constants.Type.front
+                  : Camera.Constants.Type.back
+              });
+            }}
+          >
+            <FontIcon name={'arrows-cw'} color={'white'} size={30} />
+
+          </TouchableOpacity>
+          <View style={styles.ovalContainer}>
+            <View style={styles.oval} />
           </View>
+          <View
+            style={styles.cameraView}
+          />
+
         </Camera>
+        <View style={styles.dock}>
+          <TouchableOpacity
+            style={styles.cameraLogo}
+            onPress={() => {
+              this.setState({
+                type: this.state.type === Camera.Constants.Type.back
+                  ? Camera.Constants.Type.front
+                  : Camera.Constants.Type.back
+              });
+            }}
+          >
+            <Image source={images.camera} resizeMode={'contain'} style={styles.images} />
+
+          </TouchableOpacity>
+
+        </View>
       </View>
     );
   }

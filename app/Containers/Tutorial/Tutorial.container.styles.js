@@ -1,34 +1,20 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import { Fonts } from '../../Resources/Fonts';
-import { largeSize, mediumSize, smallSize } from '../../Utilities/MediaQuery.utils';
 
 export default EStyleSheet.create({
   _container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  _bgrContainer: {
     flex: 1
   },
-  _topContainer: {
-    flex: 1,
-    justifyContent: 'space-between',
+  _tutorialContainer: {
+    zIndex: 1,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    position: 'absolute',
+    justifyContent: 'center',
     alignItems: 'center'
-  },
-  _bottomContainer: {
-    flexDirection: 'row',
-    height: 50,
-    marginVertical: 20
-  },
-  _bottomImageContainer: {
-    flex: 1
-  },
-  _images: {
-    flex: 1,
-    width: null,
-    height: null
   },
   _bubble: {
     borderWidth: 1,
@@ -54,15 +40,5 @@ export default EStyleSheet.create({
     fontSize: 20,
     width: 250,
     textAlign: 'center'
-  },
-  _tutorialContainer: {
-    zIndex: 1,
-    position: 'absolute'
-
-  },
-  _backgroundContainer: {
-    zIndex: 0,
-    position: 'relative',
-    opacity: 0.5
   }
 });

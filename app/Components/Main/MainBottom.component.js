@@ -29,9 +29,9 @@ const MainBottom = ({ onCameraPress, onTokenPress, onPrizePress }) => (
 );
 
 MainBottom.propTypes = {
-  onCameraPress: propTypes.func.isRequired,
-  onTokenPress: propTypes.func.isRequired,
-  onPrizePress: propTypes.func.isRequired
+  onCameraPress: propTypes.func,
+  onTokenPress: propTypes.func,
+  onPrizePress: propTypes.func
 };
 
 export default MainBottom;
