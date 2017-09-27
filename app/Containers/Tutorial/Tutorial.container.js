@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { TouchableWithoutFeedback, TouchableOpacity, Image, View, Text } from 'react-native';
 
 import images from '../../Resources/Images';
-
 import styles from './Tutorial.container.styles';
 
 export default class TutorialContainer extends Component {

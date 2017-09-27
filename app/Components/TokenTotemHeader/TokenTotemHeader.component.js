@@ -3,9 +3,9 @@ import propTypes from 'prop-types';
 import { View, Image, Text } from 'react-native';
 
 import images from '../../Resources/Images';
-import { DIRECTION } from '../../Utilities/Constant.utils';
-
 import styles from './TokenTotemHeader.component.styles';
+
+import { DIRECTION } from '../../Utilities/Constant.utils';
 
 const isHorizontal = direction => direction === DIRECTION.HORIZONTAL;
 

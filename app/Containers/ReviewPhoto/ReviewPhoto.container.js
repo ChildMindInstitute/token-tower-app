@@ -3,8 +3,9 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 
-import styles from './ReviewPhoto.container.style';
 import images from '../../Resources/Images';
+import styles from './ReviewPhoto.container.style';
+
 import { DIRECTION } from '../../Utilities/Constant.utils';
 
 export default class ReviewPhotoContainer extends Component {

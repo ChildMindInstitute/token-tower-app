@@ -1,14 +1,4 @@
 export default {
-  bgrContainer: {
-    flex: 1,
-    width: null,
-    height: null
-  },
-  topContainer: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
   bottomContainer: {
     flexDirection: 'row',
     height: 50,
@@ -25,5 +15,6 @@ export default {
   iconContainer: {
     backgroundColor: 'transparent',
     justifyContent: 'center'
-  }
+  },
+  fontColor: '#f7c34a'
 };

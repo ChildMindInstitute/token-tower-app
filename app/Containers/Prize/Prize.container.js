@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { View, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 
-import images from '../../Resources/Images';
 import FontIcon from '../../Components/FontIcon/FontIcon.component';
-
 import Input from '../../Components/FormInput/FormInput.component';
-import { landscapeOnly, portraitOnly } from '../../Utilities/ScreenOrientation.utils';
 
+import images from '../../Resources/Images';
 import styles from './Prize.container.style';
+
+import { landscapeOnly, portraitOnly } from '../../Utilities/ScreenOrientation.utils';
 
 class PrizeContainer extends Component {
   constructor() {

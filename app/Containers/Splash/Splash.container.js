@@ -3,18 +3,15 @@ import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 
-import styles from './Splash.container.styles';
 import images from '../../Resources/Images';
+import styles from './Splash.container.styles';
 
 export default class SplashContainer extends Component {
-  componentDidMount() {
-
-  }
   _onTouch = () => {
-    const {navigate} = this.props.navigation;
+    const { navigate } = this.props.navigation;
     navigate('Main');
+  };
 
-  }
   _renderTreasure = () => (
     <Image
       resizeMode={'contain'}
@@ -22,7 +19,8 @@ export default class SplashContainer extends Component {
       style={styles._treasure}
     />
   );
-  _renderPresent= () => (
+
+  _renderPresent = () => (
     <Image
       resizeMode={'contain'}
       source={images.present}

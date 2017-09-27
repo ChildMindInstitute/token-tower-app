@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, View, Image, Animated, Dimensions } from 'react-native';
+import { View, Image, Animated, Dimensions } from 'react-native';
+import propTypes from 'prop-types';
+
+import Btn from '../FormButton/FormButton.component';
+import Bottom from './MainBottom.component';
 
 import images from '../../Resources/Images';
-import FontIcon from '../../Components/FontIcon/FontIcon.component';
-
 import styles from './Main.component.styles';
 
-export default class MainComponent extends Component {
+class MainComponent extends Component {
   constructor() {
     super();
     this.state = {
@@ -34,21 +36,6 @@ export default class MainComponent extends Component {
     if (!this.state.putCoint) this.setState({ putCoint: true });
   }
 
-  _onPrize = () => {
-    const { navigate } = this.props.navigation;
-    navigate('Prize');
-  }
-
-  _onCamera = () => {
-    const { navigate } = this.props.navigation;
-    navigate('TakePhoto');
-  }
-
-  _onToken = () => {
-    const { navigate } = this.props.navigation;
-    navigate('Setting');
-  }
-
   render() {
     const animateStyle = {
       width: 150,
@@ -61,34 +48,31 @@ export default class MainComponent extends Component {
         })
       }]
     };
+    const { onCameraPress, onTokenPress, onPrizePress } = this.props;
 
     return (
       <Image source={images.firstbackground} style={styles.bgrContainer}>
         <View style={styles.topContainer}>
           <Image source={images.token} />
           <Animated.Image source={images.k1} style={animateStyle} />
-          <TouchableOpacity onPress={this._onPigPress}>
+          <Btn onPress={this._onPigPress}>
             <Image source={images.pig} />
-          </TouchableOpacity>
+          </Btn>
         </View>
-        <View style={styles.bottomContainer}>
-          <TouchableOpacity style={styles.bottomImageContainer} onPress={this._onCamera}>
-            <Image source={images.camera} resizeMode={'contain'} style={styles.images} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.iconContainer}>
-            <FontIcon name={'minus'} color={'#f7c34a'} size={40} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.bottomImageContainer} onPress={this._onToken}>
-            <Image source={images.k3} resizeMode={'contain'} style={styles.images} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.iconContainer} >
-            <FontIcon name={'plus'} color={'#f7c34a'} size={40} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.bottomImageContainer} onPress={this._onPrize} >
-            <Image source={images.present} resizeMode={'contain'} style={styles.images} />
-          </TouchableOpacity>
-        </View>
+        <Bottom
+          onCameraPress={onCameraPress}
+          onTokenPress={onTokenPress}
+          onPrizePress={onPrizePress}
+        />
       </Image>
     );
   }
 }
+
+MainComponent.propTypes = {
+  onCameraPress: propTypes.func.isRequired,
+  onTokenPress: propTypes.func.isRequired,
+  onPrizePress: propTypes.func.isRequired
+};
+
+export default MainComponent;

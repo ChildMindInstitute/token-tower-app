@@ -4,11 +4,11 @@ import propTypes from 'prop-types';
 
 import MenuItem from '../MenuItem/MenuItem.component';
 
+import images from '../../../Resources/Images';
+import styles from './Menu.component.styes';
+
 import navPropTypes from '../../../PropTypes/Navigation.propTypes';
 import listMenuItems from '../ListMenuItems';
-import styles from './Menu.component.styes';
-import images from '../../../Resources/Images';
-
 
 const Menu = ({ navigation: { navigate }, onItemPress }) => (
   <View style={styles.container}>

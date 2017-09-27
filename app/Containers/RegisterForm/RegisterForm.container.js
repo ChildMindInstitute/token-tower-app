@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
-import images from '../../Resources/Images';
 import Input from '../../Components/FormInput/FormInput.component';
 
 import { authenticationCreateNewAccount } from '../../Redux/Reducers/Authentication/Authentication.reducer';
 
+import images from '../../Resources/Images';
 import styles from './RegisterForm.container.styles';
 
 import config from './RegisterForm.container.config';
