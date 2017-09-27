@@ -79,8 +79,7 @@ class RegisterFormContainer extends Component {
     const { register } = this.props;
     register(values)
       .then(this._onSubmitSuccess)
-      // .catch(this._onSubmitFail);
-      .catch(this._onSubmitSuccess);
+      .catch(this._onSubmitFail);
   }
 
   _onSubmit = () => {
