@@ -6,20 +6,20 @@ import { connect } from 'react-redux';
 import styles from './LoadingMask.container.styles';
 import { COMMON } from '../../Utilities/Constant.utils';
 
-const LoadingMaskContainer = ({ loading }) => (
+const LoadingMaskContainer = ({ isLoading }) => (
   <Spinner
-    visible={loading}
+    visible={isLoading}
     textStyle={styles.spinerText}
     textContent={COMMON.SPINNER_MSG}
   />
 );
 
 LoadingMaskContainer.propTypes = {
-  loading: propTypes.bool
+  isLoading: propTypes.bool
 };
 
 const mapStateToProps = state => ({
-  loading: state.loadingMask.loading
+  isLoading: state.loadingMask.isLoading
 });
 
 export default connect(mapStateToProps)(LoadingMaskContainer);

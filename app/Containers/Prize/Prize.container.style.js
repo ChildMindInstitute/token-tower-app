@@ -4,9 +4,12 @@ import { Fonts } from '../../Resources/Fonts';
 import { smallSizeLandscape } from '../../Utilities/MediaQuery.utils';
 
 export default EStyleSheet.create({
-  _container: {
+  _containerContent: {
     flex: 1,
-    marginHorizontal: 30
+    paddingHorizontal: 30
+  },
+  _container: {
+    flex: 1
   },
   _containerBlock: {
     flexDirection: 'row',
@@ -16,9 +19,9 @@ export default EStyleSheet.create({
   _inputBlock: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
-    padding: 10
+    justifyContent: 'space-between',
+    paddingVertical: 10
 
   },
   _input: {
@@ -36,22 +39,34 @@ export default EStyleSheet.create({
     height: null
   },
   _inputContainer: {
-    flex: 0.9
+    flex: 0.9,
+    paddingRight: 10
   },
   _token: {
     flex: 0.2
   },
+  _btnGroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
   _btn: {
-    backgroundColor: '#23a02f',    
+    backgroundColor: '#23a02f',
     borderWidth: 1,
     marginVertical: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#23a02f'
+    borderColor: '#23a02f',
+    width: 80,
+    marginLeft: 10
   },
   _textBtn: {
     margin: 10,
     color: 'white',
     fontFamily: Fonts.bold
+  },
+  _images: {
+    height: 60,
+    width: 110
   }
 });

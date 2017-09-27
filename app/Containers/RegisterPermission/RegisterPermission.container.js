@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
@@ -48,13 +48,13 @@ class RegisterPermissionContainer extends Component {
   render() {
     return (
       <View style={styles._container}>
-        <View style={styles._contentBlock}>
+        <ScrollView style={styles._contentBlock}>
           <Header direction={DIRECTION.HORIZONTAL} />
           <View style={styles._content}>
             {this._renderDescription()}
             {this._renderPermission()}
           </View>
-        </View>
+        </ScrollView>
         <Btn onPress={this._onNext} text={'NEXT'} />
       </View>
     );

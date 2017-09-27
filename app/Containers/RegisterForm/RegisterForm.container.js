@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 
@@ -90,7 +90,7 @@ class RegisterFormContainer extends Component {
   render() {
     return (
       <View style={styles._container}>
-        <View style={styles._contentBlock}>
+        <ScrollView style={styles._contentBlock}>
           <Header direction={DIRECTION.HORIZONTAL} />
           <View style={styles._inputBlock}>
             {this._renderUserInput()}
@@ -109,7 +109,7 @@ class RegisterFormContainer extends Component {
             eseiiieeseiiie einriseni reisn rsien Data breach aiers iers iersiers. ires ier ires u
             efir ir. iasrnti irsent Child Mind Institut d recontact?
           </Text>
-        </View>
+        </ScrollView>
         <SubmitBtn onPress={this._onSubmit} text={'NEXT'} />
       </View>
     );

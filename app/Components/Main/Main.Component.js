@@ -6,9 +6,12 @@ import FontIcon from '../../Components/FontIcon/FontIcon.component';
 
 import styles from './Main.component.styles';
 
-export default class MainContainer extends Component {
-  state = {
-    fadeAnim: new Animated.Value(0) // Initial value for opacity: 0
+export default class MainComponent extends Component {
+  constructor() {
+    super();
+    this.state = {
+      fadeAnim: new Animated.Value(0) // Initial value for opacity: 0
+    };
   }
 
   componentDidUpdate() {
@@ -35,14 +38,17 @@ export default class MainContainer extends Component {
     const { navigate } = this.props.navigation;
     navigate('Prize');
   }
+
   _onCamera = () => {
     const { navigate } = this.props.navigation;
     navigate('TakePhoto');
   }
+
   _onToken = () => {
     const { navigate } = this.props.navigation;
     navigate('Setting');
   }
+
   render() {
     const animateStyle = {
       width: 150,
