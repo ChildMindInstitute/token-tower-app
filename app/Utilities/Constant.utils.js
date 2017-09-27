@@ -31,3 +31,13 @@ export const PLATFORM = {
   IOS: 'ios',
   ANDROID: 'android'
 };
+
+export const TOKENS = {
+  ACCESS: 'access_token',
+  REFRESH: 'refresh_token',
+  IDENTITY: 'id_token',
+  IDENTITY_FIELDS: {
+    USER_ID: 'uid',
+    EMAIL: 'email'
+  }
+};

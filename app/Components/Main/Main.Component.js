@@ -48,10 +48,9 @@ class MainComponent extends Component {
         })
       }]
     };
-    const { onCameraPress, onTokenPress, onPrizePress } = this.props;
-
+    const { onCameraPress, onTokenPress, onPrizePress, containerStyle } = this.props;
     return (
-      <Image source={images.firstbackground} style={styles.bgrContainer}>
+      <Image source={images.firstbackground} style={[styles.bgrContainer, containerStyle]}>
         <View style={styles.topContainer}>
           <Image source={images.token} />
           <Animated.Image source={images.k1} style={animateStyle} />

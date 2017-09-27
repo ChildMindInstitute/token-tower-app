@@ -61,7 +61,7 @@ class TutorialContainer extends Component {
           <View style={styles._tutorialContainer}>
             {this._renderTutorialByStep(this.state.step)}
           </View>
-          <Main />
+          <Main containerStyle={styles._main} />
         </View>
       </TouchableWithoutFeedback>
     );

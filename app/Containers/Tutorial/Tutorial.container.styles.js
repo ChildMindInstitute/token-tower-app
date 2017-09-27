@@ -6,6 +6,9 @@ export default EStyleSheet.create({
   _container: {
     flex: 1
   },
+  _main: {
+    opacity: 0.5
+  },
   _tutorialContainer: {
     zIndex: 1,
     top: 0,
