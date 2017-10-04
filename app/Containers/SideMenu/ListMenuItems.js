@@ -20,7 +20,7 @@ export default [
   {
     name: 'Setting',
     icon: 'cog',
-    route: 'Setting'
+    route: 'Config'
   },
   {
     name: 'Token Totem',

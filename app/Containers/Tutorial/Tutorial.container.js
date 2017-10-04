@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, View, Text } from 'react-native';
+import { TouchableWithoutFeedback, View, Text, Image } from 'react-native';
 
 import Main from '../../Components/Main/Main.component';
 
+import images from '../../Resources/Images';
 import styles from './Tutorial.container.styles';
+
+import routeName from '../../Navigation/RouteConfigs/Route.config';
 
 class TutorialContainer extends Component {
   constructor() {
@@ -14,33 +17,60 @@ class TutorialContainer extends Component {
   _onPress = () => {
     if (this.state.step === 3) {
       const { navigate } = this.props.navigation;
-      navigate('Splash');
+      navigate(routeName.Root.TokenTotem);
     } else {
       this.setState({ step: this.state.step + 1 });
     }
   }
 
   _renderStep1 = () => (
-    <View style={styles._bubble}>
-      <Text style={styles._text1}>Take PHOTOS to decorate your tokens!</Text>
+    <View style={styles._tutorialContainer}>
+      <View style={styles._bubble}>
+        <Text style={styles._text1}>Take PHOTOS to decorate your tokens!</Text>
+      </View>
+      <View style={styles._imgContainer}>
+        <Image source={images.arrow} style={styles._arrow} />
+      </View>
     </View>
+
   )
 
   _renderStep2 = () => (
-    <View style={styles._bubble}>
-      <Text style={styles._text2}>View your TOKENS!</Text>
+    <View style={styles._tutorialContainer}>
+      <View style={styles._bubble}>
+        <Text style={styles._text2}>View your TOKENS!</Text>
+      </View>
+      <View style={styles._imgContainer1}>
+        <Image source={images.arrow} style={styles._arrow1} />
+      </View>
     </View>
+
+
   )
 
   _renderStep3 = () => (
-    <View style={styles._bubble}>
-      <Text style={styles._text2}>View your PRIZES!</Text>
+    <View style={styles._tutorialContainer}>
+      <View style={styles._bubble}>
+        <Text style={styles._text2}>View your PRIZES!</Text>
+      </View>
+      <View style={styles._imgContainer2}>
+        <Image source={images.arrow} style={styles._arrow2} />
+      </View>
     </View>
+
   )
 
   _renderStep4 = () => (
-    <View style={styles._bubble}>
-      <Text style={styles._text3}>Remove/add tokenstokens by tapping on the minus/plus symbol.</Text>
+    <View style={styles._tutorialContainer}>
+      <View style={styles._bubble}>
+        <Text style={styles._text3}>Remove/add tokenstokens by tapping on the minus/plus symbol.</Text>
+      </View>
+      <View style={{ flexDirection: 'row' }}>
+        <View style={styles._imgContainer3}>
+          <Image source={images.arrow} style={styles._arrow3} />
+          <Image source={images.arrow} style={styles._arrow4} />
+        </View>
+      </View>
     </View>
   )
   _renderTutorialByStep = (step) => {

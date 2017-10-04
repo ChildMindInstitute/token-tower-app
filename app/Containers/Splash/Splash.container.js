@@ -5,11 +5,12 @@ import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component
 
 import images from '../../Resources/Images';
 import styles from './Splash.container.styles';
+import routeName from '../../Navigation/RouteConfigs/Route.config';
 
 export default class SplashContainer extends Component {
   _onTouch = () => {
     const { navigate } = this.props.navigation;
-    navigate('Main');
+    navigate(routeName.TokenTotem.Main);
   };
 
   _renderTreasure = () => (

@@ -6,15 +6,16 @@ import { navigationOptions } from '../CommonConfigs/Navigation.config';
 
 const {
   Authentication: { Home, Login, MainUserSelection, ForgotPassword },
-  Registration: { RegisterPermission, RegisterForm, RegisterWelcome, Setting },
-  TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto },
-  TokenTotemTutorial: { Tutorial }
+  Registration: { RegisterPermission, RegisterForm, RegisterWelcome },
+  TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto },
+  TokenTotemTutorial: { Tutorial },
+  Config: { Setting }
 } = routesName;
 
 const { HomeScreen, LoginScreen, MainUserSelectionScreen, ForgotPasswordScreen,
   RegisterPermissionScreen, RegisterFormScreen, RegisterWelcomeScreen, SettingScreen,
   SplashScreen, MainScreen, PrizeScreen,
-  TutorialScreen, TakePhotoScreen, ReviewPhotoScreen
+  TutorialScreen, TakePhotoScreen, ReviewPhotoScreen, PickPhotoScreen
 } = Screens;
 
 const AuthenticationNavigator = StackNavigator({
@@ -27,8 +28,7 @@ const AuthenticationNavigator = StackNavigator({
 const RegistrationNavigator = StackNavigator({
   [RegisterPermission]: RegisterPermissionScreen,
   [RegisterForm]: RegisterFormScreen,
-  [RegisterWelcome]: RegisterWelcomeScreen,
-  [Setting]: SettingScreen
+  [RegisterWelcome]: RegisterWelcomeScreen
 }, navigationOptions);
 
 const TokenTotemNavigator = StackNavigator({
@@ -36,16 +36,22 @@ const TokenTotemNavigator = StackNavigator({
   [Main]: MainScreen,
   [Prize]: PrizeScreen,
   [TakePhoto]: TakePhotoScreen,
-  [ReviewPhoto]: ReviewPhotoScreen
+  [ReviewPhoto]: ReviewPhotoScreen,
+  [PickPhoto]: PickPhotoScreen
 }, navigationOptions);
 
 const TokenTotemTutorialNavigator = StackNavigator({
   [Tutorial]: TutorialScreen
 }, navigationOptions);
 
+const ConfigNavigator = StackNavigator({
+  [Setting]: SettingScreen
+}, navigationOptions);
+
 export default {
   AuthenticationNavigator,
   RegistrationNavigator,
   TokenTotemNavigator,
-  TokenTotemTutorialNavigator
+  TokenTotemTutorialNavigator,
+  ConfigNavigator
 };

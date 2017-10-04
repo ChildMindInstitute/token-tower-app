@@ -19,3 +19,5 @@ export const emailValidation = (value) => {
   }
   return undefined;
 };
+export const numberValidation = number =>
+  ((typeof number === 'number' && !_.isNaN(number)) ? undefined : ERR_MSG.NOT_A_NUMBER);

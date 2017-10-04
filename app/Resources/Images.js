@@ -15,6 +15,7 @@ export default {
   facebook: require('../Assets/Images/facebook.png'),
   google: require('../Assets/Images/google.png'),
   treasure: require('../Assets/Images/treasure.png'),
-  avatar: require('../Assets/Images/avatar.png')
+  avatar: require('../Assets/Images/avatar.png'),
+  arrow: require('../Assets/Images/arrow.png')
   /* eslint-enable global-require */
 };

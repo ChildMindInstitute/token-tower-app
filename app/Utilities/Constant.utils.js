@@ -11,7 +11,8 @@ export const ERR_MSG = {
   MAX_LENGTH: 'Max length',
   MIN_LENGTH: 'Min length',
   INVALID_EMAIL: 'Invalid email',
-  LOGIN_FAIL_TITLE: 'Login fail'
+  LOGIN_FAIL_TITLE: 'Login fail',
+  NOT_A_NUMBER: 'Not a number'
 };
 
 export const BTN = {

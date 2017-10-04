@@ -3,7 +3,8 @@ export default {
     Authentication: 'Authentication',
     Registration: 'Registration',
     TokenTotem: 'TokenTotem',
-    TokenTotemTutorial: 'TokenTotemTutorial'
+    TokenTotemTutorial: 'TokenTotemTutorial',
+    Config: 'Config'
   },
   Authentication: {
     Home: 'Home',
@@ -14,8 +15,7 @@ export default {
   Registration: {
     RegisterPermission: 'RegisterPermission',
     RegisterForm: 'RegisterForm',
-    RegisterWelcome: 'RegisterWelcome',
-    Setting: 'Setting'
+    RegisterWelcome: 'RegisterWelcome'
   },
   TokenTotemTutorial: {
     Tutorial: 'Tutorial'
@@ -25,6 +25,10 @@ export default {
     Main: 'Main',
     Prize: 'Prize',
     TakePhoto: 'TakePhoto',
-    ReviewPhoto: 'ReviewPhoto'
+    ReviewPhoto: 'ReviewPhoto',
+    PickPhoto: 'PickPhoto'
+  },
+  Config: {
+    Setting: 'Setting'
   }
 };

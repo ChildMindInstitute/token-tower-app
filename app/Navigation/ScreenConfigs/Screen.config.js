@@ -12,13 +12,16 @@ import MainUserSelectionContainer from '../../Containers/MainUserSelection/MainU
 import TutorialContainer from '../../Containers/Tutorial/Tutorial.container';
 import TakePhotoContainer from '../../Containers/TakePhoto/TakePhoto.container';
 import ReviewPhotoContainer from '../../Containers/ReviewPhoto/ReviewPhoto.container';
+import PickPhotoContainer from '../../Containers/PickPhoto/PickPhoto.container';
 
 import routesName from '../RouteConfigs/Route.config';
 
 const { Authentication: { Home, Login, ForgotPassword, MainUserSelection },
-  Registration: { RegisterPermission, RegisterForm, RegisterWelcome, Setting },
-  TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto },
-  TokenTotemTutorial: { Tutorial } } = routesName;
+  Registration: { RegisterPermission, RegisterForm, RegisterWelcome },
+  TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto },
+  TokenTotemTutorial: { Tutorial },
+  Config: { Setting }
+} = routesName;
 
 const HomeScreen = { screen: HomeContainer, path: Home };
 const LoginScreen = { screen: LoginContainer, path: Login };
@@ -28,7 +31,6 @@ const MainUserSelectionScreen = { screen: MainUserSelectionContainer, path: Main
 const RegisterPermissionScreen = { screen: RegisterPermissionContainer, path: RegisterPermission };
 const RegisterFormScreen = { screen: RegisterFormContainer, path: RegisterForm };
 const RegisterWelcomeScreen = { screen: RegisterWelcomeContainer, path: RegisterWelcome };
-const SettingScreen = { screen: SettingContainer, path: Setting };
 
 const MainScreen = { screen: MainContainer, path: Main };
 const SplashScreen = { screen: SplashContainer, path: Splash };
@@ -37,6 +39,9 @@ const PrizeScreen = { screen: PrizeContainer, path: Prize };
 const TutorialScreen = { screen: TutorialContainer, path: Tutorial };
 const TakePhotoScreen = { screen: TakePhotoContainer, path: TakePhoto };
 const ReviewPhotoScreen = { screen: ReviewPhotoContainer, path: ReviewPhoto };
+const PickPhotoScreen = { screen: PickPhotoContainer, path: PickPhoto };
+
+const SettingScreen = { screen: SettingContainer, path: Setting };
 
 export default {
   HomeScreen,
@@ -52,5 +57,6 @@ export default {
   MainUserSelectionScreen,
   TutorialScreen,
   TakePhotoScreen,
-  ReviewPhotoScreen
+  ReviewPhotoScreen,
+  PickPhotoScreen
 };

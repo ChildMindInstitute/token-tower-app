@@ -9,6 +9,7 @@ export default {
   errorText: {
     color: 'red',
     position: 'absolute',
-    bottom: -20
+    bottom: -20,
+    width: 200
   }
 };

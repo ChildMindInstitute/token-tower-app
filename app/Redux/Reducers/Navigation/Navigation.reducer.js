@@ -26,7 +26,7 @@ const navigateHandler = (state, action) => {
 };
 
 const clearNavigationHandler = state => ({ ...state, navigationAction: undefined });
-const storeNavigationHandler = (state, action) => ({ ...state, navigationAction: action.payload });
+const storeNavigationHandler = (state, { payload }) => ({ ...state, navigationAction: payload });
 
 export default handleActions({
   NAVIGATION_CLEAR: clearNavigationHandler,

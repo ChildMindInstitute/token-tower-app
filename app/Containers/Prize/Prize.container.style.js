@@ -1,8 +1,6 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Fonts } from '../../Resources/Fonts';
 
-import { smallSizeLandscape } from '../../Utilities/MediaQuery.utils';
-
 export default EStyleSheet.create({
   _containerContent: {
     flex: 1,
@@ -53,18 +51,12 @@ export default EStyleSheet.create({
   },
   _btn: {
     backgroundColor: '#23a02f',
-    borderWidth: 1,
-    marginVertical: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: '#23a02f',
-    width: 80,
-    marginLeft: 10
+    marginVertical: 10
   },
   _textBtn: {
-    margin: 10,
     color: 'white',
-    fontFamily: Fonts.bold
+    fontFamily: Fonts.bold,
+    padding: 15
   },
   _images: {
     height: 60,

@@ -39,9 +39,7 @@ const setIdentityFromToken = (idToken) => {
   const identityFields = Object.values(TOKENS.IDENTITY_FIELDS);
   const decodedIdToken = Decode(idToken);
 
-  identityFields.forEach(field =>
-    PersistentStorage.setItem(field, decodedIdToken[field])
-  );
+  identityFields.forEach(field => PersistentStorage.setItem(field, decodedIdToken[field]));
 };
 
 const getIdentityItem = key => PersistentStorage.getItem(key);
@@ -53,7 +51,6 @@ const clearIdentity = () => {
 };
 
 /* ********    TOKEN PARSING/ASSESSING UTILITIES    ******** */
-
 // JWT spec is seconds from 1970, not milliseconds
 const tokenEpochSeconds = encodedToken => encodedToken && Decode(encodedToken).exp;
 

@@ -7,6 +7,7 @@ import Btn from '../../Components/FormButton/FormButton.component';
 import FormSwitch from '../../Components/FormSwitch/FormSwitch.component';
 
 import styles from './RegisterPermission.container.styles';
+
 import config from './RegisterPermission.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { DIRECTION } from '../../Utilities/Constant.utils';

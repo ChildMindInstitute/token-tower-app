@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text } from 'react-native';
 import propTypes from 'prop-types';
 
 import FontIcon from '../../../Components/FontIcon/FontIcon.component';
+import Btn from '../../../Components/FormButton/FormButton.component';
 
 import navPropTypes from '../../../PropTypes/Navigation.propTypes';
 import styles from './MenuItem.component.styles';
@@ -19,10 +20,10 @@ class MenuItem extends Component {
     const { containerStyle, textStyle, item } = this.props;
 
     return (
-      <TouchableOpacity onPress={this._onPress} style={[containerStyle, styles.menu]}>
+      <Btn onPress={this._onPress} btnStyle={{ ...containerStyle, ...styles.menu }}>
         <FontIcon name={item.icon} />
         <Text style={textStyle}>{item.name}</Text>
-      </TouchableOpacity>
+      </Btn>
     );
   }
 }

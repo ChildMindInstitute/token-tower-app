@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Image } from 'react-native';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import Btn from '../../Components/FormButton/FormButton.component';
 
 import images from '../../Resources/Images';
 import styles from './ReviewPhoto.container.style';
@@ -21,12 +22,8 @@ export default class ReviewPhotoContainer extends Component {
           <Image source={images.k2} resizeMode={'contain'} style={styles._images} />
         </View>
         <View style={styles._btnContainer}>
-          <TouchableOpacity style={styles._btn} >
-            <Text style={styles._text}>Keep</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles._btn} >
-            <Text style={styles._text2}>Delete</Text>
-          </TouchableOpacity>
+          <Btn btnStyle={styles._btn} textStyle={styles._text} text={'Keep'} kind={'plain'} />
+          <Btn btnStyle={styles._btn} textStyle={styles._text2} text={'Delete'} kind={'plain'} />
         </View>
       </View>
     );

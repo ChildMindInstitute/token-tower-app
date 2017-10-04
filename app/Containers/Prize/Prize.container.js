@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Image, Text, ScrollView } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 
 import FontIcon from '../../Components/FontIcon/FontIcon.component';
 import Input from '../../Components/FormInput/FormInput.component';
+import Btn from '../../Components/FormButton/FormButton.component';
 
 import images from '../../Resources/Images';
 import styles from './Prize.container.style';
@@ -22,12 +23,9 @@ class PrizeContainer extends Component {
       ]
     };
   }
+
   componentWillMount() {
     landscapeOnly();
-  }
-
-  componentDidUpdate() {
-
   }
 
   componentWillUnmount() {
@@ -49,9 +47,9 @@ class PrizeContainer extends Component {
         inputStyle={styles._input}
         containerStyle={styles._inputContainer}
       />
-      <TouchableOpacity style={styles.iconContainer}>
+      <Btn onPress={() => { this._onDelete(index) }}>
         <FontIcon name={'minus'} color={'#f7c34a'} size={40} />
-      </TouchableOpacity>
+      </Btn>
     </View>
   );
 
@@ -80,6 +78,12 @@ class PrizeContainer extends Component {
     this.forceUpdate();
   }
 
+  _onDelete= (index) => {
+    alert(index)
+    this.state.prizeList.splice(index, 1);
+    this.forceUpdate();
+  }
+
   render() {
     return (
       <View style={styles._containerContent}>
@@ -88,18 +92,16 @@ class PrizeContainer extends Component {
         </ScrollView>
         <View style={styles._btnGroup}>
           <Image source={images.pig} resizeMode={'contain'} style={styles._images} />
-          <TouchableOpacity onPress={this._onAdd} style={styles.iconContainer} >
+          <Btn onPress={this._onAdd} >
             <FontIcon name={'plus'} color={'#f7c34a'} size={40} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles._btn} >
-            <Text style={styles._textBtn}>SAVE</Text>
-          </TouchableOpacity>
+          </Btn>
+          <Btn btnStyle={styles._btn} textStyle={styles._textBtn} text={'SAVE'} />
         </View>
       </View>
-
     );
   }
 }
+
 export default reduxForm({
   form: 'prizeForm'
 })(PrizeContainer);

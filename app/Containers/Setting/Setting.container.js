@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { View, Text, Switch } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 import ModalDropdown from 'react-native-modal-dropdown';
+import { connect } from 'react-redux';
 
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import Input from '../../Components/FormInput/FormInput.component';
 
 import styles from './Setting.container.styles';
+import { authenticationCreateNewAccount } from '../../Redux/Reducers/Authentication/Authentication.reducer';
+
+import routeName from '../../Navigation/RouteConfigs/Route.config';
+import { numberValidation } from '../../Utilities/Validation.utils';
 
 class SettingContainer extends Component {
   state = { p1: true }
@@ -23,6 +28,7 @@ class SettingContainer extends Component {
           component={Input}
           inputStyle={styles._input}
           containerStyle={styles._inputContainer}
+          validate={numberValidation}
         />
       </View>
     </View>
@@ -57,10 +63,22 @@ class SettingContainer extends Component {
       </View>
     </View>
   )
-  _onClick = () => {
+  _onSubmitSuccess = () => {
     const { navigate } = this.props.navigation;
-    navigate('Tutorial');
-  };
+    navigate(routeName.Root.TokenTotemTutorial);
+  }
+
+  _handleSubmit = (values) => {
+    const { register } = this.props;
+    register(values)
+      .then(this._onSubmitSuccess)
+      .catch(this._onSubmitFail);
+  }
+
+  _onClick = () => {
+    const { handleSubmit } = this.props;
+    handleSubmit(this._handleSubmit)();
+  }
 
   render() {
     return (
@@ -83,6 +101,11 @@ class SettingContainer extends Component {
     );
   }
 }
-export default reduxForm({
+const mapStateToProps = () => ({});
+const mapDispatchToProps = {
+  register: authenticationCreateNewAccount
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'settingsForm'
-})(SettingContainer);
+})(SettingContainer));

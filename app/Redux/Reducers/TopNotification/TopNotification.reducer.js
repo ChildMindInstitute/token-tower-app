@@ -9,5 +9,5 @@ export const { topNotificationAdd } = createActions({}, 'TOP_NOTIFICATION_ADD');
 // Reducer
 // ------------------------------------
 export default handleActions({
-  TOP_NOTIFICATION_ADD: (state, action) => ({ ...state, ...action.payload })
+  TOP_NOTIFICATION_ADD: (state, { payload }) => ({ ...state, ...payload })
 }, {});

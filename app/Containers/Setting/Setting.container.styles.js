@@ -29,9 +29,9 @@ export default EStyleSheet.create({
   _inputContainerBlock: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 5,
-    [largeSize]: {
-      marginVertical: 3
+    paddingVertical: 5,
+    [smallSize]: {
+      paddingVertical: 7
     }
 
   },
@@ -57,7 +57,7 @@ export default EStyleSheet.create({
     }
   },
   _label: {
-    flex: 2,
+    flex: 2.2,
     textAlign: 'left',
     fontFamily: Fonts.regular,
     [smallSize]: {

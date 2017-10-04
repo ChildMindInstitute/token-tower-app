@@ -6,13 +6,15 @@ import SubmitBtn from '../../Components/FormButton/FormButton.component';
 
 import styles from './RegisterWelcome.container.styles';
 
+import routeName from '../../Navigation/RouteConfigs/Route.config';
+
 export default class RegisterWelcomeContainer extends Component {
   componentDidMount() {
 
   }
   _onTouch = () => {
     const { navigate } = this.props.navigation;
-    navigate('Setting');
+    navigate(routeName.Root.Config);
   }
 
   render() {
