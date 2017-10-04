@@ -9,7 +9,7 @@ export default EStyleSheet.create({
     paddingTop: 2,
     paddingHorizontal: 30,
     [smallSize]: {
-      paddingHorizontal: 20
+      paddingHorizontal: 25
     }
   },
   _textContainer: {

@@ -9,7 +9,10 @@ export default EStyleSheet.create({
   },
   contentBlock: {
     flex: 1,
-    paddingHorizontal: 30
+    paddingHorizontal: 30,
+    [smallSize]: {
+      paddingHorizontal: 25
+    }
   },
   content: {
     flex: 1,

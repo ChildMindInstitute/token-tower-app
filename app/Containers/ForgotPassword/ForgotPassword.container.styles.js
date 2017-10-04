@@ -9,7 +9,10 @@ export default EStyleSheet.create({
   },
   _contentBlock: {
     flex: 1,
-    paddingHorizontal: 30
+    paddingHorizontal: 30,
+    [smallSize]: {
+      paddingHorizontal: 25
+    }
   },
   _formView: {
     paddingVertical: 15

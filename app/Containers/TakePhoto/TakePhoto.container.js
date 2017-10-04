@@ -11,8 +11,9 @@ import styles from './TakePhoto.container.style';
 
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { DIRECTION } from '../../Utilities/Constant.utils';
+import config from './TakePhoto.container.config';
 
-export default class CameraExample extends Component {
+export default class TakePhotoContainer extends Component {
   state = {
     image: null,
     hasCameraPermission: null,
@@ -22,6 +23,13 @@ export default class CameraExample extends Component {
   async componentWillMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasCameraPermission: status === 'granted' });
+  }
+  _onFlip =() => {
+    this.setState({
+      type: this.state.type === Camera.Constants.Type.back
+        ? Camera.Constants.Type.front
+        : Camera.Constants.Type.back
+    });
   }
 
   _onClick = () => {
@@ -52,50 +60,31 @@ export default class CameraExample extends Component {
     const { image } = this.state;
 
     return (
-      <View style={styles.container}>
+      <View style={styles._container}>
         <Header direction={DIRECTION.HORIZONTAL} />
-        <View style={styles.imgContainer}>
-          <Image resizeMode={'contain'} source={images.pig} style={styles.images} />
+        <View style={styles._imgContainer}>
+          <Image resizeMode={'contain'} source={images.pig} style={styles._images} />
         </View>
 
-        <Camera style={styles.cameraContainer} type={this.state.type}>
-          <View style={styles.cameraView}>
-            <View style={styles.ovalContainer}>
-              <View style={styles.oval} />
+        <Camera style={styles._cameraContainer} type={this.state.type}>
+          <View style={styles._cameraView}>
+            <View style={styles._ovalContainer}>
+              <View style={styles._oval} />
             </View>
           </View>
-          <View style={styles.blank} />
+          <View style={styles._blank} />
         </Camera>
 
-        <View style={styles.dock}>
-          <TouchableOpacity
-            style={styles.flip}
-            onPress={() => {
-              this.setState({
-                type: this.state.type === Camera.Constants.Type.back
-                  ? Camera.Constants.Type.front
-                  : Camera.Constants.Type.back
-              });
-            }}
-          >
+        <View style={styles._dock}>
+          <TouchableOpacity style={styles._flip} onPress={this._onFlip}>
             <FontIcon name={'arrows-cw'} color={'#51555b'} size={40} />
-
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.cameraLogo}
-            onPress={() => {
-              this.setState({
-                type: this.state.type === Camera.Constants.Type.back
-                  ? Camera.Constants.Type.front
-                  : Camera.Constants.Type.back
-              });
-            }}
-          >
-            <Image source={images.camera} resizeMode={'contain'} style={styles.images} />
+          <TouchableOpacity style={styles._cameraLogo}>
+            <Image source={images.camera} resizeMode={'contain'} style={styles._images} />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={this._onPick} style={styles.logoPickImg}>
+          <TouchableOpacity onPress={this._onPick} style={styles._logoPickImg}>
             <FontIcon name={'clone'} color={'#51555b'} size={40} />
           </TouchableOpacity>
 
@@ -104,3 +93,4 @@ export default class CameraExample extends Component {
     );
   }
 }
+TakePhotoContainer.propTypes = config.propTypes;

@@ -32,16 +32,20 @@ class RegisterPermissionContainer extends Component {
     <View style={styles._permissionContainer}>
       <Text style={styles._consent}>Consent</Text>
       <View style={styles._permissionBlock}>
-        <Text style={styles._permissionText}>Pilot study irsetn iensrt insrininirnsitnriesnite</Text>
+        <Text style={styles._permissionText}>Pilot study irsetn iensrt insrininirnsitnriesnite.</Text>
         <Field name={'permission1'} component={FormSwitch} />
       </View>
       <View style={styles._permissionBlock}>
-        <Text style={styles._permissionText}>Pilot study irsetn iensrt insrininirnsitnriesnite</Text>
+        <Text style={styles._permissionText}>Not liableliable ienars iaers eseiiieeseiiie einriseni reisn rsien trei erin.</Text>
         <Field name={'permission2'} component={FormSwitch} />
       </View>
       <View style={styles._permissionBlock}>
-        <Text style={styles._permissionText}>Pilot study irsetn iensrt insrininirnsitnriesnite</Text>
+        <Text style={styles._permissionText}>Data breach aiers iers iersiers. ires ier ires u efir ir.</Text>
         <Field name={'permission3'} component={FormSwitch} />
+      </View>
+      <View style={styles._permissionBlock}>
+        <Text style={styles._permissionText}>Chlid Mind Institute access to data and recontact? </Text>
+        <Field name={'permission4'} component={FormSwitch} />
       </View>
     </View>
   )
@@ -51,10 +55,8 @@ class RegisterPermissionContainer extends Component {
       <View style={styles._container}>
         <ScrollView style={styles._contentBlock}>
           <Header direction={DIRECTION.HORIZONTAL} />
-          <View style={styles._content}>
-            {this._renderDescription()}
-            {this._renderPermission()}
-          </View>
+          {this._renderDescription()}
+          {this._renderPermission()}
         </ScrollView>
         <Btn onPress={this._onNext} text={'NEXT'} />
       </View>

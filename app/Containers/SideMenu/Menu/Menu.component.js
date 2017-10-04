@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
 import MenuItem from '../MenuItem/MenuItem.component';
 
 import images from '../../../Resources/Images';
-import styles from './Menu.component.styes';
+import styles from './Menu.component.styles';
 
 import navPropTypes from '../../../PropTypes/Navigation.propTypes';
 import listMenuItems from '../ListMenuItems';
@@ -14,7 +14,7 @@ const Menu = ({ navigation: { navigate }, onItemPress }) => (
   <View style={styles.container}>
     <View style={styles.imgContainer}>
       <Image resizeMode={'contain'} source={images.avatar} style={styles.image} />
-      <View style={{ flex: 1, justifyContent: 'center' }}>
+      <View style={styles.textContainer}>
         <Text> Username </Text>
       </View>
     </View>

@@ -10,7 +10,10 @@ export default EStyleSheet.create({
   _contentBlock: {
     flex: 1,
     paddingHorizontal: 30,
-    paddingTop: 2
+    paddingTop: 2,
+    [smallSize]: {
+      paddingHorizontal: 25
+    }
   },
   _inputContainerBlock: {
     flexDirection: 'row',
@@ -78,11 +81,14 @@ export default EStyleSheet.create({
       marginBottom: 21
     }
   },
-  _logos: {
+  _logosBlock: {
     flex: 0.5,
     justifyContent: 'flex-start',
     flexDirection: 'row',
     height: 60
+  },
+  _logos: {
+    flex: 1
   },
   _para: {
     fontFamily: Fonts.regular,

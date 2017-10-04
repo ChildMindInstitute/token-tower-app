@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
-import SubmitBtn from '../../Components/FormButton/FormButton.component';
 
 import styles from './RegisterWelcome.container.styles';
 
 import routeName from '../../Navigation/RouteConfigs/Route.config';
+import config from './RegisterWelcome.container.config';
 
 export default class RegisterWelcomeContainer extends Component {
   componentDidMount() {
@@ -37,3 +37,4 @@ export default class RegisterWelcomeContainer extends Component {
     );
   }
 }
+RegisterWelcomeContainer.propTypes = config.propTypes;

@@ -10,13 +10,16 @@ export default EStyleSheet.create({
   },
   _contentBlock: {
     flex: 1,
-    paddingHorizontal: 30
+    paddingHorizontal: 30,
+    [smallSize]: {
+      paddingHorizontal: 25
+    }
   },
   _inputContainerBlock: {
     flexDirection: 'row',
     paddingBottom: 20,
     [smallSize]: {
-      paddingBottom: 19
+      paddingBottom: 18
     }
   },
   _label: {
@@ -54,7 +57,7 @@ export default EStyleSheet.create({
   },
   _viewInput: {
     [smallSize]: {
-      paddingTop: 6
+      paddingTop: 4
     },
     [mediumSize]: {
       paddingTop: 20

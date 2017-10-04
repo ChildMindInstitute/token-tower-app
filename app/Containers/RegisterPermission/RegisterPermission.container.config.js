@@ -11,7 +11,8 @@ const form = {
   initialValues: {
     permission1: true,
     permission2: false,
-    permission3: true
+    permission3: true,
+    permission4: true
   }
 };
 

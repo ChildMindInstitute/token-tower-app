@@ -5,7 +5,9 @@ import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component
 
 import images from '../../Resources/Images';
 import styles from './Splash.container.styles';
+
 import routeName from '../../Navigation/RouteConfigs/Route.config';
+import config from './Splash.container.config';
 
 export default class SplashContainer extends Component {
   _onTouch = () => {
@@ -52,3 +54,4 @@ export default class SplashContainer extends Component {
     );
   }
 }
+SplashContainer.propTypes = config.propTypes;

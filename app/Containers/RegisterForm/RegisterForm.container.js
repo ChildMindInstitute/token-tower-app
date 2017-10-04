@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 
@@ -99,9 +99,13 @@ class RegisterFormContainer extends Component {
           </View>
           <View style={styles._socialLogos}>
             <Text style={styles._logoText}>Or login with: </Text>
-            <View style={styles._logos}>
-              <Image resizeMode={'contain'} source={images.google} style={styles._image} />
-              <Image resizeMode={'contain'} source={images.facebook} style={styles._image} />
+            <View style={styles._logosBlock}>
+              <TouchableOpacity style={styles._logos}>
+                <Image resizeMode={'contain'} source={images.google} style={styles._image} />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles._logos}>
+                <Image resizeMode={'contain'} source={images.facebook} style={styles._image} />
+              </TouchableOpacity>
             </View>
           </View>
           <Text style={styles._para}>

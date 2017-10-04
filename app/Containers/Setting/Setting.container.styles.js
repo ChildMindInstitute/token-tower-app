@@ -23,17 +23,14 @@ export default EStyleSheet.create({
     paddingHorizontal: 30,
     paddingTop: 2,
     [smallSize]: {
-      paddingTop: 0
+      paddingTop: 0,
+      paddingHorizontal: 25
     }
   },
   _inputContainerBlock: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 5,
-    [smallSize]: {
-      paddingVertical: 7
-    }
-
+    paddingVertical: 10
   },
   _inputContainer: {
     flex: 1,

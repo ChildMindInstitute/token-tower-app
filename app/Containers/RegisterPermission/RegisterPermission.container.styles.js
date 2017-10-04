@@ -12,48 +12,54 @@ export default EStyleSheet.create({
     paddingTop: 2,
     paddingHorizontal: 30,
     [smallSize]: {
-      paddingHorizontal: 23
+      paddingHorizontal: 25
     }
   },
-  _content: {
+  _descriptionContainer: {
+    borderBottomWidth: 1,
+    [smallSize]: {
+      paddingVertical: 10
+    },
+    [mediumSize]: {
+      paddingVertical: 17
+    },
+    [largeSize]: {
+      paddingVertical: 19
+    }
+  },
+  _description: {
+    fontFamily: Fonts.regular,
+    [smallSize]: {
+      fontSize: 15
+    },
+    [mediumSize]: {
+      fontSize: 17
+    },
+    [largeSize]: {
+      fontSize: 19
+    }
+  },
+  _permissionContainer: {
     paddingTop: 20,
     [smallSize]: {
       paddingTop: 10
     }
   },
-  _descriptionContainer: {
-    paddingBottom: 20,
-    borderBottomWidth: 1
-  },
-  _description: {
-    fontFamily: Fonts.regular,
-    [smallSize]: {
-      fontSize: 17
-    },
-    [mediumSize]: {
-      fontSize: 19
-    },
-    [largeSize]: {
-      fontSize: 21
-    }
-  },
-  _permissionContainer: {
-    paddingTop: 20
-  },
   _consent: {
     fontFamily: Fonts.bold,
     [smallSize]: {
-      fontSize: 24
+      fontSize: 22
     },
     [mediumSize]: {
-      fontSize: 26
+      fontSize: 25
     },
-    [mediumSize]: {
+    [largeSize]: {
       fontSize: 28
     }
   },
   _permissionBlock: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     paddingTop: 20,
     [smallSize]: {
@@ -61,16 +67,16 @@ export default EStyleSheet.create({
     }
   },
   _permissionText: {
-    flex: 1,
+    flex: 0.9,
     fontFamily: Fonts.regular,
     [smallSize]: {
-      fontSize: 17
+      fontSize: 15
     },
     [mediumSize]: {
-      fontSize: 19
+      fontSize: 17
     },
     [largeSize]: {
-      fontSize: 21
+      fontSize: 19
     }
   }
 });

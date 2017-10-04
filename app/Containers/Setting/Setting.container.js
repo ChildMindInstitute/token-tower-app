@@ -11,6 +11,7 @@ import Input from '../../Components/FormInput/FormInput.component';
 import styles from './Setting.container.styles';
 import { authenticationCreateNewAccount } from '../../Redux/Reducers/Authentication/Authentication.reducer';
 
+import config from './Setting.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { numberValidation } from '../../Utilities/Validation.utils';
 
@@ -79,6 +80,9 @@ class SettingContainer extends Component {
     const { handleSubmit } = this.props;
     handleSubmit(this._handleSubmit)();
   }
+  _onChange =(value) => {
+    this.setState({ p1: value });
+  }
 
   render() {
     return (
@@ -92,7 +96,7 @@ class SettingContainer extends Component {
             {this._renderPair()}
             <View style={styles._inputContainerBlock}>
               <Text style={styles._label}>Sound effects to accompany animations?</Text>
-              <Switch value={this.state.p1} onValueChange={(value) => { this.setState({ p1: value }); }} />
+              <Switch value={this.state.p1} onValueChange={this._onChange} />
             </View>
           </View>
         </View>
@@ -105,6 +109,8 @@ const mapStateToProps = () => ({});
 const mapDispatchToProps = {
   register: authenticationCreateNewAccount
 };
+
+SettingContainer.propTypes = config.propTypes;
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'settingsForm'
