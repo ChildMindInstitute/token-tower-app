@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { View, Image, Animated, Dimensions } from 'react-native';
-import propTypes from 'prop-types';
 
 import Btn from '../FormButton/FormButton.component';
 import Bottom from './MainBottom.component';
 
 import images from '../../Resources/Images';
 import styles from './Main.component.styles';
+
+import config from './Main.component.config';
 
 class MainComponent extends Component {
   constructor() {
@@ -48,30 +49,44 @@ class MainComponent extends Component {
         })
       }]
     };
-    const { onCameraPress, onTokenPress, onPrizePress, containerStyle } = this.props;
+
+    const {
+      onCameraPress,
+      onTokenPress,
+      onPrizePress,
+      pigStyle,
+      cameraStyle,
+      minusIconColor,
+      tokenStyle,
+      plusIconColor,
+      presentStyle
+    } = this.props;
+
     return (
-      <Image source={images.firstbackground} style={[styles.bgrContainer, containerStyle]}>
+      <Image source={images.firstbackground} style={styles.bgrContainer}>
         <View style={styles.topContainer}>
           <Image source={images.token} />
           <Animated.Image source={images.k1} style={animateStyle} />
           <Btn onPress={this._onPigPress}>
-            <Image source={images.pig} />
+            <Image source={images.pig} style={pigStyle} />
           </Btn>
         </View>
         <Bottom
           onCameraPress={onCameraPress}
           onTokenPress={onTokenPress}
           onPrizePress={onPrizePress}
+          pigStyle={pigStyle}
+          cameraStyle={cameraStyle}
+          minusIconColor={minusIconColor}
+          tokenStyle={tokenStyle}
+          plusIconColor={plusIconColor}
+          presentStyle={presentStyle}
         />
       </Image>
     );
   }
 }
 
-MainComponent.propTypes = {
-  onCameraPress: propTypes.func,
-  onTokenPress: propTypes.func,
-  onPrizePress: propTypes.func
-};
+MainComponent.propTypes = config.propTypes;
 
 export default MainComponent;

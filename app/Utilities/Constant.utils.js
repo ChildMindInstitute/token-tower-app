@@ -12,7 +12,14 @@ export const ERR_MSG = {
   MIN_LENGTH: 'Min length',
   INVALID_EMAIL: 'Invalid email',
   LOGIN_FAIL_TITLE: 'Login fail',
+  CHANGE_PASSWORD_TITLE: 'Change Password',
+  LOGIN_VERIFY_EMAIL: 'Your email address is not verified. please verify your email address!',
   NOT_A_NUMBER: 'Not a number'
+};
+
+export const MSG = {
+  CHANGE_PASSWORD_TITLE: 'Change Password',
+  VERIFY_MAIL_CHANGE_PASSWORD: 'Please check your email to confirm new password!'
 };
 
 export const BTN = {

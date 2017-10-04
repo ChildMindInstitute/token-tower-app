@@ -73,6 +73,7 @@ class TutorialContainer extends Component {
       </View>
     </View>
   )
+
   _renderTutorialByStep = (step) => {
     switch (step) {
       case 0: return this._renderStep1();
@@ -84,6 +85,48 @@ class TutorialContainer extends Component {
     }
   }
 
+  _renderMain = (step) => {
+    const pigStyle = styles._opacity;
+    let cameraStyle = styles._opacity;
+    let minusIconColor;
+    let tokenStyle = styles._opacity;
+    let plusIconColor;
+    let presentStyle = styles._opacity;
+
+    switch (step) {
+      case 0: {
+        cameraStyle = undefined;
+        break;
+      }
+      case 1: {
+        tokenStyle = undefined;
+        break;
+      }
+      case 2: {
+        presentStyle = undefined;
+        break;
+      }
+      case 3: {
+        minusIconColor = '#efac00';
+        plusIconColor = '#efac00';
+        break;
+      }
+      default:
+        break;
+    }
+
+    return (
+      <Main
+        pigStyle={pigStyle}
+        cameraStyle={cameraStyle}
+        minusIconColor={minusIconColor}
+        tokenStyle={tokenStyle}
+        plusIconColor={plusIconColor}
+        presentStyle={presentStyle}
+      />
+    );
+  }
+
   render() {
     return (
       <TouchableWithoutFeedback onPress={this._onPress}>
@@ -91,7 +134,7 @@ class TutorialContainer extends Component {
           <View style={styles._tutorialContainer}>
             {this._renderTutorialByStep(this.state.step)}
           </View>
-          <Main containerStyle={styles._main} />
+          {this._renderMain(this.state.step)}
         </View>
       </TouchableWithoutFeedback>
     );

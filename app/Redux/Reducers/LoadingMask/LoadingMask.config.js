@@ -1,5 +1,15 @@
-import { authenticationEmailPassword } from '../Authentication/Authentication.reducer';
+import {
+  authenticationEmailPassword,
+  authenticationCreateNewAccount,
+  authenticationSendEmailVerification,
+  authenticationForgotPassword
+} from '../Authentication/Authentication.reducer';
+import { userUpdateProfile } from '../User/User.reducer';
 
 export default [
-  authenticationEmailPassword
+  authenticationEmailPassword,
+  authenticationCreateNewAccount,
+  authenticationSendEmailVerification,
+  authenticationForgotPassword,
+  userUpdateProfile
 ];

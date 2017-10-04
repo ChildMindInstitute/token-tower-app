@@ -14,18 +14,18 @@ import styles from './Login.container.styles';
 
 import config from './Login.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
-import { required } from '../../Utilities/Validation.utils';
+import { required, emailValidation } from '../../Utilities/Validation.utils';
 import { showTopErrNotification } from '../../Utilities/Form.util';
 import { ERR_MSG } from '../../Utilities/Constant.utils';
 
 class LoginContainer extends Component {
   _renderUserInput = () => (
     <View style={styles._inputContainerBlock}>
-      <Text style={styles._label}>User</Text>
+      <Text style={styles._label}>Email</Text>
       <Field
-        name={'username'} component={Input}
+        name={'email'} component={Input}
         inputStyle={styles._input} containerStyle={styles._inputContainer}
-        validate={required}
+        validate={[required, emailValidation]}
       />
     </View>
   );
@@ -46,15 +46,22 @@ class LoginContainer extends Component {
     navigate(routeName.Authentication.ForgotPassword);
   }
 
-  _onSubmitSuccess = () => {
+  _onSubmitSuccess = ({ value: { emailVerified } }) => {
+    if (!emailVerified) {
+      showTopErrNotification({
+        title: ERR_MSG.LOGIN_FAIL_TITLE,
+        message: ERR_MSG.LOGIN_VERIFY_EMAIL
+      }, this.props.dispatch);
+      return;
+    }
+
     const { navigate } = this.props.navigation;
     navigate(routeName.Root.TokenTotem);
   }
 
-  _onSubmitFail = ({ response }) => {
+  _onSubmitFail = ({ message }) => {
     showTopErrNotification({
-      title: ERR_MSG.LOGIN_FAIL_TITLE,
-      message: response.data.message
+      title: ERR_MSG.LOGIN_FAIL_TITLE, message
     }, this.props.dispatch);
   }
 

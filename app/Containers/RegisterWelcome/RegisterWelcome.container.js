@@ -9,12 +9,9 @@ import routeName from '../../Navigation/RouteConfigs/Route.config';
 import config from './RegisterWelcome.container.config';
 
 export default class RegisterWelcomeContainer extends Component {
-  componentDidMount() {
-
-  }
   _onTouch = () => {
     const { navigate } = this.props.navigation;
-    navigate(routeName.Root.Config);
+    navigate(routeName.Authentication.Login);
   }
 
   render() {

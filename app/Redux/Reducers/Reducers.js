@@ -6,6 +6,7 @@ import authentication from './Authentication/Authentication.reducer';
 import loadingMask from './LoadingMask/LoadingMask.reducer';
 import sideMenu from './SideMenu/SideMenu.reducer';
 import font from './Font/Font.reducer';
+import user from './User/User.reducer';
 
 export default {
   form: reducer,
@@ -14,5 +15,6 @@ export default {
   authentication,
   loadingMask,
   sideMenu,
-  font
+  font,
+  user
 };

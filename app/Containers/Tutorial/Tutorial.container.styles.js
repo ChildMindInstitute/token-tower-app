@@ -7,8 +7,8 @@ export default EStyleSheet.create({
   _container: {
     flex: 1
   },
-  _main: {
-    opacity: 0.5
+  _opacity: {
+    opacity: 0.4
   },
   _tutorialContainer: {
     zIndex: 1,

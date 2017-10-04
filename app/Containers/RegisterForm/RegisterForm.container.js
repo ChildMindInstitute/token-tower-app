@@ -7,7 +7,11 @@ import SubmitBtn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import Input from '../../Components/FormInput/FormInput.component';
 
-import { authenticationCreateNewAccount } from '../../Redux/Reducers/Authentication/Authentication.reducer';
+import {
+  authenticationCreateNewAccount,
+  authenticationSendEmailVerification
+} from '../../Redux/Reducers/Authentication/Authentication.reducer';
+import { userUpdateProfile } from '../../Redux/Reducers/User/User.reducer';
 
 import images from '../../Resources/Images';
 import styles from './RegisterForm.container.styles';
@@ -63,23 +67,27 @@ class RegisterFormContainer extends Component {
     </View>
   )
 
-  _onSubmitSuccess = () => {
-    const { navigate } = this.props.navigation;
-    navigate(routeName.Registration.RegisterWelcome);
-  }
-
-  _onSubmitFail = ({ response }) => {
-    showTopErrNotification({
-      title: ERR_MSG.LOGIN_FAIL_TITLE,
-      message: response.data.message
-    }, this.props.dispatch);
-  }
-
   _handleSubmit = (values) => {
-    const { register } = this.props;
-    register(values)
-      .then(this._onSubmitSuccess)
-      .catch(this._onSubmitFail);
+    const { register, sendEmailVerification, updateProfile, dispatch } = this.props;
+    const { navigate } = this.props.navigation;
+
+    const _onSubmitFail = ({ message }) => {
+      showTopErrNotification({ title: ERR_MSG.LOGIN_FAIL_TITLE, message }, dispatch);
+    };
+
+    const _onSubmitSuccess = () => {
+      navigate(routeName.Registration.RegisterWelcome);
+    };
+
+    const _updateUserProfile = () => {
+      updateProfile(values).then(_onSubmitSuccess).catch(_onSubmitFail);
+    };
+
+    const _createUserSuccess = () => {
+      sendEmailVerification().then(_updateUserProfile).catch(_onSubmitFail);
+    };
+
+    register(values).then(_createUserSuccess).catch(_onSubmitFail);
   }
 
   _onSubmit = () => {
@@ -124,7 +132,9 @@ RegisterFormContainer.propTypes = config.propTypes;
 
 const mapStateToProps = () => ({});
 const mapDispatchToProps = {
-  register: authenticationCreateNewAccount
+  register: authenticationCreateNewAccount,
+  sendEmailVerification: authenticationSendEmailVerification,
+  updateProfile: userUpdateProfile
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(RegisterFormContainer));

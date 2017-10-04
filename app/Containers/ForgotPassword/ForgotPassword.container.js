@@ -14,7 +14,7 @@ import styles from './ForgotPassword.container.styles';
 import config from './ForgotPassword.container.config';
 import { showTopSuccessNotification, showTopErrNotification } from '../../Utilities/Form.util';
 import { required, minLength, emailValidation } from '../../Utilities/Validation.utils';
-import { DIRECTION } from '../../Utilities/Constant.utils';
+import { DIRECTION, ERR_MSG, MSG } from '../../Utilities/Constant.utils';
 
 class ForgotPasswordContainer extends Component {
   constructor() {
@@ -35,30 +35,6 @@ class ForgotPasswordContainer extends Component {
     </View>
   )
 
-  _renderPasswordInput = () => (
-    <View style={styles._inputContainerBlock}>
-      <Text style={styles._label}>Password</Text>
-      <Field
-        name={'password'} component={Input}
-        inputStyle={styles._input} containerStyle={styles._inputContainer}
-        placeholder={'password'}
-        validate={this.passwordValidation} secureTextEntry
-      />
-    </View>
-  )
-
-  _renderConfirmPasswordInput = () => (
-    <View style={styles._inputContainerBlock}>
-      <Text style={styles._label}>Confirm Password</Text>
-      <Field
-        name={'confirmPassword'} component={Input}
-        inputStyle={styles._input} containerStyle={styles._inputContainer}
-        placeholder={'confirm password'}
-        validate={this.passwordValidation} secureTextEntry
-      />
-    </View>
-  )
-
   _handleSubmit = ({ email, password }) => {
     const { forgotPassword } = this.props;
     forgotPassword({ email, password })
@@ -66,19 +42,19 @@ class ForgotPasswordContainer extends Component {
       .catch(this._onSubmitFail);
   }
 
-  _onSubmitSuccess = ({ value: { data: { message } } }) => {
+  _onSubmitSuccess = () => {
     const { navigation, dispatch } = this.props;
     showTopSuccessNotification({
-      title: 'CHANGE PASSWORD',
-      message
+      title: MSG.CHANGE_PASSWORD_TITLE,
+      message: MSG.VERIFY_MAIL_CHANGE_PASSWORD
     }, dispatch);
     navigation.goBack();
   }
 
-  _onSubmitFail = ({ response: { data: { message } } }) => {
+  _onSubmitFail = ({ message }) => {
     const { dispatch } = this.props;
     showTopErrNotification({
-      title: 'CHANGE PASSWORD',
+      title: ERR_MSG.CHANGE_PASSWORD_TITLE,
       message
     }, dispatch);
   }
@@ -96,8 +72,6 @@ class ForgotPasswordContainer extends Component {
             <Text style={styles._title}>Password Help</Text>
             <View style={styles._form}>
               {this._renderEmailInput()}
-              {this._renderPasswordInput()}
-              {this._renderConfirmPasswordInput()}
             </View>
           </View>
         </View>
