@@ -16,7 +16,7 @@ class FormInput extends Component {
       meta: { error, touched },
       input: { value },
       inputStyle, containerStyle,
-      placeholder,
+      placeholder, editable,
       secureTextEntry, keyboardType
     } = this.props;
 
@@ -28,7 +28,7 @@ class FormInput extends Component {
             style={[inputStyle, touched && error && styles.errorInput]}
             value={value} keyboardType={keyboardType}
             onChangeText={this._onChangeText}
-            secureTextEntry={secureTextEntry}
+            secureTextEntry={secureTextEntry} editable={editable}
             autoCapitalize={'none'} underlineColorAndroid="transparent"
           />
           {touched && error && <Text style={styles.errorText}>{error}</Text>}
@@ -44,6 +44,7 @@ FormInput.propTypes = {
   containerStyle: propTypes.object,
   placeholder: propTypes.string,
   secureTextEntry: propTypes.bool,
+  editable: propTypes.bool,
   keyboardType: propTypes.string
 };
 

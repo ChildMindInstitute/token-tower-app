@@ -5,13 +5,17 @@ import api from '../../../Api/api';
 // ------------------------------------
 // Action
 // ------------------------------------
-export const { userUpdateProfile } = createActions({
-  USER_UPDATE_PROFILE: api.updateUserProfile
+export const { userUpdateProfile, userUpdatePassword } = createActions({
+  USER_UPDATE_PROFILE: api.updateUserProfile,
+  USER_UPDATE_PASSWORD: api.updatePassword
 });
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
 export default handleActions({
-  USER_UPDATE_PROFILE: (state, { payload }) => ({ ...state, ...payload })
+  USER_UPDATE_PROFILE_FULFILLED: (state) => {
+    const { displayName, email, photoURL } = api.getCurrentUser();
+    return { ...state, displayName, email, photoURL };
+  }
 }, {});

@@ -10,7 +10,8 @@ export default {
     Home: 'Home',
     Login: 'Login',
     MainUserSelection: 'MainUserSelection',
-    ForgotPassword: 'ForgotPassword'
+    ForgotPassword: 'ForgotPassword',
+    UpdatePassword: 'UpdatePassword'
   },
   Registration: {
     RegisterPermission: 'RegisterPermission',

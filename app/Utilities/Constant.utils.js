@@ -3,7 +3,7 @@ export const COMMON = {
   INFO: 'info',
   SUCCESS: 'success',
   WARNING: 'warning',
-  SPINNERMSG: 'Loading'
+  SPINNER_MSG: 'Loading'
 };
 
 export const ERR_MSG = {
@@ -12,7 +12,9 @@ export const ERR_MSG = {
   MIN_LENGTH: 'Min length',
   INVALID_EMAIL: 'Invalid email',
   LOGIN_FAIL_TITLE: 'Login fail',
-  CHANGE_PASSWORD_TITLE: 'Change Password',
+  REGISTER_FAIL_TITLE: 'Register fail',
+  CHANGE_PASSWORD_TITLE: 'Change password fail',
+  UPDATE_PASSWORD_TITLE: 'Update password fail',
   LOGIN_VERIFY_EMAIL: 'Your email address is not verified. please verify your email address!',
   NOT_A_NUMBER: 'Not a number'
 };

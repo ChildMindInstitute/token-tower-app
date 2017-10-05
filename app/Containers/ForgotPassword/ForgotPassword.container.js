@@ -13,13 +13,12 @@ import styles from './ForgotPassword.container.styles';
 
 import config from './ForgotPassword.container.config';
 import { showTopSuccessNotification, showTopErrNotification } from '../../Utilities/Form.util';
-import { required, minLength, emailValidation } from '../../Utilities/Validation.utils';
+import { required, emailValidation } from '../../Utilities/Validation.utils';
 import { DIRECTION, ERR_MSG, MSG } from '../../Utilities/Constant.utils';
 
 class ForgotPasswordContainer extends Component {
   constructor() {
     super();
-    this.passwordValidation = [minLength(6)];
     this.emailValidation = [required, emailValidation];
   }
 
@@ -35,9 +34,9 @@ class ForgotPasswordContainer extends Component {
     </View>
   )
 
-  _handleSubmit = ({ email, password }) => {
+  _handleSubmit = ({ email }) => {
     const { forgotPassword } = this.props;
-    forgotPassword({ email, password })
+    forgotPassword({ email })
       .then(this._onSubmitSuccess)
       .catch(this._onSubmitFail);
   }

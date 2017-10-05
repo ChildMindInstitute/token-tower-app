@@ -14,24 +14,35 @@ export const initializeFireBase = () => {
 const forgotPassword = ({ email }) =>
   firebase.auth().sendPasswordResetEmail(email);
 
-const authenicate =
-  ({ email, password }) =>
-    firebase.auth().signInWithEmailAndPassword(email, password);
+const updatePassword = ({ password }) =>
+  firebase.auth().currentUser.updatePassword(password);
 
-const register =
-  ({ password, email }) =>
-    firebase.auth().createUserWithEmailAndPassword(email, password);
+const getCurrentUser = () => firebase.auth().currentUser;
+
+const authenicate = ({ email, password }) =>
+  firebase.auth().signInWithEmailAndPassword(email, password);
+
+const signInWithFB = (token) => {
+  const credential = firebase.auth.FacebookAuthProvider.credential(token);
+  return firebase.auth().signInWithCredential(credential);
+};
+
+const register = ({ password, email }) =>
+  firebase.auth().createUserWithEmailAndPassword(email, password);
 
 const sendEmailVerification = () =>
   firebase.auth().currentUser.sendEmailVerification();
 
-const updateUserProfile = ({ username }) =>
-  firebase.auth().currentUser.updateProfile({ displayName: username });
+const updateUserProfile = ({ username, photoURL }) =>
+  firebase.auth().currentUser.updateProfile({ displayName: username, photoURL });
 
 export default {
   authenicate,
   register,
   forgotPassword,
+  updatePassword,
   sendEmailVerification,
-  updateUserProfile
+  updateUserProfile,
+  signInWithFB,
+  getCurrentUser
 };

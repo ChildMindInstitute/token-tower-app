@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
+import Expo from 'expo';
 
-import SubmitBtn from '../../Components/FormButton/FormButton.component';
+import Btn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import Input from '../../Components/FormInput/FormInput.component';
 
 import {
   authenticationCreateNewAccount,
-  authenticationSendEmailVerification
+  authenticationSendEmailVerification,
+  authenticationFb
 } from '../../Redux/Reducers/Authentication/Authentication.reducer';
 import { userUpdateProfile } from '../../Redux/Reducers/User/User.reducer';
 
@@ -19,7 +21,7 @@ import styles from './RegisterForm.container.styles';
 import config from './RegisterForm.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { required, minLength, maxLength, emailValidation } from '../../Utilities/Validation.utils';
-import { DIRECTION, ERR_MSG } from '../../Utilities/Constant.utils';
+import { DIRECTION, ERR_MSG, COMMON } from '../../Utilities/Constant.utils';
 import { showTopErrNotification } from '../../Utilities/Form.util';
 
 class RegisterFormContainer extends Component {
@@ -67,32 +69,79 @@ class RegisterFormContainer extends Component {
     </View>
   )
 
+  _upadteUserProfile = (values, onSuccess, onFail) => {
+    const { updateProfile } = this.props;
+    updateProfile(values).then(onSuccess).catch(onFail);
+  }
+
   _handleSubmit = (values) => {
-    const { register, sendEmailVerification, updateProfile, dispatch } = this.props;
+    const { register, sendEmailVerification, dispatch } = this.props;
     const { navigate } = this.props.navigation;
 
-    const _onSubmitFail = ({ message }) => {
-      showTopErrNotification({ title: ERR_MSG.LOGIN_FAIL_TITLE, message }, dispatch);
+    const onSubmitFail = ({ message }) => {
+      showTopErrNotification({ title: ERR_MSG.REGISTER_FAIL_TITLE, message }, dispatch);
     };
 
-    const _onSubmitSuccess = () => {
+    const onSubmitSuccess = () => {
       navigate(routeName.Registration.RegisterWelcome);
     };
 
-    const _updateUserProfile = () => {
-      updateProfile(values).then(_onSubmitSuccess).catch(_onSubmitFail);
+    const updateUserProfile = () => {
+      this._upadteUserProfile(values, onSubmitSuccess, onSubmitFail);
     };
 
-    const _createUserSuccess = () => {
-      sendEmailVerification().then(_updateUserProfile).catch(_onSubmitFail);
+    const createUserSuccess = () => {
+      sendEmailVerification().then(updateUserProfile).catch(onSubmitFail);
     };
 
-    register(values).then(_createUserSuccess).catch(_onSubmitFail);
+    register(values).then(createUserSuccess).catch(onSubmitFail);
   }
 
   _onSubmit = () => {
     const { handleSubmit } = this.props;
     handleSubmit(this._handleSubmit)();
+  }
+
+  _onGgPressed = async () => {
+    try {
+      const result = await Expo.Google.logInAsync({
+        androidClientId: 'YOUR_CLIENT_ID_HERE',
+        iosClientId: 'YOUR_CLIENT_ID_HERE',
+        scopes: ['profile', 'email']
+      });
+
+      if (result.type === 'success') {
+        return result.accessToken;
+      }
+      return { cancelled: true };
+    } catch (e) {
+      return { error: true };
+    }
+  }
+
+  _onFbPressed = async () => {
+    const { signInWithFb, navigation: { navigate }, dispatch } = this.props;
+
+    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(
+      '1825757331088461',
+      { permissions: ['public_profile', 'email'] }
+    );
+
+    const onFail = ({ message }) => {
+      showTopErrNotification({ title: ERR_MSG.REGISTER_FAIL_TITLE, message }, dispatch);
+    };
+
+    const onSuccess = () => {
+      navigate(routeName.Authentication.UpdatePassword);
+    };
+
+    const updateUserProfile = () => {
+      this._upadteUserProfile({}, onSuccess, onFail);
+    };
+
+    if (type === COMMON.SUCCESS) {
+      signInWithFb(token).then(updateUserProfile).catch(onFail);
+    }
   }
 
   render() {
@@ -108,12 +157,12 @@ class RegisterFormContainer extends Component {
           <View style={styles._socialLogos}>
             <Text style={styles._logoText}>Or login with: </Text>
             <View style={styles._logosBlock}>
-              <TouchableOpacity style={styles._logos}>
+              <Btn btnStyle={styles._logos} onPress={this._onGgPressed}>
                 <Image resizeMode={'contain'} source={images.google} style={styles._image} />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles._logos}>
+              </Btn>
+              <Btn btnStyle={styles._logos} onPress={this._onFbPressed}>
                 <Image resizeMode={'contain'} source={images.facebook} style={styles._image} />
-              </TouchableOpacity>
+              </Btn>
             </View>
           </View>
           <Text style={styles._para}>
@@ -122,7 +171,7 @@ class RegisterFormContainer extends Component {
             efir ir. iasrnti irsent Child Mind Institut d recontact?
           </Text>
         </ScrollView>
-        <SubmitBtn onPress={this._onSubmit} text={'NEXT'} />
+        <Btn onPress={this._onSubmit} text={'NEXT'} />
       </View>
     );
   }
@@ -134,7 +183,8 @@ const mapStateToProps = () => ({});
 const mapDispatchToProps = {
   register: authenticationCreateNewAccount,
   sendEmailVerification: authenticationSendEmailVerification,
-  updateProfile: userUpdateProfile
+  updateProfile: userUpdateProfile,
+  signInWithFb: authenticationFb
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(RegisterFormContainer));
