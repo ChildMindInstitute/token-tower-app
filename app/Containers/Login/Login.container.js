@@ -9,6 +9,7 @@ import Input from '../../Components/FormInput/FormInput.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 
 import { authenticationEmailPassword } from '../../Redux/Reducers/Authentication/Authentication.reducer';
+import { userAuthenticated, userUpdateProfile } from '../../Redux/Reducers/User/User.reducer';
 
 import styles from './Login.container.styles';
 
@@ -46,17 +47,22 @@ class LoginContainer extends Component {
     navigate(routeName.Authentication.ForgotPassword);
   }
 
-  _onSubmitSuccess = ({ value: { emailVerified } }) => {
-    if (!emailVerified) {
-      showTopErrNotification({
-        title: ERR_MSG.LOGIN_FAIL_TITLE,
-        message: ERR_MSG.LOGIN_VERIFY_EMAIL
-      }, this.props.dispatch);
+  _onSubmitSuccess = ({ value: { emailVerified, providerData } }) => {
+    const { navigation: { navigate }, authenticated, dispatch, updateProfile } = this.props;
+
+    const isFbOrGgProvider = providerData.find(p => p.providerId === 'facebook.com');
+
+    if (emailVerified || isFbOrGgProvider) {
+      authenticated();
+      updateProfile({});
+      navigate(routeName.Root.TokenTotem);
       return;
     }
 
-    const { navigate } = this.props.navigation;
-    navigate(routeName.Root.TokenTotem);
+    showTopErrNotification({
+      title: ERR_MSG.LOGIN_FAIL_TITLE,
+      message: ERR_MSG.LOGIN_VERIFY_EMAIL
+    }, dispatch);
   }
 
   _onSubmitFail = ({ message }) => {
@@ -100,7 +106,9 @@ class LoginContainer extends Component {
 
 const mapStateToProps = () => ({});
 const mapDispatchToProps = {
-  authentication: authenticationEmailPassword
+  authentication: authenticationEmailPassword,
+  authenticated: userAuthenticated,
+  updateProfile: userUpdateProfile
 };
 
 LoginContainer.propTypes = config.propTypes;

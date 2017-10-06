@@ -10,12 +10,12 @@ import styles from './Menu.component.styles';
 import navPropTypes from '../../../PropTypes/Navigation.propTypes';
 import listMenuItems from '../ListMenuItems';
 
-const Menu = ({ navigation: { navigate }, onItemPress }) => (
+const Menu = ({ navigation: { navigate }, onItemPress, displayName }) => (
   <View style={styles.container}>
     <View style={styles.imgContainer}>
       <Image resizeMode={'contain'} source={images.avatar} style={styles.image} />
       <View style={styles.textContainer}>
-        <Text> Username </Text>
+        <Text>{displayName}</Text>
       </View>
     </View>
     <View style={styles.menuContainer}>
@@ -38,7 +38,8 @@ const Menu = ({ navigation: { navigate }, onItemPress }) => (
 
 Menu.propTypes = {
   ...navPropTypes,
-  onItemPress: propTypes.func.isRequired
+  onItemPress: propTypes.func.isRequired,
+  displayName: propTypes.string
 };
 
 export default Menu;

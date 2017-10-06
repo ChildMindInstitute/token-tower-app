@@ -9,18 +9,16 @@ import { sideMenuOpen, sideMenuClose } from '../../Redux/Reducers/SideMenu/SideM
 import navPropTypes from '../../PropTypes/Navigation.propTypes';
 
 const DrawerMenu = (props) => {
-  const { children, isOpened, onOpen, onClose,
-    navigation: { state: { index, routes } } } = props;
+  const { children, isOpened, onOpen, onClose, isAuthenticated, displayName } = props;
 
-  const menu = <Menu {...props} onItemPress={onClose} />;
-  const canSwipe = routes[index].routes.length === 1;
+  const menu = <Menu {...props} onItemPress={onClose} displayName={displayName} />;
 
   return (
     <Drawer
       type={'overlay'} content={menu}
       open={isOpened} tapToClose
       onOpen={onOpen} onClose={onClose}
-      negotiatePan acceptPan={canSwipe}
+      negotiatePan acceptPan={isAuthenticated}
       acceptPanOnDrawer={false}
       panOpenMask={0.2} panCloseMask={0.5}
       openDrawerOffset={0.2}
@@ -35,11 +33,15 @@ DrawerMenu.propTypes = {
   children: propTypes.node.isRequired,
   isOpened: propTypes.bool.isRequired,
   onOpen: propTypes.func.isRequired,
-  onClose: propTypes.func.isRequired
+  onClose: propTypes.func.isRequired,
+  isAuthenticated: propTypes.bool.isRequired,
+  displayName: propTypes.string
 };
 
 const mapStateToProps = state => ({
-  isOpened: state.sideMenu.isOpened
+  isOpened: state.sideMenu.isOpened,
+  isAuthenticated: state.user.isAuthenticated,
+  displayName: state.user.displayName
 });
 
 const mapDispatchToProps = {

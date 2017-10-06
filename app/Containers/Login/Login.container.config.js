@@ -6,7 +6,9 @@ import formPropTypes from '../../PropTypes/Form.propTypes';
 const propTypes = {
   ...navPropTypes,
   ...formPropTypes,
-  authentication: PropTypes.func.isRequired
+  authentication: PropTypes.func.isRequired,
+  authenticated: PropTypes.func.isRequired,
+  updateProfile: PropTypes.func.isRequired
 };
 
 const form = {

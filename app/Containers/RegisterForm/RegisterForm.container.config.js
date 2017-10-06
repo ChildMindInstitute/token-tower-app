@@ -9,7 +9,8 @@ const propTypes = {
   register: PropTypes.func.isRequired,
   sendEmailVerification: PropTypes.func.isRequired,
   updateProfile: PropTypes.func.isRequired,
-  signInWithFb: PropTypes.func.isRequired
+  signInWithFb: PropTypes.func.isRequired,
+  authenticated: PropTypes.func.isRequired
 };
 
 const form = {

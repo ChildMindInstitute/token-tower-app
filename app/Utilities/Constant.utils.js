@@ -11,16 +11,17 @@ export const ERR_MSG = {
   MAX_LENGTH: 'Max length',
   MIN_LENGTH: 'Min length',
   INVALID_EMAIL: 'Invalid email',
-  LOGIN_FAIL_TITLE: 'Login fail',
-  REGISTER_FAIL_TITLE: 'Register fail',
-  CHANGE_PASSWORD_TITLE: 'Change password fail',
-  UPDATE_PASSWORD_TITLE: 'Update password fail',
+  LOGIN_FAIL_TITLE: 'Login Fail',
+  REGISTER_FAIL_TITLE: 'Register Fail',
+  RESET_PASSWORD_TITLE: 'Reset password Fail',
+  UPDATE_PASSWORD_TITLE: 'Update password Fail',
   LOGIN_VERIFY_EMAIL: 'Your email address is not verified. please verify your email address!',
-  NOT_A_NUMBER: 'Not a number'
+  NOT_A_NUMBER: 'Not a number',
+  PASSWORD_NOT_MATCH: 'These passwords don\'t match!'
 };
 
 export const MSG = {
-  CHANGE_PASSWORD_TITLE: 'Change Password',
+  RESET_PASSWORD_TITLE: 'Reset Password',
   VERIFY_MAIL_CHANGE_PASSWORD: 'Please check your email to confirm new password!'
 };
 

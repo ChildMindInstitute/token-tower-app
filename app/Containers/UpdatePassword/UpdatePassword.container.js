@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
@@ -59,7 +59,11 @@ class UpdatePasswordContainer extends Component {
   )
 
 
-  _handleSubmit = ({ password }) => {
+  _handleSubmit = ({ password, confirmPassword }) => {
+    if (password !== confirmPassword) {
+      throw new SubmissionError({ confirmPassword: ERR_MSG.PASSWORD_NOT_MATCH });
+    }
+
     const { updatePassword } = this.props;
     updatePassword({ password })
       .then(this._onSubmitSuccess)

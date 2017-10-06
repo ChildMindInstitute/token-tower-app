@@ -13,7 +13,7 @@ import {
   authenticationSendEmailVerification,
   authenticationFb
 } from '../../Redux/Reducers/Authentication/Authentication.reducer';
-import { userUpdateProfile } from '../../Redux/Reducers/User/User.reducer';
+import { userUpdateProfile, userAuthenticated } from '../../Redux/Reducers/User/User.reducer';
 
 import images from '../../Resources/Images';
 import styles from './RegisterForm.container.styles';
@@ -105,8 +105,8 @@ class RegisterFormContainer extends Component {
   _onGgPressed = async () => {
     try {
       const result = await Expo.Google.logInAsync({
-        androidClientId: 'YOUR_CLIENT_ID_HERE',
-        iosClientId: 'YOUR_CLIENT_ID_HERE',
+        androidClientId: '936670915515-4kv3lqhh031h4vksl04127jio97dear8.apps.googleusercontent.com',
+        iosClientId: '936670915515-8jdk0mrv8u4fq32k44v8n5cp3ff8lfsg.apps.googleusercontent.com',
         scopes: ['profile', 'email']
       });
 
@@ -132,6 +132,7 @@ class RegisterFormContainer extends Component {
     };
 
     const onSuccess = () => {
+      this.props.authenticated();
       navigate(routeName.Authentication.UpdatePassword);
     };
 
@@ -184,7 +185,8 @@ const mapDispatchToProps = {
   register: authenticationCreateNewAccount,
   sendEmailVerification: authenticationSendEmailVerification,
   updateProfile: userUpdateProfile,
-  signInWithFb: authenticationFb
+  signInWithFb: authenticationFb,
+  authenticated: userAuthenticated
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(RegisterFormContainer));

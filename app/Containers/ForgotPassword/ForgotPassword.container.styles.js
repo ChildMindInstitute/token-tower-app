@@ -15,11 +15,14 @@ export default EStyleSheet.create({
     }
   },
   _formView: {
-    paddingVertical: 15
+    flex: 1,
+    paddingVertical: 15,
+    justifyContent: 'center'
   },
   _title: {
     fontSize: 23,
-    fontFamily: Fonts.bold
+    fontFamily: Fonts.bold,
+    textAlign: 'center'
   },
   _form: {
     marginVertical: 10,
