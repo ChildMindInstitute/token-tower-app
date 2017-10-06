@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
@@ -90,7 +91,7 @@ class UpdatePasswordContainer extends Component {
   render() {
     return (
       <View style={styles._container}>
-        <View style={styles._contentBlock}>
+        <KeyboardAwareScrollView style={styles._contentBlock}>
           <Header direction={DIRECTION.HORIZONTAL} />
           <View style={styles._formView}>
             <Text style={styles._hello}>{`Hi ${this.props.displayName}`}</Text>
@@ -101,7 +102,7 @@ class UpdatePasswordContainer extends Component {
               {this._renderConfirmPasswordInput()}
             </View>
           </View>
-        </View>
+        </KeyboardAwareScrollView>
         <SubmitBtn onPress={this._onSubmit} />
       </View>
     );

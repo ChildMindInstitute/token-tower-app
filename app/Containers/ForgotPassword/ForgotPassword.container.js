@@ -67,7 +67,7 @@ class ForgotPasswordContainer extends Component {
         <View style={styles._contentBlock}>
           <Header direction={DIRECTION.HORIZONTAL} />
           <View style={styles._formView}>
-            <Text style={styles._title}>Enter Your Password:</Text>
+            <Text style={styles._title}>Enter Your Email:</Text>
             <View style={styles._form}>
               {this._renderEmailInput()}
             </View>

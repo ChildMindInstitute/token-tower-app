@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, Switch } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 import ModalDropdown from 'react-native-modal-dropdown';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
+
 
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
@@ -87,7 +89,7 @@ class SettingContainer extends Component {
   render() {
     return (
       <View style={styles._container}>
-        <View style={styles._contentBlock}>
+        <KeyboardAwareScrollView style={styles._contentBlock}>
           <Header direction={'horizontal'} />
           <View style={styles._content}>
             <Text style={styles._title}>Setup</Text>
@@ -99,7 +101,7 @@ class SettingContainer extends Component {
               <Switch value={this.state.p1} onValueChange={this._onChange} />
             </View>
           </View>
-        </View>
+        </KeyboardAwareScrollView>
         <SubmitBtn onPress={this._onClick} text={'Take the tour!'} />
       </View>
     );
