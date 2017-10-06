@@ -8,9 +8,5 @@ export default [
     name: 'Token Totem',
     icon: 'leaf',
     route: 'TokenTotem'
-  },
-  {
-    name: 'Sign Out',
-    icon: 'logout'
   }
 ];

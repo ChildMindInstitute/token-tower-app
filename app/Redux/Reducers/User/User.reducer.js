@@ -20,7 +20,16 @@ const userUpdateHandler = (state) => {
   return { ...state, displayName, email, photoURL };
 };
 
+const authenticateSignOutHandler = state => ({
+  ...state,
+  isAuthenticated: false,
+  displayName: undefined,
+  email: undefined,
+  photoURL: undefined
+});
+
 export default handleActions({
   USER_UPDATE_PROFILE_FULFILLED: userUpdateHandler,
-  USER_AUTHENTICATED: userAuthenticatedHandler
+  USER_AUTHENTICATED: userAuthenticatedHandler,
+  AUTHENTICATION_SIGN_OUT_FULFILLED: authenticateSignOutHandler
 }, { isAuthenticated: false });

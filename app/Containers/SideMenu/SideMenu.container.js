@@ -6,12 +6,13 @@ import { connect } from 'react-redux';
 import Menu from './/Menu/Menu.component';
 
 import { sideMenuOpen, sideMenuClose } from '../../Redux/Reducers/SideMenu/SideMenu.reducer';
+import { authenticationSignOut } from '../../Redux/Reducers/Authentication/Authentication.reducer';
 import navPropTypes from '../../PropTypes/Navigation.propTypes';
 
 const DrawerMenu = (props) => {
-  const { children, isOpened, onOpen, onClose, isAuthenticated, displayName } = props;
+  const { children, isOpened, onOpen, onClose, isAuthenticated } = props;
 
-  const menu = <Menu {...props} onItemPress={onClose} displayName={displayName} />;
+  const menu = <Menu {...props} onItemPress={onClose} />;
 
   return (
     <Drawer
@@ -34,19 +35,23 @@ DrawerMenu.propTypes = {
   isOpened: propTypes.bool.isRequired,
   onOpen: propTypes.func.isRequired,
   onClose: propTypes.func.isRequired,
+  signOut: propTypes.func.isRequired,
   isAuthenticated: propTypes.bool.isRequired,
-  displayName: propTypes.string
+  displayName: propTypes.string,
+  photoURL: propTypes.string
 };
 
 const mapStateToProps = state => ({
   isOpened: state.sideMenu.isOpened,
   isAuthenticated: state.user.isAuthenticated,
-  displayName: state.user.displayName
+  displayName: state.user.displayName,
+  photoURL: state.user.photoURL
 });
 
 const mapDispatchToProps = {
   onOpen: sideMenuOpen,
-  onClose: sideMenuClose
+  onClose: sideMenuClose,
+  signOut: authenticationSignOut
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DrawerMenu);

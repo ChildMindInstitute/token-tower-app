@@ -11,14 +11,16 @@ export const {
   authenticationGg,
   authenticationCreateNewAccount,
   authenticationForgotPassword,
-  authenticationSendEmailVerification
+  authenticationSendEmailVerification,
+  authenticationSignOut
 } = createActions({
   AUTHENTICATION_EMAIL_PASSWORD: api.authenicate,
   AUTHENTICATION_FB: api.signInWithFB,
   AUTHENTICATION_GG: api.signInWithGG,
   AUTHENTICATION_CREATE_NEW_ACCOUNT: api.register,
   AUTHENTICATION_FORGOT_PASSWORD: api.forgotPassword,
-  AUTHENTICATION_SEND_EMAIL_VERIFICATION: api.sendEmailVerification
+  AUTHENTICATION_SEND_EMAIL_VERIFICATION: api.sendEmailVerification,
+  AUTHENTICATION_SIGN_OUT: api.signOut
 });
 
 // ------------------------------------

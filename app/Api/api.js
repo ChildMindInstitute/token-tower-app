@@ -41,6 +41,8 @@ const sendEmailVerification = () =>
 const updateUserProfile = ({ username, photoURL }) =>
   firebase.auth().currentUser.updateProfile({ displayName: username, photoURL });
 
+const signOut = () => firebase.auth().signOut();
+
 export default {
   authenicate,
   register,
@@ -50,5 +52,6 @@ export default {
   updateUserProfile,
   signInWithFB,
   signInWithGG,
-  getCurrentUser
+  getCurrentUser,
+  signOut
 };
