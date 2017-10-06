@@ -29,12 +29,10 @@ const { Authentication: { Home, Login, ForgotPassword, MainUserSelection, Update
 } = routesName;
 
 const splashScreenOptions = () => ({
-  headerTitle: 'Main',
   headerLeft: <MenuButtonContainer />
 });
 
 const settingScreenOptions = () => ({
-  headerTitle: 'Setting',
   headerLeft: <MenuButtonContainer />
 });
 
