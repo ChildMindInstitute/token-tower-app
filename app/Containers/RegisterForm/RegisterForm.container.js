@@ -11,7 +11,8 @@ import Input from '../../Components/FormInput/FormInput.component';
 import {
   authenticationCreateNewAccount,
   authenticationSendEmailVerification,
-  authenticationFb
+  authenticationFb,
+  authenticationGg
 } from '../../Redux/Reducers/Authentication/Authentication.reducer';
 import { userUpdateProfile, userAuthenticated } from '../../Redux/Reducers/User/User.reducer';
 
@@ -20,6 +21,7 @@ import styles from './RegisterForm.container.styles';
 
 import config from './RegisterForm.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
+import { FacebookAuthenticate, GoogleAuthenticate } from '../../Provider/Provider.config';
 import { required, minLength, maxLength, emailValidation } from '../../Utilities/Validation.utils';
 import { DIRECTION, ERR_MSG, COMMON } from '../../Utilities/Constant.utils';
 import { showTopErrNotification } from '../../Utilities/Form.util';
@@ -69,80 +71,58 @@ class RegisterFormContainer extends Component {
     </View>
   )
 
-  _upadteUserProfile = (values, onSuccess, onFail) => {
-    const { updateProfile } = this.props;
-    updateProfile(values).then(onSuccess).catch(onFail);
-  }
+  _onFail = ({ message }) => showTopErrNotification({
+    title: ERR_MSG.REGISTER_FAIL_TITLE, message
+  }, this.props.dispatch);
+
+  _onSubmit = () => this.props.handleSubmit(this._handleSubmit)();
 
   _handleSubmit = (values) => {
-    const { register, sendEmailVerification, dispatch } = this.props;
-    const { navigate } = this.props.navigation;
-
-    const onSubmitFail = ({ message }) => {
-      showTopErrNotification({ title: ERR_MSG.REGISTER_FAIL_TITLE, message }, dispatch);
-    };
-
-    const onSubmitSuccess = () => {
-      navigate(routeName.Registration.RegisterWelcome);
-    };
-
-    const updateUserProfile = () => {
-      this._upadteUserProfile(values, onSubmitSuccess, onSubmitFail);
-    };
-
-    const createUserSuccess = () => {
-      sendEmailVerification().then(updateUserProfile).catch(onSubmitFail);
-    };
-
-    register(values).then(createUserSuccess).catch(onSubmitFail);
+    const { register, sendEmailVerification, updateProfile, navigation: { navigate } } = this.props;
+    register(values)
+      .then(sendEmailVerification)
+      .then(() => updateProfile(values))
+      .then(() => navigate(routeName.Registration.RegisterWelcome))
+      .catch(this._onFail);
   }
 
-  _onSubmit = () => {
-    const { handleSubmit } = this.props;
-    handleSubmit(this._handleSubmit)();
+  _updateProfile = () => this.props.updateProfile({});
+
+  _providerAuthenticated = () => {
+    const { authenticated, navigation: { navigate } } = this.props;
+    authenticated();
+    navigate(routeName.Authentication.UpdatePassword);
   }
 
   _onGgPressed = async () => {
-    try {
-      const result = await Expo.Google.logInAsync({
-        androidClientId: '936670915515-4kv3lqhh031h4vksl04127jio97dear8.apps.googleusercontent.com',
-        iosClientId: '936670915515-8jdk0mrv8u4fq32k44v8n5cp3ff8lfsg.apps.googleusercontent.com',
-        scopes: ['profile', 'email']
-      });
+    const { signInWithGg } = this.props;
+    const { androidClientId, iosClientId, scopes } = GoogleAuthenticate;
 
-      if (result.type === 'success') {
-        return result.accessToken;
-      }
-      return { cancelled: true };
+    try {
+      const { type, accessToken, idToken }
+        = await Expo.Google.logInAsync({ androidClientId, iosClientId, scopes });
+
+      if (type !== COMMON.SUCCESS) return;
+
+      signInWithGg(idToken, accessToken)
+        .then(this._updateProfile)
+        .then(this._providerAuthenticated)
+        .catch(this._onFail);
     } catch (e) {
-      return { error: true };
+      this._onFail({ message: ERR_MSG.GOOGLE_SIGN_IN });
     }
   }
 
   _onFbPressed = async () => {
-    const { signInWithFb, navigation: { navigate }, dispatch } = this.props;
+    const { signInWithFb } = this.props;
+    const { appId, scopes } = FacebookAuthenticate;
+    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(appId, scopes);
 
-    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(
-      '1825757331088461',
-      { permissions: ['public_profile', 'email'] }
-    );
-
-    const onFail = ({ message }) => {
-      showTopErrNotification({ title: ERR_MSG.REGISTER_FAIL_TITLE, message }, dispatch);
-    };
-
-    const onSuccess = () => {
-      this.props.authenticated();
-      navigate(routeName.Authentication.UpdatePassword);
-    };
-
-    const updateUserProfile = () => {
-      this._upadteUserProfile({}, onSuccess, onFail);
-    };
-
-    if (type === COMMON.SUCCESS) {
-      signInWithFb(token).then(updateUserProfile).catch(onFail);
-    }
+    if (type !== COMMON.SUCCESS) return;
+    signInWithFb(token)
+      .then(this._updateProfile)
+      .then(this._providerAuthenticated)
+      .catch(this._onFail);
   }
 
   render() {
@@ -186,6 +166,7 @@ const mapDispatchToProps = {
   sendEmailVerification: authenticationSendEmailVerification,
   updateProfile: userUpdateProfile,
   signInWithFb: authenticationFb,
+  signInWithGg: authenticationGg,
   authenticated: userAuthenticated
 };
 

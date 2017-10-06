@@ -3,7 +3,8 @@ import {
   authenticationCreateNewAccount,
   authenticationSendEmailVerification,
   authenticationForgotPassword,
-  authenticationFb
+  authenticationFb,
+  authenticationGg
 } from '../Authentication/Authentication.reducer';
 import { userUpdateProfile, userUpdatePassword } from '../User/User.reducer';
 
@@ -13,6 +14,7 @@ export default [
   authenticationSendEmailVerification,
   authenticationForgotPassword,
   authenticationFb,
+  authenticationGg,
   userUpdateProfile,
   userUpdatePassword
 ];

@@ -17,7 +17,8 @@ export const ERR_MSG = {
   UPDATE_PASSWORD_TITLE: 'Update password Fail',
   LOGIN_VERIFY_EMAIL: 'Your email address is not verified. please verify your email address!',
   NOT_A_NUMBER: 'Not a number',
-  PASSWORD_NOT_MATCH: 'These passwords don\'t match!'
+  PASSWORD_NOT_MATCH: 'These passwords don\'t match!',
+  GOOGLE_SIGN_IN: 'Can\'t sign in with Google'
 };
 
 export const MSG = {

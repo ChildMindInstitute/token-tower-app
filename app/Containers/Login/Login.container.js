@@ -27,6 +27,7 @@ class LoginContainer extends Component {
         name={'email'} component={Input}
         inputStyle={styles._input} containerStyle={styles._inputContainer}
         validate={[required, emailValidation]}
+        keyboardType={'email-address'}
       />
     </View>
   );

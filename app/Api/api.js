@@ -27,6 +27,11 @@ const signInWithFB = (token) => {
   return firebase.auth().signInWithCredential(credential);
 };
 
+const signInWithGG = (idToken, token) => {
+  const credential = firebase.auth.GoogleAuthProvider.credential(idToken, token);
+  return firebase.auth().signInWithCredential(credential);
+};
+
 const register = ({ password, email }) =>
   firebase.auth().createUserWithEmailAndPassword(email, password);
 
@@ -44,5 +49,6 @@ export default {
   sendEmailVerification,
   updateUserProfile,
   signInWithFB,
+  signInWithGG,
   getCurrentUser
 };

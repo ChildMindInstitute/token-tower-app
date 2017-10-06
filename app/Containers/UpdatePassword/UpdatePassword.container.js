@@ -27,9 +27,9 @@ class UpdatePasswordContainer extends Component {
     <View style={styles._inputContainerBlock}>
       <Text style={styles._label}>Email</Text>
       <Input
-        inputStyle={{ ...styles._input, ...styles._backgroundGrey }} containerStyle={styles._inputContainer}
+        inputStyle={{ ...styles._input, ...styles._backgroundGrey }}
         editable={false} input={{ value: this.props.email }}
-        meta={{}}
+        meta={{}} containerStyle={styles._inputContainer}
       />
     </View>
   )

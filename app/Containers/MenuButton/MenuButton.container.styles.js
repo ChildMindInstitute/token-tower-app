@@ -1,4 +1,4 @@
 export default {
-  btn: { marginLeft: 10 },
+  btn: { padding: 15 },
   btnColor: 'black'
 };
