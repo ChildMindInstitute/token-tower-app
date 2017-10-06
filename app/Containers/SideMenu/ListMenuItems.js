@@ -6,7 +6,11 @@ export default [
   },
   {
     name: 'Token Totem',
-    icon: 'paper-plane',
+    icon: 'leaf',
     route: 'TokenTotem'
+  },
+  {
+    name: 'Sign Out',
+    icon: 'logout'
   }
 ];

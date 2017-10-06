@@ -20,4 +20,4 @@ export const emailValidation = (value) => {
   return undefined;
 };
 export const numberValidation = number =>
-  ((typeof number === 'number' && !_.isNaN(number)) ? undefined : ERR_MSG.NOT_A_NUMBER);
+  ((typeof (number * 1) === 'number' && !_.isNaN((number * 1))) ? undefined : ERR_MSG.NOT_A_NUMBER);

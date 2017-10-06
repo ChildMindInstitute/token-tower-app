@@ -19,12 +19,6 @@
       "src": "fontawesome"
     },
     {
-      "uid": "38575a803c4da31ce20d77e1e1236bcb",
-      "css": "paper-plane",
-      "code": 61912,
-      "src": "fontawesome"
-    },
-    {
       "uid": "37b41cdae5ec9dab40e0c5bfff8a0ec8",
       "css": "id-card",
       "code": 62146,
@@ -61,9 +55,21 @@
       "src": "fontawesome"
     },
     {
+      "uid": "0d20938846444af8deb1920dc85a29fb",
+      "css": "logout",
+      "code": 59395,
+      "src": "fontawesome"
+    },
+    {
       "uid": "559647a6f430b3aeadbecd67194451dd",
       "css": "menu",
       "code": 61641,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "19e7b342a5e6bd0cd86de6d6208486a4",
+      "css": "leaf",
+      "code": 59398,
       "src": "fontawesome"
     }
   ]

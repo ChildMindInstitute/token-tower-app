@@ -6,5 +6,5 @@ export default {
     fontSize: 25,
     fontFamily: Fonts.bold
   },
-  headerTintColor: '#ffffff'
+  headerTintColor: 'black'
 };
