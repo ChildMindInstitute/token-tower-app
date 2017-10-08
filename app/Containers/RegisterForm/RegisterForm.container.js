@@ -24,6 +24,8 @@ import {
 import images from '../../Resources/Images';
 import styles from './RegisterForm.container.styles';
 
+import UserModel from '../../Models/Users/Users.model';
+
 import config from './RegisterForm.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { FacebookAuthenticate, GoogleAuthenticate } from '../../Provider/Provider.config';
@@ -85,48 +87,45 @@ class RegisterFormContainer extends Component {
   _handleSubmit = (values) => {
     const { register, sendEmailVerification, updateBasicProfile, navigation: { navigate } } = this.props;
     register(values)
+      .then(() => updateBasicProfile(values))
       .then(this._updateProfile)
       .then(sendEmailVerification)
-      .then(() => updateBasicProfile(values))
       .then(() => navigate(routeName.Registration.RegisterWelcome))
       .catch(this._onFail);
   }
 
-  _updateProfile = ({ value }) => this.props.updateProfile(value, { isTutorial: true });
+  _updateProfile = ({ value }) => this.props.updateProfile(value.uid, new UserModel(value));
 
-  _providerAuthenticated = () => {
-    const { authenticated, navigation: { navigate } } = this.props;
-    authenticated();
-    navigate(routeName.Authentication.UpdatePassword);
+  _signInWithProviderWrap = (promise) => {
+    const { initProfile, authenticated, navigation: { navigate } } = this.props;
+    const _providerAuthenticated = () => {
+      authenticated();
+      navigate(routeName.Authentication.UpdatePassword);
+    };
+    promise
+      .then(this._updateProfile)
+      .then(({ value }) => initProfile(value))
+      .then(_providerAuthenticated)
+      .catch(this._onFail);
   }
 
   _onGgPressed = async () => {
     try {
-      const { initProfile } = this.props;
       const { type, accessToken, idToken } = await Expo.Google.logInAsync(GoogleAuthenticate);
 
       if (type !== COMMON.SUCCESS) return;
-      this.props.signInWithGg(idToken, accessToken)
-        .then(this._updateProfile)
-        .then(initProfile)
-        .then(this._providerAuthenticated)
-        .catch(this._onFail);
+      this._signInWithProviderWrap(this.props.signInWithGg(idToken, accessToken));
     } catch (e) {
       this._onFail({ message: ERR_MSG.GOOGLE_SIGN_IN });
     }
   }
 
   _onFbPressed = async () => {
-    const { initProfile } = this.props;
     const { appId, scopes } = FacebookAuthenticate;
     const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(appId, scopes);
 
     if (type !== COMMON.SUCCESS) return;
-    this.props.signInWithFb(token)
-      .then(this._updateProfile)
-      .then(initProfile)
-      .then(this._providerAuthenticated)
-      .catch(this._onFail);
+    this._signInWithProviderWrap(this.props.signInWithFb(token));
   }
 
   render() {

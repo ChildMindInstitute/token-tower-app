@@ -3,15 +3,12 @@ import { View, Text, Switch } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { connect } from 'react-redux';
-
 
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import Input from '../../Components/FormInput/FormInput.component';
 
 import styles from './Setting.container.styles';
-import { authenticationCreateNewAccount } from '../../Redux/Reducers/Authentication/Authentication.reducer';
 
 import config from './Setting.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
@@ -68,15 +65,12 @@ class SettingContainer extends Component {
     </View>
   )
   _onSubmitSuccess = () => {
-    const { navigate } = this.props.navigation;
-    navigate(routeName.Root.TokenTotemTutorial);
+
   }
 
-  _handleSubmit = (values) => {
-    const { register } = this.props;
-    register(values)
-      .then(this._onSubmitSuccess)
-      .catch(this._onSubmitFail);
+  _handleSubmit = () => {
+    const { navigate } = this.props.navigation;
+    navigate(routeName.Root.TokenTotemTutorial);
   }
 
   _onClick = () => {
@@ -108,13 +102,9 @@ class SettingContainer extends Component {
     );
   }
 }
-const mapStateToProps = () => ({});
-const mapDispatchToProps = {
-  register: authenticationCreateNewAccount
-};
 
 SettingContainer.propTypes = config.propTypes;
 
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+export default (reduxForm({
   form: 'settingsForm'
 })(SettingContainer));

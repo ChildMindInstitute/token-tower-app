@@ -60,15 +60,15 @@ class LoginContainer extends Component {
     const isFbOrGgProvider = providerData.find(p => p.providerId === 'facebook.com');
 
     if (emailVerified || isFbOrGgProvider) {
-      return initProfile(uid)
+      initProfile(uid)
         .then(this._onAuthenticated)
         .catch(this._onSubmitFail);
+    } else {
+      showTopErrNotification({
+        title: ERR_MSG.LOGIN_FAIL_TITLE,
+        message: ERR_MSG.LOGIN_VERIFY_EMAIL
+      }, dispatch);
     }
-
-    return showTopErrNotification({
-      title: ERR_MSG.LOGIN_FAIL_TITLE,
-      message: ERR_MSG.LOGIN_VERIFY_EMAIL
-    }, dispatch);
   }
 
   _onSubmitFail = ({ message }) => {

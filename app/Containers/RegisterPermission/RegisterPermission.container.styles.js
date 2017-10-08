@@ -40,9 +40,9 @@ export default EStyleSheet.create({
     }
   },
   _permissionContainer: {
-    paddingTop: 20,
-    [smallSize]: {
-      paddingTop: 10
+    paddingVertical: 10,
+    [largeSize]: {
+      paddingVertical: 15
     }
   },
   _consent: {

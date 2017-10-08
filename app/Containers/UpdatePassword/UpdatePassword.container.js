@@ -66,7 +66,7 @@ class UpdatePasswordContainer extends Component {
     }
 
     const { updatePassword } = this.props;
-    updatePassword({ password })
+    updatePassword(password)
       .then(this._onSubmitSuccess)
       .catch(this._onSubmitFail);
   }

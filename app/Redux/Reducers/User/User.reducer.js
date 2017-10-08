@@ -9,8 +9,8 @@ export const {
   userUpdateBasicProfile,
   userUpdateProfile,
   userUpdatePassword,
-  userAuthenticated,
-  userInitProfile
+  userInitProfile,
+  userAuthenticated
 } =
   createActions({
     USER_UPDATE_BASIC_PROFILE: api.updateUserBasicProfile,
@@ -29,25 +29,12 @@ const userInitProfileHandler = (state, { payload }) => {
   return { ...state, displayName, email, photoURL, ...payload };
 };
 
-const userUpdateBasicProfileHandler = (state) => {
-  const { displayName, email, photoURL } = api.getCurrentUser();
-  return { ...state, displayName, email, photoURL };
-};
-
-const userUpdateProfileHandler = (state, { payload }) => ({ ...state, ...payload });
-
-const authenticateSignOutHandler = state => ({
-  ...state,
-  isAuthenticated: false,
-  displayName: undefined,
-  email: undefined,
-  photoURL: undefined
+const authenticateSignOutHandler = () => ({
+  isAuthenticated: false
 });
 
 export default handleActions({
   USER_AUTHENTICATED: userAuthenticatedHandler,
   USER_INIT_PROFILE_FULFILLED: userInitProfileHandler,
-  USER_UPDATE_BASIC_PROFILE_FULFILLED: userUpdateBasicProfileHandler,
-  USER_UPDATE_PROFILE_FULFILLED: userUpdateProfileHandler,
   AUTHENTICATION_SIGN_OUT_FULFILLED: authenticateSignOutHandler
 }, { isAuthenticated: false });
