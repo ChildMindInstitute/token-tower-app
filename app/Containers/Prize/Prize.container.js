@@ -39,6 +39,7 @@ class PrizeContainer extends Component {
         component={Input}
         inputStyle={styles._input}
         containerStyle={styles._token}
+        keyboardType={'numeric'}
       />
       <Text style={styles._text}>tokens until: </Text>
       <Field

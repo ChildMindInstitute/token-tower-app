@@ -27,6 +27,7 @@ class SettingContainer extends Component {
       </Text>
       <View style={styles._fieldBlock}>
         <Field
+          keyboardType={'numeric'}
           name={'tokens'}
           component={Input}
           inputStyle={styles._input}

@@ -9,8 +9,9 @@ import FormSwitch from '../../Components/FormSwitch/FormSwitch.component';
 import styles from './RegisterPermission.container.styles';
 
 import config from './RegisterPermission.container.config';
+import { showTopErrNotification } from '../../Utilities/Form.util';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
-import { DIRECTION } from '../../Utilities/Constant.utils';
+import { DIRECTION, ERR_MSG } from '../../Utilities/Constant.utils';
 
 class RegisterPermissionContainer extends Component {
   _onNext = () => {
@@ -21,9 +22,12 @@ class RegisterPermissionContainer extends Component {
   _renderDescription = () => (
     <View style={styles._descriptionContainer}>
       <Text style={styles._description}>
-        Description: Token Totem airsnetriasent rasitenrasi es aie aries iarense
-        riseaneirie seire ire irenas tneransetariufi eari ufu riuf iri.
-        urifu irau furiuf iruf uafiaui r.
+      This app provides a convenient and fun way to keep track of desired
+      or undesired behaviors and to reward or punish those behaviors by adding
+       or removing tokens from a daily allowance.
+       A preset goal is achieved if enough tokens are saved.
+       If parents have registered themselves and paired their child,
+       it is the parents who can add or remove tokens from their child’s app.
       </Text>
     </View>
   )
@@ -32,24 +36,48 @@ class RegisterPermissionContainer extends Component {
     <View style={styles._permissionContainer}>
       <Text style={styles._consent}>Consent</Text>
       <View style={styles._permissionBlock}>
-        <Text style={styles._permissionText}>Pilot study irsetn iensrt insrininirnsitnriesnite.</Text>
+        <Text style={styles._permissionText}>
+        I understand that performing certain activities or answering
+        certain questions can be uncomfortable, and there is no
+         obligation to complete every task or questionnaire.
+        </Text>
         <Field name={'permission1'} component={FormSwitch} />
       </View>
       <View style={styles._permissionBlock}>
-        <Text style={styles._permissionText}>Not liableliable ienars iaers eseiiieeseiiie einriseni reisn rsien trei erin.</Text>
+        <Text style={styles._permissionText}>
+        I will allow the Child Mind Institute to store data
+         from the use of this app on a secure cloud server,
+         and to access this information for clinical and research
+         purposes.
+        </Text>
         <Field name={'permission2'} component={FormSwitch} />
       </View>
       <View style={styles._permissionBlock}>
-        <Text style={styles._permissionText}>Data breach aiers iers iersiers. ires ier ires u efir ir.</Text>
+        <Text style={styles._permissionText}>
+        I permit the Child Mind Institute to contact me
+         regarding information gathered from this app for
+          clinical or research purposes. (Optional)
+        </Text>
         <Field name={'permission3'} component={FormSwitch} />
-      </View>
-      <View style={styles._permissionBlock}>
-        <Text style={styles._permissionText}>Chlid Mind Institute access to data and recontact? </Text>
-        <Field name={'permission4'} component={FormSwitch} />
       </View>
     </View>
   )
+  _onSubmit = () => {
+    const { handleSubmit } = this.props;
+    handleSubmit(this._handleSubmit)();
+  }
 
+  _handleSubmit = ({ permission1, permission2 }) => {
+    if ((!permission1 || !permission2)) {
+      const { dispatch } = this.props;
+      showTopErrNotification({
+        message: ERR_MSG.PERMISSION_AGREEMENT
+      }, dispatch);
+    } else {
+      const { navigate } = this.props.navigation;
+      navigate(routeName.Registration.RegisterForm);
+    }
+  }
   render() {
     return (
       <View style={styles._container}>
@@ -58,7 +86,7 @@ class RegisterPermissionContainer extends Component {
           {this._renderDescription()}
           {this._renderPermission()}
         </ScrollView>
-        <Btn onPress={this._onNext} text={'NEXT'} />
+        <Btn onPress={this._onSubmit} text={'NEXT'} />
       </View>
     );
   }

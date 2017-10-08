@@ -9,6 +9,8 @@ const propTypes = {
   register: PropTypes.func.isRequired,
   sendEmailVerification: PropTypes.func.isRequired,
   updateProfile: PropTypes.func.isRequired,
+  updateBasicProfile: PropTypes.func.isRequired,
+  initProfile: PropTypes.func.isRequired,
   signInWithFb: PropTypes.func.isRequired,
   authenticated: PropTypes.func.isRequired
 };

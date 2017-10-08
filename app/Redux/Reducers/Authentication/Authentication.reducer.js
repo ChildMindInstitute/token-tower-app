@@ -1,6 +1,6 @@
 import { createActions, handleActions } from 'redux-actions';
 
-import api from '../../../Api/api';
+import api from '../../../Firebase/Authenticate/Authenticate.api';
 
 // ------------------------------------
 // Action
@@ -14,7 +14,7 @@ export const {
   authenticationSendEmailVerification,
   authenticationSignOut
 } = createActions({
-  AUTHENTICATION_EMAIL_PASSWORD: api.authenicate,
+  AUTHENTICATION_EMAIL_PASSWORD: api.signIn,
   AUTHENTICATION_FB: api.signInWithFB,
   AUTHENTICATION_GG: api.signInWithGG,
   AUTHENTICATION_CREATE_NEW_ACCOUNT: api.register,

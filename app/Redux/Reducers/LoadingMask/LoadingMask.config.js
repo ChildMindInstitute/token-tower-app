@@ -7,7 +7,7 @@ import {
   authenticationGg,
   authenticationSignOut
 } from '../Authentication/Authentication.reducer';
-import { userUpdateProfile, userUpdatePassword } from '../User/User.reducer';
+import { userUpdateBasicProfile, userUpdateProfile, userUpdatePassword } from '../User/User.reducer';
 
 export default [
   authenticationEmailPassword,
@@ -17,6 +17,7 @@ export default [
   authenticationFb,
   authenticationGg,
   authenticationSignOut,
+  userUpdateBasicProfile,
   userUpdateProfile,
   userUpdatePassword
 ];

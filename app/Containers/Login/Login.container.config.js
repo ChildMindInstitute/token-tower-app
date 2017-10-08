@@ -8,7 +8,7 @@ const propTypes = {
   ...formPropTypes,
   authentication: PropTypes.func.isRequired,
   authenticated: PropTypes.func.isRequired,
-  updateProfile: PropTypes.func.isRequired
+  initProfile: PropTypes.func.isRequired
 };
 
 const form = {

@@ -14,7 +14,12 @@ import {
   authenticationFb,
   authenticationGg
 } from '../../Redux/Reducers/Authentication/Authentication.reducer';
-import { userUpdateProfile, userAuthenticated } from '../../Redux/Reducers/User/User.reducer';
+import {
+  userUpdateBasicProfile,
+  userAuthenticated,
+  userUpdateProfile,
+  userInitProfile
+} from '../../Redux/Reducers/User/User.reducer';
 
 import images from '../../Resources/Images';
 import styles from './RegisterForm.container.styles';
@@ -78,15 +83,16 @@ class RegisterFormContainer extends Component {
   _onSubmit = () => this.props.handleSubmit(this._handleSubmit)();
 
   _handleSubmit = (values) => {
-    const { register, sendEmailVerification, updateProfile, navigation: { navigate } } = this.props;
+    const { register, sendEmailVerification, updateBasicProfile, navigation: { navigate } } = this.props;
     register(values)
+      .then(this._updateProfile)
       .then(sendEmailVerification)
-      .then(() => updateProfile(values))
+      .then(() => updateBasicProfile(values))
       .then(() => navigate(routeName.Registration.RegisterWelcome))
       .catch(this._onFail);
   }
 
-  _updateProfile = () => this.props.updateProfile({});
+  _updateProfile = ({ value }) => this.props.updateProfile(value, { isTutorial: true });
 
   _providerAuthenticated = () => {
     const { authenticated, navigation: { navigate } } = this.props;
@@ -95,17 +101,14 @@ class RegisterFormContainer extends Component {
   }
 
   _onGgPressed = async () => {
-    const { signInWithGg } = this.props;
-    const { androidClientId, iosClientId, scopes } = GoogleAuthenticate;
-
     try {
-      const { type, accessToken, idToken }
-        = await Expo.Google.logInAsync({ androidClientId, iosClientId, scopes });
+      const { initProfile } = this.props;
+      const { type, accessToken, idToken } = await Expo.Google.logInAsync(GoogleAuthenticate);
 
       if (type !== COMMON.SUCCESS) return;
-
-      signInWithGg(idToken, accessToken)
+      this.props.signInWithGg(idToken, accessToken)
         .then(this._updateProfile)
+        .then(initProfile)
         .then(this._providerAuthenticated)
         .catch(this._onFail);
     } catch (e) {
@@ -114,13 +117,14 @@ class RegisterFormContainer extends Component {
   }
 
   _onFbPressed = async () => {
-    const { signInWithFb } = this.props;
+    const { initProfile } = this.props;
     const { appId, scopes } = FacebookAuthenticate;
     const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(appId, scopes);
 
     if (type !== COMMON.SUCCESS) return;
-    signInWithFb(token)
+    this.props.signInWithFb(token)
       .then(this._updateProfile)
+      .then(initProfile)
       .then(this._providerAuthenticated)
       .catch(this._onFail);
   }
@@ -165,6 +169,8 @@ const mapDispatchToProps = {
   register: authenticationCreateNewAccount,
   sendEmailVerification: authenticationSendEmailVerification,
   updateProfile: userUpdateProfile,
+  updateBasicProfile: userUpdateBasicProfile,
+  initProfile: userInitProfile,
   signInWithFb: authenticationFb,
   signInWithGg: authenticationGg,
   authenticated: userAuthenticated
