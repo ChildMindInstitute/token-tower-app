@@ -54,3 +54,8 @@ export const TOKENS = {
     EMAIL: 'email'
   }
 };
+
+export const USER_ROLE = {
+  PARENT: 'parent',
+  CHILD: 'child'
+};

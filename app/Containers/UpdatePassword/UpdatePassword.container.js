@@ -73,7 +73,7 @@ class UpdatePasswordContainer extends Component {
 
   _onSubmitSuccess = () => {
     const { navigate } = this.props.navigation;
-    navigate(routeName.Root.TokenTotem);
+    navigate(routeName.Root.Config);
   }
 
   _onSubmitFail = ({ message }) => {

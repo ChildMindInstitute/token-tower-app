@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { TouchableWithoutFeedback, View, Text, Image } from 'react-native';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Main from '../../Components/Main/Main.component';
+
+import { userUpdateProfile, userInitProfile } from '../../Redux/Reducers/User/User.reducer';
 
 import images from '../../Resources/Images';
 import styles from './Tutorial.container.styles';
@@ -17,11 +21,12 @@ class TutorialContainer extends Component {
 
   _onPress = () => {
     if (this.state.step === 3) {
-      const { navigate } = this.props.navigation;
-      navigate(routeName.Root.TokenTotem);
-    } else {
-      this.setState({ step: this.state.step + 1 });
-    }
+      const { user, updateProfile, initProfile, navigation: { navigate } } = this.props;
+
+      updateProfile({ ...user, isFirstTutorial: false })
+        .then(({ value }) => initProfile(value))
+        .then(() => navigate(routeName.Root.TokenTotem));
+    } else this.setState({ step: this.state.step + 1 });
   }
 
   _renderStep1 = () => (
@@ -33,7 +38,6 @@ class TutorialContainer extends Component {
         <Image source={images.arrow} style={styles._arrow} />
       </View>
     </View>
-
   )
 
   _renderStep2 = () => (
@@ -45,8 +49,6 @@ class TutorialContainer extends Component {
         <Image source={images.arrow} style={styles._arrow1} />
       </View>
     </View>
-
-
   )
 
   _renderStep3 = () => (
@@ -58,13 +60,12 @@ class TutorialContainer extends Component {
         <Image source={images.arrow} style={styles._arrow2} />
       </View>
     </View>
-
   )
 
   _renderStep4 = () => (
     <View style={styles._tutorialContainer}>
       <View style={styles._bubble}>
-        <Text style={styles._text3}>Remove/add tokenstokens by tapping on the minus/plus symbol.</Text>
+        <Text style={styles._text3}>Remove/add tokens by tapping on the minus/plus symbol.</Text>
       </View>
       <View style={{ flexDirection: 'row' }}>
         <View style={styles._imgContainer3}>
@@ -141,6 +142,19 @@ class TutorialContainer extends Component {
     );
   }
 }
-TutorialContainer.propTypes = navPropTypes.propTypes;
+TutorialContainer.propTypes = {
+  ...navPropTypes,
+  user: PropTypes.object.isRequired,
+  updateProfile: PropTypes.func.isRequired,
+  initProfile: PropTypes.func.isRequired
+};
 
-export default TutorialContainer;
+const mapStateToProps = state => ({
+  user: state.user
+});
+const mapDispatchToProps = {
+  updateProfile: userUpdateProfile,
+  initProfile: userInitProfile
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TutorialContainer);

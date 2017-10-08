@@ -8,8 +8,7 @@ export default ({
   child = null,
   isFirstTutorial = true,
   canAnimation = true,
-  canContact = false,
-  timestamp = database.ServerValue.TIMESTAMP
+  canContact = false
 }) =>
   ({
     uid,
@@ -18,5 +17,5 @@ export default ({
     isFirstTutorial,
     canAnimation,
     canContact,
-    timestamp
+    timestamp: database.ServerValue.TIMESTAMP
   });

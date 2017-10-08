@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Switch } from 'react-native';
+import { View, Text } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -7,16 +7,15 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import Input from '../../Components/FormInput/FormInput.component';
+import FormSwitch from '../../Components/FormSwitch/FormSwitch.component';
 
 import styles from './Setting.container.styles';
 
 import config from './Setting.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
-import { numberValidation } from '../../Utilities/Validation.utils';
+import { required, numberValidation } from '../../Utilities/Validation.utils';
 
 class SettingContainer extends Component {
-  state = { p1: true }
-
   _renderTokens = () => (
     <View style={styles._inputContainerBlock}>
       <Text style={styles._label}>
@@ -61,6 +60,7 @@ class SettingContainer extends Component {
           component={Input}
           inputStyle={styles._input}
           containerStyle={styles._inputContainer}
+          validate={required}
         />
       </View>
     </View>
@@ -75,10 +75,6 @@ class SettingContainer extends Component {
     navigate(routeName.Root.TokenTotemTutorial);
   }
 
-  _onChange = (value) => {
-    this.setState({ p1: value });
-  }
-
   render() {
     return (
       <View style={styles._container}>
@@ -91,7 +87,7 @@ class SettingContainer extends Component {
             {this._renderPair()}
             <View style={styles._inputContainerBlock}>
               <Text style={styles._label}>Sound effects to accompany animations?</Text>
-              <Switch value={this.state.p1} onValueChange={this._onChange} />
+              <Field name={'canAnimation'} component={FormSwitch} />
             </View>
           </View>
         </KeyboardAwareScrollView>
@@ -103,6 +99,4 @@ class SettingContainer extends Component {
 
 SettingContainer.propTypes = config.propTypes;
 
-export default (reduxForm({
-  form: 'settingsForm'
-})(SettingContainer));
+export default (reduxForm(config.form)(SettingContainer));

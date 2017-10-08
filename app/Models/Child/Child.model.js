@@ -1,10 +1,9 @@
 import { database } from 'firebase';
 
 export default ({
-  name,
-  timestamp = database.ServerValue.TIMESTAMP
+  name
 }) =>
   ({
     name,
-    timestamp
+    timestamp: database.ServerValue.TIMESTAMP
   });
