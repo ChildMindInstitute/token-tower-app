@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNavigationHelpers, NavigationActions } from 'react-navigation';
-import { BackHandler } from 'react-native';
+import { addNavigationHelpers } from 'react-navigation';
+// import { addNavigationHelpers, NavigationActions } from 'react-navigation';
+// import { BackHandler } from 'react-native';
 import { Font } from 'expo';
 
 import CustomNav from '../CustomNavigator/CustomNavigator.component';
@@ -17,20 +18,22 @@ class RootNavigator extends Component {
     this.props.dispatch(fontLoadFinished());
   }
 
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this._onBackPress);
-  }
+  // NOTE: DISABLE ANDROID BACK BUTTON for now
 
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this._onBackPress);
-  }
+  // componentDidMount() {
+  //   BackHandler.addEventListener('hardwareBackPress', this._onBackPress);
+  // }
 
-  _onBackPress = () => {
-    const { dispatch, navigationState: { index } } = this.props;
-    if (index === 0) return false;
-    dispatch(NavigationActions.back());
-    return true;
-  };
+  // componentWillUnmount() {
+  //   BackHandler.removeEventListener('hardwareBackPress', this._onBackPress);
+  // }
+
+  // _onBackPress = () => {
+  //   const { dispatch, navigationState: { index } } = this.props;
+  //   if (index === 0) return false;
+  //   dispatch(NavigationActions.back());
+  //   return true;
+  // };
 
   render() {
     const { dispatch, navigationState, isFontLoaded } = this.props;
