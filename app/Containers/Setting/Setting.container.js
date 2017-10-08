@@ -33,8 +33,8 @@ class SettingContainer extends Component {
         />
       </View>
     </View>
-
   )
+
   _renderReplenish = () => (
     <View style={styles._inputContainerBlock}>
       <Text style={styles._label}>
@@ -51,6 +51,7 @@ class SettingContainer extends Component {
       </View>
     </View>
   )
+
   _renderPair = () => (
     <View style={styles._inputContainerBlock}>
       <Text style={styles._label}>Pair app (child's) name</Text>
@@ -64,6 +65,7 @@ class SettingContainer extends Component {
       </View>
     </View>
   )
+
   _onSubmitSuccess = () => {
 
   }
@@ -73,11 +75,7 @@ class SettingContainer extends Component {
     navigate(routeName.Root.TokenTotemTutorial);
   }
 
-  _onClick = () => {
-    const { handleSubmit } = this.props;
-    handleSubmit(this._handleSubmit)();
-  }
-  _onChange =(value) => {
+  _onChange = (value) => {
     this.setState({ p1: value });
   }
 
@@ -97,7 +95,7 @@ class SettingContainer extends Component {
             </View>
           </View>
         </KeyboardAwareScrollView>
-        <SubmitBtn onPress={this._onClick} text={'Take the tour!'} />
+        <SubmitBtn onPress={this.props.handleSubmit(this._handleSubmit)} text={'Take the tour!'} />
       </View>
     );
   }

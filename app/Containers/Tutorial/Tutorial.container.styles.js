@@ -1,7 +1,7 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import { Fonts } from '../../Resources/Fonts';
-import { largeSize, mediumSize, smallSize } from '../../Utilities/MediaQuery.utils';
+import { largeSize, smallSize } from '../../Utilities/MediaQuery.utils';
 
 export default EStyleSheet.create({
   _container: {

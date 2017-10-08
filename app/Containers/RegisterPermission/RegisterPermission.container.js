@@ -14,15 +14,10 @@ import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { DIRECTION, ERR_MSG } from '../../Utilities/Constant.utils';
 
 class RegisterPermissionContainer extends Component {
-  _onNext = () => {
-    const { navigate } = this.props.navigation;
-    navigate(routeName.Registration.RegisterForm);
-  }
-
   _renderDescription = () => (
     <View style={styles._descriptionContainer}>
       <Text style={styles._description}>
-      This app provides a convenient and fun way to keep track of desired
+        This app provides a convenient and fun way to keep track of desired
       or undesired behaviors and to reward or punish those behaviors by adding
        or removing tokens from a daily allowance.
        A preset goal is achieved if enough tokens are saved.
@@ -37,47 +32,43 @@ class RegisterPermissionContainer extends Component {
       <Text style={styles._consent}>Consent</Text>
       <View style={styles._permissionBlock}>
         <Text style={styles._permissionText}>
-        I understand that performing certain activities or answering
+          I understand that performing certain activities or answering
         certain questions can be uncomfortable, and there is no
          obligation to complete every task or questionnaire.
         </Text>
-        <Field name={'permission1'} component={FormSwitch} />
+        <Field name={'canPerforming'} component={FormSwitch} />
       </View>
       <View style={styles._permissionBlock}>
         <Text style={styles._permissionText}>
-        I will allow the Child Mind Institute to store data
+          I will allow the Child Mind Institute to store data
          from the use of this app on a secure cloud server,
          and to access this information for clinical and research
          purposes.
         </Text>
-        <Field name={'permission2'} component={FormSwitch} />
+        <Field name={'canStoreData'} component={FormSwitch} />
       </View>
       <View style={styles._permissionBlock}>
         <Text style={styles._permissionText}>
-        I permit the Child Mind Institute to contact me
+          I permit the Child Mind Institute to contact me
          regarding information gathered from this app for
           clinical or research purposes. (Optional)
         </Text>
-        <Field name={'permission3'} component={FormSwitch} />
+        <Field name={'canContact'} component={FormSwitch} />
       </View>
     </View>
   )
-  _onSubmit = () => {
-    const { handleSubmit } = this.props;
-    handleSubmit(this._handleSubmit)();
-  }
 
-  _handleSubmit = ({ permission1, permission2 }) => {
-    if ((!permission1 || !permission2)) {
-      const { dispatch } = this.props;
+  _handleSubmit = ({ canPerforming, canStoreData }) => {
+    const { dispatch, navigation: { navigate } } = this.props;
+
+    if (!canPerforming || !canStoreData) {
       showTopErrNotification({
+        title: ERR_MSG.REGISTER_FAIL_TITLE,
         message: ERR_MSG.PERMISSION_AGREEMENT
       }, dispatch);
-    } else {
-      const { navigate } = this.props.navigation;
-      navigate(routeName.Registration.RegisterForm);
-    }
+    } else navigate(routeName.Registration.RegisterForm);
   }
+
   render() {
     return (
       <View style={styles._container}>
@@ -86,7 +77,7 @@ class RegisterPermissionContainer extends Component {
           {this._renderDescription()}
           {this._renderPermission()}
         </ScrollView>
-        <Btn onPress={this._onSubmit} text={'NEXT'} />
+        <Btn onPress={this.props.handleSubmit(this._handleSubmit)} text={'NEXT'} />
       </View>
     );
   }

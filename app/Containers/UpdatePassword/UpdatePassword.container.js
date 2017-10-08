@@ -84,10 +84,6 @@ class UpdatePasswordContainer extends Component {
     }, dispatch);
   }
 
-  _onSubmit = () => {
-    this.props.handleSubmit(this._handleSubmit)();
-  }
-
   render() {
     return (
       <View style={styles._container}>
@@ -95,7 +91,7 @@ class UpdatePasswordContainer extends Component {
           <Header direction={DIRECTION.HORIZONTAL} />
           <View style={styles._formView}>
             <Text style={styles._hello}>{`Hi ${this.props.displayName}`}</Text>
-            <Text style={styles._title}>Please update password.</Text>
+            <Text style={styles._title}>Please set your password.</Text>
             <View style={styles._form}>
               {this._renderEmail()}
               {this._renderPasswordInput()}
@@ -103,7 +99,7 @@ class UpdatePasswordContainer extends Component {
             </View>
           </View>
         </KeyboardAwareScrollView>
-        <SubmitBtn onPress={this._onSubmit} />
+        <SubmitBtn onPress={this.props.handleSubmit(this._handleSubmit)} />
       </View>
     );
   }

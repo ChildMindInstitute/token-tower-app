@@ -48,15 +48,16 @@ class LoginContainer extends Component {
     navigate(routeName.Authentication.ForgotPassword);
   }
 
-  _onAuthenticated = () => {
+  _onAuthenticated = ({ value: { child } }) => {
     const { navigation: { navigate }, authenticated } = this.props;
     authenticated();
-    navigate(routeName.Root.TokenTotem);
+
+    if (child) navigate(routeName.Authentication.MainUserSelection);
+    else navigate(routeName.Root.Config);
   }
 
   _onSubmitSuccess = ({ value: { emailVerified, providerData, uid } }) => {
     const { dispatch, initProfile } = this.props;
-
     const isFbOrGgProvider = providerData.find(p => p.providerId === 'facebook.com');
 
     if (emailVerified || isFbOrGgProvider) {
@@ -84,11 +85,6 @@ class LoginContainer extends Component {
       .catch(this._onSubmitFail);
   };
 
-  _onSubmit = () => {
-    const { handleSubmit } = this.props;
-    handleSubmit(this._handleSubmit)();
-  }
-
   render() {
     return (
       <View style={styles._container}>
@@ -104,7 +100,7 @@ class LoginContainer extends Component {
             textStyle={styles._forgot}
           />
         </KeyboardAwareScrollView>
-        <Btn onPress={this._onSubmit} />
+        <Btn onPress={this.props.handleSubmit(this._handleSubmit)} />
       </View>
     );
   }

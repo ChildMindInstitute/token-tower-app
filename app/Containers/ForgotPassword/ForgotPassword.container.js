@@ -57,10 +57,6 @@ class ForgotPasswordContainer extends Component {
     }, dispatch);
   }
 
-  _onSubmit = () => {
-    this.props.handleSubmit(this._handleSubmit)();
-  }
-
   render() {
     return (
       <View style={styles._container}>
@@ -73,7 +69,7 @@ class ForgotPasswordContainer extends Component {
             </View>
           </View>
         </View>
-        <SubmitBtn onPress={this._onSubmit} />
+        <SubmitBtn onPress={this.props.handleSubmit(this._handleSubmit)} />
       </View>
     );
   }

@@ -24,8 +24,6 @@ import {
 import images from '../../Resources/Images';
 import styles from './RegisterForm.container.styles';
 
-import UserModel from '../../Models/Users/Users.model';
-
 import config from './RegisterForm.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { FacebookAuthenticate, GoogleAuthenticate } from '../../Provider/Provider.config';
@@ -82,19 +80,20 @@ class RegisterFormContainer extends Component {
     title: ERR_MSG.REGISTER_FAIL_TITLE, message
   }, this.props.dispatch);
 
-  _onSubmit = () => this.props.handleSubmit(this._handleSubmit)();
-
-  _handleSubmit = (values) => {
+  _handleSubmit = ({ username, password, email }) => {
     const { register, sendEmailVerification, updateBasicProfile, navigation: { navigate } } = this.props;
-    register(values)
-      .then(() => updateBasicProfile(values))
+    register({ email, password })
+      .then(() => updateBasicProfile({ username }))
       .then(this._updateProfile)
       .then(sendEmailVerification)
       .then(() => navigate(routeName.Registration.RegisterWelcome))
       .catch(this._onFail);
   }
 
-  _updateProfile = ({ value }) => this.props.updateProfile(value.uid, new UserModel(value));
+  _updateProfile = ({ value: { displayName, uid } }) => {
+    const { canContact, updateProfile } = this.props;
+    return updateProfile({ uid, displayName, canContact });
+  };
 
   _signInWithProviderWrap = (promise) => {
     const { initProfile, authenticated, navigation: { navigate } } = this.props;
@@ -111,21 +110,23 @@ class RegisterFormContainer extends Component {
 
   _onGgPressed = async () => {
     try {
+      const { signInWithGg } = this.props;
       const { type, accessToken, idToken } = await Expo.Google.logInAsync(GoogleAuthenticate);
 
       if (type !== COMMON.SUCCESS) return;
-      this._signInWithProviderWrap(this.props.signInWithGg(idToken, accessToken));
+      this._signInWithProviderWrap(signInWithGg(idToken, accessToken));
     } catch (e) {
       this._onFail({ message: ERR_MSG.GOOGLE_SIGN_IN });
     }
   }
 
   _onFbPressed = async () => {
+    const { signInWithFb } = this.props;
     const { appId, scopes } = FacebookAuthenticate;
     const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(appId, scopes);
 
     if (type !== COMMON.SUCCESS) return;
-    this._signInWithProviderWrap(this.props.signInWithFb(token));
+    this._signInWithProviderWrap(signInWithFb(token));
   }
 
   render() {
@@ -155,7 +156,7 @@ class RegisterFormContainer extends Component {
             efir ir. iasrnti irsent Child Mind Institut d recontact?
           </Text>
         </ScrollView>
-        <Btn onPress={this._onSubmit} text={'NEXT'} />
+        <Btn onPress={this.props.handleSubmit(this._handleSubmit)} text={'NEXT'} />
       </View>
     );
   }
@@ -163,7 +164,9 @@ class RegisterFormContainer extends Component {
 
 RegisterFormContainer.propTypes = config.propTypes;
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  canContact: state.form.registerPermissionForm.values.canContact
+});
 const mapDispatchToProps = {
   register: authenticationCreateNewAccount,
   sendEmailVerification: authenticationSendEmailVerification,

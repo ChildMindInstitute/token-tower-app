@@ -7,6 +7,7 @@ import images from '../../Resources/Images';
 import styles from './Tutorial.container.styles';
 
 import routeName from '../../Navigation/RouteConfigs/Route.config';
+import navPropTypes from '../../PropTypes/Navigation.propTypes';
 
 class TutorialContainer extends Component {
   constructor() {
@@ -140,5 +141,6 @@ class TutorialContainer extends Component {
     );
   }
 }
+TutorialContainer.propTypes = navPropTypes.propTypes;
 
 export default TutorialContainer;

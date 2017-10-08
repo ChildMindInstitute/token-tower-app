@@ -48,7 +48,7 @@ class PrizeContainer extends Component {
         inputStyle={styles._input}
         containerStyle={styles._inputContainer}
       />
-      <Btn onPress={() => { this._onDelete(index) }}>
+      <Btn onPress={this._onDelete}>
         <FontIcon name={'minus'} color={'#f7c34a'} size={40} />
       </Btn>
     </View>
@@ -79,8 +79,7 @@ class PrizeContainer extends Component {
     this.forceUpdate();
   }
 
-  _onDelete= (index) => {
-    alert(index)
+  _onDelete = (index) => {
     this.state.prizeList.splice(index, 1);
     this.forceUpdate();
   }

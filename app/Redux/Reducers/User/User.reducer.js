@@ -1,6 +1,6 @@
 import { createActions, handleActions } from 'redux-actions';
 
-import api from '../../../Firebase/Users/Users.api';
+import api from '../../../Firebase/User/User.api';
 
 // ------------------------------------
 // Action

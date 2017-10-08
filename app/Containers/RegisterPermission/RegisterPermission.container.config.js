@@ -9,9 +9,9 @@ const propTypes = {
 const form = {
   form: 'registerPermissionForm',
   initialValues: {
-    permission1: false,
-    permission2: false,
-    permission3: false
+    canPerforming: false,
+    canStoreData: false,
+    canContact: false
   }
 };
 

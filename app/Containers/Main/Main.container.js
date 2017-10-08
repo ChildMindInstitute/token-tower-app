@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import Main from '../../Components/Main/Main.component';
 
-import styles from './Main.container.styles';
-
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import navPropTypes from '../../PropTypes/Navigation.propTypes';
 
