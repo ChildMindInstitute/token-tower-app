@@ -3,7 +3,7 @@ import { database } from 'firebase';
 export default ({
   uid,
   displayName,
-  childName,
+  childName = '',
   isTutorial = true,
   isAnimation = true,
   timestamp = database.ServerValue.TIMESTAMP

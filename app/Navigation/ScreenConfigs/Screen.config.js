@@ -1,4 +1,5 @@
 import React from 'react';
+import { HeaderBackButton } from 'react-navigation';
 
 import HomeContainer from '../../Containers/Home/Home.container';
 import MainContainer from '../../Containers/Main/Main.container';
@@ -36,18 +37,30 @@ const settingScreenOptions = () => ({
   headerLeft: <MenuButtonContainer />
 });
 
+const registerPermissionScreenOptions = ({ navigation: { navigate } }) => {
+  const _onPress = () => navigate(routesName.Root.Authentication);
+
+  return ({
+    headerLeft: <HeaderBackButton onPress={_onPress} tintColor="black" />
+  });
+};
+
 const HomeScreen = { screen: HomeContainer, path: Home };
 const LoginScreen = { screen: LoginContainer, path: Login };
 const ForgotPasswordScreen = { screen: ForgotPasswordContainer, path: ForgotPassword };
 const UpdatePasswordScreen = { screen: UpdatePasswordContainer, path: UpdatePassword };
 const MainUserSelectionScreen = { screen: MainUserSelectionContainer, path: MainUserSelection };
 
-const RegisterPermissionScreen = { screen: RegisterPermissionContainer, path: RegisterPermission };
+const RegisterPermissionScreen = {
+  screen: RegisterPermissionContainer,
+  path: RegisterPermission,
+  navigationOptions: registerPermissionScreenOptions
+};
 const RegisterFormScreen = { screen: RegisterFormContainer, path: RegisterForm };
 const RegisterWelcomeScreen = { screen: RegisterWelcomeContainer, path: RegisterWelcome };
 
 const MainScreen = { screen: MainContainer, path: Main };
-const SplashScreen = { screen: SplashContainer, path: Splash, navigationOptions: splashScreenOptions() };
+const SplashScreen = { screen: SplashContainer, path: Splash, navigationOptions: splashScreenOptions };
 const PrizeScreen = { screen: PrizeContainer, path: Prize };
 
 const TutorialScreen = { screen: TutorialContainer, path: Tutorial };
@@ -55,7 +68,7 @@ const TakePhotoScreen = { screen: TakePhotoContainer, path: TakePhoto };
 const ReviewPhotoScreen = { screen: ReviewPhotoContainer, path: ReviewPhoto };
 const PickPhotoScreen = { screen: PickPhotoContainer, path: PickPhoto };
 
-const SettingScreen = { screen: SettingContainer, path: Setting, navigationOptions: settingScreenOptions() };
+const SettingScreen = { screen: SettingContainer, path: Setting, navigationOptions: settingScreenOptions };
 
 export default {
   HomeScreen,
