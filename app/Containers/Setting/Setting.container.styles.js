@@ -43,7 +43,8 @@ export default EStyleSheet.create({
     flex: 1,
     borderWidth: 1,
     padding: 5,
-    color: '#606060'
+    color: '#606060',
+    textAlign: 'center'
   },
   _dropdownContainerStyle: { flex: 1 },
   _inputDropdown: {
