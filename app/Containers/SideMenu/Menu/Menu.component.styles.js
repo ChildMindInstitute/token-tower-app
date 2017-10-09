@@ -8,7 +8,6 @@ export default {
     paddingTop: 20
   },
   imgContainer: {
-    flex: 0.1,
     flexDirection: 'row',
     marginTop: 10,
     marginHorizontal: 10,
@@ -20,12 +19,12 @@ export default {
     height: 50
   },
   userName: {
+    flex: 1,
     fontSize: 20,
-    flex: 0.5,
-    fontFamily: Fonts.bold
+    fontFamily: Fonts.bold,
+    textAlign: 'center'
   },
   menuContainer: {
-    flex: 1,
     marginHorizontal: 10,
     marginTop: 10
   },
@@ -36,10 +35,5 @@ export default {
     fontFamily: Fonts.regular,
     fontSize: 17,
     marginLeft: 20
-  },
-  textContainer: {
-    flex: 0.5,
-    marginLeft: 10,
-    justifyContent: 'center'
   }
 };

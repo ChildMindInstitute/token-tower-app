@@ -34,10 +34,6 @@ const splashScreenOptions = () => ({
   headerLeft: <MenuButtonContainer />
 });
 
-const settingScreenOptions = () => ({
-  headerLeft: <MenuButtonContainer />
-});
-
 const registerPermissionScreenOptions = ({ navigation: { navigate } }) => {
   const _onPress = () => navigate(routesName.Root.Authentication);
 
@@ -70,7 +66,7 @@ const TakePhotoScreen = { screen: TakePhotoContainer, path: TakePhoto };
 const ReviewPhotoScreen = { screen: ReviewPhotoContainer, path: ReviewPhoto };
 const PickPhotoScreen = { screen: PickPhotoContainer, path: PickPhoto };
 
-const SettingScreen = { screen: SettingContainer, path: Setting, navigationOptions: settingScreenOptions };
+const SettingScreen = { screen: SettingContainer, path: Setting };
 
 export default {
   HomeScreen,

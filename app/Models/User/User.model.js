@@ -1,6 +1,7 @@
 import { database } from 'firebase';
 
 import ChildModel from '../Child/Child.model';
+import { prizeListContruct } from '../Prize/Prize.model';
 
 import { REPLENISH_TOKEN_TYPE } from '../../Utilities/Constant.utils';
 
@@ -12,7 +13,8 @@ export default ({
   canContact = false,
   initialToken = 10,
   replenishTokenType = REPLENISH_TOKEN_TYPE.DAILY,
-  child = null
+  child = null,
+  prizes = [{ amount: 0, name: '' }]
 }) =>
   ({
     uid,
@@ -23,5 +25,6 @@ export default ({
     initialToken,
     replenishTokenType,
     child: child && new ChildModel(child),
+    prizes: prizeListContruct(prizes),
     timestamp: database.ServerValue.TIMESTAMP
   });

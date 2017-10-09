@@ -1,29 +1,22 @@
 import React, { Component } from 'react';
-import { View, Image, Text, ScrollView } from 'react-native';
-import { reduxForm, Field } from 'redux-form';
+import { View, Image } from 'react-native';
+import { connect } from 'react-redux';
+import { reduxForm, FieldArray } from 'redux-form';
 
 import FontIcon from '../../Components/FontIcon/FontIcon.component';
-import Input from '../../Components/FormInput/FormInput.component';
 import Btn from '../../Components/FormButton/FormButton.component';
+import PrizeList from './PrizeList.component';
 
 import images from '../../Resources/Images';
 import styles from './Prize.container.style';
 
+import { userUpdateProfile, userInitProfile } from '../../Redux/Reducers/User/User.reducer';
+
+import config from './Prize.container.config';
 import { landscapeOnly, portraitOnly } from '../../Utilities/ScreenOrientation.utils';
+import { USER_ROLE } from '../../Utilities/Constant.utils';
 
 class PrizeContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      prizeList: [
-        {
-          tokenPoint: 0,
-          prize: ''
-        }
-      ]
-    };
-  }
-
   componentWillMount() {
     landscapeOnly();
   }
@@ -32,76 +25,69 @@ class PrizeContainer extends Component {
     portraitOnly();
   }
 
-  _renderPrize = (item, index) => (
-    <View style={styles._inputBlock}>
-      <Field
-        name={`tokens_${index}`}
-        component={Input}
-        inputStyle={styles._input}
-        containerStyle={styles._token}
-        keyboardType={'numeric'}
-      />
-      <Text style={styles._text}>tokens until: </Text>
-      <Field
-        name={`prize_${index}`}
-        component={Input}
-        inputStyle={styles._input}
-        containerStyle={styles._inputContainer}
-      />
-      <Btn onPress={this._onDelete}>
-        <FontIcon name={'minus'} color={'#f7c34a'} size={40} />
-      </Btn>
-    </View>
-  );
-
-  _renderPresent = () => (
-    <Image
-      resizeMode={'contain'}
-      source={images.present}
-      style={styles._img}
-    />
-  )
-
-  _renderRow = () => (
-    this.state.prizeList.map((item, index) => (
-      <View style={styles._containerBlock} key={index}>
-        {this._renderPresent()}
-        {this._renderPrize(item, index)}
-      </View>
-    ))
-  )
-
   _onAdd = () => {
-    this.state.prizeList.push({
-      tokenPoint: 0,
-      prize: ''
-    });
-    this.forceUpdate();
+    const { array } = this.props;
+    array.push('prizes', { name: '', amount: 0 });
   }
 
-  _onDelete = (index) => {
-    this.state.prizeList.splice(index, 1);
-    this.forceUpdate();
+  _onSubmitSuccess = () => {
+    const { navigation } = this.props;
+    navigation.goBack();
+  }
+
+  _handleSubmit = ({ prizes }) => {
+    const { updateProfile, initProfile, user } = this.props;
+    updateProfile({ ...user, prizes })
+      .then(({ value }) => initProfile(value))
+      .then(this._onSubmitSuccess);
+  }
+
+  _renderAddBtn = () => {
+    const { isParent } = this.props;
+    return isParent && (
+      <Btn onPress={this._onAdd} >
+        <FontIcon name={'plus'} color={'#f7c34a'} size={40} />
+      </Btn>
+    );
+  }
+
+  _renderSaveBtn = () => {
+    const { isParent } = this.props;
+    return isParent && (
+      <Btn
+        btnStyle={styles._btn} textStyle={styles._textBtn}
+        text={'SAVE'} onPress={this.props.handleSubmit(this._handleSubmit)}
+      />
+    );
   }
 
   render() {
     return (
       <View style={styles._containerContent}>
-        <ScrollView style={styles._container}>
-          {this._renderRow()}
-        </ScrollView>
+        <FieldArray component={PrizeList} name={'prizes'} showDelBtn={this.props.isParent} />
         <View style={styles._btnGroup}>
           <Image source={images.pig} resizeMode={'contain'} style={styles._images} />
-          <Btn onPress={this._onAdd} >
-            <FontIcon name={'plus'} color={'#f7c34a'} size={40} />
-          </Btn>
-          <Btn btnStyle={styles._btn} textStyle={styles._textBtn} text={'SAVE'} />
+          {this._renderAddBtn()}
+          {this._renderSaveBtn()}
         </View>
       </View>
     );
   }
 }
 
-export default reduxForm({
-  form: 'prizeForm'
-})(PrizeContainer);
+const mapStateToProps = state => ({
+  user: state.user,
+  isParent: state.user.role === USER_ROLE.PARENT,
+  initialValues: {
+    prizes: state.user.prizes
+  }
+});
+
+const mapDispatchToProps = {
+  updateProfile: userUpdateProfile,
+  initProfile: userInitProfile
+};
+
+PrizeContainer.propTypes = config.propTypes;
+
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(PrizeContainer));

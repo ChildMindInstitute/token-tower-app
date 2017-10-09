@@ -26,42 +26,44 @@ const _renderSignOutBtn = (onItemPress, navigate, signOut) => {
   );
 };
 
-const Menu = ({ navigation: { navigate }, onItemPress, displayName, photoURL, signOut }) => (
-  <View style={styles.container}>
-    <View style={styles.imgContainer}>
-      <Image
-        resizeMode={'contain'}
-        source={(photoURL && { uri: photoURL }) || images.avatar}
-        style={styles.image}
-      />
-      <View style={styles.textContainer}>
-        <Text style={styles.userName}>{displayName}</Text>
+const Menu = ({ navigation: { navigate }, onItemPress,
+  displayName, childName, isParent, photoURL, signOut }) =>
+  (
+    <View style={styles.container}>
+      <View style={styles.imgContainer}>
+        <Image
+          resizeMode={'contain'}
+          source={isParent ? ((photoURL && { uri: photoURL }) || images.avatar) : images.k1}
+          style={styles.image}
+        />
+        <Text style={styles.userName}>{isParent ? displayName : childName}</Text>
+      </View>
+      <View style={styles.menuContainer}>
+        {
+          listMenuItems.map(item => (
+            <MenuItem
+              containerStyle={styles.menu}
+              textStyle={styles.text}
+              item={item}
+              onItemPress={onItemPress}
+              navigate={navigate}
+              key={item.name}
+            />
+          ))
+        }
+        {_renderSignOutBtn(onItemPress, navigate, signOut)}
       </View>
     </View>
-    <View style={styles.menuContainer}>
-      {
-        listMenuItems.map(item => (
-          <MenuItem
-            containerStyle={styles.menu}
-            textStyle={styles.text}
-            item={item}
-            onItemPress={onItemPress}
-            navigate={navigate}
-            key={item.name}
-          />
-        ))
-      }
-      {_renderSignOutBtn(onItemPress, navigate, signOut)}
-    </View>
-  </View>
-);
+  );
 
 Menu.propTypes = {
   ...navPropTypes,
   onItemPress: propTypes.func.isRequired,
   signOut: propTypes.func.isRequired,
   displayName: propTypes.string,
-  photoURL: propTypes.string
+  photoURL: propTypes.string,
+  childName: propTypes.string,
+  isParent: propTypes.bool
 };
 
 export default Menu;

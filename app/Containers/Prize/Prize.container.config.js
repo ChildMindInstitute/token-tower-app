@@ -9,11 +9,12 @@ const propTypes = {
   updateProfile: PropTypes.func.isRequired,
   initProfile: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  isParent: PropTypes.bool.isRequired
 };
 
 const form = {
-  form: 'settingForm'
+  form: 'prizeForm'
 };
 
 export default {
