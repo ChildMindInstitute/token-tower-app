@@ -14,7 +14,7 @@ export default ({
   initialToken = 10,
   replenishTokenType = REPLENISH_TOKEN_TYPE.DAILY,
   child = null,
-  prizes = [{ amount: 0, name: '' }]
+  prizes = null
 }) =>
   ({
     uid,
@@ -25,6 +25,6 @@ export default ({
     initialToken,
     replenishTokenType,
     child: child && new ChildModel(child),
-    prizes: prizeListContruct(prizes),
+    prizes: prizes && prizeListContruct(prizes),
     timestamp: database.ServerValue.TIMESTAMP
   });

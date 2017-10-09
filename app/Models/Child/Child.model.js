@@ -1,6 +1,8 @@
 export default ({
-  name
+  name,
+  tokensEarned = 0
 }) =>
   ({
-    name
+    name,
+    tokensEarned
   });

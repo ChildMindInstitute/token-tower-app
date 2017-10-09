@@ -10,7 +10,7 @@ import styles from './Splash.container.styles';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import config from './Splash.container.config';
 import { showTopErrNotification } from '../../Utilities/Form.util';
-import { ERR_MSG } from '../../Utilities/Constant.utils';
+import { ERR_MSG, MSG } from '../../Utilities/Constant.utils';
 
 class SplashContainer extends Component {
   componentWillMount() {
@@ -45,6 +45,19 @@ class SplashContainer extends Component {
     />
   );
 
+  _renderMotivationMsg = () => {
+    const { tokensEarned, prizes } = this.props;
+    let text = MSG.SET_PRIZE;
+
+    if (prizes && prizes.length > 0) {
+      const { amount } = prizes.find((p => p.amount > tokensEarned));
+      text = `You have ${tokensEarned} tokens!!! Only ${amount - tokensEarned} more for your next PRIZE!!!`;
+    }
+    return (
+      <Text style={styles._text}>{text}</Text>
+    );
+  }
+
   render() {
     return (
       <TouchableWithoutFeedback onPress={this._onTouch}>
@@ -53,9 +66,7 @@ class SplashContainer extends Component {
           <View style={styles._textContainer}>
             <View style={styles._wrap}>
               <View style={styles._textBubble}>
-                <Text style={styles._text}> You have 85 tokens!!!
-              Only 15 more for your next PRIZE!!!
-                </Text>
+                {this._renderMotivationMsg()}
               </View>
             </View>
             <View style={styles._img}>
@@ -73,7 +84,9 @@ SplashContainer.propTypes = config.propTypes;
 
 
 const mapStateToProps = state => ({
-  isHaveChild: !!(state.user.child && state.user.child.name)
+  isHaveChild: !!(state.user.child && state.user.child.name),
+  tokensEarned: state.user.child && state.user.child.tokensEarned,
+  prizes: state.user.prizes
 });
 const mapDispatchToProps = {
 };

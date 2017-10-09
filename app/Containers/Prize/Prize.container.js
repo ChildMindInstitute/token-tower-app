@@ -14,7 +14,8 @@ import { userUpdateProfile, userInitProfile } from '../../Redux/Reducers/User/Us
 
 import config from './Prize.container.config';
 import { landscapeOnly, portraitOnly } from '../../Utilities/ScreenOrientation.utils';
-import { USER_ROLE } from '../../Utilities/Constant.utils';
+import { USER_ROLE, ERR_MSG } from '../../Utilities/Constant.utils';
+import { showTopErrNotification } from '../../Utilities/Form.util';
 
 class PrizeContainer extends Component {
   componentWillMount() {
@@ -35,11 +36,23 @@ class PrizeContainer extends Component {
     navigation.goBack();
   }
 
+  _onFail = ({ message }) => {
+    showTopErrNotification({
+      title: ERR_MSG.CREATE_PRIZE_FAIL_TITLE, message
+    }, this.props.dispatch);
+  }
+
   _handleSubmit = ({ prizes }) => {
     const { updateProfile, initProfile, user } = this.props;
-    updateProfile({ ...user, prizes })
-      .then(({ value }) => initProfile(value))
-      .then(this._onSubmitSuccess);
+
+    if (prizes == null || prizes.length < 1) this._onFail({ message: ERR_MSG.PRIZE_EMPTY });
+    else if (prizes.length > 3) this._onFail({ message: ERR_MSG.MAX_PRIZE });
+    else {
+      updateProfile({ ...user, prizes: prizes.sort((a, b) => a.amount > b.amount) })
+        .then(({ value }) => initProfile(value))
+        .then(this._onSubmitSuccess)
+        .catch(this._onFail);
+    }
   }
 
   _renderAddBtn = () => {

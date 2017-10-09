@@ -4,7 +4,9 @@ import navPropTypes from '../../PropTypes/Navigation.propTypes';
 
 const propTypes = {
   ...navPropTypes,
-  isHaveChild: PropTypes.bool.isRequired
+  isHaveChild: PropTypes.bool.isRequired,
+  tokensEarned: PropTypes.number.isRequired,
+  prizes: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default {
