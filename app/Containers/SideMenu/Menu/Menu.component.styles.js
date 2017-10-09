@@ -1,7 +1,9 @@
+import { Fonts } from '../../../Resources/Fonts';
+
 export default {
   container: {
     flex: 1,
-    width: 200,
+    width: 220,
     backgroundColor: 'rgba(247, 195, 74, 0.95)',
     paddingTop: 20
   },
@@ -10,26 +12,34 @@ export default {
     flexDirection: 'row',
     marginTop: 10,
     marginHorizontal: 10,
-    borderBottomWidth: 1
+    alignItems: 'center'
   },
   image: {
     margin: 3,
-    flex: 0.3,
-    width: null,
-    height: null
+    width: 50,
+    height: 50
+  },
+  userName: {
+    fontSize: 20,
+    flex: 0.5,
+    fontFamily: Fonts.bold
   },
   menuContainer: {
     flex: 1,
-    marginHorizontal: 10
+    marginHorizontal: 10,
+    marginTop: 10
   },
   menu: {
     flexDirection: 'row'
   },
   text: {
-    marginLeft: 10
+    fontFamily: Fonts.regular,
+    fontSize: 17,
+    marginLeft: 20
   },
   textContainer: {
-    flex: 1,
+    flex: 0.5,
+    marginLeft: 10,
     justifyContent: 'center'
   }
 };

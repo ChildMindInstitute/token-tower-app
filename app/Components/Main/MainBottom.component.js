@@ -10,20 +10,21 @@ import styles from './MainBottom.component.styles';
 import config from './Main.component.config';
 
 const MainBottom = ({ onCameraPress, onTokenPress, onPrizePress,
-  cameraStyle, minusIconColor, tokenStyle, plusIconColor, presentStyle
+  cameraStyle, minusIconColor, tokenStyle, plusIconColor, presentStyle,
+  onMinusPress, onPlusPress
 }) =>
   (
     <View style={styles.bottomContainer}>
       <Btn btnStyle={styles.bottomImageContainer} onPress={onCameraPress}>
         <Image source={images.camera} resizeMode={'contain'} style={[styles.images, cameraStyle]} />
       </Btn>
-      <Btn btnStyle={styles.iconContainer}>
+      <Btn btnStyle={styles.iconContainer} onPress={onMinusPress}>
         <FontIcon name={'minus'} color={minusIconColor || styles.fontColor} size={40} />
       </Btn>
       <Btn btnStyle={styles.bottomImageContainer} onPress={onTokenPress}>
         <Image source={images.k3} resizeMode={'contain'} style={[styles.images, tokenStyle]} />
       </Btn>
-      <Btn btnStyle={styles.iconContainer}>
+      <Btn btnStyle={styles.iconContainer} onPress={onPlusPress}>
         <FontIcon name={'plus'} color={plusIconColor || styles.fontColor} size={40} />
       </Btn>
       <Btn btnStyle={styles.bottomImageContainer} onPress={onPrizePress}>

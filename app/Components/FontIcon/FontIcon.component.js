@@ -11,7 +11,7 @@ const FontIcon = ({ name, size, color }) => (
 );
 
 FontIcon.defaultProps = {
-  size: 20,
+  size: 25,
   color: 'black'
 };
 

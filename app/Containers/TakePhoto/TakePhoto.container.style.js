@@ -22,9 +22,9 @@ export default EStyleSheet.create({
       { scaleY: 1.4 }
     ],
     [smallSize]: {
-      height: 140,
-      width: 140,
-      borderRadius: 120
+      height: 150,
+      width: 150,
+      borderRadius: 125
     },
     [mediumSize]: {
       height: 170,

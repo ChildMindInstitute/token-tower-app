@@ -52,7 +52,7 @@ class LoginContainer extends Component {
     const { navigation: { navigate }, authenticated } = this.props;
     authenticated();
 
-    if (child) navigate(routeName.Authentication.MainUserSelection);
+    if (child) navigate(routeName.Root.MainUser);
     else navigate(routeName.Root.Config);
   }
 

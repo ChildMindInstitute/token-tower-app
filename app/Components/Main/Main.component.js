@@ -33,8 +33,33 @@ class MainComponent extends Component {
     await soundUtils.play(Sounds.coinDrop);
   };
 
+  _onMinusPress = () => {
+    const { onMinusPress } = this.props;
+    if (onMinusPress) {
+      onMinusPress();
+
+      const { removeCoin } = this.state;
+      if (!removeCoin) {
+        this.setState({ removeCoin: true });
+      }
+    }
+  }
+
   _onPigPress = () => {
-    if (!this.state.putCoint) this.setState({ putCoint: true });
+    const { putCoint } = this.state;
+    if (!putCoint) this.setState({ putCoint: true });
+  }
+
+  _onPlusPress = () => {
+    const { onPlusPress } = this.props;
+    if (onPlusPress) {
+      onPlusPress();
+
+      const { putCoint } = this.state;
+      if (!putCoint) {
+        this.setState({ putCoint: true });
+      }
+    }
   }
 
   _getCoinImgInstance = (instance) => {
@@ -65,8 +90,7 @@ class MainComponent extends Component {
 
   _getDistance = () => {
     const { pigImg, coinImg } = this;
-    if (pigImg && coinImg) return pigImg.py - coinImg.py;
-    return 0;
+    return (pigImg && coinImg) ? pigImg.py - coinImg.py : 0;
   }
 
   render() {
@@ -115,7 +139,9 @@ class MainComponent extends Component {
         </View>
         <Bottom
           onCameraPress={onCameraPress}
+          onMinusPress={this._onMinusPress}
           onTokenPress={onTokenPress}
+          onPlusPress={this._onPlusPress}
           onPrizePress={onPrizePress}
           pigStyle={pigStyle}
           cameraStyle={cameraStyle}

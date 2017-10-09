@@ -1,12 +1,9 @@
+import routeName from '../../Navigation/RouteConfigs/Route.config';
+
 export default [
   {
-    name: 'Setting',
-    icon: 'cog',
-    route: 'Config'
-  },
-  {
-    name: 'Token Totem',
-    icon: 'leaf',
-    route: 'TokenTotem'
+    name: 'Switch user',
+    icon: 'switch',
+    route: routeName.Root.MainUser
   }
 ];

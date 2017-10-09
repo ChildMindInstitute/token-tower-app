@@ -4,6 +4,8 @@ const propTypes = {
   onCameraPress: PropTypes.func,
   onTokenPress: PropTypes.func,
   onPrizePress: PropTypes.func,
+  onMinusPress: PropTypes.func,
+  onPlusPress: PropTypes.func,
   pigStyle: PropTypes.object,
   cameraStyle: PropTypes.object,
   minusIconColor: PropTypes.string,

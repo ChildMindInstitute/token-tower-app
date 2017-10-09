@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
+import { connect } from 'react-redux';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 
@@ -8,8 +9,21 @@ import styles from './Splash.container.styles';
 
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import config from './Splash.container.config';
+import { showTopErrNotification } from '../../Utilities/Form.util';
+import { ERR_MSG } from '../../Utilities/Constant.utils';
 
-export default class SplashContainer extends Component {
+class SplashContainer extends Component {
+  componentWillMount() {
+    const { isHaveChild, navigation: { navigate, dispatch } } = this.props;
+
+    if (isHaveChild) return;
+    navigate(routeName.Root.Config);
+    showTopErrNotification({
+      title: ERR_MSG.CAN_NOT_ENTER_TITLE,
+      message: ERR_MSG.NEED_CHILD_INFO
+    }, dispatch);
+  }
+
   _onTouch = () => {
     const { navigate } = this.props.navigation;
     navigate(routeName.TokenTotem.Main);
@@ -56,3 +70,12 @@ export default class SplashContainer extends Component {
 }
 
 SplashContainer.propTypes = config.propTypes;
+
+
+const mapStateToProps = state => ({
+  isHaveChild: !!(state.user.child && state.user.child.name)
+});
+const mapDispatchToProps = {
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SplashContainer);

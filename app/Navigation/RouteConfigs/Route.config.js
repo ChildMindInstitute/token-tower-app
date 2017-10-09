@@ -1,15 +1,18 @@
 export default {
   Root: {
     Authentication: 'Authentication',
+    MainUser: 'MainUser',
     Registration: 'Registration',
     TokenTotem: 'TokenTotem',
     TokenTotemTutorial: 'TokenTotemTutorial',
     Config: 'Config'
   },
+  MainUser: {
+    MainUserSelection: 'MainUserSelection'
+  },
   Authentication: {
     Home: 'Home',
     Login: 'Login',
-    MainUserSelection: 'MainUserSelection',
     ForgotPassword: 'ForgotPassword',
     UpdatePassword: 'UpdatePassword'
   },

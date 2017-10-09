@@ -35,7 +35,7 @@ const Menu = ({ navigation: { navigate }, onItemPress, displayName, photoURL, si
         style={styles.image}
       />
       <View style={styles.textContainer}>
-        <Text>{displayName}</Text>
+        <Text style={styles.userName}>{displayName}</Text>
       </View>
     </View>
     <View style={styles.menuContainer}>

@@ -45,6 +45,7 @@ export default EStyleSheet.create({
     padding: 5,
     color: '#606060'
   },
+  _dropdownContainerStyle: { flex: 1 },
   _inputDropdown: {
     flex: 1,
     borderWidth: 1

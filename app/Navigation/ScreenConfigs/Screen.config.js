@@ -22,7 +22,8 @@ import MenuButtonContainer from '../../Containers/MenuButton/MenuButton.containe
 
 import routesName from '../RouteConfigs/Route.config';
 
-const { Authentication: { Home, Login, ForgotPassword, MainUserSelection, UpdatePassword },
+const { Authentication: { Home, Login, ForgotPassword, UpdatePassword },
+  MainUser: { MainUserSelection },
   Registration: { RegisterPermission, RegisterForm, RegisterWelcome },
   TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto },
   TokenTotemTutorial: { Tutorial },
@@ -49,6 +50,7 @@ const HomeScreen = { screen: HomeContainer, path: Home };
 const LoginScreen = { screen: LoginContainer, path: Login };
 const ForgotPasswordScreen = { screen: ForgotPasswordContainer, path: ForgotPassword };
 const UpdatePasswordScreen = { screen: UpdatePasswordContainer, path: UpdatePassword };
+
 const MainUserSelectionScreen = { screen: MainUserSelectionContainer, path: MainUserSelection };
 
 const RegisterPermissionScreen = {

@@ -5,7 +5,8 @@ import routesName from '../RouteConfigs/Route.config';
 import { navigationOptions } from '../CommonConfigs/Navigation.config';
 
 const {
-  Authentication: { Home, Login, MainUserSelection, ForgotPassword, UpdatePassword },
+  Authentication: { Home, Login, ForgotPassword, UpdatePassword },
+  MainUser: { MainUserSelection },
   Registration: { RegisterPermission, RegisterForm, RegisterWelcome },
   TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto },
   TokenTotemTutorial: { Tutorial },
@@ -21,9 +22,12 @@ const { HomeScreen, LoginScreen, MainUserSelectionScreen, ForgotPasswordScreen, 
 const AuthenticationNavigator = StackNavigator({
   [Home]: HomeScreen,
   [Login]: LoginScreen,
-  [MainUserSelection]: MainUserSelectionScreen,
   [ForgotPassword]: ForgotPasswordScreen,
   [UpdatePassword]: UpdatePasswordScreen
+}, navigationOptions);
+
+const MainUserNavigator = StackNavigator({
+  [MainUserSelection]: MainUserSelectionScreen
 }, navigationOptions);
 
 const RegistrationNavigator = StackNavigator({
@@ -51,6 +55,7 @@ const ConfigNavigator = StackNavigator({
 
 export default {
   AuthenticationNavigator,
+  MainUserNavigator,
   RegistrationNavigator,
   TokenTotemNavigator,
   TokenTotemTutorialNavigator,
