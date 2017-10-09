@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Animated, Dimensions } from 'react-native';
+import { View, Image, Animated } from 'react-native';
 
 import Btn from '../FormButton/FormButton.component';
 import Bottom from './MainBottom.component';
@@ -8,48 +8,68 @@ import images from '../../Resources/Images';
 import styles from './Main.component.styles';
 
 import config from './Main.component.config';
+import soundUtils from '../../Utilities/Sound.utils';
+import Sounds from '../../Resources/Sounds';
 
 class MainComponent extends Component {
   constructor() {
     super();
     this.state = {
-      fadeAnim: new Animated.Value(0) // Initial value for opacity: 0
+      fadeAnim: new Animated.Value(0)
     };
   }
 
   componentDidUpdate() {
-    if (this.state.putCoint) {
-      const onAnimateFinished = () => {
-        this.setState({ putCoint: false, fadeAnim: new Animated.Value(0) });
-      };
+    const { putCoint, fadeAnim } = this.state;
 
-      Animated.timing( // Animate over time
-        this.state.fadeAnim, // The animated value to drive
-        {
-          toValue: 1, // Animate to opacity: 1 (opaque)
-          duration: 1000 // Make it take a while
-        },
-      ).start(onAnimateFinished);
-    }
+    if (!putCoint) return;
+
+    Animated.timing(fadeAnim, { toValue: 1, duration: 1000 })
+      .start(this._onAnimateFinished);
   }
+
+  _onAnimateFinished = async () => {
+    this.setState({ putCoint: false, fadeAnim: new Animated.Value(0) });
+    await soundUtils.play(Sounds.coinDrop);
+  };
 
   _onPigPress = () => {
     if (!this.state.putCoint) this.setState({ putCoint: true });
   }
 
-  render() {
-    const animateStyle = {
-      width: 150,
-      height: 150,
-      opacity: this.state.putCoint ? 1 : 0,
-      transform: [{
-        translateY: this.state.fadeAnim.interpolate({
-          inputRange: [0, 1],
-          outputRange: [0, Dimensions.get('window').height / 3]
-        })
-      }]
-    };
+  _getCoinImgInstance = (instance) => {
+    this.coinImg = instance;
+  }
 
+  _onCoinImgLayout = () => {
+    const { coinImg } = this;
+    if (coinImg && coinImg.measure) {
+      coinImg.measure((fx, fy, width, height, px, py) => {
+        this.coinImg = { fx, fy, width, height, px, py };
+      });
+    }
+  }
+
+  _getPigImgInstance = (instance) => {
+    this.pigImg = instance;
+  }
+
+  _onPigImgLayout = () => {
+    const { pigImg } = this;
+    if (pigImg && pigImg.measure) {
+      pigImg.measure((fx, fy, width, height, px, py) => {
+        this.pigImg = { fx, fy, width, height, px, py };
+      });
+    }
+  }
+
+  _getDistance = () => {
+    const { pigImg, coinImg } = this;
+    if (pigImg && coinImg) return pigImg.py - coinImg.py;
+    return 0;
+  }
+
+  render() {
     const {
       onCameraPress,
       onTokenPress,
@@ -62,13 +82,35 @@ class MainComponent extends Component {
       presentStyle
     } = this.props;
 
+    const { putCoint, fadeAnim } = this.state;
+
+    const animateStyle = {
+      width: 150,
+      height: 150,
+      opacity: putCoint ? 1 : 0,
+      transform: [{
+        translateY: fadeAnim.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, this._getDistance()]
+        })
+      }]
+    };
+
     return (
       <Image source={images.firstbackground} style={styles.bgrContainer}>
         <View style={styles.topContainer}>
           <Image source={images.token} />
-          <Animated.Image source={images.k1} style={animateStyle} />
+          <View ref={this._getCoinImgInstance} onLayout={this._onCoinImgLayout}>
+            <Animated.Image
+              source={images.k1}
+              style={animateStyle}
+            />
+          </View>
           <Btn onPress={this._onPigPress}>
-            <Image source={images.pig} style={pigStyle} />
+            <Image
+              source={images.pig} style={pigStyle}
+              ref={this._getPigImgInstance} onLayout={this._onPigImgLayout}
+            />
           </Btn>
         </View>
         <Bottom

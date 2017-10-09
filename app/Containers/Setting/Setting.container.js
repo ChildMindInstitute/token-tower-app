@@ -50,6 +50,7 @@ class SettingContainer extends Component {
         <ModalDropdown
           dropdownStyle={{ ...styles._dropdownStyle, width: this.state.dropdownViewWidth }}
           style={styles._inputDropdown}
+          defaultValue="daily"
           options={['daily', 'weekly', 'monthly']}
           dropdownTextStyle={styles._dropdownTextStyle}
           textStyle={styles._textStyle}
@@ -60,7 +61,7 @@ class SettingContainer extends Component {
 
   _renderPair = () => (
     <View style={styles._inputContainerBlock}>
-      <Text style={styles._label}>Pair app (child's) name</Text>
+      <Text style={styles._label}>{'Pair app (child\'s) name'}</Text>
       <View style={styles._fieldBlock}>
         <Field
           name={'pairApp'}

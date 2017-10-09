@@ -54,4 +54,5 @@ export default class SplashContainer extends Component {
     );
   }
 }
+
 SplashContainer.propTypes = config.propTypes;

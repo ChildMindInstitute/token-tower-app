@@ -90,4 +90,5 @@ export default class TakePhotoContainer extends Component {
     );
   }
 }
+
 TakePhotoContainer.propTypes = config.propTypes;

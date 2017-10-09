@@ -34,4 +34,5 @@ export default class RegisterWelcomeContainer extends Component {
     );
   }
 }
+
 RegisterWelcomeContainer.propTypes = config.propTypes;
