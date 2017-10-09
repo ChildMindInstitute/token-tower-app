@@ -16,6 +16,8 @@ import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { required, numberValidation } from '../../Utilities/Validation.utils';
 
 class SettingContainer extends Component {
+  state = {}
+
   _renderTokens = () => (
     <View style={styles._inputContainerBlock}>
       <Text style={styles._label}>
@@ -34,15 +36,20 @@ class SettingContainer extends Component {
     </View>
   )
 
+  _onLayout = (event) => {
+    const { nativeEvent: { layout: { width } } } = event;
+    this.setState({ dropdownViewWidth: width });
+  };
+
   _renderReplenish = () => (
     <View style={styles._inputContainerBlock}>
       <Text style={styles._label}>
         How often do you want to replenish the tokens?
       </Text>
-      <View style={styles._fieldBlock}>
+      <View style={styles._fieldBlock} onLayout={this._onLayout}>
         <ModalDropdown
-          dropdownStyle={styles._dropdownStyle}
-          style={styles._input}
+          dropdownStyle={{ ...styles._dropdownStyle, width: this.state.dropdownViewWidth }}
+          style={styles._inputDropdown}
           options={['daily', 'weekly', 'monthly']}
           dropdownTextStyle={styles._dropdownTextStyle}
           textStyle={styles._textStyle}

@@ -30,7 +30,10 @@ export default EStyleSheet.create({
   _inputContainerBlock: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10
+    paddingVertical: 10,
+    [largeSize]: {
+      paddingVertical: 5
+    }
   },
   _inputContainer: {
     flex: 1,
@@ -39,7 +42,12 @@ export default EStyleSheet.create({
   _input: {
     flex: 1,
     borderWidth: 1,
-    padding: 5
+    padding: 5,
+    color: '#606060'
+  },
+  _inputDropdown: {
+    flex: 1,
+    borderWidth: 1
   },
   _fieldBlock: {
     flex: 1,
@@ -92,18 +100,38 @@ export default EStyleSheet.create({
   },
   _dropdownStyle: {
     backgroundColor: 'transparent',
-    borderColor: 'transparent'
+    borderColor: 'transparent',
+    marginRight: -1
   },
   _dropdownTextStyle: {
     fontFamily: Fonts.regular,
-    fontSize: 13,
-    textAlign: 'center'
+    textAlign: 'center',
+    [smallSize]: {
+      fontSize: 15
+    },
+    [mediumSize]: {
+      fontSize: 16
+    },
+    [largeSize]: {
+      fontSize: 17
+    }
   },
   _textStyle: {
     fontFamily: Fonts.regular,
-    fontSize: 13,
-    color: 'grey',
-    padding: 10
+    color: '#606060',
+    textAlign: 'center',
+    [smallSize]: {
+      padding: 15,
+      fontSize: 15
+    },
+    [mediumSize]: {
+      padding: 17,
+      fontSize: 16
+    },
+    [largeSize]: {
+      padding: 19,
+      fontSize: 17
+    }
   }
 
 });
