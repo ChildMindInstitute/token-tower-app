@@ -59,7 +59,8 @@ export default EStyleSheet.create({
     padding: 15
   },
   _images: {
-    height: 60,
+    marginTop: 22,
+    height: 50,
     width: 110
   }
 });

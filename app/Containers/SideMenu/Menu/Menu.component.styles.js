@@ -22,7 +22,7 @@ export default {
     flex: 1,
     fontSize: 20,
     fontFamily: Fonts.bold,
-    textAlign: 'center'
+    marginLeft: 10
   },
   menuContainer: {
     marginHorizontal: 10,

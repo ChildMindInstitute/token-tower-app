@@ -33,7 +33,7 @@ const Menu = ({ navigation: { navigate }, onItemPress,
       <View style={styles.imgContainer}>
         <Image
           resizeMode={'contain'}
-          source={isParent ? ((photoURL && { uri: photoURL }) || images.avatar) : images.k1}
+          source={isParent ? ((photoURL && { uri: photoURL }) || images.avatar) : images.unicorn}
           style={styles.image}
         />
         <Text style={styles.userName}>{isParent ? displayName : childName}</Text>

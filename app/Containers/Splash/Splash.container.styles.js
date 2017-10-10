@@ -41,7 +41,7 @@ export default EStyleSheet.create({
     fontFamily: Fonts.regular,
     textAlign: 'center',
     [smallSize]: {
-      width: 160
+      width: 170
     },
     [mediumSize]: {
       width: 200
@@ -55,7 +55,7 @@ export default EStyleSheet.create({
     justifyContent: 'center',
     [smallSize]: {
       marginTop: 5,
-      flex: 1.13
+      flex: 1.2
     },
     [mediumSize]: {
       marginTop: 10,

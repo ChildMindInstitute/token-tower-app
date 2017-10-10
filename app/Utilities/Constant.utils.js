@@ -21,6 +21,7 @@ export const ERR_MSG = {
   LOGIN_VERIFY_EMAIL: 'Your email address is not verified. please verify your email address!',
   NOT_A_NUMBER: 'Not a number',
   GREATER_THAN_ZERO: 'Greater than 0',
+  SMALLER_THAN_A_THOUSAND: 'Less than 1000',
   PASSWORD_NOT_MATCH: 'Passwords don\'t match!',
   GOOGLE_SIGN_IN: 'Can\'t sign in with Google',
   PERMISSION_AGREEMENT: 'To proceed you must agree with terms of service',

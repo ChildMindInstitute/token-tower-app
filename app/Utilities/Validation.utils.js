@@ -27,3 +27,7 @@ export const greaterThanZero = (number) => {
   const isNumber = !numberValidation(number);
   return (isNumber && number > 0) ? undefined : ERR_MSG.GREATER_THAN_ZERO;
 };
+export const smallerThanAThousand = (number) => {
+  const isNumber = !numberValidation(number);
+  return (isNumber && number < 1000) ? undefined : ERR_MSG.SMALLER_THAN_A_THOUSAND;
+};

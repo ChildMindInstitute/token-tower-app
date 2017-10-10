@@ -12,7 +12,7 @@ import styles from './Prize.container.style';
 
 import formPropTypes from '../../PropTypes/Form.propTypes';
 import { strToNumber, toString } from '../../Utilities/Format.utils';
-import { required, greaterThanZero } from '../../Utilities/Validation.utils';
+import { required, greaterThanZero, smallerThanAThousand } from '../../Utilities/Validation.utils';
 
 const PrizeList = ({ fields, showDelBtn }) => {
   const _renderRow = (member, index, fieldsArr) => {
@@ -26,7 +26,7 @@ const PrizeList = ({ fields, showDelBtn }) => {
             name={`${member}.amount`} component={Input}
             inputStyle={styles._input} containerStyle={styles._token}
             parse={strToNumber} format={toString}
-            validate={greaterThanZero} keyboardType={'numeric'}
+            validate={[greaterThanZero, smallerThanAThousand]} keyboardType={'numeric'}
             editable={showDelBtn}
           />
           <Text style={styles._text}>tokens until: </Text>
