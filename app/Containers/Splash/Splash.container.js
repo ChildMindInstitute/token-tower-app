@@ -51,8 +51,9 @@ class SplashContainer extends Component {
     let text = `You have ${tokensEarned} tokens!!! `;
 
     if (prizes && prizes.length > 0) {
-      const { amount } = prizes.find((p => p.amount > tokensEarned));
-      text += `Only ${amount - tokensEarned} more for your next PRIZE!!!`;
+      const prize = prizes.find((p => p.amount > tokensEarned));
+      if (prize) text += `Only ${prize.amount - tokensEarned} more for your next PRIZE!!!`;
+      else text += MSG.ACHIEVE_ALL_GOALS;
     } else text += MSG.SET_PRIZE;
 
     return (

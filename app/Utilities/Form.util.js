@@ -12,3 +12,9 @@ export const showTopSuccessNotification = (notify, dispatch) => {
 
   dispatch(topNotificationAdd({ ...notify, alertType: COMMON.SUCCESS }));
 };
+
+export const showTopInfoNotification = (notify, dispatch) => {
+  if (!notify) return;
+
+  dispatch(topNotificationAdd({ ...notify, alertType: COMMON.INFO }));
+};

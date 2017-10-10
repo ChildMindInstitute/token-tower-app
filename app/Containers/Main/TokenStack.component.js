@@ -10,7 +10,7 @@ import formPropTypes from '../../PropTypes/Form.propTypes';
 
 class TokenStack extends Component {
   _renderToken = member => (
-    <Field name={`${member}.tokenImgUrl`} component={Token} key={member} />
+    <Field name={member} component={Token} key={member} />
   );
 
   render() {

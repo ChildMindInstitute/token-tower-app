@@ -7,14 +7,19 @@ const propTypes = {
   ...formPropTypes,
   ...navPropTypes,
   isChild: PropTypes.bool.isRequired,
-  initialValues: PropTypes.object
-  // updateProfile: PropTypes.func.isRequired,
-  // initProfile: PropTypes.func.isRequired,
-  // user: PropTypes.object.isRequired,
+  initialValues: PropTypes.object,
+  user: PropTypes.object,
+  tokenStack: PropTypes.object,
+  subscribeStackChanged: PropTypes.func,
+  unsubscribeStackChanged: PropTypes.func,
+  updateStack: PropTypes.func,
+  initStack: PropTypes.func,
+  addHistory: PropTypes.func
 };
 
 const form = {
-  form: 'mainForm'
+  form: 'mainForm',
+  enableReinitialize: true
 };
 
 export default {

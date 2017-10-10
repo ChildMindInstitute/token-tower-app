@@ -6,7 +6,8 @@ import api from '../../../Firebase/TokenHistory/TokenHistory.api';
 // Action
 // ------------------------------------
 export const {
-  tokenHistoryAdd
+  tokenHistoryAdd,
+  tokenHistoryInit // GRAPH
 } =
   createActions({
     TOKEN_HISTORY_ADD: api.pushNewTokenHistory
@@ -15,7 +16,7 @@ export const {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const tokenHistoryInitHandler = (state, { payload }) => ({ ...state, payload });
+const tokenHistoryInitHandler = (state, { payload }) => ({ ...state, ...payload });
 
 export default handleActions({
   TOKEN_HISTORY_INIT: tokenHistoryInitHandler

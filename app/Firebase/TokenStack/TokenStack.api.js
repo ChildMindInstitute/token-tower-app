@@ -5,11 +5,17 @@ import TokenStackModel from '../../Models/TokenStack/TokenStack.model';
 const tokenStackLocation = 'tokenStack';
 const getRef = userId => ref(`${tokenStackLocation}/${userId}`);
 
-const listenOnStackChanged = userId => getRef(userId).on('child_added');
+const listenOnStackChanged = (userId, callback) => getRef(userId).on('child_changed', callback);
+
+const listenOffStackChanged = (userId, callback) => getRef(userId).off('child_changed', callback);
 
 const updateStack = (userId, value) => getRef(userId).set(new TokenStackModel(value));
 
+const getTokenStack = userId => getRef(userId).once('value').then(snap => snap.val());
+
 export default {
   listenOnStackChanged,
-  updateStack
+  listenOffStackChanged,
+  updateStack,
+  getTokenStack
 };

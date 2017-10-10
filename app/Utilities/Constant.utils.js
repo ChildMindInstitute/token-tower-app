@@ -3,7 +3,9 @@ export const COMMON = {
   INFO: 'info',
   SUCCESS: 'success',
   WARNING: 'warning',
-  SPINNER_MSG: 'Loading'
+  SPINNER_MSG: 'Loading',
+  OK: 'OK',
+  CANCEL: 'Cancel'
 };
 
 export const ERR_MSG = {
@@ -23,18 +25,26 @@ export const ERR_MSG = {
   GREATER_THAN_ZERO: 'Greater than 0',
   SMALLER_THAN_A_THOUSAND: 'Less than 1000',
   PASSWORD_NOT_MATCH: 'Passwords don\'t match!',
-  GOOGLE_SIGN_IN: 'Can\'t sign in with Google',
-  PERMISSION_AGREEMENT: 'To proceed you must agree with terms of service',
-  INVALID_INFO: 'Please fill in the valid information',
-  NEED_CHILD_INFO: 'Please provide child information',
-  PRIZE_EMPTY: 'Prize can not be empty',
-  MAX_PRIZE: 'Maximun 3 prizes'
+  GOOGLE_SIGN_IN: 'Can\'t sign in with Google.',
+  PERMISSION_AGREEMENT: 'To proceed you must agree with terms of service.',
+  INVALID_INFO: 'Please fill in the valid information.',
+  NEED_CHILD_INFO: 'Please provide child information.',
+  PRIZE_EMPTY: 'Prize can not be empty.',
+  MAX_PRIZE: 'Maximun 3 prizes.',
+  ADD_TOKEN_TITLE: 'Add token Failed',
+  ADD_TOKEN: 'Don\'t have enough token to add.'
 };
 
 export const MSG = {
   RESET_PASSWORD_TITLE: 'Reset Password',
   VERIFY_MAIL_CHANGE_PASSWORD: 'Please check your email to confirm new password!',
-  SET_PRIZE: 'Don\'t have any goals? Please set your prize now!!!'
+  SET_PRIZE: 'Don\'t have any goals? Please set your prize now!!!',
+  ACHIEVE_ALL_GOALS: 'Congratulation! you now achieve all goals.',
+  ADD_TOKEN_TITLE: 'Add token',
+  ADD_TOKEN: 'You have added 1 token to the stack.',
+  REMOVE_TOKEN_TITLE: 'Remove token',
+  REMOVE_TOKEN: 'You have removed 1 token from the stack.',
+  REMOVE_TOKEN_ASK: 'Do you want to remove 1 token from Piggy container?'
 };
 
 export const BTN = {
@@ -74,4 +84,9 @@ export const REPLENISH_TOKEN_TYPE = {
   DAILY: 'daily',
   WEEKLY: 'weekly',
   MONTHLY: 'monthly'
+};
+
+export const TOKEN_ACTION_TYPE = {
+  ADD: 'add',
+  REMOVE: 'remove'
 };

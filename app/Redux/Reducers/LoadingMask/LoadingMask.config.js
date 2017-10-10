@@ -13,6 +13,8 @@ import {
   userUpdatePassword,
   userInitProfile
 } from '../User/User.reducer';
+import { tokenStackInit, tokenStackUpdate } from '../TokenStack/TokenStack.reducer';
+import { tokenHistoryAdd } from '../TokenHistory/TokenHistory.reducer';
 
 export default [
   authenticationEmailPassword,
@@ -25,5 +27,8 @@ export default [
   userUpdateBasicProfile,
   userUpdateProfile,
   userUpdatePassword,
-  userInitProfile
+  userInitProfile,
+  tokenStackInit,
+  tokenStackUpdate,
+  tokenHistoryAdd
 ];
