@@ -9,9 +9,7 @@ import { DIRECTION } from '../../Utilities/Constant.utils';
 
 const isHorizontal = direction => direction === DIRECTION.HORIZONTAL;
 
-const TokenTotemHeader = (props) => {
-  const { direction } = props;
-
+const TokenTotemHeader = ({ direction, textStyle }) => {
   const containerStyle = isHorizontal(direction) ?
     styles.containerHorizontal : styles.containerVertical;
 
@@ -24,9 +22,9 @@ const TokenTotemHeader = (props) => {
 
   return (
     <View style={containerStyle}>
-      <Text style={styles.text}>Token</Text>
+      <Text style={[styles.text, textStyle]}>Token</Text>
       {_renderImage()}
-      <Text style={styles.text}>Totem</Text>
+      <Text style={[styles.text, textStyle]}>Totem</Text>
     </View>
   );
 };
@@ -36,7 +34,8 @@ TokenTotemHeader.defaultProps = {
 };
 
 TokenTotemHeader.propTypes = {
-  direction: propTypes.string
+  direction: propTypes.string,
+  textStyle: propTypes.object
 };
 
 export default TokenTotemHeader;

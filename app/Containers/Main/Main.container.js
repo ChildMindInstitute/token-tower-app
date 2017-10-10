@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { reduxForm, FieldArray } from 'redux-form';
 
 import Main from '../../Components/Main/Main.component';
+import TokenStack from './TokenStack.component';
 
 import routeName from '../../Navigation/RouteConfigs/Route.config';
-import navPropTypes from '../../PropTypes/Navigation.propTypes';
+import config from './Main.container.config';
 import { USER_ROLE } from '../../Utilities/Constant.utils';
 
 class MainContainer extends Component {
@@ -15,7 +16,8 @@ class MainContainer extends Component {
   }
 
   _onMinus = () => {
-    // const { removeToken } = this.props;
+    const { array } = this.props;
+    array.pop('tokenStack');
   }
 
   _onToken = () => {
@@ -27,7 +29,8 @@ class MainContainer extends Component {
   }
 
   _onPlus = () => {
-    // const { addToken } = this.props;
+    const { array } = this.props;
+    array.push('tokenStack', { tokenImgUrl: '' });
   }
 
   _onPrize = () => {
@@ -45,30 +48,41 @@ class MainContainer extends Component {
     return isChild ? undefined : callback;
   }
 
+  _renderTokenStack = () => (
+    <FieldArray
+      component={TokenStack}
+      name="tokenStack"
+    />
+  );
+
+  _onPig = () => { }
+
   render() {
     return (
       <Main
         onCameraPress={this._onCamera}
-        onMinusPress={this._initFuncWithRole(this._onMinus)}
-        onTokenPress={this._onToken}
+        onPigPress={this._onPig} onTokenPress={this._onToken}
         onPlusPress={this._initFuncWithRole(this._onPlus)}
-        onPrizePress={this._onPrize}
-        minusIconColor={this._getColor()}
-        plusIconColor={this._getColor()}
+        onMinusPress={this._initFuncWithRole(this._onMinus)}
+        minusIconColor={this._getColor()} plusIconColor={this._getColor()}
+        onPrizePress={this._onPrize} token={this._renderTokenStack()}
       />
     );
   }
 }
 
-MainContainer.propTypes = {
-  ...navPropTypes,
-  isChild: propTypes.bool.isRequired
-};
+MainContainer.propTypes = config.propTypes;
 
 const mapStateToProps = state => ({
-  isChild: state.user.role === USER_ROLE.CHILD
+  isChild: state.user.role === USER_ROLE.CHILD,
+  initialValues: {
+    tokenStack: [
+      { tokenImgUrl: '' }
+    ]
+  }
 });
+
 const mapDispatchToProps = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(MainContainer));

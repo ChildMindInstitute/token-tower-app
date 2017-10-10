@@ -13,12 +13,14 @@ import FormDropdown from '../../Components/FormDropdown/FormDropdown.component';
 import styles from './Setting.container.styles';
 
 import { userUpdateProfile, userInitProfile } from '../../Redux/Reducers/User/User.reducer';
+import { tokenStackUpdate } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
 
 import config from './Setting.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { required, greaterThanZero, smallerThanAThousand } from '../../Utilities/Validation.utils';
 import { REPLENISH_TOKEN_TYPE } from '../../Utilities/Constant.utils';
 import { strToNumber, toString } from '../../Utilities/Format.utils';
+import refreshTime from '../../Utilities/Time.utils';
 
 class SettingContainer extends Component {
   state = {}
@@ -28,7 +30,7 @@ class SettingContainer extends Component {
     this.setState({ dropdownViewWidth: width });
   };
 
-  _renderTokens = () => (
+  _renderTokensInitialize = () => (
     <View style={styles._inputContainerBlock}>
       <Text style={styles._label}>
         How many tokens do you want to start with?
@@ -87,7 +89,7 @@ class SettingContainer extends Component {
   }
 
   _handleSubmit = ({ initialToken, replenishTokenType, childName, canAnimation }) => {
-    const { updateProfile, initProfile, user } = this.props;
+    const { updateProfile, initProfile, updateStack, user, tokenStack } = this.props;
     const userData = {
       ...user,
       initialToken,
@@ -95,8 +97,10 @@ class SettingContainer extends Component {
       child: { name: childName },
       canAnimation
     };
+
     updateProfile(userData)
       .then(({ value }) => initProfile(value))
+      .then(() => updateStack(user.uid, { ...tokenStack, nextRefreshTime: refreshTime(replenishTokenType) }))
       .then(this._onSubmitSuccess);
   }
 
@@ -107,7 +111,7 @@ class SettingContainer extends Component {
           <Header direction={'horizontal'} />
           <View style={styles._content}>
             <Text style={styles._title}>Setup</Text>
-            {this._renderTokens()}
+            {this._renderTokensInitialize()}
             {this._renderReplenish()}
             {this._renderPair()}
             <View style={styles._inputContainerBlock}>
@@ -126,6 +130,7 @@ SettingContainer.propTypes = config.propTypes;
 
 const mapStateToProps = state => ({
   user: state.user,
+  tokenStack: state.tokenStack,
   initialValues: {
     canAnimation: state.user.canAnimation,
     initialToken: state.user.initialToken,
@@ -136,7 +141,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   updateProfile: userUpdateProfile,
-  initProfile: userInitProfile
+  initProfile: userInitProfile,
+  updateStack: tokenStackUpdate
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(SettingContainer));

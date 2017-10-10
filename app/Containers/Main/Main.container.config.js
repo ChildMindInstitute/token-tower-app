@@ -6,16 +6,15 @@ import navPropTypes from '../../PropTypes/Navigation.propTypes';
 const propTypes = {
   ...formPropTypes,
   ...navPropTypes,
-  updateProfile: PropTypes.func.isRequired,
-  initProfile: PropTypes.func.isRequired,
-  updateStack: PropTypes.func.isRequired,
-  initialValues: PropTypes.object,
-  tokenStack: PropTypes.object,
-  user: PropTypes.object.isRequired
+  isChild: PropTypes.bool.isRequired,
+  initialValues: PropTypes.object
+  // updateProfile: PropTypes.func.isRequired,
+  // initProfile: PropTypes.func.isRequired,
+  // user: PropTypes.object.isRequired,
 };
 
 const form = {
-  form: 'settingForm'
+  form: 'mainForm'
 };
 
 export default {

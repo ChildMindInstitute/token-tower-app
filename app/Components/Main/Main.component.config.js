@@ -6,6 +6,8 @@ const propTypes = {
   onPrizePress: PropTypes.func,
   onMinusPress: PropTypes.func,
   onPlusPress: PropTypes.func,
+  onPigPress: PropTypes.func,
+  token: PropTypes.node,
   pigStyle: PropTypes.object,
   cameraStyle: PropTypes.object,
   minusIconColor: PropTypes.string,

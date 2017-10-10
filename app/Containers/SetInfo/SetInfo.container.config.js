@@ -10,7 +10,7 @@ const propTypes = {
   updatePassword: PropTypes.func.isRequired,
   updateBasicProfile: PropTypes.func.isRequired,
   updateProfile: PropTypes.func.isRequired,
-  userInitProfile: PropTypes.func.isRequired
+  initProfile: PropTypes.func.isRequired
 };
 
 const form = {
