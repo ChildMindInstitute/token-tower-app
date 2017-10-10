@@ -9,7 +9,10 @@ import Input from '../../Components/FormInput/FormInput.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 
 import { authenticationEmailPassword } from '../../Redux/Reducers/Authentication/Authentication.reducer';
-import { userAuthenticated, userInitProfile } from '../../Redux/Reducers/User/User.reducer';
+import {
+  userAuthenticated, userInitProfile, userUpdateProfile
+} from '../../Redux/Reducers/User/User.reducer';
+import { tokenStackInit, tokenStackUpdate } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
 
 import styles from './Login.container.styles';
 
@@ -18,6 +21,7 @@ import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { required, emailValidation } from '../../Utilities/Validation.utils';
 import { showTopErrNotification } from '../../Utilities/Form.util';
 import { ERR_MSG } from '../../Utilities/Constant.utils';
+import { isRefreshTime, getNextRefreshTime } from '../../Utilities/Time.utils';
 
 class LoginContainer extends Component {
   _renderUserInput = () => (
@@ -48,20 +52,33 @@ class LoginContainer extends Component {
     navigate(routeName.Authentication.ForgotPassword);
   }
 
-  _onAuthenticated = ({ value: { child } }) => {
-    const { navigation: { navigate }, authenticated } = this.props;
+  _onAuthenticated = ({ value: user }) => {
+    const { navigation: { navigate }, authenticated, initStack, initProfile,
+      tokenStack: { nextRefreshTime, tokens }, updateStack, updateProfile } = this.props;
+
+    const { uid, child, replenishTokenType } = user;
+
     authenticated();
+
+    if (nextRefreshTime && isRefreshTime(nextRefreshTime)) {
+      updateStack(uid, { nextRefreshTime: getNextRefreshTime(replenishTokenType) })
+        .then(() => initStack(uid));
+
+      updateProfile({ ...user, child: { ...child, tokensEarned: child.tokensEarned + tokens.length } })
+        .then(() => initProfile(uid));
+    }
 
     if (child) navigate(routeName.Root.MainUser);
     else navigate(routeName.Root.Config);
   }
 
   _onSubmitSuccess = ({ value: { emailVerified, providerData, uid } }) => {
-    const { dispatch, initProfile } = this.props;
+    const { dispatch, initProfile, initStack } = this.props;
     const isFbOrGgProvider = providerData.find(p => p.providerId === 'facebook.com');
 
     if (emailVerified || isFbOrGgProvider) {
-      initProfile(uid)
+      initStack(uid)
+        .then(() => initProfile(uid))
         .then(this._onAuthenticated)
         .catch(this._onSubmitFail);
     } else {
@@ -106,11 +123,16 @@ class LoginContainer extends Component {
   }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  tokenStack: state.tokenStack
+});
 const mapDispatchToProps = {
   authentication: authenticationEmailPassword,
   authenticated: userAuthenticated,
-  initProfile: userInitProfile
+  initProfile: userInitProfile,
+  initStack: tokenStackInit,
+  updateStack: tokenStackUpdate,
+  updateProfile: userUpdateProfile
 };
 
 LoginContainer.propTypes = config.propTypes;

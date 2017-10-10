@@ -20,7 +20,7 @@ import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { required, greaterThanZero, smallerThanAThousand } from '../../Utilities/Validation.utils';
 import { REPLENISH_TOKEN_TYPE } from '../../Utilities/Constant.utils';
 import { strToNumber, toString } from '../../Utilities/Format.utils';
-import refreshTime from '../../Utilities/Time.utils';
+import { getNextRefreshTime } from '../../Utilities/Time.utils';
 
 class SettingContainer extends Component {
   state = {}
@@ -100,7 +100,9 @@ class SettingContainer extends Component {
 
     updateProfile(userData)
       .then(({ value }) => initProfile(value))
-      .then(() => updateStack(user.uid, { ...tokenStack, nextRefreshTime: refreshTime(replenishTokenType) }))
+      .then(() => updateStack(user.uid, {
+        ...tokenStack, nextRefreshTime: getNextRefreshTime(replenishTokenType)
+      }))
       .then(this._onSubmitSuccess);
   }
 

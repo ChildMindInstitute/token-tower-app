@@ -8,7 +8,11 @@ const propTypes = {
   ...formPropTypes,
   authentication: PropTypes.func.isRequired,
   authenticated: PropTypes.func.isRequired,
-  initProfile: PropTypes.func.isRequired
+  initProfile: PropTypes.func.isRequired,
+  initStack: PropTypes.func.isRequired,
+  updateStack: PropTypes.func,
+  updateProfile: PropTypes.func,
+  tokenStack: PropTypes.object
 };
 
 const form = {

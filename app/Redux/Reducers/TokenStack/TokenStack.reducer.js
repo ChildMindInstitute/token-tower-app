@@ -22,7 +22,10 @@ export const {
 // Reducer
 // ------------------------------------
 
-const initTokenStackHandler = (state, { payload }) => ({ ...state, ...payload });
+const initTokenStackHandler = (state, { payload }) => ({
+  ...payload,
+  tokens: (payload && payload.tokens) || []
+});
 
 export default handleActions({
   TOKEN_STACK_INIT_FULFILLED: initTokenStackHandler
