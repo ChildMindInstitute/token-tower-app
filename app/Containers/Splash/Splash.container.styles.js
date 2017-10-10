@@ -40,18 +40,14 @@ export default EStyleSheet.create({
   _text: {
     fontFamily: Fonts.regular,
     textAlign: 'center',
-    width: 200,
     [smallSize]: {
-      width: 160,
-      fontSize: 27
+      width: 160
     },
     [mediumSize]: {
-      width: 200,
-      fontSize: 34
+      width: 200
     },
     [largeSize]: {
-      width: 250,
-      fontSize: 40
+      width: 250
     }
   },
   _wrap: {

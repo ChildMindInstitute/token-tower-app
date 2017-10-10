@@ -12,8 +12,7 @@ export const unregisterMsgBar = () => {
 export const showMsgBar = (nextMsg, oldMsg) => {
   if (nextMsg && nextMsg.message && oldMsg !== nextMsg) {
     const viewTopOffset = Header.HEIGHT;
-    const animationType = 'SlideFromLeft';
-    const message = { ...nextMsg, viewTopOffset, animationType };
+    const message = { ...nextMsg, viewTopOffset };
 
     MessageBarManager.showAlert(message);
   }

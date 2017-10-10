@@ -5,7 +5,8 @@ import routesName from '../RouteConfigs/Route.config';
 import { navigationOptions } from '../CommonConfigs/Navigation.config';
 
 const {
-  Authentication: { Home, Login, ForgotPassword, UpdatePassword },
+  Authentication: { Home, Login, ForgotPassword },
+  UpdateInfo: { SetInfo },
   MainUser: { MainUserSelection },
   Registration: { RegisterPermission, RegisterForm, RegisterWelcome },
   TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto },
@@ -13,7 +14,8 @@ const {
   Config: { Setting }
 } = routesName;
 
-const { HomeScreen, LoginScreen, MainUserSelectionScreen, ForgotPasswordScreen, UpdatePasswordScreen,
+const { HomeScreen, LoginScreen, MainUserSelectionScreen, ForgotPasswordScreen,
+  SetInfoScreen,
   RegisterPermissionScreen, RegisterFormScreen, RegisterWelcomeScreen, SettingScreen,
   SplashScreen, MainScreen, PrizeScreen,
   TutorialScreen, TakePhotoScreen, ReviewPhotoScreen, PickPhotoScreen
@@ -22,8 +24,11 @@ const { HomeScreen, LoginScreen, MainUserSelectionScreen, ForgotPasswordScreen, 
 const AuthenticationNavigator = StackNavigator({
   [Home]: HomeScreen,
   [Login]: LoginScreen,
-  [ForgotPassword]: ForgotPasswordScreen,
-  [UpdatePassword]: UpdatePasswordScreen
+  [ForgotPassword]: ForgotPasswordScreen
+}, navigationOptions);
+
+const UpdateInfoNavigator = StackNavigator({
+  [SetInfo]: SetInfoScreen
 }, navigationOptions);
 
 const MainUserNavigator = StackNavigator({
@@ -55,6 +60,7 @@ const ConfigNavigator = StackNavigator({
 
 export default {
   AuthenticationNavigator,
+  UpdateInfoNavigator,
   MainUserNavigator,
   RegistrationNavigator,
   TokenTotemNavigator,

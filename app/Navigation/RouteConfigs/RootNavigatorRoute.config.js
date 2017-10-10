@@ -2,11 +2,13 @@ import SubNavigators from '../SubNavigatorConfig/SubNavigator.config';
 import routesName from './Route.config';
 
 const {
-  Root: { Authentication, MainUser, Registration, TokenTotem, TokenTotemTutorial, Config }
+  Root: { Authentication, UpdateInfo, MainUser, Registration, TokenTotem, TokenTotemTutorial, Config }
 } = routesName;
 
 const {
-  AuthenticationNavigator, MainUserNavigator,
+  AuthenticationNavigator,
+  UpdateInfoNavigator,
+  MainUserNavigator,
   RegistrationNavigator,
   TokenTotemNavigator, TokenTotemTutorialNavigator,
   ConfigNavigator
@@ -14,6 +16,7 @@ const {
 
 export default {
   [Authentication]: { screen: AuthenticationNavigator, path: Authentication },
+  [UpdateInfo]: { screen: UpdateInfoNavigator, path: UpdateInfo },
   [MainUser]: { screen: MainUserNavigator, path: MainUser },
   [Registration]: { screen: RegistrationNavigator, path: Registration },
   [TokenTotem]: { screen: TokenTotemNavigator, path: TokenTotem },

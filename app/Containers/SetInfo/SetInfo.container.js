@@ -8,17 +8,19 @@ import SubmitBtn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import Input from '../../Components/FormInput/FormInput.component';
 
-import { userUpdatePassword } from '../../Redux/Reducers/User/User.reducer';
+import {
+  userUpdatePassword, userUpdateBasicProfile, userUpdateProfile, userInitProfile
+} from '../../Redux/Reducers/User/User.reducer';
 
-import styles from './UpdatePassword.container.styles';
+import styles from './SetInfo.container.styles';
 
-import config from './UpdatePassword.container.config';
+import config from './SetInfo.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { showTopErrNotification } from '../../Utilities/Form.util';
-import { minLength } from '../../Utilities/Validation.utils';
+import { require, minLength } from '../../Utilities/Validation.utils';
 import { DIRECTION, ERR_MSG } from '../../Utilities/Constant.utils';
 
-class UpdatePasswordContainer extends Component {
+class SetInfoContainer extends Component {
   constructor() {
     super();
     this.passwordValidation = [minLength(6)];
@@ -29,8 +31,20 @@ class UpdatePasswordContainer extends Component {
       <Text style={styles._label}>Email</Text>
       <Input
         inputStyle={{ ...styles._input, ...styles._backgroundGrey }}
-        editable={false} input={{ value: this.props.email }}
+        editable={false} input={{ value: this.props.user.email }}
         meta={{}} containerStyle={styles._inputContainer}
+      />
+    </View>
+  )
+
+  _renderUsername = () => (
+    <View style={styles._inputContainerBlock}>
+      <Text style={styles._label}>User</Text>
+      <Field
+        name={'username'} component={Input}
+        inputStyle={styles._input} containerStyle={styles._inputContainer}
+        placeholder={'username'}
+        validate={require}
       />
     </View>
   )
@@ -60,13 +74,16 @@ class UpdatePasswordContainer extends Component {
   )
 
 
-  _handleSubmit = ({ password, confirmPassword }) => {
+  _handleSubmit = ({ username, password, confirmPassword }) => {
     if (password !== confirmPassword) {
       throw new SubmissionError({ confirmPassword: ERR_MSG.PASSWORD_NOT_MATCH });
     }
 
-    const { updatePassword } = this.props;
+    const { updatePassword, updateBasicProfile, updateProfile, initProfile, user } = this.props;
     updatePassword(password)
+      .then(() => updateBasicProfile({ username }))
+      .then(({ value: { displayName } }) => updateProfile({ ...user, displayName }))
+      .then(({ value }) => initProfile(value))
       .then(this._onSubmitSuccess)
       .catch(this._onSubmitFail);
   }
@@ -90,10 +107,11 @@ class UpdatePasswordContainer extends Component {
         <KeyboardAwareScrollView style={styles._contentBlock}>
           <Header direction={DIRECTION.HORIZONTAL} />
           <View style={styles._formView}>
-            <Text style={styles._hello}>{`Hi ${this.props.displayName}`}</Text>
+            <Text style={styles._hello}>{`Hi ${this.props.user.displayName}`}</Text>
             <Text style={styles._title}>Please set your password.</Text>
             <View style={styles._form}>
               {this._renderEmail()}
+              {this._renderUsername()}
               {this._renderPasswordInput()}
               {this._renderConfirmPasswordInput()}
             </View>
@@ -106,13 +124,18 @@ class UpdatePasswordContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  displayName: state.user.displayName,
-  email: state.user.email
+  user: state.user,
+  initialValues: {
+    username: state.user.displayName
+  }
 });
 const mapDispatchToProps = {
-  updatePassword: userUpdatePassword
+  updatePassword: userUpdatePassword,
+  updateBasicProfile: userUpdateBasicProfile,
+  updateProfile: userUpdateProfile,
+  initProfile: userInitProfile
 };
 
-UpdatePasswordContainer.propTypes = config.propTypes;
+SetInfoContainer.propTypes = config.propTypes;
 
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(UpdatePasswordContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(SetInfoContainer));

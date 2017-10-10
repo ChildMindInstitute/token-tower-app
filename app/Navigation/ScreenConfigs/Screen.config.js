@@ -16,13 +16,14 @@ import TutorialContainer from '../../Containers/Tutorial/Tutorial.container';
 import TakePhotoContainer from '../../Containers/TakePhoto/TakePhoto.container';
 import ReviewPhotoContainer from '../../Containers/ReviewPhoto/ReviewPhoto.container';
 import PickPhotoContainer from '../../Containers/PickPhoto/PickPhoto.container';
-import UpdatePasswordContainer from '../../Containers/UpdatePassword/UpdatePassword.container';
+import SetInfoContainer from '../../Containers/SetInfo/SetInfo.container';
 
 import MenuButtonContainer from '../../Containers/MenuButton/MenuButton.container';
 
 import routesName from '../RouteConfigs/Route.config';
 
-const { Authentication: { Home, Login, ForgotPassword, UpdatePassword },
+const { Authentication: { Home, Login, ForgotPassword },
+  UpdateInfo: { SetInfo },
   MainUser: { MainUserSelection },
   Registration: { RegisterPermission, RegisterForm, RegisterWelcome },
   TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto },
@@ -45,7 +46,8 @@ const registerPermissionScreenOptions = ({ navigation: { navigate } }) => {
 const HomeScreen = { screen: HomeContainer, path: Home };
 const LoginScreen = { screen: LoginContainer, path: Login };
 const ForgotPasswordScreen = { screen: ForgotPasswordContainer, path: ForgotPassword };
-const UpdatePasswordScreen = { screen: UpdatePasswordContainer, path: UpdatePassword };
+
+const SetInfoScreen = { screen: SetInfoContainer, path: SetInfo };
 
 const MainUserSelectionScreen = { screen: MainUserSelectionContainer, path: MainUserSelection };
 
@@ -79,7 +81,7 @@ export default {
   SettingScreen,
   PrizeScreen,
   ForgotPasswordScreen,
-  UpdatePasswordScreen,
+  SetInfoScreen,
   MainUserSelectionScreen,
   TutorialScreen,
   TakePhotoScreen,

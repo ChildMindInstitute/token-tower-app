@@ -1,6 +1,7 @@
 export default {
   Root: {
     Authentication: 'Authentication',
+    UpdateInfo: 'UpdateInfo',
     MainUser: 'MainUser',
     Registration: 'Registration',
     TokenTotem: 'TokenTotem',
@@ -13,8 +14,10 @@ export default {
   Authentication: {
     Home: 'Home',
     Login: 'Login',
-    ForgotPassword: 'ForgotPassword',
-    UpdatePassword: 'UpdatePassword'
+    ForgotPassword: 'ForgotPassword'
+  },
+  UpdateInfo: {
+    SetInfo: 'SetInfo'
   },
   Registration: {
     RegisterPermission: 'RegisterPermission',

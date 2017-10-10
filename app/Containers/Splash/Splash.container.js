@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
+import { View, Image, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 
+import TextFit from '../../Components/TextFit/TextFit.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 
 import images from '../../Resources/Images';
@@ -47,14 +48,15 @@ class SplashContainer extends Component {
 
   _renderMotivationMsg = () => {
     const { tokensEarned, prizes } = this.props;
-    let text = MSG.SET_PRIZE;
+    let text = `You have ${tokensEarned} tokens!!! `;
 
     if (prizes && prizes.length > 0) {
       const { amount } = prizes.find((p => p.amount > tokensEarned));
-      text = `You have ${tokensEarned} tokens!!! Only ${amount - tokensEarned} more for your next PRIZE!!!`;
-    }
+      text += `Only ${amount - tokensEarned} more for your next PRIZE!!!`;
+    } else text += MSG.SET_PRIZE;
+
     return (
-      <Text style={styles._text}>{text}</Text>
+      <TextFit height={200} style={styles._text}>{text}</TextFit>
     );
   }
 

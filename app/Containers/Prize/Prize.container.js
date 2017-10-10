@@ -88,11 +88,11 @@ class PrizeContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.user,
-  isParent: state.user.role === USER_ROLE.PARENT,
+const mapStateToProps = ({ user }) => ({
+  user,
+  isParent: !user.role || user.role === USER_ROLE.PARENT,
   initialValues: {
-    prizes: state.user.prizes
+    prizes: user.prizes
   }
 });
 

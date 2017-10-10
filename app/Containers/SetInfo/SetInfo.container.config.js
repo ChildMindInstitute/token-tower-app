@@ -6,13 +6,15 @@ import formPropTypes from '../../PropTypes/Form.propTypes';
 const propTypes = {
   ...navPropTypes,
   ...formPropTypes,
+  user: PropTypes.object.isRequired,
   updatePassword: PropTypes.func.isRequired,
-  displayName: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired
+  updateBasicProfile: PropTypes.func.isRequired,
+  updateProfile: PropTypes.func.isRequired,
+  userInitProfile: PropTypes.func.isRequired
 };
 
 const form = {
-  form: 'updatePasswordForm'
+  form: 'SetInfoForm'
 };
 
 export default {

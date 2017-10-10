@@ -99,7 +99,7 @@ class RegisterFormContainer extends Component {
     const { initProfile, authenticated, navigation: { navigate } } = this.props;
     const _providerAuthenticated = () => {
       authenticated();
-      navigate(routeName.Authentication.UpdatePassword);
+      navigate(routeName.Root.UpdateInfo);
     };
     promise
       .then(this._updateProfile)
