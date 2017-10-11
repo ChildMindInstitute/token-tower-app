@@ -48,28 +48,30 @@ export default EStyleSheet.create({
     fontFamily: Fonts.bold,
     color: 'green',
     [smallSize]: {
-      fontSize: 30
+      fontSize: 28
     },
     [mediumSize]: {
-      fontSize: 32,
+      fontSize: 30,
       paddingVertical: 5
     },
     [largeSize]: {
-      fontSize: 36
+      fontSize: 33,
+      paddingVertical: 8
+      
     }
   },
   _text2: {
     fontFamily: Fonts.bold,
     color: 'red',
     [smallSize]: {
-      fontSize: 30
+      fontSize: 28
     },
     [mediumSize]: {
-      fontSize: 32,
+      fontSize: 30,
       paddingVertical: 5
     },
     [largeSize]: {
-      fontSize: 36,
+      fontSize: 33,
       paddingVertical: 8
     }
   }
