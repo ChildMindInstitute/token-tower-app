@@ -99,7 +99,11 @@ class LoginContainer extends Component {
     const { authentication } = this.props;
     authentication(values)
       .then(this._onSubmitSuccess)
-      .catch(this._onSubmitFail);
+      .catch(({ code, message }) => {
+        let msg;
+        if (code === 'auth/user-not-found') msg = ERR_MSG.LOGIN_USER_NOT_FOUND;
+        this._onSubmitFail({ message: msg || message });
+      });
   };
 
   render() {

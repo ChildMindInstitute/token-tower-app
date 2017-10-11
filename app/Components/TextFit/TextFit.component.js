@@ -43,7 +43,8 @@ class TextFit extends Component {
         ref={this._getRef}
         style={[
           this.props.style,
-          { fontSize: this.state.size }
+          { fontSize: this.state.size },
+          { opacity: this.state.complete ? 1 : 0 }
         ]}
       >
         {this.props.children}

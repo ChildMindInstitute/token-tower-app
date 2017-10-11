@@ -77,7 +77,7 @@ class RegisterFormContainer extends Component {
   )
 
   _onFail = ({ message }) => showTopErrNotification({
-    title: ERR_MSG.REGISTER_FAIL_TITLE, message
+    title: ERR_MSG.REGISTER_ERROR_TITLE, message
   }, this.props.dispatch);
 
   _handleSubmit = ({ username, password, email }) => {
@@ -87,7 +87,11 @@ class RegisterFormContainer extends Component {
       .then(this._updateProfile)
       .then(sendEmailVerification)
       .then(() => navigate(routeName.Registration.RegisterWelcome))
-      .catch(this._onFail);
+      .catch(({ code, message }) => {
+        let msg;
+        if (code === 'auth/email-already-in-use') msg = ERR_MSG.EMAIL_ALREADY_IN_USE;
+        this._onFail({ message: msg || message });
+      });
   }
 
   _updateProfile = ({ value: { displayName, uid } }) => {
@@ -150,7 +154,6 @@ class RegisterFormContainer extends Component {
               </Btn>
             </View>
           </View>
-          
         </ScrollView>
         <Btn onPress={this.props.handleSubmit(this._handleSubmit)} text={'NEXT'} />
       </View>

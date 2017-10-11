@@ -32,7 +32,9 @@ export const ERR_MSG = {
   PRIZE_EMPTY: 'Prize can not be empty.',
   MAX_PRIZE: 'Maximun 3 prizes.',
   ADD_TOKEN_TITLE: 'Add token Failed',
-  ADD_TOKEN: 'Don\'t have enough token to add.'
+  ADD_TOKEN: 'Don\'t have enough token to add.',
+  EMAIL_ALREADY_IN_USE: 'This email address is already in use by another account.',
+  LOGIN_USER_NOT_FOUND: 'Please type in your correct login and password.'
 };
 
 export const MSG = {
