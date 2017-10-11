@@ -63,7 +63,7 @@ class RegisterPermissionContainer extends Component {
 
     if (!canPerforming || !canStoreData) {
       showTopErrNotification({
-        title: ERR_MSG.REGISTER_FAIL_TITLE,
+        title: ERR_MSG.REGISTER_ERROR_TITLE,
         message: ERR_MSG.PERMISSION_AGREEMENT
       }, dispatch);
     } else navigate(routeName.Registration.RegisterForm);

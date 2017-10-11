@@ -83,7 +83,7 @@ class LoginContainer extends Component {
         .catch(this._onSubmitFail);
     } else {
       showTopErrNotification({
-        title: ERR_MSG.LOGIN_FAIL_TITLE,
+        title: ERR_MSG.LOGIN_ERROR_TITLE,
         message: ERR_MSG.LOGIN_VERIFY_EMAIL
       }, dispatch);
     }
@@ -91,7 +91,7 @@ class LoginContainer extends Component {
 
   _onSubmitFail = ({ message }) => {
     showTopErrNotification({
-      title: ERR_MSG.LOGIN_FAIL_TITLE, message
+      title: ERR_MSG.LOGIN_ERROR_TITLE, message
     }, this.props.dispatch);
   }
 

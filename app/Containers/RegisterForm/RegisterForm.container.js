@@ -150,11 +150,7 @@ class RegisterFormContainer extends Component {
               </Btn>
             </View>
           </View>
-          <Text style={styles._para}>
-            Disclamer about information... study isetrinisetrin riesnt risetni ienars iaers
-            eseiiieeseiiie einriseni reisn rsien Data breach aiers iers iersiers. ires ier ires u
-            efir ir. iasrnti irsent Child Mind Institut d recontact?
-          </Text>
+          
         </ScrollView>
         <Btn onPress={this.props.handleSubmit(this._handleSubmit)} text={'NEXT'} />
       </View>

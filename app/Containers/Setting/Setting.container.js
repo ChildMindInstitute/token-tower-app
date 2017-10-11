@@ -106,6 +106,12 @@ class SettingContainer extends Component {
       .then(this._onSubmitSuccess);
   }
 
+  _btnText = () => {
+    const { user: { isFirstTutorial } } = this.props;
+    if (isFirstTutorial) return ('Take The Tour!');
+    return ('DONE');
+  }
+
   render() {
     return (
       <View style={styles._container}>
@@ -122,7 +128,7 @@ class SettingContainer extends Component {
             </View>
           </View>
         </KeyboardAwareScrollView>
-        <SubmitBtn onPress={this.props.handleSubmit(this._handleSubmit)} text={'Take the tour!'} />
+        <SubmitBtn onPress={this.props.handleSubmit(this._handleSubmit)} text={this._btnText()} />
       </View>
     );
   }

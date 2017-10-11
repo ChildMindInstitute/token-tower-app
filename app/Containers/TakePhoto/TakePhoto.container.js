@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, Image } from 'react-native';
+import { View, Image } from 'react-native';
 import { Camera, Permissions, ImagePicker } from 'expo';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import PermissionGrantWidget from '../../Components/PermissionGrantWidget/PermissionGrantWidget.component';
+import Btn from '../../Components/FormButton/FormButton.component';
 
 import images from '../../Resources/Images';
 import FontIcon from '../../Components/FontIcon/FontIcon.component';
@@ -15,7 +17,6 @@ import config from './TakePhoto.container.config';
 
 export default class TakePhotoContainer extends Component {
   state = {
-    image: null,
     hasCameraPermission: null,
     type: Camera.Constants.Type.back
   };
@@ -24,37 +25,41 @@ export default class TakePhotoContainer extends Component {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasCameraPermission: status === 'granted' });
   }
-  _onFlip =() => {
-    this.setState({
-      type: this.state.type === Camera.Constants.Type.back
-        ? Camera.Constants.Type.front
-        : Camera.Constants.Type.back
-    });
+
+  _onFlip = () => {
+    let { type } = this.state;
+    type = type === Camera.Constants.Type.back
+      ? Camera.Constants.Type.front
+      : Camera.Constants.Type.back;
+    this.setState({ type });
   }
 
-  _onClick = () => {
-    const { navigate } = this.props.navigation;
-    navigate(routeName.TokenTotem.ReviewPhoto);
+  _onCamera = async () => {
+    const { props: { navigation: { navigate } }, camera } = this;
+
+    if (!camera) return;
+    const photo = await camera.takePictureAsync({ base64: true });
+    navigate(routeName.TokenTotem.ReviewPhoto, photo);
   }
 
   _onPick = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
+    const { navigation: { navigate } } = this.props;
+    const photo = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
-      aspect: [4, 3]
+      aspect: [4, 3],
+      base64: true
     });
-    if (!result.cancelled) {
-      this.setState({ image: result.uri });
+
+    if (!photo.cancelled) {
+      navigate(routeName.TokenTotem.ReviewPhoto, photo);
     }
   };
 
+  _getCameraRef = (ref) => { this.camera = ref; };
+
   render() {
-    const { hasCameraPermission } = this.state;
-    if (hasCameraPermission === null) {
-      return <View />;
-    } else if (hasCameraPermission === false) {
-      return <Text>No access to camera</Text>;
-    }
-    const { image } = this.state;
+    const { hasCameraPermission, type } = this.state;
+    if (!hasCameraPermission) return <PermissionGrantWidget />;
 
     return (
       <View style={styles._container}>
@@ -62,8 +67,7 @@ export default class TakePhotoContainer extends Component {
         <View style={styles._imgContainer}>
           <Image resizeMode={'contain'} source={images.pig} style={styles._images} />
         </View>
-
-        <Camera style={styles._cameraContainer} type={this.state.type}>
+        <Camera style={styles._cameraContainer} type={type} autoFocus ref={this._getCameraRef}>
           <View style={styles._cameraView}>
             <View style={styles._ovalContainer}>
               <View style={styles._oval} />
@@ -71,20 +75,16 @@ export default class TakePhotoContainer extends Component {
           </View>
           <View style={styles._blank} />
         </Camera>
-
         <View style={styles._dock}>
-          <TouchableOpacity style={styles._flip} onPress={this._onFlip}>
+          <Btn btnStyle={styles._flip} onPress={this._onFlip}>
             <FontIcon name={'arrows-cw'} color={'#51555b'} size={40} />
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles._cameraLogo}>
+          </Btn>
+          <Btn btnStyle={styles._cameraLogo} onPress={this._onCamera}>
             <Image source={images.camera} resizeMode={'contain'} style={styles._images} />
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={this._onPick} style={styles._logoPickImg}>
+          </Btn>
+          <Btn btnStyle={styles._logoPickImg} onPress={this._onPick}>
             <FontIcon name={'clone'} color={'#51555b'} size={40} />
-          </TouchableOpacity>
-
+          </Btn>
         </View>
       </View>
     );
