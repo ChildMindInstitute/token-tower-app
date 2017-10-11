@@ -18,3 +18,8 @@ export const showTopInfoNotification = (notify, dispatch) => {
 
   dispatch(topNotificationAdd({ ...notify, alertType: COMMON.INFO }));
 };
+export const showTopWarningNotification = (notify, dispatch) => {
+  if (!notify) return;
+
+  dispatch(topNotificationAdd({ ...notify, alertType: COMMON.WARNING }));
+};

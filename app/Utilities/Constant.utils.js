@@ -38,12 +38,13 @@ export const ERR_MSG = {
 export const MSG = {
   RESET_PASSWORD_TITLE: 'Reset Password',
   VERIFY_MAIL_CHANGE_PASSWORD: 'Please check your email to confirm new password!',
-  SET_PRIZE: 'Don\'t have any goals? Please set your prize now!!!',
+  SET_PRIZE: 'You don\'t have any tokens yet. You can set goals or prizes.',
   ACHIEVE_ALL_GOALS: 'Congratulation! you now achieve all goals.',
+  NOT_SET_GOAL: 'Your prizes will be available soon.',
   ADD_TOKEN_TITLE: 'Add token',
-  ADD_TOKEN: 'You have added 1 token to the stack.',
+  ADD_TOKEN: 'One token added to the totem.',
   REMOVE_TOKEN_TITLE: 'Remove token',
-  REMOVE_TOKEN: 'You have removed 1 token from the stack.',
+  REMOVE_TOKEN: 'One token removed from the totem.',
   REMOVE_TOKEN_ASK: 'Do you want to remove 1 token from Piggy container?'
 };
 

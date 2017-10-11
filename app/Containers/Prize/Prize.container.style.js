@@ -50,7 +50,7 @@ export default EStyleSheet.create({
     justifyContent: 'space-between'
   },
   _btn: {
-    backgroundColor: '#23a02f',
+    backgroundColor: '#f7c34a',
     marginVertical: 10
   },
   _textBtn: {

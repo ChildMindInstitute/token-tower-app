@@ -109,7 +109,7 @@ class SettingContainer extends Component {
   _btnText = () => {
     const { user: { isFirstTutorial } } = this.props;
     if (isFirstTutorial) return ('Take The Tour!');
-    return ('DONE');
+    return ('SAVE');
   }
 
   render() {

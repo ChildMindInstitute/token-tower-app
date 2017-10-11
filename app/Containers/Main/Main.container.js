@@ -18,7 +18,7 @@ import { tokenHistoryAdd } from '../../Redux/Reducers/TokenHistory/TokenHistory.
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import config from './Main.container.config';
 import { USER_ROLE, TOKEN_ACTION_TYPE, MSG, ERR_MSG, COMMON } from '../../Utilities/Constant.utils';
-import { showTopInfoNotification, showTopErrNotification } from '../../Utilities/Form.util';
+import { showTopWarningNotification, showTopErrNotification } from '../../Utilities/Form.util';
 
 class MainContainer extends Component {
   componentWillMount() {
@@ -62,7 +62,7 @@ class MainContainer extends Component {
     tokenStack.tokens.pop();
     updateStack(uid, tokenStack);
     addHistory(uid, { type: TOKEN_ACTION_TYPE.REMOVE, tokenImgUrl: '' });
-    showTopInfoNotification({
+    showTopWarningNotification({
       title: MSG.REMOVE_TOKEN_TITLE,
       message: MSG.REMOVE_TOKEN
     }, dispatch);
@@ -88,7 +88,7 @@ class MainContainer extends Component {
     tokenStack.tokens.push('');
     updateStack(uid, tokenStack);
     addHistory(uid, { type: TOKEN_ACTION_TYPE.ADD, tokenImgUrl: '' });
-    showTopInfoNotification({
+    showTopWarningNotification({
       title: MSG.ADD_TOKEN_TITLE,
       message: MSG.ADD_TOKEN
     }, dispatch);

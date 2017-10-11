@@ -11,7 +11,7 @@ import styles from './Splash.container.styles';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import config from './Splash.container.config';
 import { showTopErrNotification } from '../../Utilities/Form.util';
-import { ERR_MSG, MSG } from '../../Utilities/Constant.utils';
+import { ERR_MSG, MSG, USER_ROLE } from '../../Utilities/Constant.utils';
 
 class SplashContainer extends Component {
   componentWillMount() {
@@ -47,14 +47,15 @@ class SplashContainer extends Component {
   );
 
   _renderMotivationMsg = () => {
-    const { tokensEarned, prizes } = this.props;
+    const { tokensEarned, prizes, isChild } = this.props;
     let text = `You have ${tokensEarned} tokens!!! `;
 
     if (prizes && prizes.length > 0) {
       const prize = prizes.find((p => p.amount > tokensEarned));
       if (prize) text += `Only ${prize.amount - tokensEarned} more for your next PRIZE!!!`;
       else text += MSG.ACHIEVE_ALL_GOALS;
-    } else text += MSG.SET_PRIZE;
+    } else if (isChild) text = MSG.NOT_SET_GOAL;
+    else text = MSG.SET_PRIZE;
 
     return (
       <TextFit height={200} style={styles._text}>{text}</TextFit>
@@ -89,7 +90,8 @@ SplashContainer.propTypes = config.propTypes;
 const mapStateToProps = state => ({
   isHaveChild: !!(state.user.child && state.user.child.name),
   tokensEarned: state.user.child && state.user.child.tokensEarned,
-  prizes: state.user.prizes
+  prizes: state.user.prizes,
+  isChild: state.user.role === USER_ROLE.CHILD
 });
 const mapDispatchToProps = {
 };
