@@ -7,13 +7,19 @@ import Main from '../../Components/Main/Main.component';
 import TokenStack from './TokenStack.component';
 
 import {
+  tokenStackListenAddOn,
+  tokenStackListenAddOff,
   tokenStackListenChangeOn,
   tokenStackListenChangeOff,
+  tokenStackListenRemoveOn,
+  tokenStackListenRemoveOff,
   tokenStackUpdate,
   tokenStackInit
 } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
-
 import { tokenHistoryAdd } from '../../Redux/Reducers/TokenHistory/TokenHistory.reducer';
+import Sounds from '../../Resources/Sounds';
+
+import soundUtils from '../../Utilities/Sound.utils';
 
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import config from './Main.container.config';
@@ -22,16 +28,28 @@ import { showTopWarningNotification, showTopErrNotification } from '../../Utilit
 
 class MainContainer extends Component {
   componentWillMount() {
-    const { subscribeStackChanged, user: { uid } } = this.props;
+    const { subscribeStackChanged, subscribeStackRemoved,
+      subscribeStackAdded, user: { uid } } = this.props;
     subscribeStackChanged(uid, this._onStackChangeHandler);
-
+    subscribeStackRemoved(uid, this._onStackChangeHandler);
+    subscribeStackAdded(uid, this._onStackChangeHandler);
     const { initStack } = this.props;
     initStack(uid);
   }
 
+  async componentDidUpdate({ tokenStack: { tokens: prevTokens } }) {
+    const { tokenStack: { tokens } } = this.props;
+    if (prevTokens.length > tokens.length) {
+      await soundUtils.play(Sounds.poof);
+    }
+  }
+
   componentWillUnmount() {
-    const { unsubscribeStackChanged, user: { uid } } = this.props;
+    const { unsubscribeStackChanged, unsubscribeStackRemoved,
+      unsubscribeStackAdded, user: { uid } } = this.props;
     unsubscribeStackChanged(uid, this._onStackChangeHandler);
+    unsubscribeStackRemoved(uid, this._onStackChangeHandler);
+    unsubscribeStackAdded(uid, this._onStackChangeHandler);
   }
 
   _onStackChangeHandler = () => {
@@ -58,9 +76,9 @@ class MainContainer extends Component {
       );
       return;
     }
-
-    tokenStack.tokens.pop();
-    updateStack(uid, tokenStack);
+    const newStacks = [...tokenStack.tokens];
+    newStacks.pop();
+    updateStack(uid, { ...tokenStack, tokens: newStacks });
     addHistory(uid, { type: TOKEN_ACTION_TYPE.REMOVE, tokenImgUrl: '' });
     showTopWarningNotification({
       title: MSG.REMOVE_TOKEN_TITLE,
@@ -85,8 +103,9 @@ class MainContainer extends Component {
       }, dispatch);
       return;
     }
-    tokenStack.tokens.push('');
-    updateStack(uid, tokenStack);
+    const newStacks = [...tokenStack.tokens];
+    newStacks.push('');
+    updateStack(uid, { ...tokenStack, tokens: newStacks });
     addHistory(uid, { type: TOKEN_ACTION_TYPE.ADD, tokenImgUrl: '' });
     showTopWarningNotification({
       title: MSG.ADD_TOKEN_TITLE,
@@ -141,8 +160,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  subscribeStackAdded: tokenStackListenAddOn,
+  unsubscribeStackAdded: tokenStackListenAddOff,
   subscribeStackChanged: tokenStackListenChangeOn,
   unsubscribeStackChanged: tokenStackListenChangeOff,
+  subscribeStackRemoved: tokenStackListenRemoveOn,
+  unsubscribeStackRemoved: tokenStackListenRemoveOff,
   updateStack: tokenStackUpdate,
   initStack: tokenStackInit,
   addHistory: tokenHistoryAdd
