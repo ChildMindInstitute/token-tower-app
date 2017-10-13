@@ -23,9 +23,9 @@ export default EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     [smallSize]: {
-      height: 260,
-      width: 260,
-      borderRadius: 130
+      height: 250,
+      width: 250,
+      borderRadius: 125
     },
     [mediumSize]: {
       height: 300,
