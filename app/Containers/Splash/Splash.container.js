@@ -53,7 +53,7 @@ class SplashContainer extends Component {
     else text += MSG.SET_PRIZE;
 
     return (
-      <TextFit height={200} style={styles._text}>{text}</TextFit>
+      <TextFit height={170} style={styles._text}>{text}</TextFit>
     );
   }
 

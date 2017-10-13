@@ -97,6 +97,6 @@ export default EStyleSheet.create({
     flex: 1,
     width: null,
     height: null,
-    opacity: 0.2
+    opacity: 0.5
   }
 });
