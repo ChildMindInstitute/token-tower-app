@@ -17,7 +17,9 @@ class MenuItem extends Component {
   }
 
   render() {
-    const { containerStyle, textStyle, item } = this.props;
+    const { containerStyle, textStyle, item, role } = this.props;
+
+    if (role !== item.role) return null;
 
     return (
       <Btn onPress={this._onPress} btnStyle={{ ...containerStyle, ...styles.menu }}>
@@ -34,7 +36,9 @@ MenuItem.propTypes = {
   item: propTypes.object.isRequired,
   containerStyle: propTypes.object,
   textStyle: propTypes.object,
-  icon: propTypes.object
+  icon: propTypes.object,
+  isParent: propTypes.bool,
+  role: propTypes.string
 };
 
 export default MenuItem;

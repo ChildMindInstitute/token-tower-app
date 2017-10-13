@@ -10,21 +10,9 @@ import styles from './Splash.container.styles';
 
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import config from './Splash.container.config';
-import { showTopErrNotification } from '../../Utilities/Form.util';
-import { ERR_MSG, MSG, USER_ROLE } from '../../Utilities/Constant.utils';
+import { MSG, USER_ROLE } from '../../Utilities/Constant.utils';
 
 class SplashContainer extends Component {
-  componentWillMount() {
-    const { isHaveChild, navigation: { navigate, dispatch } } = this.props;
-
-    if (isHaveChild) return;
-    navigate(routeName.Root.Config);
-    showTopErrNotification({
-      title: ERR_MSG.CAN_NOT_ENTER_TITLE,
-      message: ERR_MSG.NEED_CHILD_INFO
-    }, dispatch);
-  }
-
   _onTouch = () => {
     const { navigate } = this.props.navigation;
     navigate(routeName.TokenTotem.Main);
@@ -47,15 +35,17 @@ class SplashContainer extends Component {
   );
 
   _renderMotivationMsg = () => {
-    const { tokensEarned, prizes, isChild } = this.props;
-    let text = `You have ${tokensEarned} tokens!!! `;
+    const { prizes, isChild, isHaveChild, tokenStack: { tokens } } = this.props;
+    const { childTokensEarned = 0, parentTokensEarned = 0 } = this.props;
+    const tokensEarned = (isHaveChild ? childTokensEarned : parentTokensEarned) + tokens.length;
+    let text = tokensEarned > 0 ? `You have ${tokensEarned} tokens!! ` : MSG.ZERO_TOKEN;
 
     if (prizes && prizes.length > 0) {
       const prize = prizes.find((p => p.amount > tokensEarned));
       if (prize) text += `Only ${prize.amount - tokensEarned} more for your next PRIZE!!!`;
       else text += MSG.ACHIEVE_ALL_GOALS;
-    } else if (isChild) text = MSG.NOT_SET_GOAL;
-    else text = MSG.SET_PRIZE;
+    } else if (isChild) text += MSG.NOT_SET_GOAL_KID;
+    else text += MSG.SET_PRIZE;
 
     return (
       <TextFit height={200} style={styles._text}>{text}</TextFit>
@@ -87,11 +77,13 @@ class SplashContainer extends Component {
 SplashContainer.propTypes = config.propTypes;
 
 
-const mapStateToProps = state => ({
-  isHaveChild: !!(state.user.child && state.user.child.name),
-  tokensEarned: state.user.child && state.user.child.tokensEarned,
-  prizes: state.user.prizes,
-  isChild: state.user.role === USER_ROLE.CHILD
+const mapStateToProps = ({ user, tokenStack }) => ({
+  isHaveChild: !!(user.child && user.child.name),
+  childTokensEarned: user.child && user.child.tokensEarned,
+  parentTokensEarned: user.parent && user.parent.tokensEarned,
+  prizes: user.prizes,
+  isChild: user.role === USER_ROLE.CHILD,
+  tokenStack
 });
 const mapDispatchToProps = {
 };

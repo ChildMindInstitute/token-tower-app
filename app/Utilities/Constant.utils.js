@@ -40,9 +40,10 @@ export const ERR_MSG = {
 export const MSG = {
   RESET_PASSWORD_TITLE: 'Reset Password',
   VERIFY_MAIL_CHANGE_PASSWORD: 'Please check your email to confirm new password!',
-  SET_PRIZE: 'You don\'t have any tokens yet. You can set goals or prizes.',
+  ZERO_TOKEN: 'You don\'t have any tokens yet. ',
+  SET_PRIZE: 'You can set goals or prizes.',
   ACHIEVE_ALL_GOALS: 'Congratulation! you now achieve all goals.',
-  NOT_SET_GOAL: 'Your prizes will be available soon.',
+  NOT_SET_GOAL_KID: 'Your prizes will be available soon.',
   ADD_TOKEN_TITLE: 'Add token',
   ADD_TOKEN: 'One token added to the totem.',
   REMOVE_TOKEN_TITLE: 'Remove token',

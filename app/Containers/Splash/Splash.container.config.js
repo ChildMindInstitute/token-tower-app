@@ -6,7 +6,9 @@ const propTypes = {
   ...navPropTypes,
   isHaveChild: PropTypes.bool.isRequired,
   isChild: PropTypes.bool.isRequired,
-  tokensEarned: PropTypes.number.isRequired,
+  childTokensEarned: PropTypes.number,
+  parentTokensEarned: PropTypes.number,
+  tokenStack: PropTypes.object,
   prizes: PropTypes.arrayOf(PropTypes.object)
 };
 

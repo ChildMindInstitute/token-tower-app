@@ -12,7 +12,7 @@ import FormDropdown from '../../Components/FormDropdown/FormDropdown.component';
 
 import styles from './Setting.container.styles';
 
-import { userUpdateProfile, userInitProfile } from '../../Redux/Reducers/User/User.reducer';
+import { userUpdateProfile, userInitProfile, userActRoleAsParent } from '../../Redux/Reducers/User/User.reducer';
 import { tokenStackUpdate } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
 
 import config from './Setting.container.config';
@@ -76,7 +76,6 @@ class SettingContainer extends Component {
           component={Input}
           inputStyle={styles._input}
           containerStyle={styles._inputContainer}
-          validate={required}
         />
       </View>
     </View>
@@ -89,12 +88,13 @@ class SettingContainer extends Component {
   }
 
   _handleSubmit = ({ initialToken, replenishTokenType, childName, canAnimation }) => {
-    const { updateProfile, initProfile, updateStack, user, tokenStack } = this.props;
+    const { updateProfile, initProfile, updateStack, user, tokenStack, actRoleAsParent } = this.props;
+    const child = childName && { name: childName };
     const userData = {
       ...user,
       initialToken,
       replenishTokenType,
-      child: { name: childName },
+      child,
       canAnimation
     };
 
@@ -103,6 +103,7 @@ class SettingContainer extends Component {
       .then(() => updateStack(user.uid, {
         ...tokenStack, nextRefreshTime: getNextRefreshTime(replenishTokenType)
       }))
+      .then(child && actRoleAsParent)
       .then(this._onSubmitSuccess);
   }
 
@@ -150,7 +151,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   updateProfile: userUpdateProfile,
   initProfile: userInitProfile,
-  updateStack: tokenStackUpdate
+  updateStack: tokenStackUpdate,
+  actRoleAsParent: userActRoleAsParent
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(SettingContainer));

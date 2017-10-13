@@ -27,7 +27,7 @@ const _renderSignOutBtn = (onItemPress, navigate, signOut) => {
 };
 
 const Menu = ({ navigation: { navigate }, onItemPress,
-  displayName, childName, isParent, photoURL, signOut }) =>
+  displayName, childName, isParent, photoURL, signOut, role }) =>
   (
     <View style={styles.container}>
       <View style={styles.imgContainer}>
@@ -48,6 +48,7 @@ const Menu = ({ navigation: { navigate }, onItemPress,
               onItemPress={onItemPress}
               navigate={navigate}
               key={item.name}
+              role={role}
             />
           ))
         }
@@ -63,7 +64,8 @@ Menu.propTypes = {
   displayName: propTypes.string,
   photoURL: propTypes.string,
   childName: propTypes.string,
-  isParent: propTypes.bool
+  isParent: propTypes.bool,
+  role: propTypes.string
 };
 
 export default Menu;

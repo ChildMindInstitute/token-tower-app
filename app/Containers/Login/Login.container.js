@@ -56,7 +56,7 @@ class LoginContainer extends Component {
     const { navigation: { navigate }, authenticated, initStack, initProfile,
       tokenStack: { nextRefreshTime, tokens }, updateStack, updateProfile } = this.props;
 
-    const { uid, child, replenishTokenType } = user;
+    const { uid, child, parent, replenishTokenType } = user;
 
     authenticated();
 
@@ -64,8 +64,14 @@ class LoginContainer extends Component {
       updateStack(uid, { nextRefreshTime: getNextRefreshTime(replenishTokenType) })
         .then(() => initStack(uid));
 
-      updateProfile({ ...user, child: { ...child, tokensEarned: child.tokensEarned + tokens.length } })
-        .then(() => initProfile(uid));
+      if (child) {
+        updateProfile({ ...user, child: { ...child, tokensEarned: child.tokensEarned + tokens.length } })
+          .then(() => initProfile(uid));
+      } else {
+        const tokensEarned = (parent ? parent.tokensEarned : 0) + tokens.length;
+        updateProfile({ ...user, parent: { tokensEarned } })
+          .then(() => initProfile(uid));
+      }
     }
 
     if (child) navigate(routeName.Root.MainUser);

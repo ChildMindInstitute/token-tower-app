@@ -42,7 +42,8 @@ DrawerMenu.propTypes = {
   displayName: propTypes.string,
   childName: propTypes.string,
   isParent: propTypes.bool,
-  photoURL: propTypes.string
+  photoURL: propTypes.string,
+  role: propTypes.string
 };
 
 const mapStateToProps = ({ sideMenu, user }) => ({
@@ -51,7 +52,8 @@ const mapStateToProps = ({ sideMenu, user }) => ({
   displayName: user.displayName,
   childName: user.child && user.child.name,
   isParent: !user.role || user.role === USER_ROLE.PARENT,
-  photoURL: user.photoURL
+  photoURL: user.photoURL,
+  role: user.role
 });
 
 const mapDispatchToProps = {
