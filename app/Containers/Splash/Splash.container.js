@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
+import * as Animatable from 'react-native-animatable';
 
 import TextFit from '../../Components/TextFit/TextFit.component';
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
@@ -39,11 +40,15 @@ class SplashContainer extends Component {
     const { childTokensEarned = 0, parentTokensEarned = 0 } = this.props;
     const tokensEarned = (isHaveChild ? childTokensEarned : parentTokensEarned) + tokens.length;
     let text = tokensEarned > 0 ? `You have ${tokensEarned} tokens!! ` : MSG.ZERO_TOKEN;
+    this.showFirework = false;
 
     if (prizes && prizes.length > 0) {
       const prize = prizes.find((p => p.amount > tokensEarned));
       if (prize) text += `Only ${prize.amount - tokensEarned} more for your next PRIZE!!!`;
-      else text += MSG.ACHIEVE_ALL_GOALS;
+      else {
+        text += MSG.ACHIEVE_ALL_GOALS;
+        this.showFirework = true;
+      }
     } else if (isChild) text += MSG.NOT_SET_GOAL_KID;
     else text += MSG.SET_PRIZE;
 
@@ -52,22 +57,41 @@ class SplashContainer extends Component {
     );
   }
 
+  _renderFirework = () => (
+    this.showFirework && <View style={styles._fireworkContainer}>
+      <Image source={images.firework} style={styles._firework} />
+    </View>
+  );
+
   render() {
     return (
       <TouchableWithoutFeedback onPress={this._onTouch}>
-        <View style={styles._container}>
-          <Header direction={'horizontal'} />
-          <View style={styles._textContainer}>
-            <View style={styles._wrap}>
-              <View style={styles._textBubble}>
-                {this._renderMotivationMsg()}
-              </View>
-            </View>
-            <View style={styles._img}>
-              {this._renderTreasure()}
-              {this._renderPresent()}
+        <View style={styles._outerContainer}>
+          <View style={styles._container}>
+            <Header direction={'horizontal'} />
+            <View style={styles._textContainer}>
+              <Animatable.View
+                style={styles._wrap}
+                animation="pulse"
+                iterationCount={'infinite'}
+                duration={2000}
+              >
+                <View style={styles._textBubble}>
+                  {this._renderMotivationMsg()}
+                </View>
+              </Animatable.View>
+              <Animatable.View
+                style={styles._img}
+                animation="bounce"
+                iterationCount={'infinite'}
+                duration={2500}
+              >
+                {this._renderTreasure()}
+                {this._renderPresent()}
+              </Animatable.View>
             </View>
           </View>
+          {this._renderFirework()}
         </View>
       </TouchableWithoutFeedback>
     );

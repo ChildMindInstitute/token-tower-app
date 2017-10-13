@@ -4,6 +4,7 @@ import { Fonts } from '../../Resources/Fonts';
 import { largeSize, mediumSize, smallSize } from '../../Utilities/MediaQuery.utils';
 
 export default EStyleSheet.create({
+  _outerContainer: { flex: 1 },
   _container: {
     flex: 1,
     paddingTop: 2,
@@ -84,5 +85,18 @@ export default EStyleSheet.create({
     zIndex: 1,
     position: 'relative',
     left: 10
+  },
+  _fireworkContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+  },
+  firework: {
+    flex: 1,
+    width: null,
+    height: null,
+    opacity: 0.2
   }
 });
