@@ -80,10 +80,6 @@ class MainContainer extends Component {
     newStacks.pop();
     updateStack(uid, { ...tokenStack, tokens: newStacks });
     addHistory(uid, { type: TOKEN_ACTION_TYPE.REMOVE, tokenImgUrl: '' });
-    showTopWarningNotification({
-      title: MSG.REMOVE_TOKEN_TITLE,
-      message: MSG.REMOVE_TOKEN
-    }, dispatch);
   }
 
   _onToken = () => {
@@ -107,10 +103,6 @@ class MainContainer extends Component {
     newStacks.push('');
     updateStack(uid, { ...tokenStack, tokens: newStacks });
     addHistory(uid, { type: TOKEN_ACTION_TYPE.ADD, tokenImgUrl: '' });
-    showTopWarningNotification({
-      title: MSG.ADD_TOKEN_TITLE,
-      message: MSG.ADD_TOKEN
-    }, dispatch);
   }
 
   _onPrize = () => {
