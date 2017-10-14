@@ -23,8 +23,8 @@ export default EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     [smallSize]: {
-      height: 250,
-      width: 250,
+      height: 245,
+      width: 245,
       borderRadius: 125
     },
     [mediumSize]: {
@@ -42,13 +42,13 @@ export default EStyleSheet.create({
     fontFamily: Fonts.regular,
     textAlign: 'center',
     [smallSize]: {
-      width: 170
+      width: 190
     },
     [mediumSize]: {
-      width: 200
+      width: 240
     },
     [largeSize]: {
-      width: 250
+      width: 300
     }
   },
   _wrap: {

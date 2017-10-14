@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
@@ -50,6 +50,7 @@ class MainUserSelectionContainer extends Component {
 
   render() {
     return (
+      <ScrollView>
       <View style={styles.container}>
         <Header />
         <View>
@@ -57,6 +58,7 @@ class MainUserSelectionContainer extends Component {
           {this._renderChildrenChoice()}
         </View>
       </View>
+      </ScrollView>
     );
   }
 }

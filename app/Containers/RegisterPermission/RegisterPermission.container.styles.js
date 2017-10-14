@@ -18,10 +18,10 @@ export default EStyleSheet.create({
   _descriptionContainer: {
     borderBottomWidth: 1,
     [smallSize]: {
-      paddingVertical: 10
+      paddingVertical: 12
     },
     [mediumSize]: {
-      paddingVertical: 17
+      paddingVertical: 15
     },
     [largeSize]: {
       paddingVertical: 19
@@ -61,9 +61,9 @@ export default EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 20,
+    paddingVertical: 10,
     [smallSize]: {
-      paddingTop: 15
+      paddingVertical: 5
     }
   },
   _permissionText: {
