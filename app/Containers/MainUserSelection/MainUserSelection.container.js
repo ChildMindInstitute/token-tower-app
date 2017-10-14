@@ -51,13 +51,13 @@ class MainUserSelectionContainer extends Component {
   render() {
     return (
       <ScrollView>
-      <View style={styles.container}>
-        <Header />
-        <View>
-          {this._renderParentChoice()}
-          {this._renderChildrenChoice()}
+        <View style={styles.container}>
+          <Header />
+          <View>
+            {this._renderParentChoice()}
+            {this._renderChildrenChoice()}
+          </View>
         </View>
-      </View>
       </ScrollView>
     );
   }

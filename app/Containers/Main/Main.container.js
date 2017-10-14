@@ -24,7 +24,7 @@ import soundUtils from '../../Utilities/Sound.utils';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import config from './Main.container.config';
 import { USER_ROLE, TOKEN_ACTION_TYPE, MSG, ERR_MSG, COMMON } from '../../Utilities/Constant.utils';
-import { showTopWarningNotification, showTopErrNotification } from '../../Utilities/Form.util';
+import { showTopErrNotification } from '../../Utilities/Form.util';
 
 class MainContainer extends Component {
   componentWillMount() {
@@ -63,7 +63,7 @@ class MainContainer extends Component {
   }
 
   _onMinus = () => {
-    const { updateStack, addHistory, user: { uid }, tokenStack, dispatch } = this.props;
+    const { updateStack, addHistory, user: { uid }, tokenStack } = this.props;
     if (tokenStack.tokens.length < 1) {
       Alert.alert(
         MSG.REMOVE_TOKEN_TITLE,

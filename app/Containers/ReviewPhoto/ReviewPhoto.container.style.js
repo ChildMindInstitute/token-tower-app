@@ -57,7 +57,6 @@ export default EStyleSheet.create({
     [largeSize]: {
       fontSize: 33,
       paddingVertical: 8
-      
     }
   },
   _text2: {
