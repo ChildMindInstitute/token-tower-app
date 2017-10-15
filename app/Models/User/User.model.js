@@ -9,6 +9,7 @@ import { REPLENISH_TOKEN_TYPE } from '../../Utilities/Constant.utils';
 export default ({
   uid,
   displayName,
+  email,
   isFirstTutorial = true,
   canAnimation = true,
   canContact = false,
@@ -21,6 +22,7 @@ export default ({
   ({
     uid,
     displayName,
+    email,
     isFirstTutorial,
     canAnimation,
     canContact,

@@ -94,9 +94,9 @@ class RegisterFormContainer extends Component {
       });
   }
 
-  _updateProfile = ({ value: { displayName, uid } }) => {
+  _updateProfile = ({ value: { displayName, email, uid } }) => {
     const { canContact, updateProfile } = this.props;
-    return updateProfile({ uid, displayName, canContact });
+    return updateProfile({ uid, displayName, email, canContact });
   };
 
   _signInWithProviderWrap = (promise) => {
