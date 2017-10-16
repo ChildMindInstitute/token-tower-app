@@ -11,7 +11,9 @@ export default EStyleSheet.create({
   _images: {
     flex: 1,
     width: null,
-    height: null
+    height: null,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   _imgContainer: {
     marginVertical: 25,

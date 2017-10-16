@@ -2,6 +2,7 @@ export default {
   /* eslint-disable global-require */
   firstbackground: require('../Assets/Images/firstbackground.png'),
   secondbackground: require('../Assets/Images/secondbackground.png'),
+  coin: require('../Assets/Images/coin.png'),
   k1: require('../Assets/Images/k1.png'),
   k2: require('../Assets/Images/k2.png'),
   k3: require('../Assets/Images/k3.png'),

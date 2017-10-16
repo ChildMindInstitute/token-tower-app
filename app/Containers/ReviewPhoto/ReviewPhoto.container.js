@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
+// import { takeSnapshotAsync } from 'expo';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 
 import { photoAdd } from '../../Redux/Reducers/Photo/Photo.reducer';
 
-// import images from '../../Resources/Images';
+import images from '../../Resources/Images';
 import styles from './ReviewPhoto.container.style';
 
 import { DIRECTION } from '../../Utilities/Constant.utils';
@@ -35,7 +36,9 @@ class ReviewPhotoContainer extends Component {
       <View style={styles._container}>
         <Header direction={DIRECTION.HORIZONTAL} />
         <View style={styles._imgContainer}>
-          <Image source={{ uri }} resizeMode={'contain'} style={styles._images} />
+          <Image source={images.coin} resizeMode={'contain'} style={styles._images}>
+            <Image source={{ uri }} style={{ width: 100, height: 100 }} />
+          </Image>
         </View>
         <View style={styles._btnContainer}>
           <Btn
