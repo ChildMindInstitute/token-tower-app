@@ -33,6 +33,8 @@ export const ERR_MSG = {
   MAX_PRIZE: 'Maximun 3 prizes.',
   ADD_TOKEN_TITLE: 'Add token Failed',
   ADD_TOKEN: 'Don\'t have enough token to add.',
+  REMOVE_TOKEN_TITLE: 'Remove token Failed',
+  REMOVE_TOKEN: 'Don\'t have enough token to remove.',
   EMAIL_ALREADY_IN_USE: 'This email address is already in use by another account.',
   LOGIN_USER_NOT_FOUND: 'Please type in your correct login and password.'
 };

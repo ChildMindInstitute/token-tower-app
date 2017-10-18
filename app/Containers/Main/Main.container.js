@@ -12,6 +12,7 @@ import {
   tokenStackUpdate,
   tokenStackInit
 } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
+import { userUpdateProfile, userInitProfile } from '../../Redux/Reducers/User/User.reducer';
 import { tokenHistoryAdd } from '../../Redux/Reducers/TokenHistory/TokenHistory.reducer';
 import Sounds from '../../Resources/Sounds';
 
@@ -50,18 +51,50 @@ class MainContainer extends Component {
     navigate(routeName.TokenTotem.TakePhoto);
   }
 
-  _onMinus = () => {
-    const { updateStack, addHistory, user: { uid }, tokenStack } = this.props;
-    if (tokenStack.tokens.length < 1) {
+  _updateUserProfile = (user) => {
+    const { initProfile, updateProfile } = this.props;
+    return updateProfile(user).then(({ value }) => initProfile(value));
+  }
+
+  _removeTokenFromPiggyBank = () => {
+    const { user, dispatch, addHistory } = this.props;
+    const { uid, child = {}, parent = {} } = user;
+
+    const { tokensEarned: childTokensEarned = 0 } = child;
+    const { tokensEarned: parentTokensEarned = 0 } = parent;
+    const isHaveChild = !!(user.child && user.child.name);
+
+    let tokensEarned = isHaveChild ? childTokensEarned : parentTokensEarned;
+    if (tokensEarned < 1) {
+      showTopErrNotification({ title: ERR_MSG.REMOVE_TOKEN_TITLE, message: ERR_MSG.REMOVE_TOKEN }, dispatch);
+    } else {
+      tokensEarned -= 1;
+      tokensEarned = isHaveChild ? { child: { ...child, tokensEarned } } : { parent: { tokensEarned } };
+      const userProfile = { ...user, ...tokensEarned };
+
       Alert.alert(
         MSG.REMOVE_TOKEN_TITLE,
         MSG.REMOVE_TOKEN_ASK,
         [
-          { text: COMMON.CANCEL, onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-          { text: COMMON.OK, onPress: () => console.log('OK Pressed') }
+          { text: COMMON.CANCEL, style: 'cancel' },
+          {
+            text: COMMON.OK,
+            onPress: () => {
+              this._updateUserProfile(userProfile)
+                .then(() => addHistory(uid, { type: TOKEN_ACTION_TYPE.REMOVE, tokenImgUrl: '' }));
+            }
+          }
         ],
         { cancelable: false }
       );
+    }
+  }
+
+  _onMinus = () => {
+    const { updateStack, addHistory, user: { uid }, tokenStack } = this.props;
+
+    if (tokenStack.tokens.length < 1) {
+      this._removeTokenFromPiggyBank();
       return;
     }
     const newStacks = [...tokenStack.tokens];
@@ -87,10 +120,7 @@ class MainContainer extends Component {
     const imgRandomKey = imgKeylist[Math.floor(Math.random() * imgKeylist.length)] || '';
 
     if (tokenStack.tokens.length >= initialToken) {
-      showTopErrNotification({
-        title: ERR_MSG.ADD_TOKEN_TITLE,
-        message: ERR_MSG.ADD_TOKEN
-      }, dispatch);
+      showTopErrNotification({ title: ERR_MSG.ADD_TOKEN_TITLE, message: ERR_MSG.ADD_TOKEN }, dispatch);
       return;
     }
     const newStacks = [...tokenStack.tokens];
@@ -151,7 +181,9 @@ const mapDispatchToProps = {
   unsubscribeStackChanged: tokenStackListenChangeOff,
   updateStack: tokenStackUpdate,
   initStack: tokenStackInit,
-  addHistory: tokenHistoryAdd
+  addHistory: tokenHistoryAdd,
+  initProfile: userInitProfile,
+  updateProfile: userUpdateProfile
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(MainContainer));

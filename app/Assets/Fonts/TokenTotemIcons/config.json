@@ -59,6 +59,12 @@
       "css": "picture",
       "code": 59394,
       "src": "fontawesome"
+    },
+    {
+      "uid": "37b41cdae5ec9dab40e0c5bfff8a0ec8",
+      "css": "id-card",
+      "code": 62146,
+      "src": "fontawesome"
     }
   ]
 }
