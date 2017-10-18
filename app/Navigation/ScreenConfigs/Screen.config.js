@@ -17,7 +17,7 @@ import TakePhotoContainer from '../../Containers/TakePhoto/TakePhoto.container';
 import ReviewPhotoContainer from '../../Containers/ReviewPhoto/ReviewPhoto.container';
 import PickPhotoContainer from '../../Containers/PickPhoto/PickPhoto.container';
 import SetInfoContainer from '../../Containers/SetInfo/SetInfo.container';
-
+import PhotosListContainer from '../../Containers/PhotosList/PhotosList.container';
 import MenuButtonContainer from '../../Containers/MenuButton/MenuButton.container';
 
 import routesName from '../RouteConfigs/Route.config';
@@ -26,7 +26,7 @@ const { Authentication: { Home, Login, ForgotPassword },
   UpdateInfo: { SetInfo },
   MainUser: { MainUserSelection },
   Registration: { RegisterPermission, RegisterForm, RegisterWelcome },
-  TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto },
+  TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto, PhotosList },
   TokenTotemTutorial: { Tutorial },
   Config: { Setting }
 } = routesName;
@@ -67,6 +67,7 @@ const TutorialScreen = { screen: TutorialContainer, path: Tutorial };
 const TakePhotoScreen = { screen: TakePhotoContainer, path: TakePhoto };
 const ReviewPhotoScreen = { screen: ReviewPhotoContainer, path: ReviewPhoto };
 const PickPhotoScreen = { screen: PickPhotoContainer, path: PickPhoto };
+const PhotosListScreen = { screen: PhotosListContainer, path: PhotosList };
 
 const SettingScreen = { screen: SettingContainer, path: Setting };
 
@@ -86,5 +87,6 @@ export default {
   TutorialScreen,
   TakePhotoScreen,
   ReviewPhotoScreen,
-  PickPhotoScreen
+  PickPhotoScreen,
+  PhotosListScreen
 };

@@ -33,7 +33,8 @@ export default {
     Prize: 'Prize',
     TakePhoto: 'TakePhoto',
     ReviewPhoto: 'ReviewPhoto',
-    PickPhoto: 'PickPhoto'
+    PickPhoto: 'PickPhoto',
+    PhotosList: 'PhotosList'
   },
   Config: {
     Setting: 'Setting'

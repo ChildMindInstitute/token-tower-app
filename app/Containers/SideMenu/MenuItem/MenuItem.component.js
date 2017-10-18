@@ -19,7 +19,7 @@ class MenuItem extends Component {
   render() {
     const { containerStyle, textStyle, item, role } = this.props;
 
-    if (role !== item.role) return null;
+    if (item.role && role !== item.role) return null;
 
     return (
       <Btn onPress={this._onPress} btnStyle={{ ...containerStyle, ...styles.menu }}>

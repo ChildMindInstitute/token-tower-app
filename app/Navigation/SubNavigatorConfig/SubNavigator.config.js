@@ -9,7 +9,7 @@ const {
   UpdateInfo: { SetInfo },
   MainUser: { MainUserSelection },
   Registration: { RegisterPermission, RegisterForm, RegisterWelcome },
-  TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto },
+  TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto, PhotosList },
   TokenTotemTutorial: { Tutorial },
   Config: { Setting }
 } = routesName;
@@ -18,7 +18,7 @@ const { HomeScreen, LoginScreen, MainUserSelectionScreen, ForgotPasswordScreen,
   SetInfoScreen,
   RegisterPermissionScreen, RegisterFormScreen, RegisterWelcomeScreen, SettingScreen,
   SplashScreen, MainScreen, PrizeScreen,
-  TutorialScreen, TakePhotoScreen, ReviewPhotoScreen, PickPhotoScreen
+  TutorialScreen, TakePhotoScreen, ReviewPhotoScreen, PickPhotoScreen, PhotosListScreen
 } = Screens;
 
 const AuthenticationNavigator = StackNavigator({
@@ -47,7 +47,8 @@ const TokenTotemNavigator = StackNavigator({
   [Prize]: PrizeScreen,
   [TakePhoto]: TakePhotoScreen,
   [ReviewPhoto]: ReviewPhotoScreen,
-  [PickPhoto]: PickPhotoScreen
+  [PickPhoto]: PickPhotoScreen,
+  [PhotosList]: PhotosListScreen
 }, navigationOptions);
 
 const TokenTotemTutorialNavigator = StackNavigator({

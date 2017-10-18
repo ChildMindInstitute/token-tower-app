@@ -3,9 +3,14 @@ import { USER_ROLE } from '../../Utilities/Constant.utils';
 
 export default [
   {
-    name: 'Switch user',
-    icon: 'switch',
+    name: 'Switch User',
+    icon: 'exchange',
     route: routeName.Root.MainUser,
     role: USER_ROLE.PARENT
+  },
+  {
+    name: 'Photos',
+    icon: 'picture',
+    route: routeName.TokenTotem.PhotosList
   }
 ];
