@@ -21,7 +21,8 @@ class Token extends Component {
 
   _getAnimateStyle = () => ({
     width: 80,
-    flex: 1,
+    height: this.props.shouldScale ? undefined : 80,
+    flex: this.props.shouldScale ? 1 : undefined,
     transform: [{
       translateY: this.fadeAnim.interpolate({
         inputRange: [0, 1],
