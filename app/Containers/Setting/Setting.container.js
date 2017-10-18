@@ -12,7 +12,9 @@ import FormDropdown from '../../Components/FormDropdown/FormDropdown.component';
 
 import styles from './Setting.container.styles';
 
-import { userUpdateProfile, userInitProfile, userActRoleAsParent } from '../../Redux/Reducers/User/User.reducer';
+import {
+  userUpdateProfile, userInitProfile, userActRoleAsParent
+} from '../../Redux/Reducers/User/User.reducer';
 import { tokenStackUpdate } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
 
 import config from './Setting.container.config';

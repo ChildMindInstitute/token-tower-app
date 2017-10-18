@@ -9,9 +9,9 @@ const listenOnStackAdded = (userId, callback) => getRef(userId).on('child_added'
 
 const listenOffStackAdded = (userId, callback) => getRef(userId).off('child_added', callback);
 
-const listenOnStackChanged = (userId, callback) => getRef(userId).on('child_changed', callback);
+const listenOnStackChanged = (userId, callback) => getRef(userId).on('value', callback);
 
-const listenOffStackChanged = (userId, callback) => getRef(userId).off('child_changed', callback);
+const listenOffStackChanged = (userId, callback) => getRef(userId).off('value', callback);
 
 const listenOnStackRemoved = (userId, callback) => getRef(userId).on('child_removed', callback);
 

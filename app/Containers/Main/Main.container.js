@@ -7,12 +7,8 @@ import Main from '../../Components/Main/Main.component';
 import TokenStack from './TokenStack.component';
 
 import {
-  tokenStackListenAddOn,
-  tokenStackListenAddOff,
   tokenStackListenChangeOn,
   tokenStackListenChangeOff,
-  tokenStackListenRemoveOn,
-  tokenStackListenRemoveOff,
   tokenStackUpdate,
   tokenStackInit
 } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
@@ -28,13 +24,8 @@ import { showTopErrNotification } from '../../Utilities/Form.util';
 
 class MainContainer extends Component {
   componentWillMount() {
-    const { subscribeStackChanged, subscribeStackRemoved,
-      subscribeStackAdded, user: { uid } } = this.props;
+    const { subscribeStackChanged, user: { uid } } = this.props;
     subscribeStackChanged(uid, this._onStackChangeHandler);
-    subscribeStackRemoved(uid, this._onStackChangeHandler);
-    subscribeStackAdded(uid, this._onStackChangeHandler);
-    const { initStack } = this.props;
-    initStack(uid);
   }
 
   async componentDidUpdate({ tokenStack: { tokens: prevTokens } }) {
@@ -45,11 +36,8 @@ class MainContainer extends Component {
   }
 
   componentWillUnmount() {
-    const { unsubscribeStackChanged, unsubscribeStackRemoved,
-      unsubscribeStackAdded, user: { uid } } = this.props;
+    const { unsubscribeStackChanged, user: { uid } } = this.props;
     unsubscribeStackChanged(uid, this._onStackChangeHandler);
-    unsubscribeStackRemoved(uid, this._onStackChangeHandler);
-    unsubscribeStackAdded(uid, this._onStackChangeHandler);
   }
 
   _onStackChangeHandler = () => {
@@ -152,12 +140,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  subscribeStackAdded: tokenStackListenAddOn,
-  unsubscribeStackAdded: tokenStackListenAddOff,
   subscribeStackChanged: tokenStackListenChangeOn,
   unsubscribeStackChanged: tokenStackListenChangeOff,
-  subscribeStackRemoved: tokenStackListenRemoveOn,
-  unsubscribeStackRemoved: tokenStackListenRemoveOff,
   updateStack: tokenStackUpdate,
   initStack: tokenStackInit,
   addHistory: tokenHistoryAdd
