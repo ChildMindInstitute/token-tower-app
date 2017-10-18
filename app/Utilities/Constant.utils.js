@@ -50,7 +50,9 @@ export const MSG = {
   ADD_TOKEN: 'One token added to the totem.',
   REMOVE_TOKEN_TITLE: 'Remove token',
   REMOVE_TOKEN: 'One token removed from the totem.',
-  REMOVE_TOKEN_ASK: 'Do you want to remove 1 token from Piggy container?'
+  REMOVE_TOKEN_ASK: 'Do you want to remove 1 token from Piggy container?',
+  DEL_PHOTO_CONFIRM_TITLE: 'Delete Photo',
+  DEL_PHOTO_CONFIRM: 'Are you sure you want to do delete this photo?'
 };
 
 export const BTN = {

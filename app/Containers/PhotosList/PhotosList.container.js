@@ -1,23 +1,43 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import PhotoGrid from 'react-native-photo-grid';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import Btn from '../../Components/FormButton/FormButton.component';
+import FontIcon from '../../Components/FontIcon/FontIcon.component';
 
+import { photoRemove, photoInit } from '../../Redux/Reducers/Photo/Photo.reducer';
 import styles from './PhotosList.container.styles';
 
-import { DIRECTION } from '../../Utilities/Constant.utils';
+import { DIRECTION, MSG, COMMON } from '../../Utilities/Constant.utils';
 
 class PhotosListContainer extends Component {
   _renderHeader = () => (
-    <Text>Please select your photos to delete!</Text>
+    <Text style={styles._text}>Please select your photos to delete!</Text>
   );
 
-  _onPhotoPress = () => {
+  _deletePhoto = ({ photoId }) => {
+    const { user: { uid }, removePhoto, initPhoto } = this.props;
+    removePhoto(uid, photoId).then(() => initPhoto(uid));
+  }
 
+  _onPhotoPress = (item) => {
+    Alert.alert(
+      MSG.REMOVE_TOKEN_TITLELE,
+      MSG.DEL_PHOTO_CONFIRM,
+      [
+        { text: COMMON.CANCEL, style: 'cancel' },
+        {
+          text: COMMON.OK,
+          onPress: () => {
+            this._deletePhoto(item);
+          }
+        }
+      ],
+      { cancelable: false }
+    );
   }
 
   _renderItem = (item, itemSize) => {
@@ -27,7 +47,7 @@ class PhotosListContainer extends Component {
 
     return (
       <Btn
-        key={item.id} onPress={onPress}
+        key={item.photoId} onPress={onPress}
         btnStyle={{ width: itemSize, height: itemSize }}
       >
         <Image
@@ -43,8 +63,19 @@ class PhotosListContainer extends Component {
     const { photoList } = this.props;
     const imgKeylist = Object.keys(photoList);
     const data = imgKeylist.map(key => (
-      { id: key, src: photoList[key].tokenImgUrl }
+      { photoId: key, src: photoList[key].tokenImgUrl }
     ));
+
+    if (imgKeylist.length < 1) {
+      return (
+        <View style={styles._emptyContainer}>
+          <Text style={styles._emptyText}>{'You don\'t have any photo.'}</Text>
+          <View style={styles._emptyIconContainer}>
+            <FontIcon name={'picture'} color="white" />
+          </View>
+        </View>
+      );
+    }
 
     return (
       <View style={styles._container}>
@@ -67,10 +98,19 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  removePhoto: photoRemove,
+  initPhoto: photoInit
 };
 
 PhotosListContainer.propTypes = {
-  photoList: propTypes.arrayOf(propTypes.object)
+  user: propTypes.object,
+  photoList: propTypes.any,
+  removePhoto: propTypes.func,
+  initPhoto: propTypes.func
+};
+
+PhotosListContainer.defaultProps = {
+  photoList: []
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PhotosListContainer);

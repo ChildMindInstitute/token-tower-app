@@ -4,14 +4,19 @@ import PhotoModel from '../../Models/Photo/Photo.model';
 
 const photosLocation = 'photos';
 
-const getPhotos = userId => ref(`${photosLocation}/${userId}`).once('value').then(snap => snap.val());
+const getRef = userId => ref(`${photosLocation}/${userId}`);
+
+const getPhotos = userId => getRef(userId).once('value').then(snap => snap.val());
 
 const addNewPhoto = (userId, value) => {
-  const history = ref(`${photosLocation}/${userId}`).push();
+  const history = getRef(userId).push();
   return history.set(new PhotoModel(value));
 };
 
+const removePhotoById = (userId, photoId) => getRef(userId).child(photoId).remove();
+
 export default {
   addNewPhoto,
-  getPhotos
+  getPhotos,
+  removePhotoById
 };

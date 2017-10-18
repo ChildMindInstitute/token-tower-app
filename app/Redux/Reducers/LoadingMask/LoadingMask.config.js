@@ -15,7 +15,7 @@ import {
 } from '../User/User.reducer';
 import { tokenStackInit, tokenStackUpdate } from '../TokenStack/TokenStack.reducer';
 import { tokenHistoryAdd } from '../TokenHistory/TokenHistory.reducer';
-import { photoAdd, photoInit } from '../Photo/Photo.reducer';
+import { photoAdd, photoInit, photoRemove } from '../Photo/Photo.reducer';
 
 export default [
   authenticationEmailPassword,
@@ -33,5 +33,6 @@ export default [
   tokenStackUpdate,
   tokenHistoryAdd,
   photoAdd,
-  photoInit
+  photoInit,
+  photoRemove
 ];
