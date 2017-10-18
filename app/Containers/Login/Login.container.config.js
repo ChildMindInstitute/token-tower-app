@@ -12,7 +12,8 @@ const propTypes = {
   initStack: PropTypes.func.isRequired,
   updateStack: PropTypes.func,
   updateProfile: PropTypes.func,
-  tokenStack: PropTypes.object
+  tokenStack: PropTypes.object,
+  initPhoto: PropTypes.func
 };
 
 const form = {

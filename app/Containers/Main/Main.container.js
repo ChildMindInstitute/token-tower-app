@@ -65,9 +65,9 @@ class MainContainer extends Component {
       return;
     }
     const newStacks = [...tokenStack.tokens];
-    newStacks.pop();
+    const imgKey = newStacks.pop();
     updateStack(uid, { ...tokenStack, tokens: newStacks });
-    addHistory(uid, { type: TOKEN_ACTION_TYPE.REMOVE, tokenImgUrl: '' });
+    addHistory(uid, { type: TOKEN_ACTION_TYPE.REMOVE, tokenImgUrl: imgKey });
   }
 
   _onToken = () => {
@@ -79,7 +79,13 @@ class MainContainer extends Component {
   }
 
   _onPlus = () => {
-    const { updateStack, addHistory, user: { uid, initialToken }, tokenStack, dispatch } = this.props;
+    const { updateStack, addHistory,
+      user: { uid, initialToken },
+      tokenStack, photoList, dispatch } = this.props;
+
+    const imgKeylist = Object.keys(photoList);
+    const imgRandomKey = imgKeylist[Math.floor(Math.random() * imgKeylist.length)] || '';
+
     if (tokenStack.tokens.length >= initialToken) {
       showTopErrNotification({
         title: ERR_MSG.ADD_TOKEN_TITLE,
@@ -88,9 +94,9 @@ class MainContainer extends Component {
       return;
     }
     const newStacks = [...tokenStack.tokens];
-    newStacks.push('');
+    newStacks.push(imgRandomKey);
     updateStack(uid, { ...tokenStack, tokens: newStacks });
-    addHistory(uid, { type: TOKEN_ACTION_TYPE.ADD, tokenImgUrl: '' });
+    addHistory(uid, { type: TOKEN_ACTION_TYPE.ADD, tokenImgUrl: imgRandomKey });
   }
 
   _onPrize = () => {
@@ -109,7 +115,7 @@ class MainContainer extends Component {
   }
 
   _renderTokenStack = () => (
-    <FieldArray component={TokenStack} name="tokenStack" />
+    <FieldArray component={TokenStack} photoList={this.props.photoList} name="tokenStack" />
   );
 
   _onPig = () => { }
@@ -136,7 +142,8 @@ const mapStateToProps = state => ({
   tokenStack: state.tokenStack,
   initialValues: {
     tokenStack: state.tokenStack.tokens
-  }
+  },
+  photoList: state.photo
 });
 
 const mapDispatchToProps = {

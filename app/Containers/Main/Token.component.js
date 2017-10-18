@@ -37,10 +37,13 @@ class Token extends Component {
   };
 
   render() {
+    const { imgUri } = this.props;
+    const img = (imgUri && { uri: imgUri }) || images.coin;
+
     return (
       <Animated.Image
         resizeMode={'contain'}
-        source={images.k1}
+        source={img}
         style={this._getAnimateStyle()}
       />
     );

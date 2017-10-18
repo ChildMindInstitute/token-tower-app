@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-// import { takeSnapshotAsync } from 'expo';
+import { takeSnapshotAsync } from 'expo';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 
-import { photoAdd } from '../../Redux/Reducers/Photo/Photo.reducer';
+import { photoAdd, photoInit } from '../../Redux/Reducers/Photo/Photo.reducer';
 
 import images from '../../Resources/Images';
 import styles from './ReviewPhoto.container.style';
@@ -16,17 +16,24 @@ import { DIRECTION } from '../../Utilities/Constant.utils';
 import navProps from '../../PropTypes/Navigation.propTypes';
 
 class ReviewPhotoContainer extends Component {
-  _onKeep = () => {
-    const { addPhoto, uid, navigation } = this.props;
-    const { state: { params: { base64 } } } = navigation;
+  _onKeep = async () => {
+    const { addPhoto, initPhoto, uid, navigation } = this.props;
+    const options = { format: 'png', result: 'base64' };
+    const base64 = await takeSnapshotAsync(this.img, options);
     const tokenImgUrl = `data:image/jpg;base64,${base64}`;
 
-    addPhoto(uid, { tokenImgUrl }).then(() => navigation.goBack());
+    addPhoto(uid, { tokenImgUrl })
+      .then(() => initPhoto(uid))
+      .then(() => navigation.goBack());
   }
 
   _onCancel = () => {
     const { navigation } = this.props;
     navigation.goBack();
+  }
+
+  _getImgRef = (ref) => {
+    this.img = ref;
   }
 
   render() {
@@ -36,8 +43,11 @@ class ReviewPhotoContainer extends Component {
       <View style={styles._container}>
         <Header direction={DIRECTION.HORIZONTAL} />
         <View style={styles._imgContainer}>
-          <Image source={images.coin} resizeMode={'contain'} style={styles._images}>
-            <Image source={{ uri }} style={{ width: 100, height: 100 }} />
+          <Image
+            source={images.coin} resizeMode={'contain'}
+            style={styles._images} ref={this._getImgRef}
+          >
+            <Image source={{ uri }} style={styles._ovalImg} />
           </Image>
         </View>
         <View style={styles._btnContainer}>
@@ -62,12 +72,14 @@ class ReviewPhotoContainer extends Component {
 ReviewPhotoContainer.propTypes = {
   ...navProps,
   addPhoto: propTypes.func.isRequired,
+  initPhoto: propTypes.func.isRequired,
   uid: propTypes.string.isRequired
 };
 
 const mapStateToProps = ({ user: { uid } }) => ({ uid });
 const mapDispatchToProps = {
-  addPhoto: photoAdd
+  addPhoto: photoAdd,
+  initPhoto: photoInit
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewPhotoContainer);

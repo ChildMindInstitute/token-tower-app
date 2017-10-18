@@ -13,6 +13,7 @@ import {
   userAuthenticated, userInitProfile, userUpdateProfile
 } from '../../Redux/Reducers/User/User.reducer';
 import { tokenStackInit, tokenStackUpdate } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
+import { photoInit } from '../../Redux/Reducers/Photo/Photo.reducer';
 
 import styles from './Login.container.styles';
 
@@ -79,11 +80,12 @@ class LoginContainer extends Component {
   }
 
   _onSubmitSuccess = ({ value: { emailVerified, providerData, uid } }) => {
-    const { dispatch, initProfile, initStack } = this.props;
+    const { dispatch, initProfile, initStack, initPhoto } = this.props;
     const isFbOrGgProvider = providerData.find(p => p.providerId === 'facebook.com');
 
     if (emailVerified || isFbOrGgProvider) {
       initStack(uid)
+        .then(() => initPhoto(uid))
         .then(() => initProfile(uid))
         .then(this._onAuthenticated)
         .catch(this._onSubmitFail);
@@ -142,7 +144,8 @@ const mapDispatchToProps = {
   initProfile: userInitProfile,
   initStack: tokenStackInit,
   updateStack: tokenStackUpdate,
-  updateProfile: userUpdateProfile
+  updateProfile: userUpdateProfile,
+  initPhoto: photoInit
 };
 
 LoginContainer.propTypes = config.propTypes;

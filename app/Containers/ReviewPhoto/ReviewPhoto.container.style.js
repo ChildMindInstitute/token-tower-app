@@ -75,5 +75,11 @@ export default EStyleSheet.create({
       fontSize: 33,
       paddingVertical: 8
     }
+  },
+  _ovalImg: {
+    width: 130,
+    height: 125,
+    borderRadius: 65,
+    transform: [{ scaleY: 1.5 }]
   }
 });

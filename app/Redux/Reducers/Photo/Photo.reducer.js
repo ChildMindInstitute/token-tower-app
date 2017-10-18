@@ -10,14 +10,15 @@ export const {
   photoInit
 } =
   createActions({
-    PHOTO_ADD: api.addNewPhoto
-  }, 'PHOTO_INIT');
+    PHOTO_ADD: api.addNewPhoto,
+    PHOTO_INIT: api.getPhotos
+  });
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const photoHistoryInitHandler = (state, { payload }) => ({ ...state, ...payload });
+const photoInitHandler = (state, { payload }) => ({ ...state, ...payload });
 
 export default handleActions({
-  PHOTO_INIT: photoHistoryInitHandler
+  PHOTO_INIT_FULFILLED: photoInitHandler
 }, {});

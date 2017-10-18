@@ -9,6 +9,7 @@ import font from './Font/Font.reducer';
 import user from './User/User.reducer';
 import tokenHistory from './TokenHistory/TokenHistory.reducer';
 import tokenStack from './TokenStack/TokenStack.reducer';
+import photo from './Photo/Photo.reducer';
 
 export default {
   form: reducer,
@@ -20,5 +21,6 @@ export default {
   font,
   user,
   tokenHistory,
-  tokenStack
+  tokenStack,
+  photo
 };

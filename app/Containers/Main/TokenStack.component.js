@@ -12,7 +12,7 @@ class TokenStack extends Component {
   state = {}
 
   _renderToken = (member, index) => {
-    const { fields } = this.props;
+    const { fields, photoList } = this.props;
     const { stackHeight } = this.state;
 
     return (
@@ -21,6 +21,7 @@ class TokenStack extends Component {
         key={member} isLast={index === fields.length - 1}
         stackHeight={this.state.stackHeight}
         shouldScale={80 * fields.length > stackHeight}
+        imgUri={(photoList[fields.get(index)] || {}).tokenImgUrl}
       />
     );
   }
