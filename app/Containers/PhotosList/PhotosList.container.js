@@ -15,7 +15,7 @@ import { DIRECTION, MSG, COMMON } from '../../Utilities/Constant.utils';
 
 class PhotosListContainer extends Component {
   _renderHeader = () => (
-    <Text style={styles._text}>Please select your photos to delete!</Text>
+    <Text style={styles._text}>Tap to delete photos!</Text>
   );
 
   _deletePhoto = ({ photoId }) => {
@@ -79,7 +79,9 @@ class PhotosListContainer extends Component {
 
     return (
       <View style={styles._container}>
-        <Header direction={DIRECTION.HORIZONTAL} />
+        <View style={styles._header}>
+          <Header direction={DIRECTION.HORIZONTAL} />
+        </View>
         <PhotoGrid
           data={data}
           itemsPerRow={3}

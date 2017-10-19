@@ -1,16 +1,26 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import { Fonts } from '../../Resources/Fonts';
+import { smallSize } from '../../Utilities/MediaQuery.utils';
 
 export default EStyleSheet.create({
   _container: {
     flex: 1
   },
+  _header: {
+    paddingHorizontal: 20,
+    [smallSize]: {
+      paddingHorizontal: 0
+    }
+  },
   _text: {
-    fontFamily: Fonts.regular,
-    fontSize: 20,
-    paddingVertical: 20,
-    textAlign: 'center'
+    fontFamily: Fonts.bold,
+    fontSize: 25,
+    padding: 20,
+    [smallSize]: {
+      fontSize: 23,
+      paddingLeft: 10
+    }
   },
   _emptyContainer: {
     flex: 1,
