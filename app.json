@@ -1,8 +1,17 @@
 {
   "expo": {
     "sdkVersion": "21.0.0",
+    "name": "Token Totem",
+    "icon": "./app/Assets/Images/kid-icon.png",
     "androidStatusBar": {
       "backgroundColor": "#f7c34a"
+    },
+    "slug": "tokentotem-dev",
+    "ios": {
+      "bundleIdentifier": "com.childmind.tokentotem.dev"
+    },
+    "android": {
+      "package": "com.childmind.tokentotem.dev"
     }
   }
 }
