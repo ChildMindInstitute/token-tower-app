@@ -39,14 +39,16 @@ class SplashContainer extends Component {
     const { prizes, isChild, isHaveChild, tokenStack: { tokens } } = this.props;
     const { childTokensEarned = 0, parentTokensEarned = 0 } = this.props;
     const tokensEarned = (isHaveChild ? childTokensEarned : parentTokensEarned) + tokens.length;
-    let text = tokensEarned > 0 ? `You have ${tokensEarned} tokens!! ` : MSG.ZERO_TOKEN;
+    let text = tokensEarned > 0 ?
+      `${isHaveChild && !isChild ? 'Your kid has' : 'You have'} ${tokensEarned} tokens!! ` : MSG.ZERO_TOKEN;
     this.showFirework = false;
 
     if (prizes && prizes.length > 0) {
       const prize = prizes.find((p => p.amount > tokensEarned));
       if (prize) text += `Only ${prize.amount - tokensEarned} more for your next PRIZE!!!`;
       else {
-        text += MSG.ACHIEVE_ALL_GOALS;
+        // Congratulation!!! You have archived the tokens for the first prize
+        text += isHaveChild && isChild ? MSG.UR_KID_ACHIEVE_ALL_GOALS : MSG.ACHIEVE_ALL_GOALS;
         this.showFirework = true;
       }
     } else if (isChild) text += MSG.NOT_SET_GOAL_KID;

@@ -44,6 +44,7 @@ export const MSG = {
   VERIFY_MAIL_CHANGE_PASSWORD: 'Please check your email to confirm new password!',
   ZERO_TOKEN: 'You don\'t have any tokens yet. ',
   SET_PRIZE: 'You can set goals or prizes.',
+  UR_KID_ACHIEVE_ALL_GOALS: 'Congratulation! your kid now achieves all goals.',
   ACHIEVE_ALL_GOALS: 'Congratulation! you now achieve all goals.',
   NOT_SET_GOAL_KID: 'Your prizes will be available soon.',
   ADD_TOKEN_TITLE: 'Add token',
