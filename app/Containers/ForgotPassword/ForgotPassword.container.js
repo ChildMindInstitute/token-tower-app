@@ -49,11 +49,11 @@ class ForgotPasswordContainer extends Component {
     navigation.goBack();
   }
 
-  _onSubmitFail = ({ message }) => {
+  _onSubmitFail = () => {
     const { dispatch } = this.props;
     showTopErrNotification({
       title: ERR_MSG.RESET_PASSWORD_TITLE,
-      message
+      message: 'There is no user record corresponding to this identifier.'
     }, dispatch);
   }
 

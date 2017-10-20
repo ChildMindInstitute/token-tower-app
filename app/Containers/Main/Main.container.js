@@ -30,8 +30,8 @@ class MainContainer extends Component {
   }
 
   async componentDidUpdate({ tokenStack: { tokens: prevTokens } }) {
-    const { tokenStack: { tokens } } = this.props;
-    if (prevTokens.length > tokens.length) {
+    const { user: { canAnimation }, tokenStack: { tokens } } = this.props;
+    if (canAnimation && prevTokens.length > tokens.length) {
       await soundUtils.play(Sounds.poof);
     }
   }
@@ -145,7 +145,12 @@ class MainContainer extends Component {
   }
 
   _renderTokenStack = () => (
-    <FieldArray component={TokenStack} photoList={this.props.photoList} name="tokenStack" />
+    <FieldArray
+      component={TokenStack}
+      photoList={this.props.photoList}
+      name="tokenStack"
+      canAnimation={this.props.user.canAnimation}
+    />
   );
 
   _onPig = () => { }

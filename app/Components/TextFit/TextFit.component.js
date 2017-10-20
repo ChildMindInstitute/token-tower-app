@@ -32,6 +32,11 @@ class TextFit extends Component {
     });
   }
 
+  _updateSize = () => {
+    this.setState({ complete: false });
+    this.setSize();
+  }
+
   _getRef = (ref) => {
     this.textField = ref;
   };

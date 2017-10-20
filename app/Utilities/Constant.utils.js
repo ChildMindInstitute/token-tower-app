@@ -42,7 +42,7 @@ export const ERR_MSG = {
 export const MSG = {
   RESET_PASSWORD_TITLE: 'Reset Password',
   VERIFY_MAIL_CHANGE_PASSWORD: 'Please check your email to confirm new password!',
-  ZERO_TOKEN: 'You don\'t have any tokens yet. ',
+  ZERO_TOKEN: 'Don\'t have any tokens yet. ',
   SET_PRIZE: 'You can set goals or prizes.',
   UR_KID_ACHIEVE_ALL_GOALS: 'Congratulation! your kid now achieves all goals.',
   ACHIEVE_ALL_GOALS: 'Congratulation! you now achieve all goals.',

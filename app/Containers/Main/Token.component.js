@@ -32,8 +32,8 @@ class Token extends Component {
   });
 
   _onAnimateFinished = async () => {
-    const { isLast } = this.props;
-    if (isLast) await soundUtils.play(Sounds.coinDrop);
+    const { isLast, canAnimation } = this.props;
+    if (isLast && canAnimation) await soundUtils.play(Sounds.coinDrop);
   };
 
   render() {

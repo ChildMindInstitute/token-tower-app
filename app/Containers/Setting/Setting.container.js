@@ -91,7 +91,10 @@ class SettingContainer extends Component {
 
   _handleSubmit = ({ initialToken, replenishTokenType, childName, canAnimation }) => {
     const { updateProfile, initProfile, updateStack, user, tokenStack, actRoleAsParent } = this.props;
-    const child = childName && { name: childName };
+    const child = childName && {
+      name: childName,
+      tokensEarned: user.child ? user.child.tokensEarned : 0
+    };
     const userData = {
       ...user,
       initialToken,
