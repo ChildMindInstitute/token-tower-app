@@ -28,6 +28,7 @@ export default EStyleSheet.create({
       marginVertical: 40
     }
   },
+  _imgWrap: { flex: 1 },
   _btnContainer: {
     flexDirection: 'row'
   },

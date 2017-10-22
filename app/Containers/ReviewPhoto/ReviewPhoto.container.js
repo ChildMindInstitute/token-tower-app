@@ -24,8 +24,7 @@ class ReviewPhotoContainer extends Component {
 
     addPhoto(uid, { tokenImgUrl })
       .then(() => initPhoto(uid))
-      .then(() => navigation.goBack())
-      .catch((e) => { console.log(e) });
+      .then(() => navigation.goBack());
   }
 
   _onCancel = () => {
@@ -44,12 +43,11 @@ class ReviewPhotoContainer extends Component {
       <View style={styles._container}>
         <Header direction={DIRECTION.HORIZONTAL} />
         <View style={styles._imgContainer}>
-          <Image
-            source={images.coin} resizeMode={'contain'}
-            style={styles._images} ref={this._getImgRef}
-          >
-            <Image source={{ uri }} style={styles._ovalImg} />
-          </Image>
+          <View style={styles._imgWrap} ref={this._getImgRef} collapsable={false}>
+            <Image source={images.coin} resizeMode={'contain'} style={styles._images}>
+              <Image source={{ uri }} style={styles._ovalImg} />
+            </Image>
+          </View>
         </View>
         <View style={styles._btnContainer}>
           <Btn

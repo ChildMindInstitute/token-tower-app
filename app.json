@@ -8,10 +8,22 @@
     },
     "slug": "tokentotem-dev",
     "ios": {
-      "bundleIdentifier": "com.childmind.tokentotem.dev"
+      "bundleIdentifier": "com.childmind.tokentotem.dev",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.936670915515-74oubjp3u0rj0328mb69ol98772vrp0a"
+        }
+      }
     },
     "android": {
-      "package": "com.childmind.tokentotem.dev"
-    }
+      "package": "com.childmind.tokentotem.dev",
+      "config": {
+        "googleSignIn": {
+          "apiKey": "AIzaSyCkqjCxiCvcdI_45h7Cxk7RgiapDQjIIjw",
+          "certificateHash": "311948D527F6F5388DD8B993435E093A299ADEC1"
+        }
+      }
+    },
+    "facebookScheme": "fb1825757331088461"
   }
 }
