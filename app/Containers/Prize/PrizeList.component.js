@@ -1,13 +1,12 @@
 import React from 'react';
 import { Field } from 'redux-form';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 
 import FontIcon from '../../Components/FontIcon/FontIcon.component';
 import Input from '../../Components/FormInput/FormInput.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 
-import images from '../../Resources/Images';
 import styles from './Prize.container.style';
 
 import formPropTypes from '../../PropTypes/Form.propTypes';
@@ -20,7 +19,6 @@ const PrizeList = ({ fields, showDelBtn }) => {
 
     return (
       <View style={styles._containerBlock} key={index}>
-        <Image resizeMode={'contain'} source={images.present} style={styles._img} />
         <View style={styles._inputBlock}>
           <Field
             name={`${member}.amount`} component={Input}

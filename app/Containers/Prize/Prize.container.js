@@ -13,19 +13,10 @@ import styles from './Prize.container.style';
 import { userUpdateProfile, userInitProfile } from '../../Redux/Reducers/User/User.reducer';
 
 import config from './Prize.container.config';
-import { landscapeOnly, portraitOnly } from '../../Utilities/ScreenOrientation.utils';
 import { USER_ROLE, ERR_MSG } from '../../Utilities/Constant.utils';
 import { showTopErrNotification } from '../../Utilities/Form.util';
 
 class PrizeContainer extends Component {
-  componentWillMount() {
-    landscapeOnly();
-  }
-
-  componentWillUnmount() {
-    portraitOnly();
-  }
-
   _onAdd = () => {
     const { array } = this.props;
     array.push('prizes', { name: '', amount: 0 });

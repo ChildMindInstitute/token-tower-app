@@ -33,9 +33,9 @@ export default EStyleSheet.create({
       borderRadius: 150
     },
     [largeSize]: {
-      height: 350,
-      width: 350,
-      borderRadius: 180
+      height: 330,
+      width: 330,
+      borderRadius: 170
     }
   },
   _text: {
@@ -45,10 +45,10 @@ export default EStyleSheet.create({
       width: 190
     },
     [mediumSize]: {
-      width: 240
+      width: 260
     },
     [largeSize]: {
-      width: 300
+      width: 290
     }
   },
   _wrap: {

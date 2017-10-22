@@ -24,7 +24,8 @@ class ReviewPhotoContainer extends Component {
 
     addPhoto(uid, { tokenImgUrl })
       .then(() => initPhoto(uid))
-      .then(() => navigation.goBack());
+      .then(() => navigation.goBack())
+      .catch((e) => { console.log(e) });
   }
 
   _onCancel = () => {

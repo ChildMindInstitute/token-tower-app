@@ -1,10 +1,12 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Fonts } from '../../Resources/Fonts';
 
+import { largeSize, mediumSize, smallSize } from '../../Utilities/MediaQuery.utils';
+
 export default EStyleSheet.create({
   _containerContent: {
     flex: 1,
-    paddingHorizontal: 30
+    paddingHorizontal: 10
   },
   _container: {
     flex: 1
@@ -19,30 +21,36 @@ export default EStyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 10
-
+    paddingVertical: 7,
+    [largeSize]: {
+      paddingVertical: 10
+    }
   },
   _input: {
     flex: 1,
     borderWidth: 1,
-    padding: 5
+    padding: 5,
+    textAlign: 'center',
+    marginHorizontal: 5,
+    [smallSize]: {
+      fontSize: 16
+    }
   },
   _text: {
     fontFamily: Fonts.regular,
-    fontSize: 20,
-    marginHorizontal: 10
-  },
-  _img: {
-    flex: 0.2,
-    width: null,
-    height: null
+    fontSize: 18,
+    [smallSize]: {
+      fontSize: 16
+    }
   },
   _inputContainer: {
-    flex: 0.9,
-    paddingRight: 10
+    flex: 0.9
   },
   _token: {
-    flex: 0.2
+    flex: 0.4,
+    [largeSize]: {
+      flex: 0.3
+    }
   },
   _btnGroup: {
     flexDirection: 'row',
