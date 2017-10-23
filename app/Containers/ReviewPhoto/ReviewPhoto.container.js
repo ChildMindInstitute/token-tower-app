@@ -44,9 +44,8 @@ class ReviewPhotoContainer extends Component {
         <Header direction={DIRECTION.HORIZONTAL} />
         <View style={styles._imgContainer}>
           <View style={styles._imgWrap} ref={this._getImgRef} collapsable={false}>
-            <Image source={images.coin} resizeMode={'contain'} style={styles._images}>
-              <Image source={{ uri }} style={styles._ovalImg} />
-            </Image>
+            <Image source={images.coin} resizeMode={'contain'} style={styles._images}/>
+            <Image source={{ uri }} style={styles._ovalImg} />
           </View>
         </View>
         <View style={styles._btnContainer}>

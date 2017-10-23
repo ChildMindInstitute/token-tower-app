@@ -9,11 +9,9 @@ export default EStyleSheet.create({
     paddingTop: 2
   },
   _images: {
-    flex: 1,
-    width: null,
-    height: null,
-    alignItems: 'center',
-    justifyContent: 'center'
+    position: 'relative',
+    zIndex: 3,
+    flex: 0.8
   },
   _imgContainer: {
     marginVertical: 25,
@@ -28,7 +26,11 @@ export default EStyleSheet.create({
       marginVertical: 40
     }
   },
-  _imgWrap: { flex: 1 },
+  _imgWrap: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   _btnContainer: {
     flexDirection: 'row'
   },
@@ -78,9 +80,10 @@ export default EStyleSheet.create({
     }
   },
   _ovalImg: {
-    width: 130,
-    height: 125,
-    borderRadius: 65,
-    transform: [{ scaleY: 1.5 }]
+    position: 'absolute',
+    zIndex: 0,
+    width: 200,
+    height: 200,
+    borderRadius: 100
   }
 });

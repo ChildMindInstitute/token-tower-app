@@ -25,12 +25,14 @@ export default EStyleSheet.create({
   _label: {
     flex: 0.7,
     fontFamily: Fonts.regular,
-    fontSize: 20,
     textAlign: 'center',
-    marginVertical: 10,
     [smallSize]: {
       fontSize: 18,
       marginVertical: 9
+    },
+    [mediumSize]: {
+      fontSize: 20,
+      marginVertical: 10
     },
     [largeSize]: {
       marginVertical: 12,
@@ -44,7 +46,10 @@ export default EStyleSheet.create({
   _input: {
     flex: 1,
     borderWidth: 1,
-    padding: 5
+    padding: 5,
+    [largeSize]: {
+      fontSize: 19
+    }
   },
   _forgot: {
     color: 'grey',
