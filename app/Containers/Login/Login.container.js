@@ -109,7 +109,9 @@ class LoginContainer extends Component {
       .then(this._onSubmitSuccess)
       .catch(({ code, message }) => {
         let msg;
-        if (code === 'auth/user-not-found') msg = ERR_MSG.LOGIN_USER_NOT_FOUND;
+        if (code === 'auth/user-not-found' || code === 'auth/wrong-password') {
+          msg = ERR_MSG.LOGIN_USER_NOT_FOUND;
+        }
         this._onSubmitFail({ message: msg || message });
       });
   };
