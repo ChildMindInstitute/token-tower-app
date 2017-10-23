@@ -13,8 +13,11 @@ import {
   userUpdatePassword,
   userInitProfile
 } from '../User/User.reducer';
-import { tokenStackInit, tokenStackUpdate } from '../TokenStack/TokenStack.reducer';
-import { tokenHistoryAdd } from '../TokenHistory/TokenHistory.reducer';
+
+// fix annoying loading at main screen
+// import { tokenStackInit, tokenStackUpdate } from '../TokenStack/TokenStack.reducer';
+// import { tokenHistoryAdd } from '../TokenHistory/TokenHistory.reducer';
+
 import { photoAdd, photoInit, photoRemove } from '../Photo/Photo.reducer';
 
 export default [
@@ -29,9 +32,9 @@ export default [
   userUpdateProfile,
   userUpdatePassword,
   userInitProfile,
-  tokenStackInit,
-  tokenStackUpdate,
-  tokenHistoryAdd,
+  // tokenStackInit,
+  // tokenStackUpdate,
+  // tokenHistoryAdd,
   photoAdd,
   photoInit,
   photoRemove

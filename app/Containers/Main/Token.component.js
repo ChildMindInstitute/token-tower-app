@@ -38,7 +38,7 @@ class Token extends Component {
 
   render() {
     const { imgUri } = this.props;
-    const img = (imgUri && { uri: imgUri }) || images.coin;
+    const img = (imgUri && { uri: imgUri }) || images.coinEmpty;
 
     return (
       <Animated.Image

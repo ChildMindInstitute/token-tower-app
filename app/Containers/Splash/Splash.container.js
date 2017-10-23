@@ -64,7 +64,8 @@ class SplashContainer extends Component {
         text += `Congratulation!!! ${subject} archived the tokens for the ${achiveTimes} prize`;
         this.showFirework = true;
       } else if (nextPrize) {
-        text += `Only ${nextPrize.amount - tokensEarned} more for your next PRIZE!!!`;
+        const sub = isHaveChild && !isChild ? `${childName}'s` : 'your';
+        text += `Only ${nextPrize.amount - tokensEarned} more for ${sub} next PRIZE!!!`;
       } else {
         text += isHaveChild && !isChild ? MSG.UR_KID_ACHIEVE_ALL_GOALS : MSG.ACHIEVE_ALL_GOALS;
         this.showFirework = true;
