@@ -18,7 +18,7 @@ import navProps from '../../PropTypes/Navigation.propTypes';
 class ReviewPhotoContainer extends Component {
   _onKeep = async () => {
     const { addPhoto, initPhoto, uid, navigation } = this.props;
-    const options = { format: 'png', result: 'base64' };
+    const options = { format: 'png', result: 'base64', quality: 0.1 };
     const base64 = await takeSnapshotAsync(this.img, options);
     const tokenImgUrl = `data:image/jpg;base64,${base64}`;
 
@@ -44,7 +44,7 @@ class ReviewPhotoContainer extends Component {
         <Header direction={DIRECTION.HORIZONTAL} />
         <View style={styles._imgContainer}>
           <View style={styles._imgWrap} ref={this._getImgRef} collapsable={false}>
-            <Image source={images.coin} resizeMode={'contain'} style={styles._images}/>
+            <Image source={images.coin} resizeMode={'contain'} style={styles._images} />
             <Image source={{ uri }} style={styles._ovalImg} />
           </View>
         </View>

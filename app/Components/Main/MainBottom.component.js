@@ -22,7 +22,7 @@ const MainBottom = ({ onCameraPress, onTokenPress, onPrizePress,
         <FontIcon name={'minus'} color={minusIconColor || styles.fontColor} size={40} />
       </Btn>
       <Btn btnStyle={styles.bottomImageContainer} onPress={onTokenPress}>
-        <Image source={images.k3} resizeMode={'contain'} style={[styles.images, tokenStyle]} />
+        <Image source={images.k1} resizeMode={'contain'} style={[styles.images, tokenStyle]} />
       </Btn>
       <Btn btnStyle={styles.iconContainer} onPress={onPlusPress}>
         <FontIcon name={'plus'} color={plusIconColor || styles.fontColor} size={40} />

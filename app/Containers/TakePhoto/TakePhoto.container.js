@@ -38,7 +38,7 @@ export default class TakePhotoContainer extends Component {
     const { props: { navigation: { navigate } }, camera } = this;
 
     if (!camera) return;
-    const photo = await camera.takePictureAsync({ base64: true });
+    const photo = await camera.takePictureAsync({ quality: 0.1 });
     navigate(routeName.TokenTotem.ReviewPhoto, photo);
   }
 
@@ -47,7 +47,7 @@ export default class TakePhotoContainer extends Component {
     const photo = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       aspect: [4, 3],
-      base64: true
+      quality: 0.1
     });
 
     if (!photo.cancelled) {

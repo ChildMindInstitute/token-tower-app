@@ -10,11 +10,12 @@ export default EStyleSheet.create({
   },
   _images: {
     position: 'relative',
-    zIndex: 3,
-    flex: 0.8
+    zIndex: 3
   },
   _imgContainer: {
     marginVertical: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
     [smallSize]: {
       height: 270
     },
@@ -27,7 +28,6 @@ export default EStyleSheet.create({
     }
   },
   _imgWrap: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
   },

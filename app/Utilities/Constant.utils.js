@@ -36,7 +36,9 @@ export const ERR_MSG = {
   REMOVE_TOKEN_TITLE: 'Remove token Failed',
   REMOVE_TOKEN: 'Don\'t have enough token to remove.',
   EMAIL_ALREADY_IN_USE: 'This email address is already in use by another account.',
-  LOGIN_USER_NOT_FOUND: 'Please type in your correct login and password.'
+  LOGIN_USER_NOT_FOUND: 'Please type in your correct login and password.',
+  UPLOAD_PHOTO_TITLE: 'Upload photo fails',
+  UPLOAD_PHOTO: 'Couldn\'t upload photo'
 };
 
 export const MSG = {

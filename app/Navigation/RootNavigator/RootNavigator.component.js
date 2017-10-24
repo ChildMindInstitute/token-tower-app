@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addNavigationHelpers } from 'react-navigation';
+import { Font } from 'expo';
 // import { addNavigationHelpers, NavigationActions } from 'react-navigation';
 // import { BackHandler } from 'react-native';
-import { Font } from 'expo';
 
 import CustomNav from '../CustomNavigator/CustomNavigator.component';
 
 import navPropTypes from '../../PropTypes/Navigation.propTypes';
 import { Resource } from '../../Resources/Fonts';
-import { fontLoadFinished } from '../../Redux/Reducers/Font/Font.reducer';
 
 class RootNavigator extends Component {
+  state = { isFontLoaded: null }
+
   async componentWillMount() {
     await Font.loadAsync(Resource);
-    this.props.dispatch(fontLoadFinished());
+    this.setState({ isFontLoaded: true });
   }
 
   // NOTE: DISABLE ANDROID BACK BUTTON for now
@@ -36,7 +37,8 @@ class RootNavigator extends Component {
   // };
 
   render() {
-    const { dispatch, navigationState, isFontLoaded } = this.props;
+    const { dispatch, navigationState } = this.props;
+    const { isFontLoaded } = this.state;
     const navProps = addNavigationHelpers({ dispatch, state: navigationState });
 
     return (
@@ -47,13 +49,11 @@ class RootNavigator extends Component {
 
 RootNavigator.propTypes = {
   ...navPropTypes,
-  navigationState: propTypes.object.isRequired,
-  isFontLoaded: propTypes.bool.isRequired
+  navigationState: propTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  navigationState: state.navigation.navigationState,
-  isFontLoaded: state.font.isLoaded
+  navigationState: state.navigation.navigationState
 });
 
 export default connect(mapStateToProps)(RootNavigator);
