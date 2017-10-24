@@ -17,7 +17,8 @@ export default ({
   replenishTokenType = REPLENISH_TOKEN_TYPE.DAILY,
   child = null,
   parent = null,
-  prizes = null
+  prizes = null,
+  isAdmin = false
 }) =>
   ({
     uid,
@@ -31,5 +32,6 @@ export default ({
     child: child && new ChildModel(child),
     parent: parent && new ParentModel(parent),
     prizes: prizes && prizeListContruct(prizes),
-    timestamp: database.ServerValue.TIMESTAMP
+    timestamp: database.ServerValue.TIMESTAMP,
+    isAdmin
   });
