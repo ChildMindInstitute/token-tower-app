@@ -7,12 +7,14 @@ import MenuItem from '../MenuItem/MenuItem.component';
 import images from '../../../Resources/Images';
 import styles from './Menu.component.styles';
 
+import { deletePhotos } from '../../../Utilities/Photos.utils';
+
 import routeName from '../../../Navigation/RouteConfigs/Route.config';
 import navPropTypes from '../../../PropTypes/Navigation.propTypes';
 import listMenuItems from '../ListMenuItems';
 
 const _renderSignOutBtn = (onItemPress, navigate, signOut) => {
-  const _onItemPress = () => signOut().then(onItemPress);
+  const _onItemPress = () => signOut().then(onItemPress).then(deletePhotos);
   const item = { name: 'Sign Out', icon: 'logout', route: routeName.Root.Authentication };
 
   return (
