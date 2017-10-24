@@ -116,8 +116,7 @@ class MainContainer extends Component {
       user: { uid, initialToken },
       tokenStack, photoList, dispatch } = this.props;
 
-    const imgKeylist = Object.keys(photoList);
-    const imgRandomKey = imgKeylist[Math.floor(Math.random() * imgKeylist.length)] || '';
+    const imgRandomKey = photoList[Math.floor(Math.random() * photoList.length)] || '';
 
     if (tokenStack.tokens.length >= initialToken) {
       showTopErrNotification({ title: ERR_MSG.ADD_TOKEN_TITLE, message: ERR_MSG.ADD_TOKEN }, dispatch);

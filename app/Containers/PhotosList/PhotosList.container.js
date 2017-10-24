@@ -12,15 +12,28 @@ import { photoRemove, photoInit } from '../../Redux/Reducers/Photo/Photo.reducer
 import styles from './PhotosList.container.styles';
 
 import { DIRECTION, MSG, COMMON } from '../../Utilities/Constant.utils';
+import { getAllPhotos } from '../../Utilities/Photos.utils';
 
 class PhotosListContainer extends Component {
+  state = { data: [] }
+
+  componentDidMount() {
+    this._getPhotos();
+  }
+
+  _getPhotos = () => {
+    getAllPhotos((data) => {
+      this.setState({ data });
+    });
+  }
+
   _renderHeader = () => (
     <Text style={styles._text}>Tap to delete photos!</Text>
   );
 
-  _deletePhoto = ({ photoId }) => {
+  _deletePhoto = ({ id }) => {
     const { user: { uid }, removePhoto, initPhoto } = this.props;
-    removePhoto(uid, photoId).then(() => initPhoto(uid));
+    removePhoto(uid, id).then(() => initPhoto(uid)).then(this._getPhotos);
   }
 
   _onPhotoPress = (item) => {
@@ -47,26 +60,20 @@ class PhotosListContainer extends Component {
 
     return (
       <Btn
-        key={item.photoId} onPress={onPress}
+        key={item.id} onPress={onPress}
         btnStyle={{ width: itemSize, height: itemSize }}
       >
         <Image
           resizeMode="contain"
           style={{ flex: 1 }}
-          source={{ uri: item.src }}
+          source={{ uri: item.base64 }}
         />
       </Btn>
     );
   }
 
   render() {
-    const { photoList } = this.props;
-    const imgKeylist = Object.keys(photoList);
-    const data = imgKeylist.map(key => (
-      { photoId: key, src: photoList[key].tokenImgUrl }
-    ));
-
-    if (imgKeylist.length < 1) {
+    if (this.state.data.length < 1) {
       return (
         <View style={styles._emptyContainer}>
           <Text style={styles._emptyText}>{'You don\'t have any photo.'}</Text>
@@ -83,7 +90,7 @@ class PhotosListContainer extends Component {
           <Header direction={DIRECTION.HORIZONTAL} />
         </View>
         <PhotoGrid
-          data={data}
+          data={this.state.data}
           itemsPerRow={3}
           itemMargin={1}
           renderHeader={this._renderHeader}
@@ -95,8 +102,7 @@ class PhotosListContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
-  photoList: state.photo
+  user: state.user
 });
 
 const mapDispatchToProps = {
@@ -106,13 +112,11 @@ const mapDispatchToProps = {
 
 PhotosListContainer.propTypes = {
   user: propTypes.object,
-  photoList: propTypes.any,
   removePhoto: propTypes.func,
   initPhoto: propTypes.func
 };
 
 PhotosListContainer.defaultProps = {
-  photoList: []
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PhotosListContainer);
