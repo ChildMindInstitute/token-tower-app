@@ -1,6 +1,13 @@
-import { handleActions } from 'redux-actions';
+import { handleActions, createActions } from 'redux-actions';
 
 import config from './LoadingMask.config';
+
+
+// ------------------------------------
+// Action
+// ------------------------------------
+export const { loadingMaskStart, loadingMaskEnd } = createActions({
+}, 'LOADING_MASK_START', 'LOADING_MASK_END');
 
 // ------------------------------------
 // Reducer
@@ -28,12 +35,16 @@ const finishActionHandler = (state) => {
 };
 
 export default handleActions(
-  Object.assign(...config.map(
-    action => ({
-      [`${action.toString()}_PENDING`]: startActionHandler,
-      [`${action.toString()}_FULFILLED`]: finishActionHandler,
-      [`${action.toString()}_REJECTED`]: finishActionHandler
-    })
-  )),
+  {
+    ...Object.assign(...config.map(
+      action => ({
+        [`${action.toString()}_PENDING`]: startActionHandler,
+        [`${action.toString()}_FULFILLED`]: finishActionHandler,
+        [`${action.toString()}_REJECTED`]: finishActionHandler
+      })
+    )),
+    LOADING_MASK_START: startActionHandler,
+    LOADING_MASK_END: loadingMaskEnd
+  },
   initialState
 );

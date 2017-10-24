@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image } from 'react-native';
 import { Camera, Permissions, ImagePicker } from 'expo';
+import { connect } from 'react-redux';
 
 import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
 import PermissionGrantWidget from '../../Components/PermissionGrantWidget/PermissionGrantWidget.component';
@@ -11,11 +12,13 @@ import FontIcon from '../../Components/FontIcon/FontIcon.component';
 
 import styles from './TakePhoto.container.style';
 
+import { loadingMaskStart, loadingMaskEnd } from '../../Redux/Reducers/LoadingMask/LoadingMask.reducer';
+
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { DIRECTION } from '../../Utilities/Constant.utils';
 import config from './TakePhoto.container.config';
 
-export default class TakePhotoContainer extends Component {
+class TakePhotoContainer extends Component {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back
@@ -35,19 +38,21 @@ export default class TakePhotoContainer extends Component {
   }
 
   _onCamera = async () => {
-    const { props: { navigation: { navigate } }, camera } = this;
+    const { props: { startLoading, endLoading, navigation: { navigate } }, camera } = this;
 
     if (!camera) return;
-    const photo = await camera.takePictureAsync({ quality: 0.1 });
+    startLoading();
+    const photo = await camera.takePictureAsync();
     navigate(routeName.TokenTotem.ReviewPhoto, photo);
+    endLoading();
   }
 
   _onPick = async () => {
     const { navigation: { navigate } } = this.props;
+
     const photo = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
-      aspect: [4, 3],
-      quality: 0.1
+      aspect: [4, 3]
     });
 
     if (!photo.cancelled) {
@@ -92,3 +97,12 @@ export default class TakePhotoContainer extends Component {
 }
 
 TakePhotoContainer.propTypes = config.propTypes;
+
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = {
+  startLoading: loadingMaskStart,
+  endLoading: loadingMaskEnd
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TakePhotoContainer);

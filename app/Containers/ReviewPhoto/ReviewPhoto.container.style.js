@@ -9,6 +9,8 @@ export default EStyleSheet.create({
     paddingTop: 2
   },
   _images: {
+    width: 270,
+    height: 270,
     position: 'relative',
     zIndex: 3
   },
