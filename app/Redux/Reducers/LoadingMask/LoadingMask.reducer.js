@@ -44,7 +44,7 @@ export default handleActions(
       })
     )),
     LOADING_MASK_START: startActionHandler,
-    LOADING_MASK_END: loadingMaskEnd
+    LOADING_MASK_END: finishActionHandler
   },
   initialState
 );

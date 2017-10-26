@@ -84,8 +84,8 @@ export default EStyleSheet.create({
   _ovalImg: {
     position: 'absolute',
     zIndex: 0,
-    width: 200,
-    height: 200,
-    borderRadius: 100
+    width: 270,
+    height: 270,
+    borderRadius: 135
   }
 });

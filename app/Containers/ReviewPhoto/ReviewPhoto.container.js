@@ -31,9 +31,7 @@ class ReviewPhotoContainer extends Component {
     navigation.goBack();
   }
 
-  _getImgRef = (ref) => {
-    this.img = ref;
-  }
+  _getImgRef = (ref) => { this.img = ref; }
 
   render() {
     const { state: { params: { uri } } } = this.props.navigation;

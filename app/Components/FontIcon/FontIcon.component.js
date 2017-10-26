@@ -6,8 +6,8 @@ import fontelloConfig from '../../Assets/Fonts/TokenTowerIcons/config.json';
 
 const Icon = createIconSetFromFontello(fontelloConfig, 'icon');
 
-const FontIcon = ({ name, size, color }) => (
-  <Icon name={name} size={size} color={color} />
+const FontIcon = ({ name, size, color, style }) => (
+  <Icon name={name} size={size} color={color} style={style} />
 );
 
 FontIcon.defaultProps = {
@@ -18,7 +18,8 @@ FontIcon.defaultProps = {
 FontIcon.propTypes = {
   name: propTypes.string.isRequired,
   size: propTypes.number.isRequired,
-  color: propTypes.string.isRequired
+  color: propTypes.string.isRequired,
+  style: propTypes.object
 };
 
 export default FontIcon;

@@ -67,31 +67,33 @@ class TakePhotoContainer extends Component {
     if (!hasCameraPermission) return <PermissionGrantWidget />;
 
     return (
-      <View style={styles._container}>
-        <Header direction={DIRECTION.HORIZONTAL} />
-        <View style={styles._imgContainer}>
-          <Image resizeMode={'contain'} source={images.pig} style={styles._images} />
-        </View>
-        <Camera style={styles._cameraContainer} type={type} autoFocus ref={this._getCameraRef}>
-          <View style={styles._cameraView}>
-            <View style={styles._ovalContainer}>
-              <View style={styles._oval} />
-            </View>
+      <Image style={styles._backgroundContainer} source={images.firstbackground}>
+        <View style={styles._container}>
+          <Header direction={DIRECTION.HORIZONTAL} textStyle={styles._backgroundTransparent} />
+          <Camera style={styles._cameraContainer} type={type} autoFocus ref={this._getCameraRef}>
+            <Image source={images.coin} resizeMode={'contain'} style={styles._coin} />
+          </Camera>
+          <View style={styles._dock}>
+            <Btn btnStyle={styles._flip} onPress={this._onFlip}>
+              <FontIcon
+                name={'arrows-cw'}
+                color={'#51555b'} size={40}
+                style={styles._backgroundTransparent}
+              />
+            </Btn>
+            <Btn btnStyle={styles._cameraLogo} onPress={this._onCamera}>
+              <Image source={images.camera} resizeMode={'contain'} style={styles._images} />
+            </Btn>
+            <Btn btnStyle={styles._logoPickImg} onPress={this._onPick}>
+              <FontIcon
+                size={40} color={'#51555b'}
+                name={'clone'}
+                style={styles._backgroundTransparent}
+              />
+            </Btn>
           </View>
-          <View style={styles._blank} />
-        </Camera>
-        <View style={styles._dock}>
-          <Btn btnStyle={styles._flip} onPress={this._onFlip}>
-            <FontIcon name={'arrows-cw'} color={'#51555b'} size={40} />
-          </Btn>
-          <Btn btnStyle={styles._cameraLogo} onPress={this._onCamera}>
-            <Image source={images.camera} resizeMode={'contain'} style={styles._images} />
-          </Btn>
-          <Btn btnStyle={styles._logoPickImg} onPress={this._onPick}>
-            <FontIcon name={'clone'} color={'#51555b'} size={40} />
-          </Btn>
         </View>
-      </View>
+      </Image>
     );
   }
 }

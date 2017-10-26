@@ -10,7 +10,7 @@ import reducers from './Reducers/Reducers';
 
 const storeCreator = () => {
   const store = createStore(
-    persistReducer({ key: 'root', storage }, combineReducers(reducers)),
+    persistReducer({ key: 'root', storage, blacklist: ['loadingMask'] }, combineReducers(reducers)),
     compose(applyMiddleware(promiseMiddleware(), thunk))
     // only for development
     // compose(applyMiddleware(promiseMiddleware(), thunk, logger))
