@@ -15,7 +15,7 @@ import styles from './Setting.container.styles';
 import {
   userUpdateProfile, userInitProfile, userActRoleAsParent
 } from '../../Redux/Reducers/User/User.reducer';
-import { tokenStackUpdate } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
+import { tokenStackUpdate, tokenStackInit } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
 
 import config from './Setting.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
@@ -90,7 +90,8 @@ class SettingContainer extends Component {
   }
 
   _handleSubmit = ({ initialToken, replenishTokenType, childName, canAnimation }) => {
-    const { updateProfile, initProfile, updateStack, user, tokenStack, actRoleAsParent } = this.props;
+    const { updateProfile, initProfile, initStack, updateStack,
+      user, tokenStack, actRoleAsParent } = this.props;
     const child = childName && {
       name: childName,
       tokensEarned: user.child ? user.child.tokensEarned : 0
@@ -108,6 +109,7 @@ class SettingContainer extends Component {
       .then(() => updateStack(user.uid, {
         ...tokenStack, nextRefreshTime: getNextRefreshTime(replenishTokenType)
       }))
+      .then(() => initStack(user.uid))
       .then(child && actRoleAsParent)
       .then(this._onSubmitSuccess);
   }
@@ -157,6 +159,7 @@ const mapDispatchToProps = {
   updateProfile: userUpdateProfile,
   initProfile: userInitProfile,
   updateStack: tokenStackUpdate,
+  initStack: tokenStackInit,
   actRoleAsParent: userActRoleAsParent
 };
 

@@ -20,6 +20,8 @@ const signInWithGG = (idToken, token) => {
 
 const signOut = () => auth().signOut();
 
+const onAuthStateChanged = cb => auth().onAuthStateChanged(cb);
+
 export default {
   signIn,
   register,
@@ -27,5 +29,6 @@ export default {
   sendEmailVerification,
   signInWithFB,
   signInWithGG,
-  signOut
+  signOut,
+  onAuthStateChanged
 };

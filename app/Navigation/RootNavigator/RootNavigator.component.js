@@ -8,6 +8,12 @@ import { Font } from 'expo';
 
 import CustomNav from '../CustomNavigator/CustomNavigator.component';
 
+import authApi from '../../Firebase/Authenticate/Authenticate.api';
+import { navigationResetState } from '../../Redux/Reducers/Navigation/Navigation.reducer';
+import {
+  authenticationSignOut, authenticationResetState
+} from '../../Redux/Reducers/Authentication/Authentication.reducer';
+
 import navPropTypes from '../../PropTypes/Navigation.propTypes';
 import { Resource } from '../../Resources/Fonts';
 
@@ -17,6 +23,24 @@ class RootNavigator extends Component {
   async componentWillMount() {
     await Font.loadAsync(Resource);
     this.setState({ isFontLoaded: true });
+  }
+
+  componentDidMount() {
+    authApi.onAuthStateChanged(this._onAuthStateChangedHandler);
+  }
+
+  componentDidUpdate() {
+    const { shouldLogout, dispatch, isAuthenticated } = this.props;
+    if (shouldLogout && isAuthenticated) {
+      dispatch(authenticationResetState());
+      dispatch(authenticationSignOut());
+    }
+  }
+
+  _onAuthStateChangedHandler = (user) => {
+    if (user) return;
+    const { dispatch } = this.props;
+    dispatch(navigationResetState());
   }
 
   // NOTE: DISABLE ANDROID BACK BUTTON for now
@@ -53,7 +77,9 @@ RootNavigator.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  navigationState: state.navigation.navigationState
+  navigationState: state.navigation.navigationState,
+  isAuthenticated: state.user.isAuthenticated,
+  shouldLogout: state.authentication.shouldLogout
 });
 
 export default connect(mapStateToProps)(RootNavigator);

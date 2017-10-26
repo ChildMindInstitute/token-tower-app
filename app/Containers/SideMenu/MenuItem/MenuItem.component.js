@@ -13,7 +13,7 @@ class MenuItem extends Component {
     const { onItemPress, navigate, item } = this.props;
 
     onItemPress();
-    navigate(item.route);
+    if (item.route) navigate(item.route);
   }
 
   render() {

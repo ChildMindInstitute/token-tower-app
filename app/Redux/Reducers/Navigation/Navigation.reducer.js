@@ -13,7 +13,8 @@ const initialNavigationState = Navigator.router.getStateForAction(
 // ------------------------------------
 // Action
 // ------------------------------------
-export const { navigationClear, navigationStore } = createActions({}, 'NAVIGATION_CLEAR', 'NAVIGATION_STORE');
+export const { navigationClear, navigationStore, navigationResetState } = createActions({
+}, 'NAVIGATION_CLEAR', 'NAVIGATION_STORE', 'NAVIGATION_RESET_STATE');
 
 // ------------------------------------
 // Reducer
@@ -27,10 +28,12 @@ const navigateHandler = (state, action) => {
 
 const clearNavigationHandler = state => ({ ...state, navigationAction: undefined });
 const storeNavigationHandler = (state, { payload }) => ({ ...state, navigationAction: payload });
+const resetNavigationHandler = () => ({ navigationState: initialNavigationState });
 
 export default handleActions({
   NAVIGATION_CLEAR: clearNavigationHandler,
   NAVIGATION_STORE: storeNavigationHandler,
+  NAVIGATION_RESET_STATE: resetNavigationHandler,
   [NavigationActions.BACK]: navigateHandler,
   [NavigationActions.INIT]: navigateHandler,
   [NavigationActions.NAVIGATE]: navigateHandler,
