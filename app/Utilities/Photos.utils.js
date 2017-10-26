@@ -38,3 +38,9 @@ export const deletePhotos = () => {
     tx.executeSql('delete from photos', []);
   });
 };
+
+export const deletePhotoById = (id) => {
+  db.transaction((tx) => {
+    tx.executeSql('delete from photos where id = ?', [id]);
+  });
+};

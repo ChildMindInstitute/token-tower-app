@@ -7,7 +7,7 @@ import { takeSnapshotAsync } from 'expo';
 import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 
-import { photoAdd, photoInit } from '../../Redux/Reducers/Photo/Photo.reducer';
+import { photoAdd } from '../../Redux/Reducers/Photo/Photo.reducer';
 
 import images from '../../Resources/Images';
 import styles from './ReviewPhoto.container.style';
@@ -17,13 +17,12 @@ import navProps from '../../PropTypes/Navigation.propTypes';
 
 class ReviewPhotoContainer extends Component {
   _onKeep = async () => {
-    const { addPhoto, initPhoto, uid, navigation } = this.props;
+    const { addPhoto, uid, navigation } = this.props;
     const options = { format: 'png', result: 'base64' };
     const base64 = await takeSnapshotAsync(this.img, options);
     const tokenImgUrl = `data:image/jpg;base64,${base64}`;
 
     addPhoto(uid, { tokenImgUrl })
-      .then(() => initPhoto(uid))
       .then(() => navigation.goBack());
   }
 
@@ -70,14 +69,12 @@ class ReviewPhotoContainer extends Component {
 ReviewPhotoContainer.propTypes = {
   ...navProps,
   addPhoto: propTypes.func.isRequired,
-  initPhoto: propTypes.func.isRequired,
   uid: propTypes.string.isRequired
 };
 
 const mapStateToProps = ({ user: { uid } }) => ({ uid });
 const mapDispatchToProps = {
-  addPhoto: photoAdd,
-  initPhoto: photoInit
+  addPhoto: photoAdd
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewPhotoContainer);

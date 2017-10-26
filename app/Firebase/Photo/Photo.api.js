@@ -10,10 +10,11 @@ const getPhotos = userId => getRef(userId).once('value').then(snap => snap.val()
 
 const addNewPhoto = (userId, value) => {
   const history = getRef(userId).push();
-  return history.set(new PhotoModel(value));
+  const photo = new PhotoModel(value);
+  return history.set(photo).then(() => ({ id: history.key, base64: photo.tokenImgUrl }));
 };
 
-const removePhotoById = (userId, photoId) => getRef(userId).child(photoId).remove();
+const removePhotoById = (userId, photoId) => getRef(userId).child(photoId).remove().then(() => photoId);
 
 export default {
   addNewPhoto,

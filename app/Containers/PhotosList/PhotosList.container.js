@@ -8,7 +8,7 @@ import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component
 import Btn from '../../Components/FormButton/FormButton.component';
 import FontIcon from '../../Components/FontIcon/FontIcon.component';
 
-import { photoRemove, photoInit } from '../../Redux/Reducers/Photo/Photo.reducer';
+import { photoRemove } from '../../Redux/Reducers/Photo/Photo.reducer';
 import styles from './PhotosList.container.styles';
 
 import { DIRECTION, MSG, COMMON } from '../../Utilities/Constant.utils';
@@ -32,8 +32,8 @@ class PhotosListContainer extends Component {
   );
 
   _deletePhoto = ({ id }) => {
-    const { user: { uid }, removePhoto, initPhoto } = this.props;
-    removePhoto(uid, id).then(() => initPhoto(uid)).then(this._getPhotos);
+    const { user: { uid }, removePhoto } = this.props;
+    removePhoto(uid, id).then(this._getPhotos);
   }
 
   _onPhotoPress = (item) => {
@@ -106,14 +106,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  removePhoto: photoRemove,
-  initPhoto: photoInit
+  removePhoto: photoRemove
 };
 
 PhotosListContainer.propTypes = {
   user: propTypes.object,
-  removePhoto: propTypes.func,
-  initPhoto: propTypes.func
+  removePhoto: propTypes.func
 };
 
 PhotosListContainer.defaultProps = {
