@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 
-import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 
 import styles from './RegisterWelcome.container.styles';
 

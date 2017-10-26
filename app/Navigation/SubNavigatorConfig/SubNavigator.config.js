@@ -9,8 +9,8 @@ const {
   UpdateInfo: { SetInfo },
   MainUser: { MainUserSelection },
   Registration: { RegisterPermission, RegisterForm, RegisterWelcome },
-  TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto, PhotosList },
-  TokenTotemTutorial: { Tutorial },
+  TokenTower: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto, PhotosList },
+  TokenTowerTutorial: { Tutorial },
   Config: { Setting }
 } = routesName;
 
@@ -41,7 +41,7 @@ const RegistrationNavigator = StackNavigator({
   [RegisterWelcome]: RegisterWelcomeScreen
 }, navigationOptions);
 
-const TokenTotemNavigator = StackNavigator({
+const TokenTowerNavigator = StackNavigator({
   [Splash]: SplashScreen,
   [Main]: MainScreen,
   [Prize]: PrizeScreen,
@@ -51,7 +51,7 @@ const TokenTotemNavigator = StackNavigator({
   [PhotosList]: PhotosListScreen
 }, navigationOptions);
 
-const TokenTotemTutorialNavigator = StackNavigator({
+const TokenTowerTutorialNavigator = StackNavigator({
   [Tutorial]: TutorialScreen
 }, navigationOptions);
 
@@ -64,7 +64,7 @@ export default {
   UpdateInfoNavigator,
   MainUserNavigator,
   RegistrationNavigator,
-  TokenTotemNavigator,
-  TokenTotemTutorialNavigator,
+  TokenTowerNavigator,
+  TokenTowerTutorialNavigator,
   ConfigNavigator
 };

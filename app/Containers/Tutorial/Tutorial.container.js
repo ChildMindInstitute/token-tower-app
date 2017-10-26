@@ -25,7 +25,7 @@ class TutorialContainer extends Component {
 
       updateProfile({ ...user, isFirstTutorial: false })
         .then(({ value }) => initProfile(value))
-        .then(() => navigate(routeName.Root.TokenTotem));
+        .then(() => navigate(routeName.Root.TokenTower));
     } else this.setState({ step: this.state.step + 1 });
   }
 

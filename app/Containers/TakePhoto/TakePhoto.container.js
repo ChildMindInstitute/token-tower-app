@@ -3,7 +3,7 @@ import { View, Image } from 'react-native';
 import { Camera, Permissions, ImagePicker } from 'expo';
 import { connect } from 'react-redux';
 
-import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 import PermissionGrantWidget from '../../Components/PermissionGrantWidget/PermissionGrantWidget.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 
@@ -43,7 +43,7 @@ class TakePhotoContainer extends Component {
     if (!camera) return;
     startLoading();
     const photo = await camera.takePictureAsync();
-    navigate(routeName.TokenTotem.ReviewPhoto, photo);
+    navigate(routeName.TokenTower.ReviewPhoto, photo);
     endLoading();
   }
 
@@ -56,7 +56,7 @@ class TakePhotoContainer extends Component {
     });
 
     if (!photo.cancelled) {
-      navigate(routeName.TokenTotem.ReviewPhoto, photo);
+      navigate(routeName.TokenTower.ReviewPhoto, photo);
     }
   };
 

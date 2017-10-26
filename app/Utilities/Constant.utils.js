@@ -50,9 +50,9 @@ export const MSG = {
   ACHIEVE_ALL_GOALS: 'Congratulation! you now achieve all goals.',
   NOT_SET_GOAL_KID: 'Your prizes will be available soon.',
   ADD_TOKEN_TITLE: 'Add token',
-  ADD_TOKEN: 'One token added to the totem.',
+  ADD_TOKEN: 'One token added to the tower.',
   REMOVE_TOKEN_TITLE: 'Remove token',
-  REMOVE_TOKEN: 'One token removed from the totem.',
+  REMOVE_TOKEN: 'One token removed from the tower.',
   REMOVE_TOKEN_ASK: 'Do you want to remove 1 token from Piggy container?',
   DEL_PHOTO_CONFIRM_TITLE: 'Delete Photo',
   DEL_PHOTO_CONFIRM: 'Are you sure you want to do delete this photo?'

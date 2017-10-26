@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
-import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 import Button from '../../Components/FormButton/FormButton.component';
 
 import { userActRoleAsParent, userActRoleAsChild } from '../../Redux/Reducers/User/User.reducer';
@@ -18,14 +18,14 @@ class MainUserSelectionContainer extends Component {
     const { actRoleAsParent, isFirstTutorial, navigation: { navigate } } = this.props;
     actRoleAsParent();
 
-    if (isFirstTutorial) navigate(routeName.Root.TokenTotemTutorial);
-    else navigate(routeName.Root.TokenTotem);
+    if (isFirstTutorial) navigate(routeName.Root.TokenTowerTutorial);
+    else navigate(routeName.Root.TokenTower);
   }
 
   _onChildrenChoice = () => {
     const { actRoleAsChild, navigation: { navigate } } = this.props;
     actRoleAsChild();
-    navigate(routeName.Root.TokenTotem);
+    navigate(routeName.Root.TokenTower);
   }
 
   _renderParentChoice = () => (

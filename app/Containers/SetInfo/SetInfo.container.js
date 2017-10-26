@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
-import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 import Input from '../../Components/FormInput/FormInput.component';
 
 import {

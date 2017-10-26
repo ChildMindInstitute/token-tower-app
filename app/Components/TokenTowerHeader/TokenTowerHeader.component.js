@@ -3,13 +3,13 @@ import propTypes from 'prop-types';
 import { View, Image, Text } from 'react-native';
 
 import images from '../../Resources/Images';
-import styles from './TokenTotemHeader.component.styles';
+import styles from './TokenTowerHeader.component.styles';
 
 import { DIRECTION } from '../../Utilities/Constant.utils';
 
 const isHorizontal = direction => direction === DIRECTION.HORIZONTAL;
 
-const TokenTotemHeader = ({ direction, textStyle }) => {
+const TokenTowerHeader = ({ direction, textStyle }) => {
   const containerStyle = isHorizontal(direction) ?
     styles.containerHorizontal : styles.containerVertical;
 
@@ -24,18 +24,18 @@ const TokenTotemHeader = ({ direction, textStyle }) => {
     <View style={containerStyle}>
       <Text style={[styles.text, textStyle]}>Token</Text>
       {_renderImage()}
-      <Text style={[styles.text, textStyle]}>Totem</Text>
+      <Text style={[styles.text, textStyle]}>Tower</Text>
     </View>
   );
 };
 
-TokenTotemHeader.defaultProps = {
+TokenTowerHeader.defaultProps = {
   direction: DIRECTION.VERTICAL
 };
 
-TokenTotemHeader.propTypes = {
+TokenTowerHeader.propTypes = {
   direction: propTypes.string,
   textStyle: propTypes.object
 };
 
-export default TokenTotemHeader;
+export default TokenTowerHeader;

@@ -5,7 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { connect } from 'react-redux';
 
 import SubmitBtn from '../../Components/FormButton/FormButton.component';
-import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 import Input from '../../Components/FormInput/FormInput.component';
 import FormSwitch from '../../Components/FormSwitch/FormSwitch.component';
 import FormDropdown from '../../Components/FormDropdown/FormDropdown.component';
@@ -85,8 +85,8 @@ class SettingContainer extends Component {
 
   _onSubmitSuccess = () => {
     const { user: { isFirstTutorial }, navigation: { navigate } } = this.props;
-    if (isFirstTutorial) navigate(routeName.Root.TokenTotemTutorial);
-    else navigate(routeName.Root.TokenTotem);
+    if (isFirstTutorial) navigate(routeName.Root.TokenTowerTutorial);
+    else navigate(routeName.Root.TokenTower);
   }
 
   _handleSubmit = ({ initialToken, replenishTokenType, childName, canAnimation }) => {

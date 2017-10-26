@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 
-import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 import FormSwitch from '../../Components/FormSwitch/FormSwitch.component';
 

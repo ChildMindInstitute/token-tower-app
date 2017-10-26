@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { takeSnapshotAsync } from 'expo';
 
-import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 
 import { photoAdd, photoInit } from '../../Redux/Reducers/Photo/Photo.reducer';

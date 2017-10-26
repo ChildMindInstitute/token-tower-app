@@ -1,6 +1,6 @@
 import { SQLite } from 'expo';
 
-const db = SQLite.openDatabase({ name: 'db.tokentotem' });
+const db = SQLite.openDatabase({ name: 'db.tokentower' });
 db.transaction((tx) => {
   tx.executeSql(
     'create table if not exists photos (id varchar primary key not null, base64);'

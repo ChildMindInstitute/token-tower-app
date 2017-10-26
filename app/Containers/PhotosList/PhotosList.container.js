@@ -4,7 +4,7 @@ import { View, Text, Image, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import PhotoGrid from 'react-native-photo-grid';
 
-import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 import FontIcon from '../../Components/FontIcon/FontIcon.component';
 

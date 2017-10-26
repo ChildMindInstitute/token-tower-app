@@ -4,8 +4,8 @@ export default {
     UpdateInfo: 'UpdateInfo',
     MainUser: 'MainUser',
     Registration: 'Registration',
-    TokenTotem: 'TokenTotem',
-    TokenTotemTutorial: 'TokenTotemTutorial',
+    TokenTower: 'TokenTower',
+    TokenTowerTutorial: 'TokenTowerTutorial',
     Config: 'Config'
   },
   MainUser: {
@@ -24,10 +24,10 @@ export default {
     RegisterForm: 'RegisterForm',
     RegisterWelcome: 'RegisterWelcome'
   },
-  TokenTotemTutorial: {
+  TokenTowerTutorial: {
     Tutorial: 'Tutorial'
   },
-  TokenTotem: {
+  TokenTower: {
     Splash: 'Splash',
     Main: 'Main',
     Prize: 'Prize',

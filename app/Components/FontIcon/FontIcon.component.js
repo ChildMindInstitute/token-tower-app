@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { createIconSetFromFontello } from '@expo/vector-icons';
 
-import fontelloConfig from '../../Assets/Fonts/TokenTotemIcons/config.json';
+import fontelloConfig from '../../Assets/Fonts/TokenTowerIcons/config.json';
 
 const Icon = createIconSetFromFontello(fontelloConfig, 'icon');
 

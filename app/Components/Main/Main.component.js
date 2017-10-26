@@ -3,7 +3,7 @@ import { View, Image } from 'react-native';
 
 import Btn from '../FormButton/FormButton.component';
 import Bottom from './MainBottom.component';
-import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 
 import images from '../../Resources/Images';
 import styles from './Main.component.styles';

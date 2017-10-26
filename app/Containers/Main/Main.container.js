@@ -48,7 +48,7 @@ class MainContainer extends Component {
 
   _onCamera = () => {
     const { navigation: { navigate } } = this.props;
-    navigate(routeName.TokenTotem.TakePhoto);
+    navigate(routeName.TokenTower.TakePhoto);
   }
 
   _updateUserProfile = (user) => {
@@ -130,7 +130,7 @@ class MainContainer extends Component {
 
   _onPrize = () => {
     const { navigation: { navigate } } = this.props;
-    navigate(routeName.TokenTotem.Prize);
+    navigate(routeName.TokenTower.Prize);
   }
 
   _getColor = () => {

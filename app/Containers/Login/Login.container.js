@@ -4,7 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
 
-import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 import Input from '../../Components/FormInput/FormInput.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 

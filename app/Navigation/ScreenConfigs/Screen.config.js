@@ -26,8 +26,8 @@ const { Authentication: { Home, Login, ForgotPassword },
   UpdateInfo: { SetInfo },
   MainUser: { MainUserSelection },
   Registration: { RegisterPermission, RegisterForm, RegisterWelcome },
-  TokenTotem: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto, PhotosList },
-  TokenTotemTutorial: { Tutorial },
+  TokenTower: { Splash, Main, Prize, TakePhoto, ReviewPhoto, PickPhoto, PhotosList },
+  TokenTowerTutorial: { Tutorial },
   Config: { Setting }
 } = routesName;
 

@@ -11,6 +11,6 @@ export default [
   {
     name: 'Photos',
     icon: 'picture',
-    route: routeName.TokenTotem.PhotosList
+    route: routeName.TokenTower.PhotosList
   }
 ];

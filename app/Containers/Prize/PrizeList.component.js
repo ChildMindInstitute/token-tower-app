@@ -27,7 +27,7 @@ const PrizeList = ({ fields, showDelBtn }) => {
             validate={[greaterThanZero, smallerThanAThousand]} keyboardType={'numeric'}
             editable={showDelBtn}
           />
-          <Text style={styles._text}>tokens until: </Text>
+          <Text style={styles._text}>tokens:</Text>
           <Field
             name={`${member}.name`} component={Input}
             inputStyle={styles._input} containerStyle={styles._inputContainer}

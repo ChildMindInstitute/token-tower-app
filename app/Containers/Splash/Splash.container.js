@@ -5,7 +5,7 @@ import * as Animatable from 'react-native-animatable';
 import converter from 'number-to-words';
 
 import TextFit from '../../Components/TextFit/TextFit.component';
-import Header from '../../Components/TokenTotemHeader/TokenTotemHeader.component';
+import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 
 import images from '../../Resources/Images';
 import styles from './Splash.container.styles';
@@ -21,7 +21,7 @@ class SplashContainer extends Component {
 
   _onTouch = () => {
     const { navigate } = this.props.navigation;
-    navigate(routeName.TokenTotem.Main);
+    navigate(routeName.TokenTower.Main);
   };
 
   _renderTreasure = () => (
