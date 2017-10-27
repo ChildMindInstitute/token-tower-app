@@ -55,24 +55,29 @@ class LoginContainer extends Component {
 
   _onAuthenticated = ({ value: user }) => {
     const { navigation: { navigate }, authenticated, initStack, initProfile,
-      tokenStack: { nextRefreshTime, tokens }, updateStack, updateProfile } = this.props;
+      tokenStack: { nextRefreshTime, tokens }, updateStack, updateProfile, photoList } = this.props;
 
-    const { uid, child, parent, replenishTokenType } = user;
+    const { uid, child, parent, replenishTokenType, initialToken } = user;
 
     authenticated();
 
     if (nextRefreshTime && isRefreshTime(nextRefreshTime)) {
-      updateStack(uid, { nextRefreshTime: getNextRefreshTime(replenishTokenType) })
-        .then(() => initStack(uid));
-
-      if (child) {
-        updateProfile({ ...user, child: { ...child, tokensEarned: child.tokensEarned + tokens.length } })
-          .then(() => initProfile(uid));
-      } else {
-        const tokensEarned = (parent ? parent.tokensEarned : 0) + tokens.length;
-        updateProfile({ ...user, parent: { tokensEarned } })
-          .then(() => initProfile(uid));
+      const refreshTokens = [];
+      for (let i = 0; i < initialToken; i += 1) {
+        refreshTokens.push(photoList[Math.floor(Math.random() * photoList.length)] || '');
       }
+      updateStack(uid, { tokens: refreshTokens, nextRefreshTime: getNextRefreshTime(replenishTokenType) })
+        .then(() => initStack(uid))
+        .then(() => {
+          if (child) {
+            updateProfile({ ...user, child: { ...child, tokensEarned: child.tokensEarned + tokens.length } })
+              .then(() => initProfile(uid));
+          } else {
+            const tokensEarned = (parent ? parent.tokensEarned : 0) + tokens.length;
+            updateProfile({ ...user, parent: { tokensEarned } })
+              .then(() => initProfile(uid));
+          }
+        });
     }
 
     if (child) navigate(routeName.Root.MainUser);
@@ -138,7 +143,8 @@ class LoginContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  tokenStack: state.tokenStack
+  tokenStack: state.tokenStack,
+  photoList: state.photo
 });
 const mapDispatchToProps = {
   authentication: authenticationEmailPassword,

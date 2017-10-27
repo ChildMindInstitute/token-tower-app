@@ -34,7 +34,7 @@ class ReviewPhotoContainer extends Component {
   _getImgRef = (ref) => { this.img = ref; }
 
   render() {
-    const { state: { params: { uri } } } = this.props.navigation;
+    const { state: { params: { uri, isFromLibrary } } } = this.props.navigation;
 
     return (
       <View style={styles._container}>
@@ -42,7 +42,7 @@ class ReviewPhotoContainer extends Component {
         <View style={styles._imgContainer}>
           <View style={styles._imgWrap} ref={this._getImgRef} collapsable={false}>
             <Image source={images.coin} resizeMode={'contain'} style={styles._images} />
-            <Image source={{ uri }} style={styles._ovalImg} />
+            <Image source={{ uri }} resizeMode={isFromLibrary && 'contain'} style={styles._ovalImg} />
           </View>
         </View>
         <View style={styles._btnContainer}>

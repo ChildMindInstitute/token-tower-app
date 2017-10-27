@@ -50,13 +50,13 @@ class TakePhotoContainer extends Component {
   _onPick = async () => {
     const { navigation: { navigate } } = this.props;
 
-    const photo = await ImagePicker.launchImageLibraryAsync({
+    const { uri, cancelled } = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       aspect: [4, 3]
     });
 
-    if (!photo.cancelled) {
-      navigate(routeName.TokenTower.ReviewPhoto, photo);
+    if (!cancelled) {
+      navigate(routeName.TokenTower.ReviewPhoto, { uri, isFromLibrary: true });
     }
   };
 

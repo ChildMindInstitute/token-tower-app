@@ -89,9 +89,17 @@ class SettingContainer extends Component {
     else navigate(routeName.Root.TokenTower);
   }
 
+  _initTokens = (initialToken) => {
+    const refreshTokens = [];
+    for (let i = 0; i < initialToken; i += 1) {
+      refreshTokens.push('');
+    }
+    return refreshTokens;
+  }
+
   _handleSubmit = ({ initialToken, replenishTokenType, childName, canAnimation }) => {
     const { updateProfile, initProfile, initStack, updateStack,
-      user, tokenStack, actRoleAsParent } = this.props;
+      user, tokenStack: { nextRefreshTime, tokens }, actRoleAsParent } = this.props;
     const child = childName && {
       name: childName,
       tokensEarned: user.child ? user.child.tokensEarned : 0
@@ -104,11 +112,14 @@ class SettingContainer extends Component {
       canAnimation
     };
 
+    const stack = {
+      tokens: nextRefreshTime ? tokens : this._initTokens(initialToken),
+      nextRefreshTime: getNextRefreshTime(replenishTokenType)
+    };
+
     updateProfile(userData)
       .then(({ value }) => initProfile(value))
-      .then(() => updateStack(user.uid, {
-        ...tokenStack, nextRefreshTime: getNextRefreshTime(replenishTokenType)
-      }))
+      .then(() => updateStack(user.uid, stack))
       .then(() => initStack(user.uid))
       .then(child && actRoleAsParent)
       .then(this._onSubmitSuccess);
@@ -121,6 +132,7 @@ class SettingContainer extends Component {
   }
 
   render() {
+    console.log(this.props.tokenStack)
     return (
       <View style={styles._container}>
         <KeyboardAwareScrollView style={styles._contentBlock}>

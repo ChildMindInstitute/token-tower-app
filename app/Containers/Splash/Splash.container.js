@@ -41,9 +41,9 @@ class SplashContainer extends Component {
   );
 
   _renderMotivationMsg = () => {
-    const { childName, prizes, isChild, isHaveChild, tokenStack: { tokens } } = this.props;
+    const { childName, prizes, isChild, isHaveChild } = this.props;
     const { childTokensEarned = 0, parentTokensEarned = 0 } = this.props;
-    const tokensEarned = (isHaveChild ? childTokensEarned : parentTokensEarned) + tokens.length;
+    const tokensEarned = (isHaveChild ? childTokensEarned : parentTokensEarned);
 
     const subject = `${isHaveChild && !isChild ? `${childName} has` : 'You have'}`;
     let text = tokensEarned > 0 ? `${subject} ${tokensEarned} tokens!! ` : MSG.ZERO_TOKEN;
@@ -124,14 +124,13 @@ class SplashContainer extends Component {
 SplashContainer.propTypes = config.propTypes;
 
 
-const mapStateToProps = ({ user, tokenStack }) => ({
+const mapStateToProps = ({ user }) => ({
   isHaveChild: !!(user.child && user.child.name),
   childName: user.child && user.child.name,
   childTokensEarned: user.child && user.child.tokensEarned,
   parentTokensEarned: user.parent && user.parent.tokensEarned,
   prizes: user.prizes,
-  isChild: user.role === USER_ROLE.CHILD,
-  tokenStack
+  isChild: user.role === USER_ROLE.CHILD
 });
 const mapDispatchToProps = {
 };
