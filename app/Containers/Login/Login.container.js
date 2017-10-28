@@ -85,6 +85,7 @@ class LoginContainer extends Component {
           }
         })
         .then(() => {
+          if (!prizes) return;
           const currentTokensIndex = prizes.findIndex(p => p.amount > currentTokens);
           const oldTokensIndex = prizes.findIndex(p => p.amount > oldTokens);
           if (oldTokensIndex !== currentTokensIndex) {

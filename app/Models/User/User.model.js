@@ -16,7 +16,7 @@ export default ({
   initialToken = 10,
   replenishTokenType = REPLENISH_TOKEN_TYPE.DAILY,
   child = null,
-  parent = null,
+  parent = {},
   prizes = null,
   isAdmin = false
 }) =>
