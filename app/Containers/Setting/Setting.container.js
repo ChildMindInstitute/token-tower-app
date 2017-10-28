@@ -132,7 +132,6 @@ class SettingContainer extends Component {
   }
 
   render() {
-    console.log(this.props.tokenStack)
     return (
       <View style={styles._container}>
         <KeyboardAwareScrollView style={styles._contentBlock}>

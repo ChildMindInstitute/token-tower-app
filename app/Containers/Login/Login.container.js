@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
+import { SecureStore } from 'expo';
 
 import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 import Input from '../../Components/FormInput/FormInput.component';
@@ -54,10 +55,12 @@ class LoginContainer extends Component {
   }
 
   _onAuthenticated = ({ value: user }) => {
-    const { navigation: { navigate }, authenticated, initStack, initProfile,
+    const { navigation: { navigate }, authenticated, initStack, initProfile, prizes,
       tokenStack: { nextRefreshTime, tokens }, updateStack, updateProfile, photoList } = this.props;
 
     const { uid, child, parent, replenishTokenType, initialToken } = user;
+    let oldTokens;
+    let currentTokens;
 
     authenticated();
 
@@ -70,12 +73,24 @@ class LoginContainer extends Component {
         .then(() => initStack(uid))
         .then(() => {
           if (child) {
-            updateProfile({ ...user, child: { ...child, tokensEarned: child.tokensEarned + tokens.length } })
+            oldTokens = child.tokensEarned;
+            currentTokens = child.tokensEarned + tokens.length;
+            updateProfile({ ...user, child: { ...child, tokensEarned: currentTokens } })
               .then(() => initProfile(uid));
           } else {
-            const tokensEarned = (parent ? parent.tokensEarned : 0) + tokens.length;
-            updateProfile({ ...user, parent: { tokensEarned } })
+            oldTokens = parent.tokensEarned;
+            currentTokens = (parent ? parent.tokensEarned : 0) + tokens.length;
+            updateProfile({ ...user, parent: { tokensEarned: currentTokens } })
               .then(() => initProfile(uid));
+          }
+        })
+        .then(() => {
+          const currentTokensIndex = prizes.findIndex(p => p.amount > currentTokens);
+          const oldTokensIndex = prizes.findIndex(p => p.amount > oldTokens);
+          if (oldTokensIndex !== currentTokensIndex) {
+            SecureStore.setItemAsync('shouldShowCongrat', '1');
+          } else {
+            SecureStore.setItemAsync('shouldShowCongrat', '0');
           }
         });
     }
@@ -144,7 +159,8 @@ class LoginContainer extends Component {
 
 const mapStateToProps = state => ({
   tokenStack: state.tokenStack,
-  photoList: state.photo
+  photoList: state.photo,
+  prizes: state.user.prizes
 });
 const mapDispatchToProps = {
   authentication: authenticationEmailPassword,

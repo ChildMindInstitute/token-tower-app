@@ -3,6 +3,7 @@ import { View, Image, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 import converter from 'number-to-words';
+import { SecureStore } from 'expo';
 
 import TextFit from '../../Components/TextFit/TextFit.component';
 import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
@@ -15,6 +16,13 @@ import config from './Splash.container.config';
 import { MSG, USER_ROLE } from '../../Utilities/Constant.utils';
 
 class SplashContainer extends Component {
+  state = {}
+  async componentWillMount() {
+    let shouldShowCongrat = await SecureStore.getItemAsync('shouldShowCongrat');
+    shouldShowCongrat = shouldShowCongrat == null ? 1 : shouldShowCongrat * 1;
+    this.setState({ shouldShowCongrat });
+  }
+
   componentDidUpdate() {
     this._textFit._updateSize();
   }
@@ -51,15 +59,11 @@ class SplashContainer extends Component {
     this.showFirework = false;
 
     if (prizes && prizes.length > 0) {
-      let currentAchivePrizeIndex;
-      const nextPrizeIndex = prizes.findIndex((p, i) => {
-        if (p.amount === tokensEarned) currentAchivePrizeIndex = i;
-        return p.amount > tokensEarned;
-      });
+      const nextPrizeIndex = prizes.findIndex(p => p.amount > tokensEarned);
       const nextPrize = prizes[nextPrizeIndex];
-      const currentAchivePrize = prizes[currentAchivePrizeIndex];
 
-      if (currentAchivePrize && currentAchivePrizeIndex < prizes.length - 1) {
+      const currentAchivePrizeIndex = nextPrizeIndex - 1;
+      if (currentAchivePrizeIndex > -1 && this.state.shouldShowCongrat) {
         const achiveTimes = converter.toWordsOrdinal(currentAchivePrizeIndex + 1);
         text += `Congratulation!!! ${subject} archived the tokens for the ${achiveTimes} prize`;
         this.showFirework = true;
