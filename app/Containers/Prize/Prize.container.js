@@ -38,7 +38,9 @@ class PrizeContainer extends Component {
 
     if (prizes == null || prizes.length < 1) this._onFail({ message: ERR_MSG.PRIZE_EMPTY });
     else if (prizes.length > 3) this._onFail({ message: ERR_MSG.MAX_PRIZE });
-    else {
+    else if (prizes.find(p => p.amount <= user.initialToken)) {
+      this._onFail({ message: ERR_MSG.PRIZE_SHOULD_GREATER_THAN_ALLOCATED });
+    } else {
       updateProfile({ ...user, prizes: prizes.sort((a, b) => a.amount > b.amount) })
         .then(({ value }) => initProfile(value))
         .then(this._onSubmitSuccess)

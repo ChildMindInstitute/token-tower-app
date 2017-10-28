@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addNavigationHelpers } from 'react-navigation';
-import { Font } from 'expo';
+import { Font, SecureStore } from 'expo';
 // import { addNavigationHelpers, NavigationActions } from 'react-navigation';
 // import { BackHandler } from 'react-native';
 
@@ -41,6 +41,7 @@ class RootNavigator extends Component {
     if (user) return;
     const { dispatch } = this.props;
     dispatch(navigationResetState());
+    SecureStore.deleteItemAsync('shouldShowCongrat');
   }
 
   // NOTE: DISABLE ANDROID BACK BUTTON for now

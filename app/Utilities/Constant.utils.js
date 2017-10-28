@@ -31,6 +31,7 @@ export const ERR_MSG = {
   NEED_CHILD_INFO: 'Please provide child information.',
   PRIZE_EMPTY: 'Prize can not be empty.',
   MAX_PRIZE: 'Maximun 3 prizes.',
+  PRIZE_SHOULD_GREATER_THAN_ALLOCATED: 'Prize should greater than tokens allocated',
   ADD_TOKEN_TITLE: 'Add token Failed',
   ADD_TOKEN: 'Don\'t have enough token to add.',
   REMOVE_TOKEN_TITLE: 'Remove token Failed',
