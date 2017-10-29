@@ -15,6 +15,7 @@ import {
 } from '../../Redux/Reducers/User/User.reducer';
 import { tokenStackInit, tokenStackUpdate } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
 import { photoInit } from '../../Redux/Reducers/Photo/Photo.reducer';
+import { tokenHistoryAdd } from '../../Redux/Reducers/TokenHistory/TokenHistory.reducer';
 
 import styles from './Login.container.styles';
 
@@ -22,7 +23,7 @@ import config from './Login.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { required, emailValidation } from '../../Utilities/Validation.utils';
 import { showTopErrNotification } from '../../Utilities/Form.util';
-import { ERR_MSG } from '../../Utilities/Constant.utils';
+import { ERR_MSG, TOKEN_ACTION_TYPE } from '../../Utilities/Constant.utils';
 import { isRefreshTime, getNextRefreshTime } from '../../Utilities/Time.utils';
 
 class LoginContainer extends Component {
@@ -55,7 +56,7 @@ class LoginContainer extends Component {
   }
 
   _onAuthenticated = ({ value: user }) => {
-    const { navigation: { navigate }, authenticated, initStack, initProfile, prizes,
+    const { navigation: { navigate }, authenticated, initStack, initProfile, prizes, addHistory,
       tokenStack: { nextRefreshTime, tokens }, updateStack, updateProfile, photoList } = this.props;
 
     const { uid, child, parent, replenishTokenType, initialToken } = user;
@@ -67,7 +68,9 @@ class LoginContainer extends Component {
     if (nextRefreshTime && isRefreshTime(nextRefreshTime)) {
       const refreshTokens = [];
       for (let i = 0; i < initialToken; i += 1) {
-        refreshTokens.push(photoList[Math.floor(Math.random() * photoList.length)] || '');
+        const imgRandomKey = photoList[Math.floor(Math.random() * photoList.length)] || '';
+        refreshTokens.push(imgRandomKey);
+        addHistory(uid, { type: TOKEN_ACTION_TYPE.ADD, tokenImgUrl: imgRandomKey });
       }
       updateStack(uid, { tokens: refreshTokens, nextRefreshTime: getNextRefreshTime(replenishTokenType) })
         .then(() => initStack(uid))
@@ -170,7 +173,8 @@ const mapDispatchToProps = {
   initStack: tokenStackInit,
   updateStack: tokenStackUpdate,
   updateProfile: userUpdateProfile,
-  initPhoto: photoInit
+  initPhoto: photoInit,
+  addHistory: tokenHistoryAdd
 };
 
 LoginContainer.propTypes = config.propTypes;
