@@ -36,7 +36,7 @@ const initialState = {
 const resetState = () => initialState;
 
 export default handleActions({
-  [REHYDRATE]: (state, { payload: { tokenStack: { nextRefreshTime } } }) => ({
+  [REHYDRATE]: (state, { payload: { tokenStack: { nextRefreshTime } = {} } = {} }) => ({
     shouldLogout: isRefreshTime(nextRefreshTime)
   }),
   AUTHENTICATION_RESET_STATE: resetState
