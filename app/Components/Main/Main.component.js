@@ -22,22 +22,10 @@ class MainComponent extends Component {
     if (onPlusPress) onPlusPress();
   }
 
-  _initPig = (ref) => { this.pig = ref; }
-
-  _initPigLayout = () => {
-    const { pig } = this;
-    if (pig && pig.measure) {
-      pig.measure((fx, fy, width, height, px, py) => {
-        this.pigFrame = { fx, fy, width, height, px, py };
-      });
-    }
-  }
-
   render() {
     const {
       onCameraPress, onTokenPress,
-      onPrizePress, onPigPress,
-      token, pigStyle,
+      onPrizePress, token,
       cameraStyle, minusIconColor,
       tokenStyle, plusIconColor,
       presentStyle
@@ -47,17 +35,11 @@ class MainComponent extends Component {
       <Image source={images.firstbackground} style={styles.bgrContainer}>
         <View style={styles.topContainer}>
           {token || <Header direction={DIRECTION.HORIZONTAL} textStyle={styles.textTransparent} />}
-          <Btn onPress={onPigPress}>
-            <Image
-              source={images.pig} style={pigStyle}
-              ref={this._initPig} onLayout={this._initPigLayout}
-            />
-          </Btn>
         </View>
         <Bottom
           onCameraPress={onCameraPress} onMinusPress={this._onMinusPress}
           onTokenPress={onTokenPress} onPlusPress={this._onPlusPress}
-          onPrizePress={onPrizePress} pigStyle={pigStyle}
+          onPrizePress={onPrizePress}
           cameraStyle={cameraStyle} minusIconColor={minusIconColor}
           tokenStyle={tokenStyle} plusIconColor={plusIconColor}
           presentStyle={presentStyle}

@@ -4,7 +4,7 @@ export default {
   coin: require('../Assets/Images/coin.png'),
   coinEmpty: require('../Assets/Images/coinEmpty.png'),
   k1: require('../Assets/Images/k1.png'),
-  pig: require('../Assets/Images/pig.png'),
+  // pig: require('../Assets/Images/pig.png'),
   camera: require('../Assets/Images/camera.png'),
   present: require('../Assets/Images/present.png'),
   facebook: require('../Assets/Images/facebook.png'),

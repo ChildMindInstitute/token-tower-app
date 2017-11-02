@@ -152,13 +152,11 @@ class MainContainer extends Component {
     />
   );
 
-  _onPig = () => { }
-
   render() {
     return (
       <Main
         onCameraPress={this._onCamera}
-        onPigPress={this._onPig} onTokenPress={this._onToken}
+        onTokenPress={this._onToken}
         onPlusPress={this._initFuncWithRole(this._onPlus)}
         onMinusPress={this._initFuncWithRole(this._onMinus)}
         minusIconColor={this._getColor()} plusIconColor={this._getColor()}
@@ -170,12 +168,38 @@ class MainContainer extends Component {
 
 MainContainer.propTypes = config.propTypes;
 
+const constructTokenStack = (stack) => {
+  const currencyList = [100, 50, 25, 10, 5, 1];
+  const totalTokens = stack.length;
+  const tokenStack = [];
+
+  const getTokenStack = (tokens) => {
+    for (let i = 0; i < currencyList.length; i += 1) {
+      const offset = Math.floor(tokens / currencyList[i]);
+      if (offset > 0) {
+        let remain = tokens;
+        for (let j = 0; j < offset; j += 1) {
+          remain -= currencyList[i];
+          // TODO: photos
+          tokenStack.push({ uri: '', number: currencyList[i] });
+        }
+        if (remain > 0) getTokenStack(remain);
+        break;
+      }
+    }
+  };
+
+  getTokenStack(totalTokens);
+
+  return tokenStack;
+};
+
 const mapStateToProps = state => ({
   user: state.user,
   isChild: state.user.role === USER_ROLE.CHILD,
   tokenStack: state.tokenStack,
   initialValues: {
-    tokenStack: state.tokenStack.tokens
+    tokenStack: constructTokenStack(state.tokenStack.tokens)
   },
   photoList: state.photo
 });

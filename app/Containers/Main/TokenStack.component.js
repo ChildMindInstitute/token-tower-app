@@ -21,8 +21,9 @@ class TokenStack extends Component {
         key={member} isLast={index === fields.length - 1}
         stackHeight={this.state.stackHeight}
         shouldScale={80 * fields.length > stackHeight}
-        imgUri={fields.get(index)}
+        imgUri={fields.get(index).uri}
         canAnimation={canAnimation}
+        number={fields.get(index).number}
       />
     );
   }
