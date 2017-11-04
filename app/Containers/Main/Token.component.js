@@ -22,41 +22,46 @@ class Token extends Component {
     const { imgUri } = this.props;
     getPhotoById(imgUri, (data = []) => {
       this.setState({ base64: data[0] && data[0].base64 });
+
+      if (this.img) {
+        this.img.bounceInDown()
+          .then(() => this._onAnimateFinished())
+          .then(() => this.img && this.img.rubberBand())
+          .then(() => this.img && this.img.rotate())
+          .catch(() => { });
+      }
     });
-    if (this.img) {
-      this.img.bounceInDown()
-        .then(() => this._onAnimateFinished())
-        .then(() => this.img && this.img.rubberBand())
-        .then(() => this.img && this.img.rotate())
-        .catch(() => { });
-    }
   }
 
   _getAnimateStyle = (number) => {
     const style = {
       1: {
-        width: 45,
-        height: 45
-      },
-      5: {
-        width: 55,
-        height: 55
-      },
-      10: {
         width: 60,
         height: 60
+      },
+      5: {
+        width: 60,
+        height: 60
+      },
+      10: {
+        width: 65,
+        height: 65
+      },
+      20: {
+        width: 65,
+        height: 65
       },
       25: {
         width: 70,
         height: 70
       },
       50: {
-        width: 85,
-        height: 85
+        width: 70,
+        height: 70
       },
       100: {
-        width: 95,
-        height: 95
+        width: 100,
+        height: 100
       }
     };
 

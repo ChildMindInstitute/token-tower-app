@@ -180,8 +180,7 @@ const constructTokenStack = (stack) => {
         let remain = tokens;
         for (let j = 0; j < offset; j += 1) {
           remain -= currencyList[i];
-          // TODO: photos
-          tokenStack.push({ uri: '', number: currencyList[i] });
+          tokenStack.push({ number: currencyList[i] });
         }
         if (remain > 0) getTokenStack(remain);
         break;
@@ -191,7 +190,9 @@ const constructTokenStack = (stack) => {
 
   getTokenStack(totalTokens);
 
-  return tokenStack;
+  return tokenStack.map(({ number }, i) => ({
+    number, uri: stack[(stack.length - tokenStack.length) + i]
+  }));
 };
 
 const mapStateToProps = state => ({
