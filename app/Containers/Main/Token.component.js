@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Image } from 'react-native';
+import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 import images from '../../Resources/Images';
@@ -12,13 +12,13 @@ import styles from './Token.component.styles';
 import formPropTypes from '../../PropTypes/Form.propTypes';
 import { getPhotoById } from '../../Utilities/Photos.utils';
 
-const bouncingEntrances = ['bounceIn', 'bounceInDown', 'bounceInUp', 'bounceInLeft', 'bounceInRight'];
+const bouncingEntrances = ['bounceInDown', 'bounceInUp', 'bounceInLeft', 'bounceInRight'];
 
 class Token extends Component {
   constructor() {
     super();
     this.state = {};
-    this.randomAnimated = bouncingEntrances[Math.floor(Math.random() * 5)];
+    this.randomAnimated = bouncingEntrances[Math.floor(Math.random() * 4)];
   }
 
   componentDidMount() {
@@ -29,12 +29,15 @@ class Token extends Component {
   }
 
   componentDidUpdate() {
+    if (this.txt) {
+      this.txt[this.randomAnimated]()
+        .then(() => this.txt && this.txt.flash());
+    }
     if (this.img) {
-      this.img[this.randomAnimated]()
-        .then(() => {
-          this._onAnimateFinished();
-          if (this.img) this.img.flash();
-        });
+      this.img.bounceInDown()
+        .then(() => this._onAnimateFinished())
+        .then(() => this.img && this.img.rubberBand())
+        .then(() => this.img && this.img.rotate());
     }
   }
 
@@ -44,6 +47,7 @@ class Token extends Component {
   };
 
   _getImgRef = (ref) => { this.img = ref; };
+  _getTxtRef = (ref) => { this.txt = ref; };
 
   render() {
     const { base64 } = this.state;
@@ -63,10 +67,10 @@ class Token extends Component {
     };
 
     return (
-      <Animatable.View style={animateStyle} ref={this._getImgRef}>
-        <Text style={styles.text}>{number}</Text>
-        <Image resizeMode={'contain'} source={img} style={imgStyle} />
-      </Animatable.View>
+      <View style={animateStyle}>
+        <Animatable.Text style={styles.text} ref={this._getTxtRef}>{number}</Animatable.Text>
+        <Animatable.Image resizeMode={'contain'} source={img} style={imgStyle} ref={this._getImgRef} />
+      </View>
     );
   }
 }
