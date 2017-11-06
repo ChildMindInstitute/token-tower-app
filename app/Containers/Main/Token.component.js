@@ -29,13 +29,12 @@ class Token extends Component {
   }
 
   componentDidUpdate() {
-    const { base64 } = this.state;
-    if (base64) {
-      if (this.img) {
-        this.img[this.randomAnimated]()
-          .then(() => this._onAnimateFinished())
-          .then(() => this.img && this.img.flash());
-      }
+    if (this.img) {
+      this.img[this.randomAnimated]()
+        .then(() => {
+          this._onAnimateFinished();
+          if (this.img) this.img.flash();
+        });
     }
   }
 

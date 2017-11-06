@@ -29,7 +29,7 @@ class SplashContainer extends Component {
 
   _onTouch = () => {
     const { navigate } = this.props.navigation;
-    navigate(routeName.TokenTower.Main);
+    setTimeout(() => navigate(routeName.TokenTower.Main), 500);
   };
 
   _renderTreasure = () => (

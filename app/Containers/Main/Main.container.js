@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { reduxForm, FieldArray } from 'redux-form';
+import _ from 'lodash';
 
 import Main from '../../Components/Main/Main.component';
 import TokenStack from './TokenStack.component';
@@ -146,7 +147,6 @@ class MainContainer extends Component {
   _renderTokenStack = () => (
     <FieldArray
       component={TokenStack}
-      photoList={this.props.photoList}
       name="tokenStack"
       canAnimation={this.props.user.canAnimation}
     />
@@ -157,8 +157,8 @@ class MainContainer extends Component {
       <Main
         onCameraPress={this._onCamera}
         onTokenPress={this._onToken}
-        onPlusPress={this._initFuncWithRole(this._onPlus)}
-        onMinusPress={this._initFuncWithRole(this._onMinus)}
+        onPlusPress={this._initFuncWithRole(_.debounce(this._onPlus, 500, { leading: true }))}
+        onMinusPress={this._initFuncWithRole(_.debounce(this._onMinus, 500, { leading: true }))}
         minusIconColor={this._getColor()} plusIconColor={this._getColor()}
         onPrizePress={this._onPrize} token={this._renderTokenStack()}
       />
@@ -168,7 +168,7 @@ class MainContainer extends Component {
 
 MainContainer.propTypes = config.propTypes;
 
-const constructTokenStack = (stack) => {
+const constructTokenStack = (stack, photoList) => {
   const currencyList = [100, 50, 25, 10, 5, 1];
   const totalTokens = stack.length;
   const tokenStack = [];
@@ -191,7 +191,7 @@ const constructTokenStack = (stack) => {
   getTokenStack(totalTokens);
 
   return tokenStack.map(({ number }, i) => ({
-    number, uri: stack[(stack.length - tokenStack.length) + i]
+    number, uri: photoList && photoList.length > 0 && stack[(stack.length - tokenStack.length) + i]
   }));
 };
 
@@ -200,7 +200,7 @@ const mapStateToProps = state => ({
   isChild: state.user.role === USER_ROLE.CHILD,
   tokenStack: state.tokenStack,
   initialValues: {
-    tokenStack: constructTokenStack(state.tokenStack.tokens)
+    tokenStack: constructTokenStack(state.tokenStack.tokens, state.photo)
   },
   photoList: state.photo
 });
