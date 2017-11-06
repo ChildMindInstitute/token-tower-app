@@ -12,32 +12,32 @@ import styles from './Token.component.styles';
 import formPropTypes from '../../PropTypes/Form.propTypes';
 import { getPhotoById } from '../../Utilities/Photos.utils';
 
+const bouncingEntrances = ['bounceIn', 'bounceInDown', 'bounceInUp', 'bounceInLeft', 'bounceInRight'];
+
 class Token extends Component {
   constructor() {
     super();
     this.state = {};
+    this.randomAnimated = bouncingEntrances[Math.floor(Math.random() * 5)];
   }
 
   componentDidMount() {
     const { imgUri } = this.props;
     getPhotoById(imgUri, (data = []) => {
       this.setState({ base64: data[0] && data[0].base64 });
-
-      if (this.img) {
-        this.img.bounceInDown()
-          .then(() => this._onAnimateFinished())
-          .then(() => this.img && this.img.rubberBand())
-          .then(() => this.img && this.img.rotate())
-          .catch(() => { });
-      }
     });
   }
 
-  _getAnimateStyle = shouldScale => ({
-    width: 70,
-    height: shouldScale ? undefined : 70,
-    flex: shouldScale ? 1 : undefined
-  });
+  componentDidUpdate() {
+    const { base64 } = this.state;
+    if (base64) {
+      if (this.img) {
+        this.img[this.randomAnimated]()
+          .then(() => this._onAnimateFinished())
+          .then(() => this.img && this.img.flash());
+      }
+    }
+  }
 
   _onAnimateFinished = async () => {
     const { isLast, canAnimation } = this.props;
@@ -56,14 +56,17 @@ class Token extends Component {
       else return null;
     } else img = images.coinEmpty;
 
+    const animateStyle = [styles.container, shouldScale && { flex: 1, alignItems: undefined }];
+    const imgStyle = {
+      width: 70,
+      height: shouldScale ? undefined : 70,
+      flex: shouldScale ? 1 : undefined
+    };
+
     return (
-      <Animatable.View style={[styles.container, shouldScale && { flex: 1, alignItems: undefined }]} ref={this._getImgRef}>
+      <Animatable.View style={animateStyle} ref={this._getImgRef}>
         <Text style={styles.text}>{number}</Text>
-        <Image
-          resizeMode={'contain'}
-          source={img}
-          style={this._getAnimateStyle(shouldScale)}
-        />
+        <Image resizeMode={'contain'} source={img} style={imgStyle} />
       </Animatable.View>
     );
   }
