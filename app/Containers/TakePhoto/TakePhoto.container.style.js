@@ -1,7 +1,5 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-import { smallSize } from '../../Utilities/MediaQuery.utils';
-
 export default EStyleSheet.create({
   _backgroundContainer: {
     flex: 1,
@@ -10,19 +8,17 @@ export default EStyleSheet.create({
   },
   _container: {
     flex: 1,
-    paddingHorizontal: 30,
-    [smallSize]: {
-      paddingHorizontal: 25
-    }
+    paddingHorizontal: 25
   },
   _cameraContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
     flex: 1
   },
   _coin: {
-    width: 270,
-    height: 270,
+    width: '100%',
+    height: '100%',
     position: 'relative',
     zIndex: 1
   },

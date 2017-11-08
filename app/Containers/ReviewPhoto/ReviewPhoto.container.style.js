@@ -55,14 +55,14 @@ export default EStyleSheet.create({
     fontFamily: Fonts.bold,
     color: 'green',
     [smallSize]: {
-      fontSize: 28
+      fontSize: 20
     },
     [mediumSize]: {
-      fontSize: 30,
+      fontSize: 23,
       paddingVertical: 5
     },
     [largeSize]: {
-      fontSize: 33,
+      fontSize: 25,
       paddingVertical: 8
     }
   },
@@ -70,14 +70,14 @@ export default EStyleSheet.create({
     fontFamily: Fonts.bold,
     color: 'red',
     [smallSize]: {
-      fontSize: 28
+      fontSize: 20
     },
     [mediumSize]: {
-      fontSize: 30,
+      fontSize: 23,
       paddingVertical: 5
     },
     [largeSize]: {
-      fontSize: 33,
+      fontSize: 25,
       paddingVertical: 8
     }
   },
