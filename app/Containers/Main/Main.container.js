@@ -114,15 +114,10 @@ class MainContainer extends Component {
 
   _onPlus = () => {
     const { updateStack, addHistory,
-      user: { uid, initialToken },
-      tokenStack, photoList, dispatch } = this.props;
+      user: { uid }, tokenStack, photoList } = this.props;
 
     const imgRandomKey = photoList[Math.floor(Math.random() * photoList.length)] || '';
 
-    if (tokenStack.tokens.length >= initialToken) {
-      showTopErrNotification({ title: ERR_MSG.ADD_TOKEN_TITLE, message: ERR_MSG.ADD_TOKEN }, dispatch);
-      return;
-    }
     const newStacks = [...tokenStack.tokens];
     newStacks.push(imgRandomKey);
     updateStack(uid, { ...tokenStack, tokens: newStacks });

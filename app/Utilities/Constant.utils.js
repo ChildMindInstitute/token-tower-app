@@ -19,7 +19,7 @@ export const ERR_MSG = {
   UPDATE_PASSWORD_TITLE: 'Update password Failed',
   INVALID_INFO_TITLE: 'Information is invalid',
   CAN_NOT_ENTER_TITLE: 'Can not enter',
-  CREATE_PRIZE_FAIL_TITLE: 'Create prize Failed',
+  CREATE_PRIZE_FAIL_TITLE: 'Error:',
   LOGIN_VERIFY_EMAIL: 'Your email address is not verified. please verify your email address!',
   NOT_A_NUMBER: 'Not a number',
   GREATER_THAN_ZERO: 'Greater than 0',
@@ -31,7 +31,8 @@ export const ERR_MSG = {
   NEED_CHILD_INFO: 'Please provide child information.',
   PRIZE_EMPTY: 'Prize can not be empty.',
   MAX_PRIZE: 'Maximun 3 prizes.',
-  PRIZE_SHOULD_GREATER_THAN_ALLOCATED: 'Prize should greater than tokens allocated',
+  PRIZE_SHOULD_GREATER_THAN_ALLOCATED:
+  'Please give the prize a value greater than the value of tokens allocated',
   ADD_TOKEN_TITLE: 'Add token Failed',
   ADD_TOKEN: 'Don\'t have enough token to add.',
   REMOVE_TOKEN_TITLE: 'Remove token Failed',
@@ -56,7 +57,7 @@ export const MSG = {
   REMOVE_TOKEN: 'One token removed from the tower.',
   REMOVE_TOKEN_ASK: 'Do you want to remove 1 token from Piggy container?',
   DEL_PHOTO_CONFIRM_TITLE: 'Delete Photo',
-  DEL_PHOTO_CONFIRM: 'Are you sure you want to do delete this photo?'
+  DEL_PHOTO_CONFIRM: 'Are you sure you want to delete this photo?'
 };
 
 export const BTN = {
