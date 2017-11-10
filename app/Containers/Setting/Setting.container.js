@@ -16,11 +16,12 @@ import {
   userUpdateProfile, userInitProfile, userActRoleAsParent
 } from '../../Redux/Reducers/User/User.reducer';
 import { tokenStackUpdate, tokenStackInit } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
+import { tokenHistoryAdd } from '../../Redux/Reducers/TokenHistory/TokenHistory.reducer';
 
 import config from './Setting.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
 import { required, greaterThanZero, smallerThanAThousand } from '../../Utilities/Validation.utils';
-import { REPLENISH_TOKEN_TYPE } from '../../Utilities/Constant.utils';
+import { REPLENISH_TOKEN_TYPE, TOKEN_ACTION_TYPE } from '../../Utilities/Constant.utils';
 import { strToNumber, toString } from '../../Utilities/Format.utils';
 import { getNextRefreshTime } from '../../Utilities/Time.utils';
 
@@ -90,9 +91,11 @@ class SettingContainer extends Component {
   }
 
   _initTokens = (initialToken) => {
+    const { addHistory, user: { uid } } = this.props;
     const refreshTokens = [];
     for (let i = 0; i < initialToken; i += 1) {
       refreshTokens.push('');
+      addHistory(uid, { type: TOKEN_ACTION_TYPE.ADD, tokenImgUrl: '' });
     }
     return refreshTokens;
   }
@@ -171,7 +174,8 @@ const mapDispatchToProps = {
   initProfile: userInitProfile,
   updateStack: tokenStackUpdate,
   initStack: tokenStackInit,
-  actRoleAsParent: userActRoleAsParent
+  actRoleAsParent: userActRoleAsParent,
+  addHistory: tokenHistoryAdd
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config.form)(SettingContainer));

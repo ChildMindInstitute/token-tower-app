@@ -29,12 +29,16 @@ export const {
 // ------------------------------------
 // Reducer
 // ------------------------------------
+const initialState = { tokens: [] };
 
 const initTokenStackHandler = (state, { payload }) => ({
   ...payload,
   tokens: (payload && payload.tokens) || []
 });
 
+const authenticateSignOutHandler = () => initialState;
+
 export default handleActions({
-  TOKEN_STACK_INIT_FULFILLED: initTokenStackHandler
-}, { tokens: [] });
+  TOKEN_STACK_INIT_FULFILLED: initTokenStackHandler,
+  AUTHENTICATION_SIGN_OUT_FULFILLED: authenticateSignOutHandler
+}, initialState);
