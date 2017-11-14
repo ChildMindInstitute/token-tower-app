@@ -25,32 +25,53 @@ class Token extends Component {
     const { imgUri } = this.props;
     getPhotoById(imgUri, (data = []) => {
       this.setState({ base64: data[0] && data[0].base64 });
+
+      if (this.txt) {
+        this.txt[this.randomAnimated]()
+          .then(() => this.txt && this.txt.flash());
+      }
+      if (this.img) {
+        this.img.bounceInDown()
+          .then(() => this._onAnimateFinished())
+          .then(() => this.img && this.img.rubberBand())
+          .then(() => this.img && this.img.rotate());
+      }
     });
   }
 
-  componentDidUpdate() {
-    if (this.txt) {
-      this.txt[this.randomAnimated]()
-        .then(() => this.txt && this.txt.flash());
-    }
-    if (this.img) {
-      this.img.bounceInDown()
-        .then(() => this._onAnimateFinished())
-        .then(() => this.img && this.img.rubberBand())
-        .then(() => this.img && this.img.rotate());
-    }
-  }
+  // componentDidUpdate() {
+  //   if (this.txt) {
+  //     this.txt[this.randomAnimated]()
+  //       .then(() => this.txt && this.txt.flash());
+  //   }
+  //   if (this.img) {
+  //     this.img.bounceInDown()
+  //       .then(() => this._onAnimateFinished())
+  //       .then(() => this.img && this.img.rubberBand())
+  //       .then(() => this.img && this.img.rotate());
+  //   }
+  // }
 
   _onAnimateFinished = async () => {
     const { isLast, canAnimation } = this.props;
     if (isLast && canAnimation) await soundUtils.play(Sounds.coinDrop);
   };
 
+  _onTextLayout = (event) => {
+    const { nativeEvent: { layout: { height } } } = event;
+    this.setState({ textHeight: height });
+  }
+
+  _onImageLayout = (event) => {
+    const { nativeEvent: { layout: { height } } } = event;
+    this.setState({ imageHeight: height });
+  }
+
   _getImgRef = (ref) => { this.img = ref; };
   _getTxtRef = (ref) => { this.txt = ref; };
 
   render() {
-    const { base64 } = this.state;
+    const { base64, imageHeight, textHeight } = this.state;
     const { imgUri, number, shouldScale } = this.props;
 
     let img;
@@ -59,17 +80,28 @@ class Token extends Component {
       else return null;
     } else img = images.coinEmpty;
 
-    const animateStyle = [styles.container, shouldScale && { flex: 1, alignItems: undefined }];
+    const animateStyle = [styles.container, shouldScale && { flex: 1, alignItems: null }];
     const imgStyle = {
-      width: 70,
-      height: shouldScale ? undefined : 70,
-      flex: shouldScale ? 1 : undefined
+      width: 90,
+      height: shouldScale ? null : 90,
+      flex: shouldScale ? 1 : 0
     };
 
     return (
       <View style={animateStyle}>
-        <Animatable.Text style={styles.text} ref={this._getTxtRef}>{number}</Animatable.Text>
-        <Animatable.Image resizeMode={'contain'} source={img} style={imgStyle} ref={this._getImgRef} />
+        <Animatable.Text
+          onLayout={this._onTextLayout}
+          style={[styles.text, { top: (imageHeight / 2) - (textHeight / 2) }]}
+          ref={this._getTxtRef}
+        >{number}
+        </Animatable.Text>
+        <Animatable.Image
+          onLayout={this._onImageLayout}
+          resizeMode={'contain'}
+          source={img}
+          style={imgStyle}
+          ref={this._getImgRef}
+        />
       </View>
     );
   }
