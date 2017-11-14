@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+// import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
-import Expo from 'expo';
+// import Expo from 'expo';
 
 import Btn from '../../Components/FormButton/FormButton.component';
 import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
@@ -21,14 +22,15 @@ import {
   userInitProfile
 } from '../../Redux/Reducers/User/User.reducer';
 
-import images from '../../Resources/Images';
+// import images from '../../Resources/Images';
 import styles from './RegisterForm.container.styles';
 
 import config from './RegisterForm.container.config';
 import routeName from '../../Navigation/RouteConfigs/Route.config';
-import { FacebookAuthenticate, GoogleAuthenticate } from '../../Provider/Provider.config';
+// import { FacebookAuthenticate, GoogleAuthenticate } from '../../Provider/Provider.config';
 import { required, minLength, maxLength, emailValidation } from '../../Utilities/Validation.utils';
-import { DIRECTION, ERR_MSG, COMMON } from '../../Utilities/Constant.utils';
+// import { DIRECTION, ERR_MSG, COMMON } from '../../Utilities/Constant.utils';
+import { DIRECTION, ERR_MSG } from '../../Utilities/Constant.utils';
 import { showTopErrNotification } from '../../Utilities/Form.util';
 
 class RegisterFormContainer extends Component {
@@ -112,26 +114,26 @@ class RegisterFormContainer extends Component {
       .catch(this._onFail);
   }
 
-  _onGgPressed = async () => {
-    try {
-      const { signInWithGg } = this.props;
-      const { type, accessToken, idToken } = await Expo.Google.logInAsync(GoogleAuthenticate);
+  // _onGgPressed = async () => {
+  //   try {
+  //     const { signInWithGg } = this.props;
+  //     const { type, accessToken, idToken } = await Expo.Google.logInAsync(GoogleAuthenticate);
 
-      if (type !== COMMON.SUCCESS) return;
-      this._signInWithProviderWrap(signInWithGg(idToken, accessToken));
-    } catch (e) {
-      this._onFail({ message: ERR_MSG.GOOGLE_SIGN_IN });
-    }
-  }
+  //     if (type !== COMMON.SUCCESS) return;
+  //     this._signInWithProviderWrap(signInWithGg(idToken, accessToken));
+  //   } catch (e) {
+  //     this._onFail({ message: ERR_MSG.GOOGLE_SIGN_IN });
+  //   }
+  // }
 
-  _onFbPressed = async () => {
-    const { signInWithFb } = this.props;
-    const { appId, scopes } = FacebookAuthenticate;
-    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(appId, scopes);
+  // _onFbPressed = async () => {
+  //   const { signInWithFb } = this.props;
+  //   const { appId, scopes } = FacebookAuthenticate;
+  //   const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(appId, scopes);
 
-    if (type !== COMMON.SUCCESS) return;
-    this._signInWithProviderWrap(signInWithFb(token));
-  }
+  //   if (type !== COMMON.SUCCESS) return;
+  //   this._signInWithProviderWrap(signInWithFb(token));
+  // }
 
   render() {
     return (
@@ -143,17 +145,17 @@ class RegisterFormContainer extends Component {
             {this._renderPasswordInput()}
             {this._renderEmailInput()}
           </View>
-          <View style={styles._socialLogos}>
-            <Text style={styles._logoText}>Or login with: </Text>
-            <View style={styles._logosBlock}>
-              <Btn btnStyle={styles._logos} onPress={this._onGgPressed}>
-                <Image resizeMode={'contain'} source={images.google} style={styles._image} />
-              </Btn>
-              <Btn btnStyle={styles._logos} onPress={this._onFbPressed}>
-                <Image resizeMode={'contain'} source={images.facebook} style={styles._image} />
-              </Btn>
-            </View>
-          </View>
+          {/* <View style={styles._socialLogos}>
+              <Text style={styles._logoText}>Or login with: </Text>
+              <View style={styles._logosBlock}>
+                <Btn btnStyle={styles._logos} onPress={this._onGgPressed}>
+                  <Image resizeMode={'contain'} source={images.google} style={styles._image} />
+                </Btn>
+                <Btn btnStyle={styles._logos} onPress={this._onFbPressed}>
+                  <Image resizeMode={'contain'} source={images.facebook} style={styles._image} />
+                </Btn>
+              </View>
+            </View> */}
         </ScrollView>
         <Btn onPress={this.props.handleSubmit(this._handleSubmit)} text={'NEXT'} />
       </View>
