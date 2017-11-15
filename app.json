@@ -1,6 +1,7 @@
 {
   "expo": {
     "sdkVersion": "21.0.0",
+    "version": "1.0.0",
     "name": "Token Tower",
     "icon": "./app/Assets/Images/kid-icon.png",
     "androidStatusBar": {
@@ -9,6 +10,7 @@
     "slug": "tokentower-dev",
     "ios": {
       "bundleIdentifier": "com.childmind.tokentower.dev",
+      "buildNumber" : "1",
       "config": {
         "googleSignIn": {
           "reservedClientId": "com.googleusercontent.apps.936670915515-74oubjp3u0rj0328mb69ol98772vrp0a"
@@ -17,6 +19,7 @@
     },
     "android": {
       "package": "com.childmind.tokentower.dev",
+      "buildNumber" : "1",
       "config": {
         "googleSignIn": {
           "apiKey": "AIzaSyCkqjCxiCvcdI_45h7Cxk7RgiapDQjIIjw",
