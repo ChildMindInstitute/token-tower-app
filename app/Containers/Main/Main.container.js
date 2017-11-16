@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { reduxForm, FieldArray } from 'redux-form';
-import _ from 'lodash';
 
 import Main from '../../Components/Main/Main.component';
 import TokenStack from './TokenStack.component';
@@ -152,8 +151,8 @@ class MainContainer extends Component {
       <Main
         onCameraPress={this._onCamera}
         onTokenPress={this._onToken}
-        onPlusPress={this._initFuncWithRole(_.debounce(this._onPlus, 500, { leading: true }))}
-        onMinusPress={this._initFuncWithRole(_.debounce(this._onMinus, 500, { leading: true }))}
+        onPlusPress={this._onPlus}
+        onMinusPress={this._onMinus}
         minusIconColor={this._getColor()} plusIconColor={this._getColor()}
         onPrizePress={this._onPrize} token={this._renderTokenStack()}
       />
