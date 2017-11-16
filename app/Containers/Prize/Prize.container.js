@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { reduxForm, FieldArray } from 'redux-form';
 
@@ -7,7 +7,6 @@ import FontIcon from '../../Components/FontIcon/FontIcon.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 import PrizeList from './PrizeList.component';
 
-import images from '../../Resources/Images';
 import styles from './Prize.container.style';
 
 import { userUpdateProfile, userInitProfile } from '../../Redux/Reducers/User/User.reducer';
@@ -72,7 +71,6 @@ class PrizeContainer extends Component {
       <View style={styles._containerContent}>
         <FieldArray component={PrizeList} name={'prizes'} showDelBtn={this.props.isParent} />
         <View style={styles._btnGroup}>
-          <Image source={images.pig} resizeMode={'contain'} style={styles._images} />
           {this._renderAddBtn()}
           {this._renderSaveBtn()}
         </View>
