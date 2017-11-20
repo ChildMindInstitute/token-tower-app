@@ -9,6 +9,7 @@ import Btn from '../../Components/FormButton/FormButton.component';
 import FontIcon from '../../Components/FontIcon/FontIcon.component';
 
 import { photoRemove } from '../../Redux/Reducers/Photo/Photo.reducer';
+import { tokenStackUpdate, tokenStackInit } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
 import styles from './PhotosList.container.styles';
 
 import { DIRECTION, MSG, COMMON } from '../../Utilities/Constant.utils';
@@ -32,7 +33,19 @@ class PhotosListContainer extends Component {
   );
 
   _deletePhoto = ({ id }) => {
-    const { user: { uid }, removePhoto } = this.props;
+    const { user: { uid }, tokenStack, removePhoto, updateStack, initStack } = this.props;
+    const { data } = this.state;
+    const { tokens } = tokenStack;
+
+    const photoIdList = data.map(i => i.id);
+    photoIdList.splice(photoIdList.indexOf(id), 1);
+
+    const newTokens = tokens.map((token) => {
+      let newToken = token;
+      if (token === id) newToken = photoIdList[Math.floor(Math.random() * photoIdList.length)] || '';
+      return newToken;
+    });
+    updateStack(uid, { ...tokenStack, tokens: newTokens }).then(() => initStack(uid));
     removePhoto(uid, id).then(this._getPhotos);
   }
 
@@ -102,16 +115,22 @@ class PhotosListContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  tokenStack: state.tokenStack
 });
 
 const mapDispatchToProps = {
-  removePhoto: photoRemove
+  removePhoto: photoRemove,
+  updateStack: tokenStackUpdate,
+  initStack: tokenStackInit
 };
 
 PhotosListContainer.propTypes = {
   user: propTypes.object,
-  removePhoto: propTypes.func
+  tokenStack: propTypes.object,
+  removePhoto: propTypes.func,
+  updateStack: propTypes.func,
+  initStack: propTypes.func
 };
 
 PhotosListContainer.defaultProps = {

@@ -22,8 +22,10 @@ class Token extends Component {
   }
 
   componentDidMount() {
+    if (this._isUnmounted) return;
     const { imgUri } = this.props;
     getPhotoById(imgUri, (data = []) => {
+      if (this._isUnmounted) return;
       this.setState({ base64: data[0] && data[0].base64 });
 
       if (this.txt) {
@@ -39,18 +41,20 @@ class Token extends Component {
     });
   }
 
-  // componentDidUpdate() {
-  //   if (this.txt) {
-  //     this.txt[this.randomAnimated]()
-  //       .then(() => this.txt && this.txt.flash());
-  //   }
-  //   if (this.img) {
-  //     this.img.bounceInDown()
-  //       .then(() => this._onAnimateFinished())
-  //       .then(() => this.img && this.img.rubberBand())
-  //       .then(() => this.img && this.img.rotate());
-  //   }
-  // }
+  componentDidUpdate() {
+    if (this._isUnmounted) return;
+    const { imgUri } = this.props;
+    const { base64 } = this.state;
+    if (imgUri) {
+      if (!base64) {
+        this.componentDidMount();
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    this._isUnmounted = true;
+  }
 
   _onAnimateFinished = async () => {
     const { isLast, canAnimation } = this.props;

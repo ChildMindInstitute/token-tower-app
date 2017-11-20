@@ -16,7 +16,7 @@ const registerNavigateWithDebounce = (dispatch) => {
     navigateWithDebounce: (routeName, params, action) => (() => {
       if (debounce) return;
       dispatch(NavigationActions.navigate({ routeName, params, action }));
-      debounce = setTimeout(() => { debounce = 0; }, 1500);
+      debounce = setTimeout(() => { debounce = 0; }, 500);
     })()
   };
 };
