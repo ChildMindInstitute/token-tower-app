@@ -12,5 +12,10 @@ export default [
     name: 'Photos',
     icon: 'picture',
     route: routeName.TokenTower.PhotosList
+  },
+  {
+    name: 'Take A Tour',
+    icon: 'flight',
+    route: routeName.Root.TokenTowerTutorial
   }
 ];

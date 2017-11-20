@@ -65,6 +65,12 @@
       "css": "id-card",
       "code": 62146,
       "src": "fontawesome"
+    },
+    {
+      "uid": "297fe6c2ef08198b03d706ba52f51b7f",
+      "css": "flight",
+      "code": 59397,
+      "src": "fontawesome"
     }
   ]
 }
