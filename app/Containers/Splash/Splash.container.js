@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 import converter from 'number-to-words';
 import { SecureStore } from 'expo';
+import _ from 'lodash';
 
 import TextFit from '../../Components/TextFit/TextFit.component';
 import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
@@ -29,7 +30,7 @@ class SplashContainer extends Component {
 
   _onTouch = () => {
     const { navigate } = this.props.navigation;
-    setTimeout(() => navigate(routeName.TokenTower.Main), 500);
+    navigate(routeName.TokenTower.Main);
   };
 
   _renderTreasure = () => (
@@ -92,7 +93,7 @@ class SplashContainer extends Component {
 
   render() {
     return (
-      <TouchableWithoutFeedback onPress={this._onTouch}>
+      <TouchableWithoutFeedback onPress={_.debounce(this._onTouch, 500, { trailing: true, leading: false })}>
         <View style={styles._outerContainer}>
           <View style={styles._container}>
             <Header direction={'horizontal'} />
