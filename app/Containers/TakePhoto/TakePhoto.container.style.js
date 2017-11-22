@@ -7,8 +7,7 @@ export default EStyleSheet.create({
     width: null
   },
   _container: {
-    flex: 1,
-    paddingHorizontal: 25
+    flex: 1
   },
   _cameraContainer: {
     justifyContent: 'center',
@@ -26,7 +25,8 @@ export default EStyleSheet.create({
     flex: 0.2,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingHorizontal: 20
   },
   _images: {
     flex: 1,

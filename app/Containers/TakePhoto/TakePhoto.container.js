@@ -3,7 +3,6 @@ import { View, Image } from 'react-native';
 import { Camera, Permissions, ImagePicker } from 'expo';
 import { connect } from 'react-redux';
 
-import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
 import PermissionGrantWidget from '../../Components/PermissionGrantWidget/PermissionGrantWidget.component';
 import Btn from '../../Components/FormButton/FormButton.component';
 
@@ -15,7 +14,6 @@ import styles from './TakePhoto.container.style';
 import { loadingMaskStart, loadingMaskEnd } from '../../Redux/Reducers/LoadingMask/LoadingMask.reducer';
 
 import routeName from '../../Navigation/RouteConfigs/Route.config';
-import { DIRECTION } from '../../Utilities/Constant.utils';
 import config from './TakePhoto.container.config';
 
 class TakePhotoContainer extends Component {
@@ -69,7 +67,6 @@ class TakePhotoContainer extends Component {
     return (
       <Image style={styles._backgroundContainer} source={images.firstbackground}>
         <View style={styles._container}>
-          <Header direction={DIRECTION.HORIZONTAL} textStyle={styles._backgroundTransparent} />
           <Camera style={styles._cameraContainer} type={type} autoFocus ref={this._getCameraRef}>
             <Image source={images.coin} resizeMode={'contain'} style={styles._coin} />
           </Camera>
