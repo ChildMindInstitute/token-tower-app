@@ -151,8 +151,8 @@ class MainContainer extends Component {
       <Main
         onCameraPress={this._onCamera}
         onTokenPress={this._onToken}
-        onPlusPress={this._onPlus}
-        onMinusPress={this._onMinus}
+        onPlusPress={this._initFuncWithRole(this._onPlus)}
+        onMinusPress={this._initFuncWithRole(this._onMinus)}
         minusIconColor={this._getColor()} plusIconColor={this._getColor()}
         onPrizePress={this._onPrize} token={this._renderTokenStack()}
       />
