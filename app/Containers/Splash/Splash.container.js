@@ -50,9 +50,9 @@ class SplashContainer extends Component {
   );
 
   _renderMotivationMsg = () => {
-    const { childName, prizes, isChild, isHaveChild } = this.props;
+    const { childName, prizes, isChild, isHaveChild, tokenStack: { tokens } } = this.props;
     const { childTokensEarned = 0, parentTokensEarned = 0 } = this.props;
-    const tokensEarned = (isHaveChild ? childTokensEarned : parentTokensEarned);
+    const tokensEarned = (isHaveChild ? childTokensEarned : parentTokensEarned) + tokens.length;
 
     const subject = `${isHaveChild && !isChild ? `${childName} has` : 'You have'}`;
     let text = tokensEarned > 0 ? `${subject} ${tokensEarned} tokens!! ` : MSG.ZERO_TOKEN;
@@ -60,11 +60,15 @@ class SplashContainer extends Component {
     this.showFirework = false;
 
     if (prizes && prizes.length > 0) {
-      const nextPrizeIndex = prizes.findIndex(p => p.amount > tokensEarned);
+      let currentAchivePrizeIndex;
+      const nextPrizeIndex = prizes.findIndex((p, i) => {
+        if (p.amount === tokensEarned) currentAchivePrizeIndex = i;
+        return p.amount > tokensEarned;
+      });
       const nextPrize = prizes[nextPrizeIndex];
+      const currentAchivePrize = prizes[currentAchivePrizeIndex];
 
-      const currentAchivePrizeIndex = nextPrizeIndex - 1;
-      if (currentAchivePrizeIndex > -1 && this.state.shouldShowCongrat) {
+      if (currentAchivePrize && currentAchivePrizeIndex < prizes.length - 1) {
         const achiveTimes = converter.toWordsOrdinal(currentAchivePrizeIndex + 1);
         text += `Congratulation!!! ${subject} archived the tokens for the ${achiveTimes} prize`;
         this.showFirework = true;
@@ -128,14 +132,14 @@ class SplashContainer extends Component {
 
 SplashContainer.propTypes = config.propTypes;
 
-
-const mapStateToProps = ({ user }) => ({
+const mapStateToProps = ({ user, tokenStack }) => ({
   isHaveChild: !!(user.child && user.child.name),
   childName: user.child && user.child.name,
   childTokensEarned: user.child && user.child.tokensEarned,
   parentTokensEarned: user.parent && user.parent.tokensEarned,
   prizes: user.prizes,
-  isChild: user.role === USER_ROLE.CHILD
+  isChild: user.role === USER_ROLE.CHILD,
+  tokenStack
 });
 const mapDispatchToProps = {
 };

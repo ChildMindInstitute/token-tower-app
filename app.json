@@ -10,7 +10,7 @@
     "slug": "tokentower-dev",
     "ios": {
       "bundleIdentifier": "com.childmind.tokentower.dev",
-      "buildNumber": "2",
+      "buildNumber": "4",
       "config": {
         "googleSignIn": {
           "reservedClientId": "com.googleusercontent.apps.936670915515-74oubjp3u0rj0328mb69ol98772vrp0a"
