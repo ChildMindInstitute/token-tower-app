@@ -19,7 +19,7 @@
     },
     "android": {
       "package": "com.childmind.tokentower.dev",
-      "versionCode": 2,
+      "versionCode": 3,
       "config": {
         "googleSignIn": {
           "apiKey": "AIzaSyCkqjCxiCvcdI_45h7Cxk7RgiapDQjIIjw",

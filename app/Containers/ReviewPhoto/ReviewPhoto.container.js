@@ -8,6 +8,7 @@ import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component
 import Btn from '../../Components/FormButton/FormButton.component';
 
 import { photoAdd } from '../../Redux/Reducers/Photo/Photo.reducer';
+import { tokenStackUpdate, tokenStackInit } from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
 
 import images from '../../Resources/Images';
 import styles from './ReviewPhoto.container.style';
@@ -17,13 +18,22 @@ import navProps from '../../PropTypes/Navigation.propTypes';
 
 class ReviewPhotoContainer extends Component {
   _onKeep = async () => {
-    const { addPhoto, uid, navigation } = this.props;
+    const { addPhoto, uid, navigation, tokenStack, updateStack, initStack } = this.props;
+    const { tokens } = tokenStack;
     const options = { format: 'png', result: 'base64' };
     const base64 = await takeSnapshotAsync(this.img, options);
     const tokenImgUrl = `data:image/jpg;base64,${base64}`;
 
     addPhoto(uid, { tokenImgUrl })
-      .then(() => navigation.goBack());
+      .then(({ value: { id } }) => {
+        const newTokens = tokens.map((token) => {
+          let newToken = token;
+          if (token === '') newToken = id;
+          return newToken;
+        });
+        updateStack(uid, { ...tokenStack, tokens: newTokens }).then(() => initStack(uid));
+        navigation.goBack();
+      });
   }
 
   _onCancel = () => {
@@ -70,9 +80,11 @@ ReviewPhotoContainer.propTypes = {
   uid: propTypes.string.isRequired
 };
 
-const mapStateToProps = ({ user: { uid } }) => ({ uid });
+const mapStateToProps = ({ user: { uid }, tokenStack }) => ({ uid, tokenStack });
 const mapDispatchToProps = {
-  addPhoto: photoAdd
+  addPhoto: photoAdd,
+  updateStack: tokenStackUpdate,
+  initStack: tokenStackInit
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewPhotoContainer);
