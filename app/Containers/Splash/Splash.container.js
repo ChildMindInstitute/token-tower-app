@@ -3,11 +3,16 @@ import { View, Image, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 import converter from 'number-to-words';
-import { SecureStore } from 'expo';
 import _ from 'lodash';
 
 import TextFit from '../../Components/TextFit/TextFit.component';
 import Header from '../../Components/TokenTowerHeader/TokenTowerHeader.component';
+
+import {
+  tokenStackListenChangeOn,
+  tokenStackListenChangeOff,
+  tokenStackInit
+} from '../../Redux/Reducers/TokenStack/TokenStack.reducer';
 
 import images from '../../Resources/Images';
 import styles from './Splash.container.styles';
@@ -17,15 +22,23 @@ import config from './Splash.container.config';
 import { MSG, USER_ROLE } from '../../Utilities/Constant.utils';
 
 class SplashContainer extends Component {
-  state = {}
-  async componentWillMount() {
-    let shouldShowCongrat = await SecureStore.getItemAsync('shouldShowCongrat');
-    shouldShowCongrat = shouldShowCongrat == null ? 1 : shouldShowCongrat * 1;
-    this.setState({ shouldShowCongrat });
+  componentWillMount() {
+    const { subscribeStackChanged, uid } = this.props;
+    subscribeStackChanged(uid, this._onStackChangeHandler);
   }
 
   componentDidUpdate() {
     this._textFit._updateSize();
+  }
+
+  componentWillUnmount() {
+    const { unsubscribeStackChanged, uid } = this.props;
+    unsubscribeStackChanged(uid, this._onStackChangeHandler);
+  }
+
+  _onStackChangeHandler = () => {
+    const { initStack, uid } = this.props;
+    initStack(uid);
   }
 
   _onTouch = () => {
@@ -133,6 +146,7 @@ class SplashContainer extends Component {
 SplashContainer.propTypes = config.propTypes;
 
 const mapStateToProps = ({ user, tokenStack }) => ({
+  uid: user.uid,
   isHaveChild: !!(user.child && user.child.name),
   childName: user.child && user.child.name,
   childTokensEarned: user.child && user.child.tokensEarned,
@@ -142,6 +156,9 @@ const mapStateToProps = ({ user, tokenStack }) => ({
   tokenStack
 });
 const mapDispatchToProps = {
+  subscribeStackChanged: tokenStackListenChangeOn,
+  unsubscribeStackChanged: tokenStackListenChangeOff,
+  initStack: tokenStackInit
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SplashContainer);
